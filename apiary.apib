@@ -1,0 +1,91 @@
+FORMAT: 1A
+
+# Superdesk
+
+## Users Collection [/users]
+### List all Users [GET]
++ Response 200 (application/json)
+
+        {
+            "_items": [
+                {
+                    "_id": "5292de6f6224ff00026fa835",
+                    "_links": {"self": {"href": "/users/5292de6f6224ff00026fa835"}},
+                    "created": "2013-11-25T05:21:51+0000",
+                    "display_name": "Foo",
+                    "email": "foo.bar@example.org",
+                    "etag": "ba5a2c20e593dc507c845d5d074ba0ab0fbee077",
+                    "first_name": "Foo",
+                    "last_name": "Bar",
+                    "picture_url": "/upload/qQTYkyNDm7we.png",
+                    "updated": "2013-11-25T05:24:14+0000",
+                    "user_info": {"company": "Example"},
+                    "username": "foo"
+                },
+                {
+                    "_id": "52aec775f3d428000a0dcca6",
+                    "_links": {"self": {"href": "/users/52aec775f3d428000a0dcca6"}},
+                    "created": "2013-12-16T09:27:17+0000",
+                    "display_name": "serena",
+                    "etag": "e6455c43ded12f0cb000a3e3ceac261b82d42805",
+                    "first_name": "Serrena",
+                    "last_name": "Cocosta",
+                    "picture_url": "/upload/IvkXZsIa4m8H.jpg",
+                    "updated": "2013-12-16T09:27:17+0000",
+                    "username": "serr"
+                }
+            ],
+            "_links": {"self": {"href": "/users"}}
+        }
+
+
+### Create a User [POST]
++ Request (application/json)
+
+        {
+            "first_name": "John",
+            "last_name": "Doe",
+            "username": "john",
+            "password": "pass",
+        }
+
++ Response 201 (application/json)
+
+        {
+            "_id": "526151304f2b5b000299cc41",
+            "_links": {"self": {"href": "/users/526151304f2b5b000299cc41"}},
+            "created": "2013-10-18T15:18:08+0000",
+            "display_name": "John Doe",
+            "etag": "929c5f14fce59f019cb6948c66956ae06056ea45",
+            "updated": "2013-10-18T15:18:08+0000",
+            "username": "john"
+        }
+
+## User [/users/{_id}]
+A single User object
+
++ Parameters
+    + _id (required, string, `5292de6f6224ff00026fa835`) ... String `_id` of the User.
+
+### Retrieve a User [GET]
++ Response 200 (application/json)
+
+    + Body
+
+            {
+                    "_id": "5292de6f6224ff00026fa835",
+                    "_links": {"self": {"href": "/users/5292de6f6224ff00026fa835"}},
+                    "created": "2013-11-25T05:21:51+0000",
+                    "display_name": "Foo",
+                    "email": "foo.bar@example.org",
+                    "etag": "ba5a2c20e593dc507c845d5d074ba0ab0fbee077",
+                    "first_name": "Foo",
+                    "last_name": "Bar",
+                    "picture_url": "/upload/qQTYkyNDm7we.png",
+                    "updated": "2013-11-25T05:24:14+0000",
+                    "user_info": {"company": "Example"},
+                    "username": "foo"
+            }
+
+### Remove a User [DELETE]
++ Response 204
