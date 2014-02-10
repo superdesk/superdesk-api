@@ -2,7 +2,32 @@ FORMAT: 1A
 
 # Superdesk
 
+## Authentication Resource [/auth]
+
+### Authenticate [POST]
+
+Get token using your credentials.
+
++ Request (application/json)
+
+        {
+            "username": "admin",
+            "password": "admin"
+        }
+
++ Response 200
+
+        {
+            "token": "a1b2c3",
+            "status": "OK"
+        }
+
 ## Users Collection [/users{?max_results,where,sort,q,df}]
+
++ Headers
+
+        Authorization: Basic a1b2c3
+
 ### List all Users [GET]
 
 + Parameters
