@@ -18,15 +18,16 @@ Get token using your credentials.
 + Response 200
 
         {
-            "token": "a1b2c3",
-            "status": "OK"
+            "token": "token",
+            "status": "OK",
+            "user": "5292de6f6224ff00026fa835"
         }
 
 ## Users Collection [/users{?max_results,where,sort,q,df}]
 
 + Headers
 
-        Authorization: Basic a1b2c3
+        Authorization: Basic dG9rZW46
 
 ### List all Users [GET]
 
@@ -95,6 +96,10 @@ Get token using your credentials.
 
 ## User [/users/{_id}]
 A single User object
+
++ Headers
+
+        Authorization: Basic dG9rZW46
 
 + Parameters
     + _id (required, string, `5292de6f6224ff00026fa835`) ... User `_id`.
