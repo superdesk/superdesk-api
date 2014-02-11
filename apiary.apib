@@ -2,7 +2,51 @@ FORMAT: 1A
 
 # Superdesk
 
+## Authentication Token [/Security/Authentication]
+
+Before authentication, you will need to get token:
+
+### Get token [POST]
+
++ Request (application/json)
+
+        {
+            "userName": "admin"
+        }
+
++ Response 200
+
+        {
+            "Token": "93d9f8d01cf5e08e2b238c353582aac0394530a310d17fc4459974aa44267c09c4b6bac1fd02c1aeb41ac94b3a024ae8a03cc72b6045c1d3d00dbeb0b2f51a70"
+        }
+
+## Login [/Security/Authentication/Login]
+
+With token from previous step:
+
+### Authenticate [POST]
+
++ Request (application/json)
+
+        {
+            "Token": "93d9f8d01cf5e08e2b238c353582aac0394530a310d17fc4459974aa44267c09c4b6bac1fd02c1aeb41ac94b3a024ae8a03cc72b6045c1d3d00dbeb0b2f51a70",
+            "HashedToken": "..."
+        }
+
++ Response 200
+
+        {
+            "Session": "616edf0ad1ba6f883ca5f6b0c93218b5aa5b0fe247528ce6be0844e499af6595e72e053d4f38aed6e3fc30fedde320cad7bbbb43aade0b301e820bcf489b80b7",
+            "User": {
+                "Id": "1",
+                "Name": "admin",
+                "href": "/resources/HR/User/1"
+            }
+        }
+
 ## Authentication Resource [/auth]
+
+An *oldschool* authentication.
 
 ### Authenticate [POST]
 
