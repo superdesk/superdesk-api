@@ -1,6 +1,6 @@
 FORMAT: 1A
 
-# Superdesk
+# Authentication
 
 ## Authentication Token [/Security/Authentication]
 
@@ -14,13 +14,13 @@ Before authentication, you will need to get token:
             "userName": "admin"
         }
 
-+ Response 200
++ Response 200 (application/json)
 
         {
             "Token": "93d9f8d01cf5e08e2b238c353582aac0394530a310d17fc4459974aa44267c09c4b6bac1fd02c1aeb41ac94b3a024ae8a03cc72b6045c1d3d00dbeb0b2f51a70"
         }
 
-## Login [/Security/Authentication/Login]
+## Login [/Security/Authentication/Login/{id}]
 
 With token from previous step:
 
@@ -33,7 +33,7 @@ With token from previous step:
             "HashedToken": "..."
         }
 
-+ Response 200
++ Response 200 (application/json)
 
         {
             "Session": "616edf0ad1ba6f883ca5f6b0c93218b5aa5b0fe247528ce6be0844e499af6595e72e053d4f38aed6e3fc30fedde320cad7bbbb43aade0b301e820bcf489b80b7",
@@ -44,9 +44,18 @@ With token from previous step:
             }
         }
 
+## Logout [DELETE]
+
+I'm just guessing here, not sure how this works.
+
++ Parameters
+    + id ... Session id.
+
++ Response 204
+
 ## Authentication Resource [/auth]
 
-An *oldschool* authentication.
+Basic authentication.
 
 ### Authenticate [POST]
 
@@ -67,20 +76,72 @@ Get token using your credentials.
             "user": "5292de6f6224ff00026fa835"
         }
 
+# Group User Management
+
+## User [/users/{_id}]
+
+A single User resource.
+
++ Parameters
+    + _id (string) ... User id.
+
++ Model (application/json)
+
+        {
+            "_id": "5292de6f6224ff00026fa835",
+            "_links": {"self": {"href": "/users/5292de6f6224ff00026fa835"}},
+            "created": "2013-11-25T05:21:51+0000",
+            "email": "foo.bar@example.org",
+            "first_name": "Foo",
+            "last_name": "Bar",
+            "phone": "0042606123456",
+            "picture_url": "https://1.gravatar.com/avatar/6f25834fd0dbcd8e6c0caca6d7589c6e",
+            "updated": "2013-11-25T05:24:14+0000",
+            "username": "foo"
+        }
+
+### Retrieve a User [GET]
+
++ Response 200 (application/json)
+
+    [User][]
+
++ Response 404
+
+### Update User [PUT]
+
++ Request (application/json)
+
+        {
+            "last_name": "Baz"
+        }
+
++ Response 200 (application/json)
+
+        {
+            "_id": "5292de6f6224ff00026fa835",
+            "_links": {"self": {"href": "/users/5292de6f6224ff00026fa835"}},
+            "created": "2013-11-25T05:21:51+0000",
+            "updated": "2013-11-28T15:24:14+0000",
+            "username": "foo"
+        }
+
++ Response 403
+
+### Delete a User [DELETE]
+
++ Response 204
+
 ## Users Collection [/users{?max_results,where,sort,q,df}]
-
-+ Headers
-
-        Authorization: Basic dG9rZW46
 
 ### List all Users [GET]
 
 + Parameters
-    + max_results = `25`(optional, integer)...Number of users to be returned
-    + where (optional, object, `{"last_name": "Bar"}`)...Filter
-    + sort (optional, object, `[{"email": 1}]`)...Sort
-    + q (optional, string, `foo`)...Search query
-    + df (optional, string, `display_name`)...Search default field
+    + max_results = `25`(optional, integer) ... Number of users to be returned
+    + where (optional, object, `{"last_name": "Bar"}`) ... Filter
+    + sort (optional, object, `[{"email": 1}]`) ... Sort
+    + q (optional, string, `foo`) ... Search query
+    + df (optional, string, `display_name`) ... Search default field
 
 + Response 200 (application/json)
 
@@ -90,25 +151,20 @@ Get token using your credentials.
                     "_id": "5292de6f6224ff00026fa835",
                     "_links": {"self": {"href": "/users/5292de6f6224ff00026fa835"}},
                     "created": "2013-11-25T05:21:51+0000",
-                    "display_name": "Foo",
                     "email": "foo.bar@example.org",
-                    "etag": "ba5a2c20e593dc507c845d5d074ba0ab0fbee077",
                     "first_name": "Foo",
                     "last_name": "Bar",
-                    "picture_url": "/upload/qQTYkyNDm7we.png",
+                    "picture_url": "https://1.gravatar.com/avatar/6f25834fd0dbcd8e6c0caca6d7589c6e",
                     "updated": "2013-11-25T05:24:14+0000",
-                    "user_info": {"company": "Example"},
                     "username": "foo"
                 },
                 {
                     "_id": "52aec775f3d428000a0dcca6",
                     "_links": {"self": {"href": "/users/52aec775f3d428000a0dcca6"}},
                     "created": "2013-12-16T09:27:17+0000",
-                    "display_name": "serena",
-                    "etag": "e6455c43ded12f0cb000a3e3ceac261b82d42805",
                     "first_name": "Serrena",
                     "last_name": "Cocosta",
-                    "picture_url": "/upload/IvkXZsIa4m8H.jpg",
+                    "picture_url": null,
                     "updated": "2013-12-16T09:27:17+0000",
                     "username": "serr"
                 }
@@ -117,13 +173,14 @@ Get token using your credentials.
         }
 
 ### Create a User [POST]
+
 + Request (application/json)
 
         {
             "first_name": "John",
             "last_name": "Doe",
             "username": "john",
-            "password": "pass",
+            "picture_url": "https://1.gravatar.com/avatar/6f25834fd0dbcd8e6c0caca6d7589c6e"
         }
 
 + Response 201 (application/json)
@@ -133,51 +190,26 @@ Get token using your credentials.
             "_links": {"self": {"href": "/users/526151304f2b5b000299cc41"}},
             "created": "2013-10-18T15:18:08+0000",
             "display_name": "John Doe",
-            "etag": "929c5f14fce59f019cb6948c66956ae06056ea45",
             "updated": "2013-10-18T15:18:08+0000",
             "username": "john"
         }
 
-## User [/users/{_id}]
-A single User object
-
-+ Headers
-
-        Authorization: Basic dG9rZW46
-
-+ Parameters
-    + _id (required, string, `5292de6f6224ff00026fa835`) ... User `_id`.
-
-### Retrieve a User [GET]
-
-+ Response 200 (application/json)
++ Response 400 (application/json)
 
         {
-            "_id": "5292de6f6224ff00026fa835",
-            "_links": {"self": {"href": "/users/5292de6f6224ff00026fa835"}},
-            "created": "2013-11-25T05:21:51+0000",
-            "display_name": "Foo",
-            "email": "foo.bar@example.org",
-            "etag": "ba5a2c20e593dc507c845d5d074ba0ab0fbee077",
-            "first_name": "Foo",
-            "last_name": "Bar",
-            "picture_url": "/upload/qQTYkyNDm7we.png",
-            "updated": "2013-11-25T05:24:14+0000",
-            "user_info": {"company": "Example"},
-            "username": "foo"
+            "_issues": {
+                "username": "unique",
+                "email": "empty"
+            }
         }
 
-### Remove a User [DELETE]
-+ Response 204
+# Group User Role
 
 ## User Role collection [/user_roles]
-
-+ Headers
-
-        Authorization: Basic dG9rZW46
 
 ### List user roles [GET]
 
 + Response 200 (application/json)
 
         {"_items": []}
+        
