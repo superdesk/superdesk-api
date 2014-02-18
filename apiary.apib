@@ -2,17 +2,11 @@ FORMAT: 1A
 
 # Authentication
 
-## Authentication Token [/Security/Authentication]
+## Token [/Security/Authentication]
 
 Before authentication, you will need to get token:
 
 ### Get token [POST]
-
-+ Request (application/json)
-
-        {
-            "userName": "admin"
-        }
 
 + Response 200 (application/json)
 
@@ -20,17 +14,18 @@ Before authentication, you will need to get token:
             "Token": "93d9f8d01cf5e08e2b238c353582aac0394530a310d17fc4459974aa44267c09c4b6bac1fd02c1aeb41ac94b3a024ae8a03cc72b6045c1d3d00dbeb0b2f51a70"
         }
 
-## Login [/Security/Authentication/Login/{id}]
+## Login [/Security/Login]
 
-With token from previous step:
+With token from previous step you can authenticate:
 
 ### Authenticate [POST]
 
 + Request (application/json)
 
         {
-            "Token": "93d9f8d01cf5e08e2b238c353582aac0394530a310d17fc4459974aa44267c09c4b6bac1fd02c1aeb41ac94b3a024ae8a03cc72b6045c1d3d00dbeb0b2f51a70",
-            "HashedToken": "..."
+            "UserName": "admin",
+            "Token": "07e4f625f5e8f5e380b181a5f8816dfb75418dcbe1c9da4d225895ae37bcaf20507c15e0f78f183e25debe30ba81df1e09e379b493aec02dc194fde73e9fc71e",
+            "HashedToken": "bc6adf5c3d7367a4ae4ce3ef6abe6024cd327f5d3ddaadff400d146126a16f96e4ae763a1bf1a858dad4701fecc35f73785cc397ac54487d30da3313a0d7e5f4"
         }
 
 + Response 200 (application/json)
@@ -39,41 +34,8 @@ With token from previous step:
             "Session": "616edf0ad1ba6f883ca5f6b0c93218b5aa5b0fe247528ce6be0844e499af6595e72e053d4f38aed6e3fc30fedde320cad7bbbb43aade0b301e820bcf489b80b7",
             "User": {
                 "Id": "1",
-                "Name": "admin",
-                "href": "/resources/HR/User/1"
+                "href": "/HR/User/1"
             }
-        }
-
-## Logout [DELETE]
-
-I'm just guessing here, not sure how this works.
-
-+ Parameters
-    + id ... Session id.
-
-+ Response 204
-
-## Authentication Resource [/auth]
-
-Basic authentication.
-
-### Authenticate [POST]
-
-Get token using your credentials.
-
-+ Request (application/json)
-
-        {
-            "username": "admin",
-            "password": "admin"
-        }
-
-+ Response 200
-
-        {
-            "token": "token",
-            "status": "OK",
-            "user": "5292de6f6224ff00026fa835"
         }
 
 # Group User Management
