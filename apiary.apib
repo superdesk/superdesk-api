@@ -37,3 +37,133 @@ With token from previous step you can authenticate:
                 "href": "/HR/User/1"
             }
         }
+
+# Group User Management
+
+## User [/User/{Id}.json]
+
+A single User resource.
+
++ Parameters
+    + Id (string) ... User id.
+
++ Model (application/json)
+
+        {
+            "Id": "2",
+            "Active":true,
+            "Name":"john",
+            "EMail":"john.doe@email.com",
+            "FirstName":"John",
+            "LastName":"Doe",
+            "FullName":"John Doe",
+            "PhoneNumber":"0123456789",
+            "Type":{"href":"http://localhost:8080/resources/HR/UserType/standard/.json","Key":"standard"},
+            "CreatedOn":"2014-02-18T14:42:16Z",
+            "UserIconPersonMetaData":{"href":"http://localhost:8080/resources/HR/IconPersonMetaData/2.json"}
+        }
+
+### Retrieve a User [GET]
+
++ Response 200 (application/json)
+
+    [User][]
+
++ Response 404
+
+### Update User [PUT]
+
++ Request (application/json)
+
+        {
+            "LastName": "Baz"
+        }
+
++ Response 200 (application/json)
+
++ Response 403
+
+### Delete a User [DELETE]
+
++ Response 204
+
+## Users Collection [/User/.json{?offset,limit,withTotal,asc,desc,all,name,firstName,lastName,createdOn,inactive,phoneNumber,email}]
+
+### List all Users [GET]
+
++ Parameters
+    + offset = `0`(optional, integer) ... Offset of the first element from the list
+    + limit = `25`(optional, integer) ... Number of users to be returned
+    + withTotal = `True`(optional, boolean) ... If true return the total number of elements
+    + asc (optional, string, `["firstName"]`) ... Sort
+    + desc (optional, string, `["firstName"]`) ... Sort
+    + all (optional, string, `["joe"]`) ... Search by keyword
+    + name (optional, string, `["joe"]`) ... Filter by name
+    + firstName (optional, string, `["joe"]`) ... Filter by first name
+    + lastName (optional, string, `["joe"]`) ... Filter by last name
+    + createdOn (optional, datetime, `["2014-01-21T12:40"]`) ... Filter by creation date
+    + inactive (optional, boolean, `["False"]`) ... Filter by active flag
+    + phoneNumber (optional, string, `["0123456789"]`) ... Filter by the phone number
+    + email (optional, string, `["joe@email.com"]`) ... Filter by email
+
++ Response 200 (application/json)
+
+        {
+            "total":2,
+            "limit":2,
+            "offset":0,
+            "UserList":[
+                {
+                    "href":"http://localhost:8080/resources/HR/User/2.json",
+                    "Id":2,
+                    "Active":true,
+                    "EMail":"john.doe@email.com",
+                    "FirstName":"John",
+                    "FullName":"John Doe",
+                    "LastName":"Doe",
+                    "Name":"john",
+                    "PhoneNumber":"0123456789",
+                    "Type":{"href":"http://localhost:8080/resources/HR/UserType/standard/.json","Key":"standard"},
+                    "CreatedOn":"2014-02-18T14:42:16Z",
+                    "UserIconPersonMetaData":{"href":"http://localhost:8080/resources/HR/IconPersonMetaData/2.json"}
+                },
+                {
+                    "href":"http://localhost:8080/resources/HR/User/3.json",
+                    "Id":3,
+                    "Active":true,
+                    "EMail":"joe.hammer@email.com",
+                    "FirstName":"Joe",
+                    "FullName":"Joe Hammer",
+                    "LastName":"Hammer",
+                    "Name":"joe",
+                    "PhoneNumber":"0223456789",
+                    "Type":{"href":"http://localhost:8080/resources/HR/UserType/standard/.json","Key":"standard"},
+                    "CreatedOn":"2014-02-18T14:43:27Z",
+                    "UserIconPersonMetaData":{"href":"http://localhost:8080/resources/HR/IconPersonMetaData/3.json"}
+                }
+            ]
+        }
+
+### Create a User [POST]
+
++ Request (application/json)
+
+        {
+            "FirstName": "John",
+            "LastName": "Doe",
+            "Name": "john",
+            "picture_url": "https://1.gravatar.com/avatar/6f25834fd0dbcd8e6c0caca6d7589c6e"
+        }
+
++ Response 201 (application/json)
+
+        {
+            "href": "http://localhost:8080/resources/HR/User/7"
+        }
+
++ Response 400 (application/json)
+
+        Status: 400 Input error
+
+        User
+                There is already an entity having this unique property
