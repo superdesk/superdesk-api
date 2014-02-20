@@ -40,28 +40,28 @@ With token from previous step you can authenticate:
 
 # Group User Management
 
-## User [/User/{Id}.json]
+## User [/HR/User/{Id}.json]
 
 A single User resource.
 
 + Parameters
     + Id (string) ... User id.
 
-+ Model (application/json)
++ Model (application/json) 
 
         {
-            "Id": "2",
+	    “href”: “http://localhost:8080/HR/User/2”,
+            "Id": 2,
             "Active":true,
-            "Name":"john",
+            "UserName":"john",
             "EMail":"john.doe@email.com",
             "FirstName":"John",
             "LastName":"Doe",
             "FullName":"John Doe",
             "PhoneNumber":"0123456789",
-            "Type":{"href":"http://localhost:8080/resources/HR/UserType/standard/.json","Key":"standard"},
             "CreatedOn":"2014-02-18T14:42:16Z",
-            "UserIconPersonMetaData":{"href":"http://localhost:8080/resources/HR/IconPersonMetaData/2.json"}
-        }
+	    “Avatar”: {“href”: “http://www.gravatar.com/avatar/205e460b479e2e5b48aec07710c08d50”}
+       }
 
 ### Retrieve a User [GET]
 
@@ -71,7 +71,7 @@ A single User resource.
 
 + Response 404
 
-### Update User [PUT]
+### Update User [PATCH]
 
 + Request (application/json)
 
@@ -83,24 +83,25 @@ A single User resource.
 
 + Response 403
 
-### Delete a User [DELETE]
+### Hard Delete a User [DELETE]
 
 + Response 204
 
-## Users Collection [/User/.json{?offset,limit,withTotal,asc,desc,all,name,firstName,lastName,createdOn,inactive,phoneNumber,email}]
+## Users Collection [/HR/User/.json{?offset,maxResults,withTotal,asc,desc,all,userName,firstName,lastName,fullName,createdOn,inactive,phoneNumber,email}]
 
 ### List all Users [GET]
 
 + Parameters
     + offset = `0`(optional, integer) ... Offset of the first element from the list
-    + limit = `25`(optional, integer) ... Number of users to be returned
+    + maxResults = `25`(optional, integer) ... Number of users to be returned
     + withTotal = `True`(optional, boolean) ... If true return the total number of elements
     + asc (optional, string, `["firstName"]`) ... Sort
     + desc (optional, string, `["firstName"]`) ... Sort
     + all (optional, string, `["joe"]`) ... Search by keyword
-    + name (optional, string, `["joe"]`) ... Filter by name
+    + userName (optional, string, `["joe"]`) ... Filter by user name
     + firstName (optional, string, `["joe"]`) ... Filter by first name
     + lastName (optional, string, `["joe"]`) ... Filter by last name
+    + fullName (optional, string, `["joe"]`) ... Filter by the full name
     + createdOn (optional, datetime, `["2014-01-21T12:40"]`) ... Filter by creation date
     + inactive (optional, boolean, `["False"]`) ... Filter by active flag
     + phoneNumber (optional, string, `["0123456789"]`) ... Filter by the phone number
@@ -112,7 +113,11 @@ A single User resource.
             "total":2,
             "limit":2,
             "offset":0,
-            "UserList":[
+	    “first”:”href":"http://localhost:8080/resources/HR/User/.json”,
+	    “last”:”href":"http://localhost:8080/resources/HR/User/.json?offset=10”,
+	    “prev”:”href":"http://localhost:8080/resources/HR/User/.json?offset=5”,
+	    “next”:”href":"http://localhost:8080/resources/HR/User/.json?offset=7”,
+            "collection":[
                 {
                     "href":"http://localhost:8080/resources/HR/User/2.json",
                     "Id":2,
@@ -121,11 +126,10 @@ A single User resource.
                     "FirstName":"John",
                     "FullName":"John Doe",
                     "LastName":"Doe",
-                    "Name":"john",
+                    "UserName":"john",
                     "PhoneNumber":"0123456789",
-                    "Type":{"href":"http://localhost:8080/resources/HR/UserType/standard/.json","Key":"standard"},
                     "CreatedOn":"2014-02-18T14:42:16Z",
-                    "UserIconPersonMetaData":{"href":"http://localhost:8080/resources/HR/IconPersonMetaData/2.json"}
+                    “Avatar”: {“href”: “http://www.gravatar.com/avatar/205e460b479e2e5b48aec07710c08d50”}
                 },
                 {
                     "href":"http://localhost:8080/resources/HR/User/3.json",
@@ -135,11 +139,10 @@ A single User resource.
                     "FirstName":"Joe",
                     "FullName":"Joe Hammer",
                     "LastName":"Hammer",
-                    "Name":"joe",
+                    "UserName":"joe",
                     "PhoneNumber":"0223456789",
-                    "Type":{"href":"http://localhost:8080/resources/HR/UserType/standard/.json","Key":"standard"},
                     "CreatedOn":"2014-02-18T14:43:27Z",
-                    "UserIconPersonMetaData":{"href":"http://localhost:8080/resources/HR/IconPersonMetaData/3.json"}
+                    “Avatar”: {“href”: “http://www.gravatar.com/avatar/205e460b479e2e5b48aec07710c08d50”}
                 }
             ]
         }
@@ -151,10 +154,10 @@ A single User resource.
         {
             "FirstName": "John",
             "LastName": "Doe",
-            "Name": "john",
+            "UserName": "john",
             "EMail": "john.doe@email.com",
-            "Password": "a",
-            "Type": "standard"
+            "Password": "a3r546465676bgyhyyehy",
+	  "PhoneNumber":"0223456789"
         }
 
 + Response 201 (application/json)
@@ -165,7 +168,10 @@ A single User resource.
 
 + Response 400 (application/json)
 
-        Status: 400 Input error
+        {
+            “errors”: {
+                “UserName”: {“conflict”: {“msg”: “UserName must be unique”}},
+                “EMail”: {“email”: {“value”: 6, “msg”: “...”}}
+            }
+        }
 
-        User
-                There is already an entity having this unique property
