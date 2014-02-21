@@ -33,8 +33,7 @@ With token from previous step you can authenticate:
         {
             "Session": "616edf0ad1ba6f883ca5f6b0c93218b5aa5b0fe247528ce6be0844e499af6595e72e053d4f38aed6e3fc30fedde320cad7bbbb43aade0b301e820bcf489b80b7",
             "User": {
-                "Id": "1",
-                "href": "/HR/User/1"
+                "href": "http://superdesk.apiary.io/HR/User/1.json"
             }
         }
 
@@ -50,7 +49,7 @@ A single User resource.
 + Model (application/json) 
 
         {
-            “href”: “http://localhost:8080/HR/User/2”,
+            "href": "http://superdesk.apiary.io/HR/User/1.json",
             "Id": 2,
             "Active":true,
             "UserName":"john",
@@ -60,7 +59,7 @@ A single User resource.
             "FullName":"John Doe",
             "PhoneNumber":"0123456789",
             "CreatedOn":"2014-02-18T14:42:16Z",
-            “Avatar”: {“href”: “http://www.gravatar.com/avatar/205e460b479e2e5b48aec07710c08d50”}
+            "Avatar": {"href": "http://www.gravatar.com/avatar/205e460b479e2e5b48aec07710c08d50"}
         }
 
 ### Retrieve a User [GET]
