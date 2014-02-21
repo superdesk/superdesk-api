@@ -50,7 +50,7 @@ A single User resource.
 + Model (application/json) 
 
         {
-	    “href”: “http://localhost:8080/HR/User/2”,
+            “href”: “http://localhost:8080/HR/User/2”,
             "Id": 2,
             "Active":true,
             "UserName":"john",
@@ -60,8 +60,8 @@ A single User resource.
             "FullName":"John Doe",
             "PhoneNumber":"0123456789",
             "CreatedOn":"2014-02-18T14:42:16Z",
-	    “Avatar”: {“href”: “http://www.gravatar.com/avatar/205e460b479e2e5b48aec07710c08d50”}
-       }
+            “Avatar”: {“href”: “http://www.gravatar.com/avatar/205e460b479e2e5b48aec07710c08d50”}
+        }
 
 ### Retrieve a User [GET]
 
@@ -79,7 +79,7 @@ A single User resource.
             "LastName": "Baz"
         }
 
-+ Response 200 (application/json)
++ Response 200
 
 + Response 403
 
@@ -113,10 +113,10 @@ A single User resource.
             "total":2,
             "limit":2,
             "offset":0,
-	    “first”:”href":"http://localhost:8080/resources/HR/User/.json”,
-	    “last”:”href":"http://localhost:8080/resources/HR/User/.json?offset=10”,
-	    “prev”:”href":"http://localhost:8080/resources/HR/User/.json?offset=5”,
-	    “next”:”href":"http://localhost:8080/resources/HR/User/.json?offset=7”,
+            "first”:”href":"http://localhost:8080/resources/HR/User/.json”,
+            “last”:”href":"http://localhost:8080/resources/HR/User/.json?offset=10”,
+            “prev”:”href":"http://localhost:8080/resources/HR/User/.json?offset=5”,
+            “next”:”href":"http://localhost:8080/resources/HR/User/.json?offset=7”,
             "collection":[
                 {
                     "href":"http://localhost:8080/resources/HR/User/2.json",
@@ -157,7 +157,7 @@ A single User resource.
             "UserName": "john",
             "EMail": "john.doe@email.com",
             "Password": "a3r546465676bgyhyyehy",
-	  "PhoneNumber":"0223456789"
+            "PhoneNumber":"0223456789"
         }
 
 + Response 201 (application/json)
