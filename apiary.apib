@@ -39,7 +39,7 @@ With token from previous step you can authenticate:
 
 # Group User Management
 
-## User [/HR/User/{Id}.json]
+## User [/HR/User/{Id}]
 
 A single User resource.
 
@@ -49,7 +49,7 @@ A single User resource.
 + Model (application/json) 
 
         {
-            "href": "http://superdesk.apiary.io/HR/User/1.json",
+            "href": "http://superdesk.apiary.io/HR/User/1",
             "Id": 2,
             "Active": true,
             "UserName": "john",
@@ -86,7 +86,7 @@ A single User resource.
 
 + Response 204
 
-## Users Collection [/HR/User/.json{?offset,maxResults,withTotal,asc,desc,all,userName,firstName,lastName,fullName,createdOn,inactive,phoneNumber,email}]
+## User Search [/HR/User/{?offset,maxResults,withTotal,asc,desc,all,userName,firstName,lastName,fullName,createdOn,inactive,phoneNumber,email}]
 
 ### List all Users [GET]
 
@@ -146,7 +146,9 @@ A single User resource.
             ]
         }
 
-### Create a User [POST]
+## User collection [/HR/User]
+
+### Create user [POST]
 
 + Request (application/json)
 
