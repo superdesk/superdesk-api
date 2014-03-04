@@ -1,6 +1,31 @@
 FORMAT: 1A
 
-# Authentication
+# Superdesk
+
+## GET /
+
+List available resources.
+
++ Response 200 (application/json)
+
+        {
+            "collection": [
+                {
+                    "rel": "token",
+                    "href": "http://superdesk.apiary.io/Security/Authentication"
+                },
+                {
+                    "rel": "login",
+                    "href": "http://superdesk.apiary.io/Security/Login"
+                },
+                {
+                    "rel": "user",
+                    "href": "http://superdesk.apiary.io/HR/User"
+                }
+            ]
+        }
+
+# Group Authentication
 
 ## Token [/Security/Authentication]
 
