@@ -1,6 +1,31 @@
 FORMAT: 1A
 
-# Authentication
+# Superdesk
+
+## GET /
+
+List available resources.
+
++ Response 200 (application/json)
+
+        {
+            "collection": [
+                {
+                    "rel": "Security/Authentication",
+                    "href": "http://superdesk.apiary.io/Security/Authentication"
+                },
+                {
+                    "rel": "Security/Login",
+                    "href": "http://superdesk.apiary.io/Security/Login"
+                },
+                {
+                    "rel": "HR/User",
+                    "href": "http://superdesk.apiary.io/HR/User/"
+                }
+            ]
+        }
+
+# Group Authentication
 
 ## Token [/Security/Authentication]
 
@@ -33,14 +58,13 @@ With token from previous step you can authenticate:
         {
             "Session": "616edf0ad1ba6f883ca5f6b0c93218b5aa5b0fe247528ce6be0844e499af6595e72e053d4f38aed6e3fc30fedde320cad7bbbb43aade0b301e820bcf489b80b7",
             "User": {
-                "Id": "1",
-                "href": "/HR/User/1"
+                "href": "http://superdesk.apiary.io/HR/User/1.json"
             }
         }
 
 # Group User Management
 
-## User [/HR/User/{Id}.json]
+## User [/HR/User/{Id}]
 
 A single User resource.
 
@@ -50,17 +74,17 @@ A single User resource.
 + Model (application/json) 
 
         {
-            “href”: “http://localhost:8080/HR/User/2”,
+            "href": "http://superdesk.apiary.io/HR/User/1",
             "Id": 2,
-            "Active":true,
-            "UserName":"john",
-            "EMail":"john.doe@email.com",
-            "FirstName":"John",
-            "LastName":"Doe",
-            "FullName":"John Doe",
-            "PhoneNumber":"0123456789",
-            "CreatedOn":"2014-02-18T14:42:16Z",
-            “Avatar”: {“href”: “http://www.gravatar.com/avatar/205e460b479e2e5b48aec07710c08d50”}
+            "Active": true,
+            "UserName": "john",
+            "EMail": "john.doe@email.com",
+            "FirstName": "John",
+            "LastName": "Doe",
+            "FullName": "John Doe",
+            "PhoneNumber": "0123456789",
+            "CreatedOn": "2014-02-18T14:42:16Z",
+            "Avatar": {"href": "http://www.gravatar.com/avatar/205e460b479e2e5b48aec07710c08d50?s=200"}
         }
 
 ### Retrieve a User [GET]
@@ -87,7 +111,7 @@ A single User resource.
 
 + Response 204
 
-## Users Collection [/HR/User/.json{?offset,maxResults,withTotal,asc,desc,all,userName,firstName,lastName,fullName,createdOn,inactive,phoneNumber,email}]
+## User Search [/HR/User/{?offset,maxResults,withTotal,asc,desc,all,userName,firstName,lastName,fullName,createdOn,inactive,phoneNumber,email}]
 
 ### List all Users [GET]
 
@@ -113,13 +137,13 @@ A single User resource.
             "total":2,
             "limit":2,
             "offset":0,
-            "first”:”href":"http://localhost:8080/resources/HR/User/.json”,
-            “last”:”href":"http://localhost:8080/resources/HR/User/.json?offset=10”,
-            “prev”:”href":"http://localhost:8080/resources/HR/User/.json?offset=5”,
-            “next”:”href":"http://localhost:8080/resources/HR/User/.json?offset=7”,
+            "first": {"href": "http://localhost:8080/resources/HR/User/.json"},
+            "last": {"href": "http://localhost:8080/resources/HR/User/.json?offset=10"},
+            "prev": {"href": "http://localhost:8080/resources/HR/User/.json?offset=5"},
+            "next": {"href": "http://localhost:8080/resources/HR/User/.json?offset=7"},
             "collection":[
                 {
-                    "href":"http://localhost:8080/resources/HR/User/2.json",
+                    "href": "http://superdesk.apiary.io/HR/User/2",
                     "Id":2,
                     "Active":true,
                     "EMail":"john.doe@email.com",
@@ -129,10 +153,10 @@ A single User resource.
                     "UserName":"john",
                     "PhoneNumber":"0123456789",
                     "CreatedOn":"2014-02-18T14:42:16Z",
-                    “Avatar”: {“href”: “http://www.gravatar.com/avatar/205e460b479e2e5b48aec07710c08d50”}
+                    "Avatar": {"href": "http://www.gravatar.com/avatar/205e460b479e2e5b48aec07710c08d50"}
                 },
                 {
-                    "href":"http://localhost:8080/resources/HR/User/3.json",
+                    "href": "http://superdesk.apiary.io/HR/User/3",
                     "Id":3,
                     "Active":true,
                     "EMail":"joe.hammer@email.com",
@@ -142,12 +166,14 @@ A single User resource.
                     "UserName":"joe",
                     "PhoneNumber":"0223456789",
                     "CreatedOn":"2014-02-18T14:43:27Z",
-                    “Avatar”: {“href”: “http://www.gravatar.com/avatar/205e460b479e2e5b48aec07710c08d50”}
+                    "Avatar": {"href": "http://www.gravatar.com/avatar/205e460b479e2e5b48aec07710c08d50"}
                 }
             ]
         }
 
-### Create a User [POST]
+## User collection [/HR/User]
+
+### Create user [POST]
 
 + Request (application/json)
 
@@ -169,9 +195,9 @@ A single User resource.
 + Response 400 (application/json)
 
         {
-            “errors”: {
-                “UserName”: {“conflict”: {“msg”: “UserName must be unique”}},
-                “EMail”: {“email”: {“value”: 6, “msg”: “...”}}
+            "errors": {
+                "UserName": {"conflict": {"msg": "UserName must be unique"}},
+                "EMail": {"email": {"value": 6, "msg": "..."}}
             }
         }
 
