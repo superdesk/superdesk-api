@@ -50,7 +50,7 @@ A single User resource.
 + Model (application/json) 
 
         {
-            “href”: “http://localhost:8080/HR/User/2”,
+            "href": "http://localhost:8080/HR/User/2",
             "Id": 2,
             "Active":true,
             "UserName":"john",
@@ -60,7 +60,7 @@ A single User resource.
             "FullName":"John Doe",
             "PhoneNumber":"0123456789",
             "CreatedOn":"2014-02-18T14:42:16Z",
-            “Avatar”: {“href”: “http://www.gravatar.com/avatar/205e460b479e2e5b48aec07710c08d50”}
+            "Avatar": {"href": "http://www.gravatar.com/avatar/205e460b479e2e5b48aec07710c08d50"}
         }
 
 ### Retrieve a User [GET]
@@ -113,10 +113,10 @@ A single User resource.
             "total":2,
             "limit":2,
             "offset":0,
-            "first”:”href":"http://localhost:8080/resources/HR/User/.json”,
-            “last”:”href":"http://localhost:8080/resources/HR/User/.json?offset=10”,
-            “prev”:”href":"http://localhost:8080/resources/HR/User/.json?offset=5”,
-            “next”:”href":"http://localhost:8080/resources/HR/User/.json?offset=7”,
+            "first":"href":"http://localhost:8080/resources/HR/User/.json",
+            "last":"href":"http://localhost:8080/resources/HR/User/.json?offset=10",
+            "prev":"href":"http://localhost:8080/resources/HR/User/.json?offset=5",
+            "next":"href":"http://localhost:8080/resources/HR/User/.json?offset=7",
             "collection":[
                 {
                     "href":"http://localhost:8080/resources/HR/User/2.json",
@@ -129,7 +129,7 @@ A single User resource.
                     "UserName":"john",
                     "PhoneNumber":"0123456789",
                     "CreatedOn":"2014-02-18T14:42:16Z",
-                    “Avatar”: {“href”: “http://www.gravatar.com/avatar/205e460b479e2e5b48aec07710c08d50”}
+                    "Avatar": {"href": "http://www.gravatar.com/avatar/205e460b479e2e5b48aec07710c08d50"}
                 },
                 {
                     "href":"http://localhost:8080/resources/HR/User/3.json",
@@ -142,7 +142,7 @@ A single User resource.
                     "UserName":"joe",
                     "PhoneNumber":"0223456789",
                     "CreatedOn":"2014-02-18T14:43:27Z",
-                    “Avatar”: {“href”: “http://www.gravatar.com/avatar/205e460b479e2e5b48aec07710c08d50”}
+                    "Avatar": {"href": "http://www.gravatar.com/avatar/205e460b479e2e5b48aec07710c08d50"}
                 }
             ]
         }
@@ -169,9 +169,9 @@ A single User resource.
 + Response 400 (application/json)
 
         {
-            “errors”: {
-                “UserName”: {“conflict”: {“msg”: “UserName must be unique”}},
-                “EMail”: {“email”: {“value”: 6, “msg”: “...”}}
+            "errors": {
+                "UserName": {"conflict": {"msg": "UserName must be unique"}},
+                "EMail": {"email": {"value": 6, "msg": "..."}}
             }
         }
 
