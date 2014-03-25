@@ -226,37 +226,38 @@ A single User resource.
     - Id (string, `1`) ... Media Item Identifier.
 
 + Model (application/json)
-{
-    "href": "http://superdesk.apiary.io/ItemMedia/1",
-    "ByLine": "John Doe",
-    "Provider": "My Company LTD",
-    "MimeType": "image/jpeg",
-    "Type": "picture",
-    "CreatedOn": "2013-07-03T10:11:12Z",
-    "Version": "1",
-    "VersionCreated": "2013-07-03T10:11:12Z",
-    "Status": "public",
-    "FileMeta": {
-        "Manufacturer": "CANON",
-        "Orientation": "landscape"
-    },
-    "CopyrightHolder": { "en": "Sourcefabric o.p.s." },
-    "CopyrightNotice": { "en": "(c) Copyright Sourcefabric o.p.s. 2014" },
-    "UsageTerms": { "en": "You are not allowed." },
-    "Headline": { "en": "No news today" },
-    "Renditions": {
-        "original": {
-            "href": "http://site.com/366/92o_d.jpg",
-            "Width": 5198,
-            "Height": 3462
-        },
-        "thumbnail_small": {
-            "href": "http://site.com/366/9q_d.jpg",
-            "Width": 150,
-            "Height": 150
+
+        {
+            "href": "http://superdesk.apiary.io/ItemMedia/1",
+            "ByLine": "John Doe",
+            "Provider": "My Company LTD",
+            "MimeType": "image/jpeg",
+            "Type": "picture",
+            "CreatedOn": "2013-07-03T10:11:12Z",
+            "Version": "1",
+            "VersionCreated": "2013-07-03T10:11:12Z",
+            "Status": "public",
+            "FileMeta": {
+                "Manufacturer": "CANON",
+                "Orientation": "landscape"
+            },
+            "CopyrightHolder": { "en": "Sourcefabric o.p.s." },
+            "CopyrightNotice": { "en": "(c) Copyright Sourcefabric o.p.s. 2014" },
+            "UsageTerms": { "en": "You are not allowed." },
+            "Headline": { "en": "No news today" },
+            "Renditions": {
+                "original": {
+                    "href": "http://site.com/366/92o_d.jpg",
+                    "Width": 5198,
+                    "Height": 3462
+                },
+                "thumbnail_small": {
+                    "href": "http://site.com/366/9q_d.jpg",
+                    "Width": 150,
+                    "Height": 150
+                }
+            }
         }
-    }
-}
 
 ### Fetch media [GET]
 
