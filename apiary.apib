@@ -195,27 +195,25 @@ A single User resource.
 + Response 400 (application/json)
 
         {
-            UserName: {
-                conflict: {
-                    msg: "There is already an active user with this name"
+            "UserName": {
+                "conflict": {
+                    "msg": "There is already an active user with this name"
                 }
             }
-            EMail: {
-                unique: { msg: "Unique constraint failed" }
+            "EMail": {
+                "unique": { "msg": "Unique constraint failed" }
             }
-            EMail: {
-                email: { msg: "Invalid EMail" }
+            "EMail": {
+                "format": { "msg": "Invalid EMail" }
             }
-            PhoneNumber: {
-                phone number: {
-                    msg: "Invalid phone number format"
-                    example: "+123123456789 or 0123456789 or 123456789"
+            "PhoneNumber": {
+                "format": {
+                    "msg": "Invalid phone number format"
+                    "example": "+123123456789 or 0123456789 or 123456789"
                 }
             }
-            Password: {
-                mandatory: {
-                    msg: "Mandatory value is missing"
-                }
+            "Password": {
+                "mandatory": { "msg": "Mandatory value is missing" }
             }
         }
 
