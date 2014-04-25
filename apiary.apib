@@ -220,15 +220,15 @@ A single User resource.
 
 # Group Media Archive
 
-## Media [/ItemMedia/{Id}]
+## Image [/ItemImage/{Id}]
 
 + Parameters
-    - Id (string, `1`) ... Media Item Identifier.
+    - Id (string, `1`) ... Image Item Identifier.
 
 + Model (application/json)
 
         {
-            "href": "http://superdesk.apiary.io/ItemMedia/1",
+            "href": "http://superdesk.apiary.io/ItemImage/1",
             "ByLine": "John Doe",
             "Provider": "My Company LTD",
             "MimeType": "image/jpeg",
@@ -259,8 +259,44 @@ A single User resource.
             }
         }
 
-### Fetch media [GET]
+### Fetch image [GET]
 
 + Response 200 (application/json)
 
     [Media][]
+
++ Response 404 (application/json)
+
+    [Image][]
+
+### Update image [PATCH]
+
++ Request (application/json)
+
+        {
+            "href": "http://superdesk.apiary.io/ItemImage/1",
+            "ByLine": "John Doe",
+            "Provider": "My Company LTD",
+            "MimeType": "image/jpeg",
+            "Type": "picture",
+            "CreatedOn": "2013-07-03T10:11:12Z",
+            "Version": "1",
+            "VersionCreated": "2013-07-03T10:11:12Z",
+            "Status": "public",
+            "FileMeta": {
+                "Manufacturer": "CANON",
+                "Orientation": "landscape"
+            },
+            "CopyrightHolder": { "en": "Sourcefabric o.p.s." },
+            "CopyrightNotice": { "en": "(c) Copyright Sourcefabric o.p.s. 2014" },
+            "UsageTerms": { "en": "You are not allowed." },
+            "Headline": { "en": "No news today" },
+        }
+
++ Response 200
+
++ Response 403
+
+### Delete an Image [DELETE]
+
++ Response 204
