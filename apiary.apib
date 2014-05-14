@@ -13,15 +13,15 @@ List available resources.
                 "child": [
                     {
                         "title": "auth",
-                        "href": "superdesk.apiary.io/auth"
+                        "href": "/auth"
                     },
                     {
                         "title": "users",
-                        "href": "superdesk.apiary.io/users"
+                        "href": "/users"
                     },
                     {
                         "title": "ingest",
-                        "href": "superdesk.apiary.io/ingest"
+                        "href": "/ingest"
                     }
                 ]
             }
@@ -43,7 +43,7 @@ List available resources.
 + Response 200 (application/json)
 
         {
-            "_links": {"self": {"href": "superdesk.apiary.io/auth/523"}},
+            "_links": {"self": {"href": "/auth/523"}},
             "token": "aNcdefgH",
             "user": "123"
         }
@@ -60,7 +60,7 @@ A single User resource.
 + Model (application/json) 
 
         {
-            "_links": {"self": {"href": "superdesk.apiary.io/users/123"}},
+            "_links": {"self": {"href": "/users/123"}},
             "_id": "123",
             "username": "john",
             "email": "john.doe@email.com",
@@ -113,7 +113,7 @@ A single User resource.
         {
             "_items": [
                 {
-                    "_links": {"self": {"href": "superdesk.apiary.io/users/2"}},
+                    "_links": {"self": {"href": "/users/2"}},
                     "_id": "2",
                     "email": "john.doe@email.com",
                     "first_name": "John",
@@ -127,7 +127,7 @@ A single User resource.
                     "etag": "hash"
                 },
                 {
-                    "_links": {"self": {"href": "http://superdesk.apiary.io/HR/User/3"}},
+                    "_links": {"self": {"href": "/users/3"}},
                     "_id": "3",
                     "email": "joe.hammer@email.com",
                     "first_name": "Joe",
@@ -161,7 +161,7 @@ A single User resource.
 + Response 201 (application/json)
 
         {
-            "_links": {"self": {"href": "superdesk.apiary.io/users/5"}}
+            "_links": {"self": {"href": "/users/5"}}
         }
 
 + Response 400 (application/json)
