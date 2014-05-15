@@ -68,9 +68,9 @@ A single User resource.
             "last_name": "Doe",
             "display_name": "John Doe",
             "phone_number": "0123456789",
-            "created": "2014-02-18T14:42:16Z",
-            "updated": "2014-02-18T14:42:16Z",
-            "etag": "xyz",
+            "_created": "2014-02-18T14:42:16Z",
+            "_updated": "2014-02-18T14:42:16Z",
+            "_etag": "xyz",
             "picture_url": "http://www.gravatar.com/avatar/205e460b479e2e5b48aec07710c08d50?s=200"
         }
 
@@ -86,11 +86,17 @@ A single User resource.
 
 + Request (application/json)
 
-        {
-            "last_name": "Baz"
-        }
+    + Headers
+    
+            - If-Match: xyz
+    
+    + Body
 
-+ Response 200
+            {"last_name": "Baz"}
+
++ Response 200 (application/json)
+
+        {"_status": "OK"}
 
 + Response 403
 
@@ -121,10 +127,10 @@ A single User resource.
                     "last_name": "Doe",
                     "username": "john",
                     "phone_number": "0123456789",
-                    "created": "2014-02-18T14:42:16Z",
-                    "updated": "2014-02-18T14:42:16Z",
+                    "_created": "2014-02-18T14:42:16Z",
+                    "_updated": "2014-02-18T14:42:16Z",
                     "picture_url": "http://www.gravatar.com/avatar/205e460b479e2e5b48aec07710c08d50",
-                    "etag": "hash"
+                    "_etag": "xyz"
                 },
                 {
                     "_links": {"self": {"href": "/users/3"}},
@@ -135,10 +141,10 @@ A single User resource.
                     "last_name": "Hammer",
                     "username": "joe",
                     "phone_number": "0223456789",
-                    "created": "2014-02-18T14:43:27Z",
-                    "updated": "2014-02-18T14:43:27Z",
+                    "_created": "2014-02-18T14:43:27Z",
+                    "_updated": "2014-02-18T14:43:27Z",
                     "picture_url": "http://www.gravatar.com/avatar/205e460b479e2e5b48aec07710c08d50",
-                    "etag": "hash"
+                    "_etag": "xyz"
                 }
             ]
         }
@@ -161,31 +167,36 @@ A single User resource.
 + Response 201 (application/json)
 
         {
-            "_links": {"self": {"href": "/users/5"}}
+            "_links": {"self": {"href": "/users/5"}},
+            "_status": "OK",
+            "_etag": "xyz"
         }
 
 + Response 400 (application/json)
 
         {
-            "UserName": {
-                "conflict": {
-                    "msg": "There is already an active user with this name"
+            "_status": "ERR",
+            "_issues": {
+                "username": {
+                    "unique": {
+                        "msg": "There is already an active user with this name"
+                    }
+                },
+                "email": {
+                    "unique": { "msg": "Unique constraint failed" }
+                },
+                "email": {
+                    "format": { "msg": "Invalid EMail" }
+                },
+                "phone": {
+                    "format": {
+                        "msg": "Invalid phone number format"
+                        "example": "+123123456789 or 0123456789 or 123456789"
+                    }
+                },
+                "password": {
+                    "required": { "msg": "Mandatory value is missing" }
                 }
-            },
-            "EMail": {
-                "unique": { "msg": "Unique constraint failed" }
-            },
-            "EMail": {
-                "format": { "msg": "Invalid EMail" }
-            },
-            "PhoneNumber": {
-                "format": {
-                    "msg": "Invalid phone number format"
-                    "example": "+123123456789 or 0123456789 or 123456789"
-                }
-            },
-            "Password": {
-                "mandatory": { "msg": "Mandatory value is missing" }
             }
         }
 
