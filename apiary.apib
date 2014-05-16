@@ -209,41 +209,45 @@ A single User resource.
 
 # Group Media Archive
 
-## Media [/ItemMedia/{Id}]
+## Media [/media/{_id}]
 
 + Parameters
-    - Id (string, `1`) ... Media Item Identifier.
+    - _id (string, `1`) ... Media Item Identifier.
 
 + Model (application/json)
 
         {
-            "href": "http://superdesk.apiary.io/ItemMedia/1",
-            "ByLine": "John Doe",
-            "Provider": "My Company LTD",
-            "MimeType": "image/jpeg",
-            "Type": "picture",
-            "CreatedOn": "2013-07-03T10:11:12Z",
-            "Version": "1",
-            "VersionCreated": "2013-07-03T10:11:12Z",
-            "Status": "public",
-            "FileMeta": {
+            "_links": {"self": {"href": "/media/1"}},
+            "_etag": "abc",
+            "byline": "John Doe",
+            "provider": "My Company LTD",
+            "mimetype": "image/jpeg",
+            "type": "picture",
+            "firstcreated": "2013-07-03T10:11:12Z",
+            "version": "1",
+            "versioncreated": "2013-07-03T10:11:12Z",
+            "pubstatus": "usable",
+            "filemeta": {
                 "Manufacturer": "CANON",
                 "Orientation": "landscape"
             },
-            "CopyrightHolder": { "en": "Sourcefabric o.p.s." },
-            "CopyrightNotice": { "en": "(c) Copyright Sourcefabric o.p.s. 2014" },
-            "UsageTerms": { "en": "You are not allowed." },
-            "Headline": { "en": "No news today" },
-            "Renditions": {
+            "copyrightholder": "Sourcefabric o.p.s.",
+            "copyrightnotice": "(c) Copyright Sourcefabric o.p.s. 2014",
+            "usageterms": "You are not allowed.",
+            "headline": "No news today",
+            "language": "en",
+            "renditions": {
                 "thumbnail": {
                     "href": "http://farm4.staticflickr.com/3665/9203816834_3329fac058_q_d.jpg",
-                    "Width": 150,
-                    "Height": 150
+                    "mimetype": "image/jpeg",
+                    "width": 150,
+                    "height": 150
                 },
                 "original": {
                     "href": "http://farm4.staticflickr.com/3665/9203816834_9f62964627_o_d.jpg",
-                    "Width": 5198,
-                    "Height": 3462
+                    "mimetype": "image/jpeg",
+                    "width": 5198,
+                    "height": 3462
                 }
             }
         }
