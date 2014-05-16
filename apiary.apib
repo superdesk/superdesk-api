@@ -9,82 +9,69 @@ List available resources.
 + Response 200 (application/json)
 
         {
-            "collection": [
-                {
-                    "rel": "Security/Authentication",
-                    "href": "http://superdesk.apiary.io/Security/Authentication"
-                },
-                {
-                    "rel": "Security/Login",
-                    "href": "http://superdesk.apiary.io/Security/Login"
-                },
-                {
-                    "rel": "HR/User",
-                    "href": "http://superdesk.apiary.io/HR/User/"
-                }
-            ]
+            "_links": {
+                "child": [
+                    {
+                        "title": "auth",
+                        "href": "/auth"
+                    },
+                    {
+                        "title": "users",
+                        "href": "/users"
+                    },
+                    {
+                        "title": "ingest",
+                        "href": "/ingest"
+                    }
+                ]
+            }
         }
 
 # Group Authentication
 
-## Token [/Security/Authentication]
-
-Before authentication, you will need to get token:
-
-### Get token [POST]
-
-+ Response 200 (application/json)
-
-        {
-            "Token": "93d9f8d01cf5e08e2b238c353582aac0394530a310d17fc4459974aa44267c09c4b6bac1fd02c1aeb41ac94b3a024ae8a03cc72b6045c1d3d00dbeb0b2f51a70"
-        }
-
-## Login [/Security/Login]
-
-With token from previous step you can authenticate:
+## Auth [/auth]
 
 ### Authenticate [POST]
 
 + Request (application/json)
 
         {
-            "UserName": "admin",
-            "Token": "07e4f625f5e8f5e380b181a5f8816dfb75418dcbe1c9da4d225895ae37bcaf20507c15e0f78f183e25debe30ba81df1e09e379b493aec02dc194fde73e9fc71e",
-            "HashedToken": "bc6adf5c3d7367a4ae4ce3ef6abe6024cd327f5d3ddaadff400d146126a16f96e4ae763a1bf1a858dad4701fecc35f73785cc397ac54487d30da3313a0d7e5f4"
+            "username": "admin",
+            "password": "admin"
         }
 
 + Response 200 (application/json)
 
         {
-            "Session": "616edf0ad1ba6f883ca5f6b0c93218b5aa5b0fe247528ce6be0844e499af6595e72e053d4f38aed6e3fc30fedde320cad7bbbb43aade0b301e820bcf489b80b7",
-            "User": {
-                "href": "http://superdesk.apiary.io/HR/User/1.json"
-            }
+            "_links": {"self": {"href": "/auth/523"}},
+            "token": "aNcdefgH",
+            "user": "123"
         }
 
 # Group User Management
 
-## User [/HR/User/{Id}]
+## User [/users/{_id}]
 
 A single User resource.
 
 + Parameters
-    + Id (string) ... User id.
+    + _id (string) ... User id.
 
 + Model (application/json) 
 
         {
-            "href": "http://superdesk.apiary.io/HR/User/1",
-            "Id": 2,
-            "Active": true,
-            "UserName": "john",
-            "EMail": "john.doe@email.com",
-            "FirstName": "John",
-            "LastName": "Doe",
-            "FullName": "John Doe",
-            "PhoneNumber": "0123456789",
-            "CreatedOn": "2014-02-18T14:42:16Z",
-            "Avatar": {"href": "http://www.gravatar.com/avatar/205e460b479e2e5b48aec07710c08d50?s=200"}
+            "_links": {"self": {"href": "/users/123"}},
+            "_id": "123",
+            "username": "john",
+            "email": "john.doe@email.com",
+            "first_name": "John",
+            "last_name": "Doe",
+            "display_name": "John Doe",
+            "phone_number": "0123456789",
+            "_created": "2014-02-18T14:42:16Z",
+            "_updated": "2014-02-18T14:42:16Z",
+            "_etag": "xyz",
+            "picture_url": "http://www.gravatar.com/avatar/205e460b479e2e5b48aec07710c08d50?s=200"
         }
 
 ### Retrieve a User [GET]
@@ -99,204 +86,177 @@ A single User resource.
 
 + Request (application/json)
 
-        {
-            "LastName": "Baz"
-        }
+    + Headers
+    
+            If-Match: xyz
+    
+    + Body
 
-+ Response 200
+            {"last_name": "Baz"}
+
++ Response 200 (application/json)
+
+        {"_status": "OK"}
 
 + Response 403
 
 ### Hard Delete a User [DELETE]
 
++ Request
+
+    + Headers
+    
+            If-Match: xyz
+
 + Response 204
 
-## User Search [/HR/User/{?offset,maxResults,withTotal,asc,desc,all,userName,firstName,lastName,fullName,createdOn,inactive,phoneNumber,email}]
+## User Search [/users{?page,max_results,where,sort}]
 
 ### List all Users [GET]
 
 + Parameters
-    + offset = `0`(optional, integer) ... Offset of the first element from the list
-    + maxResults = `25`(optional, integer) ... Number of users to be returned
-    + withTotal = `True`(optional, boolean) ... If true return the total number of elements
-    + asc (optional, string, `["firstName"]`) ... Sort
-    + desc (optional, string, `["firstName"]`) ... Sort
-    + all (optional, string, `["joe"]`) ... Search by keyword
-    + userName (optional, string, `["joe"]`) ... Filter by user name
-    + firstName (optional, string, `["joe"]`) ... Filter by first name
-    + lastName (optional, string, `["joe"]`) ... Filter by last name
-    + fullName (optional, string, `["joe"]`) ... Filter by the full name
-    + createdOn (optional, datetime, `["2014-01-21T12:40"]`) ... Filter by creation date
-    + inactive (optional, boolean, `["False"]`) ... Filter by active flag
-    + phoneNumber (optional, string, `["0123456789"]`) ... Filter by the phone number
-    + email (optional, string, `["joe@email.com"]`) ... Filter by email
+    + page = `0`(optional, integer) ... Page number
+    + max_results = `25`(optional, integer) ... Number of users to be returned
+    + where (optional, object) ... Filtering
+    + sort (optional, object) ... Sorting
 
 + Response 200 (application/json)
 
         {
-            "total":2,
-            "limit":2,
-            "offset":0,
-            "first": {"href": "http://localhost:8080/resources/HR/User/.json"},
-            "last": {"href": "http://localhost:8080/resources/HR/User/.json?offset=10"},
-            "prev": {"href": "http://localhost:8080/resources/HR/User/.json?offset=5"},
-            "next": {"href": "http://localhost:8080/resources/HR/User/.json?offset=7"},
-            "collection":[
+            "_items": [
                 {
-                    "href": "http://superdesk.apiary.io/HR/User/2",
-                    "Id":2,
-                    "Active":true,
-                    "EMail":"john.doe@email.com",
-                    "FirstName":"John",
-                    "FullName":"John Doe",
-                    "LastName":"Doe",
-                    "UserName":"john",
-                    "PhoneNumber":"0123456789",
-                    "CreatedOn":"2014-02-18T14:42:16Z",
-                    "Avatar": {"href": "http://www.gravatar.com/avatar/205e460b479e2e5b48aec07710c08d50"}
+                    "_links": {"self": {"href": "/users/2"}},
+                    "_id": "2",
+                    "email": "john.doe@email.com",
+                    "first_name": "John",
+                    "display_name": "John Doe",
+                    "last_name": "Doe",
+                    "username": "john",
+                    "phone_number": "0123456789",
+                    "_created": "2014-02-18T14:42:16Z",
+                    "_updated": "2014-02-18T14:42:16Z",
+                    "picture_url": "http://www.gravatar.com/avatar/205e460b479e2e5b48aec07710c08d50",
+                    "_etag": "xyz"
                 },
                 {
-                    "href": "http://superdesk.apiary.io/HR/User/3",
-                    "Id":3,
-                    "Active":true,
-                    "EMail":"joe.hammer@email.com",
-                    "FirstName":"Joe",
-                    "FullName":"Joe Hammer",
-                    "LastName":"Hammer",
-                    "UserName":"joe",
-                    "PhoneNumber":"0223456789",
-                    "CreatedOn":"2014-02-18T14:43:27Z",
-                    "Avatar": {"href": "http://www.gravatar.com/avatar/205e460b479e2e5b48aec07710c08d50"}
+                    "_links": {"self": {"href": "/users/3"}},
+                    "_id": "3",
+                    "email": "joe.hammer@email.com",
+                    "first_name": "Joe",
+                    "display_name": "Joe Hammer",
+                    "last_name": "Hammer",
+                    "username": "joe",
+                    "phone_number": "0223456789",
+                    "_created": "2014-02-18T14:43:27Z",
+                    "_updated": "2014-02-18T14:43:27Z",
+                    "picture_url": "http://www.gravatar.com/avatar/205e460b479e2e5b48aec07710c08d50",
+                    "_etag": "xyz"
                 }
             ]
         }
 
-## User collection [/HR/User]
+## User collection [/users]
 
 ### Create user [POST]
 
 + Request (application/json)
 
         {
-            "FirstName": "John",
-            "LastName": "Doe",
-            "UserName": "john",
-            "EMail": "john.doe@email.com",
-            "Password": "a3r546465676bgyhyyehy",
-            "PhoneNumber":"0223456789"
+            "first_name": "John",
+            "last_name": "Doe",
+            "username": "john",
+            "email": "john.doe@email.com",
+            "password": "a3r546465676bgyhyyehy",
+            "phone_number": "0223456789"
         }
 
 + Response 201 (application/json)
 
         {
-            "href": "http://localhost:8080/resources/HR/User/7"
+            "_links": {"self": {"href": "/users/5"}},
+            "_status": "OK",
+            "_etag": "xyz"
         }
 
 + Response 400 (application/json)
 
         {
-            "UserName": {
-                "conflict": {
-                    "msg": "There is already an active user with this name"
+            "_status": "ERR",
+            "_issues": {
+                "username": {
+                    "unique": {
+                        "msg": "There is already an active user with this name"
+                    }
+                },
+                "email": {
+                    "unique": { "msg": "Unique constraint failed" }
+                },
+                "email": {
+                    "format": { "msg": "Invalid EMail" }
+                },
+                "phone": {
+                    "format": {
+                        "msg": "Invalid phone number format"
+                        "example": "+123123456789 or 0123456789 or 123456789"
+                    }
+                },
+                "password": {
+                    "required": { "msg": "Mandatory value is missing" }
                 }
-            },
-            "EMail": {
-                "unique": { "msg": "Unique constraint failed" }
-            },
-            "EMail": {
-                "format": { "msg": "Invalid EMail" }
-            },
-            "PhoneNumber": {
-                "format": {
-                    "msg": "Invalid phone number format"
-                    "example": "+123123456789 or 0123456789 or 123456789"
-                }
-            },
-            "Password": {
-                "mandatory": { "msg": "Mandatory value is missing" }
             }
         }
 
 
 # Group Media Archive
 
-## Image [/ItemImage/{Id}]
+## Media [/media/{_id}]
 
 + Parameters
-    - Id (string, `1`) ... Image Item Identifier.
+    - _id (string, `1`) ... Media Item Identifier.
 
 + Model (application/json)
 
         {
-            "href": "http://superdesk.apiary.io/ItemImage/1",
-            "ByLine": "John Doe",
-            "Provider": "My Company LTD",
-            "MimeType": "image/jpeg",
-            "Type": "picture",
-            "CreatedOn": "2013-07-03T10:11:12Z",
-            "Version": "1",
-            "VersionCreated": "2013-07-03T10:11:12Z",
-            "Status": "public",
-            "FileMeta": {
+            "_links": {"self": {"href": "/media/1"}},
+            "_etag": "abc",
+            "uri": "tag:mycomp-ltd.com,0000:newsml_LM1EA5F0UUD01",
+            "byline": "John Doe",
+            "provider": "My Company LTD",
+            "mimetype": "image/jpeg",
+            "type": "picture",
+            "firstcreated": "2013-07-03T10:11:12Z",
+            "version": "1",
+            "versioncreated": "2013-07-03T10:11:12Z",
+            "pubstatus": "usable",
+            "filemeta": {
                 "Manufacturer": "CANON",
                 "Orientation": "landscape"
             },
-            "CopyrightHolder": { "en": "Sourcefabric o.p.s." },
-            "CopyrightNotice": { "en": "(c) Copyright Sourcefabric o.p.s. 2014" },
-            "UsageTerms": { "en": "You are not allowed." },
-            "Headline": { "en": "No news today" },
-            "Renditions": {
+            "copyrightholder": "Sourcefabric o.p.s.",
+            "copyrightnotice": "(c) Copyright Sourcefabric o.p.s. 2014",
+            "usageterms": "You are not allowed.",
+            "headline": "No news today",
+            "language": "en",
+            "description_text": "Flower picture",
+            "urgency": 4,
+            "renditions": {
                 "thumbnail": {
                     "href": "http://farm4.staticflickr.com/3665/9203816834_3329fac058_q_d.jpg",
-                    "Width": 150,
-                    "Height": 150
+                    "mimetype": "image/jpeg",
+                    "width": 150,
+                    "height": 150
                 },
                 "original": {
                     "href": "http://farm4.staticflickr.com/3665/9203816834_9f62964627_o_d.jpg",
-                    "Width": 5198,
-                    "Height": 3462
+                    "mimetype": "image/jpeg",
+                    "width": 5198,
+                    "height": 3462
                 }
             }
         }
 
-### Fetch image [GET]
+### Fetch media [GET]
 
 + Response 200 (application/json)
 
     [Media][]
-
-+ Response 404 (application/json)
-
-    [Image][]
-
-### Update image [PATCH]
-
-+ Request (application/json)
-
-        {
-            "href": "http://superdesk.apiary.io/ItemImage/1",
-            "ByLine": "John Doe",
-            "Provider": "My Company LTD",
-            "MimeType": "image/jpeg",
-            "Type": "picture",
-            "CreatedOn": "2013-07-03T10:11:12Z",
-            "Version": "1",
-            "VersionCreated": "2013-07-03T10:11:12Z",
-            "Status": "public",
-            "FileMeta": {
-                "Manufacturer": "CANON",
-                "Orientation": "landscape"
-            },
-            "CopyrightHolder": { "en": "Sourcefabric o.p.s." },
-            "CopyrightNotice": { "en": "(c) Copyright Sourcefabric o.p.s. 2014" },
-            "UsageTerms": { "en": "You are not allowed." },
-            "Headline": { "en": "No news today" }
-        }
-
-+ Response 200
-
-+ Response 403
-
-### Delete an Image [DELETE]
-
-+ Response 204
