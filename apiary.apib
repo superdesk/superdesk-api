@@ -207,12 +207,12 @@ A single User resource.
         }
 
 
-# Group Media Archive
+# Group Content Archive
 
-## Media [/media/{_id}]
+## Item [/archive/{_id}]
 
 + Parameters
-    - _id (string, `1`) ... Media Item Identifier.
+    - _id (string, `1`) ... Item Identifier.
 
 + Model (application/json)
 
@@ -255,8 +255,87 @@ A single User resource.
             }
         }
 
-### Fetch media [GET]
+### Fetch item [GET]
 
 + Response 200 (application/json)
 
-    [Media][]
+    [Item][]
+
+## Archive Search [/archive{?source,page,max_results}]
+
+### Search [GET]
+
++ Parameters
+    + source (optional, object) ... Elastic search query.
+    + page = `0`(optional, integer) ... Page number.
+    + max_results = `25`(optional, integer) ... Number of items to be returned.
+
++ Response 200 (application/json)
+
+        {
+            "_items": [
+                {
+                    "type": "text",
+                    "body_html": "<p>By john</p><p>html content...</p>",
+                    "description_text": "plain text description"
+                },
+                {
+                    "type": "picture",
+                    "mimetype": "image/jpeg",
+                    "renditions": {
+                        "original": {
+                            "href": "http://farm4.staticflickr.com/3665/9203816834_9f62964627_o_d.jpg",
+                            "mimetype": "image/jpeg",
+                            "width": 5198,
+                            "height": 3462
+                        }
+                    }
+                },
+                {
+                    "type": "composite",
+                    "groups": [
+                        {
+                            "id": "root",
+                            "role": "grpRole:NEP",
+                            "refs": [
+                                {"idRef": "main"},
+                                {"idRef": "sidebar"}
+                            ]
+                        },
+                        {
+                            "id": "main",
+                            "role": "grpRole:Main",
+                            "refs": [
+                                {
+                                    "mimetype": "application/vnd.iptc.g2.newsitem+xml",
+                                    "provider": "sourcefabric.org",
+                                    "residRef": "tag:sourcefabric.org,0000:newsml_BRE9AG0DM",
+                                    "type": "text",
+                                    "headline": "per package caption"
+                                },
+                                {
+                                    "mimetype": "application/vnd.iptc.g2.newsitem+xml",
+                                    "provider": "sourcefabric.org",
+                                    "residRef": "tag:sourcefabric.org,0000:newsml_CBRE9AG1HCJ00",
+                                    "type": "picture",
+                                    "headline": "picture caption"
+                                }
+                            ]
+                        },
+                        {
+                            "id": "sidebar",
+                            "role": "grpRole:Sidebar",
+                            "refs": [
+                                {
+                                    "mimetype": "application/vnd.iptc.g2.newsitem+xml",
+                                    "provider": "sourcefabric.org",
+                                    "residRef": "tag:sourcefabric.org,0000:newsml_BRE9AR0FF"
+                                    "type": "text",
+                                    "headline": "sidebar text caption"
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        }
