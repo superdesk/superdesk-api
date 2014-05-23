@@ -13,15 +13,15 @@ List available resources.
                 "child": [
                     {
                         "title": "auth",
-                        "href": "/auth"
+                        "href": "http://superdesk.apiary.io/auth"
                     },
                     {
                         "title": "users",
-                        "href": "/users"
+                        "href": "http://superdesk.apiary.io/users"
                     },
                     {
                         "title": "ingest",
-                        "href": "/ingest"
+                        "href": "http://superdesk.apiary.io/ingest"
                     }
                 ]
             }
@@ -43,7 +43,7 @@ List available resources.
 + Response 200 (application/json)
 
         {
-            "_links": {"self": {"href": "/auth/523"}},
+            "_links": {"self": {"href": "http://superdesk.apiary.io/auth/523"}},
             "token": "aNcdefgH",
             "user": "123"
         }
@@ -60,7 +60,7 @@ A single User resource.
 + Model (application/json) 
 
         {
-            "_links": {"self": {"href": "/users/123"}},
+            "_links": {"self": {"href": "http://superdesk.apiary.io/users/123"}},
             "_id": "123",
             "username": "john",
             "email": "john.doe@email.com",
@@ -125,7 +125,7 @@ A single User resource.
         {
             "_items": [
                 {
-                    "_links": {"self": {"href": "/users/2"}},
+                    "_links": {"self": {"href": "http://superdesk.apiary.io/users/2"}},
                     "_id": "2",
                     "email": "john.doe@email.com",
                     "first_name": "John",
@@ -139,7 +139,7 @@ A single User resource.
                     "_etag": "xyz"
                 },
                 {
-                    "_links": {"self": {"href": "/users/3"}},
+                    "_links": {"self": {"href": "http://superdesk.apiary.io/users/3"}},
                     "_id": "3",
                     "email": "joe.hammer@email.com",
                     "first_name": "Joe",
@@ -173,7 +173,7 @@ A single User resource.
 + Response 201 (application/json)
 
         {
-            "_links": {"self": {"href": "/users/5"}},
+            "_links": {"self": {"href": "http://superdesk.apiary.io/users/5"}},
             "_status": "OK",
             "_etag": "xyz"
         }
@@ -217,7 +217,7 @@ A single User resource.
 + Model (application/json)
 
         {
-            "_links": {"self": {"href": "/media/1"}},
+            "_links": {"self": {"href": "http://superdesk.apiary.io/media/1"}},
             "_etag": "abc",
             "uri": "tag:mycomp-ltd.com,0000:newsml_LM1EA5F0UUD01",
             "byline": "John Doe",
