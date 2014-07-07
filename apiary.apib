@@ -223,6 +223,111 @@ A single User resource.
                 }
             }
         }
+# Group Planning 
+
+## Planning item [/planning/{_id}]
+
+A single Planning resource
+
++ Parameters
+    -_id (string, `1`) ... Planning item identifier.
+    
++ Model (application/json)
+
+	{
+	    "_links": {"self": {"href": "/planning/1"}},
+	    "guid": "urn:newsml:localhost:2014-07-04T14:27:18.989271:b49dd8bc-4916-44fc-977e-933c8128ba42",
+	    "_id": "urn:newsml:localhost:2014-07-04T14:27:18.989271:b49dd8bc-4916-44fc-977e-933c8128ba42",
+	    "type": "text",
+	    "_created": "2014-07-04T11:27:18+0000",
+	    "headline": "my item",
+	    "versioncreated": "2014-07-04T11:27:18+0000",
+	    "firstcreated": "2014-07-04T11:27:18+0000",
+	    "_updated": "2014-07-04T11:27:18+0000"
+	}
+
+	
+### Retrieve a Planning item [GET]
+
++ Response 200 (application/json)
+
+    [Item][]
+
++ Response 404
+
+### Update Item [PATCH]
+
++ Request (application/json)
+    
+    + Body
+            {"edNote": "Foo"}
+
++ Response 200 (application/json)
+
+        {"_status": "OK"}
+
++ Response 403
+
+### Delete an Item [DELETE]
+
++ Request
+
++ Response 204
+
+
+## Planning item collection [/planning]
+
+### Create item [POST]
+
++ Request (application/json)
+
+        {
+            "type": "text"
+        }
+
++ Response 201 (application/json)
+
+        {
+            "_links": {"self": {"href": "/planning/2"}},
+            "_status": "OK"
+        }
+        
+### List all items [GET]
+
++ Parameters
+    + page = `1`(optional, integer) ... Page number
+    + max_results = `25`(optional, integer) ... Number of items to be returned
+    
++ Response 200 (application/json)
+
+        {
+            "_items": [
+                {
+                    "_links": {"self": {"href": "/planning/1"}},
+		    "guid": "urn:newsml:localhost:2014-07-04T14:27:18.989271:b49dd8bc-4916-44fc-977e-933c8128ba42",
+		    "_id": "urn:newsml:localhost:2014-07-04T14:27:18.989271:b49dd8bc-4916-44fc-977e-933c8128ba42",
+		    "type": "text",
+		    "_created": "2014-07-04T11:27:18+0000",
+		    "headline": "my item",
+		    "versioncreated": "2014-07-04T11:27:18+0000",
+		    "firstcreated": "2014-07-04T11:27:18+0000",
+		    "_updated": "2014-07-04T11:27:18+0000"
+                },
+                {
+		    "_links": {"self": {"href": "/planning/2"}},
+                    "_id": "urn:newsml:localhost:2014-07-03T13:41:04.620956:14f2e70f-b7e5-4d4a-88fb-d0e563ce2f29",
+		    "guid": "urn:newsml:localhost:2014-07-03T13:41:04.620956:14f2e70f-b7e5-4d4a-88fb-d0e563ce2f29",
+		    "_created": "2014-07-03T10:41:04+0000",
+		    "headline": "item1",
+		    "desk": "53b12930ea8e151bbcaeca07",
+		    "type": "text",
+		    "versioncreated": "2014-07-03T10:41:04+0000",
+		    "_updated": "2014-07-03T10:41:31+0000",
+		    "creditline": "my friend Anabel",
+		    "firstcreated": "2014-07-03T10:41:04+0000"
+                }
+            ]
+        }
 
 
 # Group Content Archive
