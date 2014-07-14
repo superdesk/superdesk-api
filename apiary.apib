@@ -468,3 +468,57 @@ A single Planning resource
                 }
             ]
         }
+
+## Activity Search [/activity{?page,max_results,where,sort}]
+
+### List all Activities [GET]
+
++ Parameters
+    + page = `0`(optional, integer) ... Page number
+    + max_results = `25`(optional, integer) ... Number of users to be returned
+    + where (optional, object) ... Filtering
+    + sort (optional, object) ... Sorting
+
++ Response 200 (application/json)
+
+        {
+            "_items" : [ { "_created" : "2014-07-11T11:04:15+0000",
+	        "_id" : "53bfc4af7121ed3a4d1931dd",
+	        "_links" : { "self" : { "href" : "http://superdesk.apiary.io/activity/53bfc4af7121ed3a4d1931dd",
+	                "title" : "Activity"
+	              } },
+	        "_updated" : "2014-07-11T11:04:15+0000",
+	        "action" : "create",
+	        "extra" : { "_created" : "2014-07-11T11:04:15+0000",
+	            "_updated" : "2014-07-11T11:04:15+0000",
+	            "email" : "test@test.testi",
+	            "first_name" : "iiiiiiii",
+	            "last_name" : "iiiiiiiiiiii",
+	            "password" : "iiiii",
+	            "username" : "iiiiiiiiiiiii"
+	          },
+	        "resource" : "users",
+	        "user" : "53bfc4067121ed3a4d1931db"
+	      },
+	      { "_created" : "2014-07-11T11:01:26+0000",
+	        "_id" : "53bfc4067121ed3a4d1931da",
+	        "_links" : { "self" : { "href" : "http://superdesk.apiary.io/activity/53bfc4067121ed3a4d1931da",
+	                "title" : "Activity"
+	              } },
+	        "_updated" : "2014-07-11T11:01:26+0000",
+	        "action" : "create",
+	        "extra" : { "_created" : "2014-07-11T11:01:26+0000",
+	            "_updated" : "2014-07-11T11:01:26+0000",
+	            "email" : "test@test.test",
+	            "first_name" : "test",
+	            "last_name" : "test",
+	            "password" : "admin",
+	            "username" : "test"
+	          },
+	        "resource" : "users",
+	        "user" : "53a297df7121ed7be0a876df"
+	      }
+	    ]
+        }
+
+## Activity collection [/activity]
