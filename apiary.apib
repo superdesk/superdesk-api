@@ -388,6 +388,68 @@ A single Planning resource
 
     [Item][]
 
+### Update Item [PATCH]
+
++ Request (application/json)
+    
+    + Body
+            {"headline": "today's news 3"}
+
++ Response 200 (application/json)
+
+        {
+            _status: "OK",
+            _links: {
+                self: {
+                    href: "http://localhost:5000/archive/urn:newsml:localhost:2014-07-16T16:59:59.856131:eb0b90c9-8d1e-45a3-ad98-12c1ac35af91",
+                    title: "Archive"
+                }
+            },
+            _created: "2014-07-16T14:14:06+0000",
+            type: "text",
+            _latest_version: 5,
+            _updated: "2014-07-17T18:19:15+0000",
+            firstcreated: "2014-07-16T14:14:06+0000",
+            _version: 5,
+            headline: "today's news 3",
+            guid: "urn:newsml:localhost:2014-07-16T16:59:59.856131:eb0b90c9-8d1e-45a3-ad98-12c1ac35af91",
+            versioncreated: "2014-07-17T18:19:15+0000",
+            _id: "urn:newsml:localhost:2014-07-16T16:59:59.856131:eb0b90c9-8d1e-45a3-ad98-12c1ac35af91"
+        }
+
+
+## Restore Item Version [/archive/{_id}/set-version]
+
+### Restore [POST]
+
++ Request (application/json)
+        {
+            "old_version": "3",
+            "last_version": "4"
+        }
+
++ Response 200 (application/json)
+
+        {
+            _status: "OK",
+            _id: "urn:newsml:localhost:2014-07-16T16:59:59.856131:eb0b90c9-8d1e-45a3-ad98-12c1ac35af91",
+            _links: {
+                self: {
+                    title: "Archive",
+                    href: "http://localhost:5000/archive/urn:newsml:localhost:2014-07-16T16:59:59.856131:eb0b90c9-8d1e-45a3-ad98-12c1ac35af91"
+                }
+            },
+            _version: 5,
+            guid: "urn:newsml:localhost:2014-07-16T16:59:59.856131:eb0b90c9-8d1e-45a3-ad98-12c1ac35af91",
+            versioncreated: "2014-07-17T20:24:32+0000",
+            _created: "2014-07-16T14:14:06+0000",
+            headline: "today's news 1",
+            _updated: "2014-07-17T20:24:32+0000",
+            firstcreated: "2014-07-16T14:14:06+0000",
+            _latest_version: 21,
+            type: "text"
+        }
+
 ## Archive Search [/archive{?source,page,max_results}]
 
 ### Search [GET]
