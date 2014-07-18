@@ -539,6 +539,90 @@ A single Desks resource
 + Response 200 (application/json)
 
     [Item][]
+    
+    
+        
+### List the content items for given authors(users)
+
++ Response 200 (application/json)
+
+        {
+            "_items": [
+                {
+                    "_links": {"self": {"href": "/users/<regex("[a-f0-9]{24}"):user_id>/archive"}},
+		    
+                },
+                {
+		    "_links": {"self": {"href": "users/1/archive/1"}},
+		    "media": {
+			      "file": "null"
+			      "length": "1143731"
+			      "content_type": "image/jpeg"
+			      "name": "d29bbc8e6958004db0e3cb9216736fd56e040cfc6b468c6f6d4efac7e3bfff65"
+			      },
+		    "_id": "53c79121ea8e15145ff9864f",
+		    "guid": "tag:localhost:2014:2d3ea50a-3bbb-4d88-adbb-36c566b7afb7",
+		    "_created: "2014-07-17T09:02:24+0000",
+		    "mimetype": "image/jpeg",
+		    "firstcreated": "2014-07-17T09:02:25+0000",
+		    "renditions": {
+				  "thumbnail": {
+					    "media: "53c79121ea8e15145ff9864d"
+					    "mimetype: "image/jpeg"
+					    "href": "http://localhost:5000/upload/53c79121ea8e15145ff9864d/raw?_schema=http"
+					    "height": "120"
+					    "width": "90"
+						},
+				  "original": {
+					  "media": "53c79120ea8e15145ff98643"
+					  "mimetype": "image/jpeg"
+					  "href": "http://localhost:5000/upload/53c79120ea8e15145ff98643/raw?_schema=http"
+					  "height": "2592"
+					  "width": "1944"
+					    },
+		      "filemeta: {
+			      "filesource": "3"
+			      "digitalzoomratio": "[2]"
+				    "0":  "65536"
+				    "1":  "65536"
+			      "subsectimedigitized": "765289"
+			      "saturation": "0"
+			      "isospeedratings": "229"
+			      "yresolution": "[2]"
+				    "0":  "72"
+				    "1":  "1"
+			      "datetimedigitized: "2014:05:14 14:17:59"
+			      "model": "LG-P970"
+			      "flash": "24"
+			      "make": "LG Electronics"
+			      "datetime": "2014:05:14 14:17:59"
+			      "resolutionunit": 2
+			      "contrast": "0"
+			      "orientation": "1"
+			      "meteringmode": "1"
+			      "lightsource": "0"
+			      "datetimeoriginal": "2014:05:14 14:17:59"
+				 },
+		      "versioncreated": "2014-07-17T09:07:36+0000",
+		      "type": "picture",
+		      "version": "1",
+		      "headline": "my picture"
+                },
+                {
+		    "_links": {"self": {"href": "users/1/archive/2"}},
+		    "_updated": "2014-07-17T10:13:30+0000",
+		    "_version": "2",
+		    "versioncreated": "2014-07-17T10:13:30+0000",
+		    "guid": "urn:newsml:localhost:2014-07-17T13:13:19.563032:0be87c05-ef88-4794-9d6d-d01e9302a98c",
+		    "type": "text",
+		    "_created": "2014-07-17T10:13:19+0000",
+		    "_id": "urn:newsml:localhost:2014-07-17T13:13:19.563032:0be87c05-ef88-4794-9d6d-d01e9302a98c",
+		    "firstcreated": "2014-07-17T10:13:19+0000",
+		    "headline": "second item"
+                }
+            ]
+        }
+
 
 ## Archive Search [/archive{?source,page,max_results}]
 
@@ -672,5 +756,6 @@ A single Desks resource
 	      }
 	    ]
         }
-
+        
+        
 ## Activity collection [/activity]
