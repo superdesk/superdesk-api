@@ -1,0 +1,25 @@
+{
+  "name": "superdesk-api",
+  "description": "superdesk api blueprint",
+  "dependencies": {
+    "protagonist": "~0.12.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "node ./test.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/superdesk/superdesk-api.git"
+  },
+  "keywords": [
+    "superdesk",
+    "api",
+    "blueprint"
+  ],
+  "author": "",
+  "license": "GPLv3",
+  "bugs": {
+    "url": "https://github.com/superdesk/superdesk-api/issues"
+  }
+}
