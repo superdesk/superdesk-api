@@ -541,6 +541,35 @@ A single Desks resource
 
     [Item][]
 
+### Update Item [PATCH]
+
++ Request (application/json)
+    
+    + Body
+            {"headline": "today's news 3"}
+
++ Response 200 (application/json)
+
+        {
+            _status: "OK",
+            _links: {
+                self: {
+                    href: "http://localhost:5000/archive/urn:newsml:localhost:2014-07-16T16:59:59.856131:eb0b90c9-8d1e-45a3-ad98-12c1ac35af91",
+                    title: "Archive"
+                }
+            },
+            _created: "2014-07-16T14:14:06+0000",
+            type: "text",
+            _latest_version: 5,
+            _updated: "2014-07-17T18:19:15+0000",
+            firstcreated: "2014-07-16T14:14:06+0000",
+            _version: 5,
+            headline: "today's news 3",
+            guid: "urn:newsml:localhost:2014-07-16T16:59:59.856131:eb0b90c9-8d1e-45a3-ad98-12c1ac35af91",
+            versioncreated: "2014-07-17T18:19:15+0000",
+            _id: "urn:newsml:localhost:2014-07-16T16:59:59.856131:eb0b90c9-8d1e-45a3-ad98-12c1ac35af91"
+        }
+
 ## User archive [/users/1/archive]
 
 ### List the content items for given authors(users) [GET]
@@ -623,7 +652,110 @@ A single Desks resource
                 }
             ]
         }
+            
 
+## Restore Item Version [/archive/{_id}/set-version]
+
+### Restore [POST]
+
++ Request (application/json)
+        {
+            "old_version": "3",
+            "last_version": "4"
+        }
+
++ Response 200 (application/json)
+
+        {
+            _id: "urn:newsml:localhost:2014-07-16T16:59:59.856131:eb0b90c9-8d1e-45a3-ad98-12c1ac35af91",
+            _links: {
+                self: {
+                    title: "Archive",
+                    href: "http://localhost:5000/archive/urn:newsml:localhost:2014-07-16T16:59:59.856131:eb0b90c9-8d1e-45a3-ad98-12c1ac35af91"
+                }
+            },
+            _version: 5,
+            guid: "urn:newsml:localhost:2014-07-16T16:59:59.856131:eb0b90c9-8d1e-45a3-ad98-12c1ac35af91",
+            versioncreated: "2014-07-17T20:24:32+0000",
+            _created: "2014-07-16T14:14:06+0000",
+            headline: "today's news 1",
+            _updated: "2014-07-17T20:24:32+0000",
+            firstcreated: "2014-07-16T14:14:06+0000",
+            _latest_version: 21,
+            type: "text"
+        }
+
+## Archive Item Version [/archive/{_id}{?version}]
+
+### Version [GET]
+
++ Parameters
+    + version (int, 1) ... Item version
+
++ Response 200 (application/json)
+
+        {
+            versioncreated: "2014-07-16T14:14:06+0000",
+            _links: {
+                parent: { title: "home", href: "http://localhost:5000" },
+                collection: { title: "archive", href: "http://localhost:5000/archive" },
+                self: {
+                    title: "Archive",
+                    href: "http://localhost:5000/archive/urn:newsml:localhost:2014-07-16T16:59:59.856131:eb0b90c9-8d1e-45a3-ad98-12c1ac35af91"
+                }
+            },
+            _id: "urn:newsml:localhost:2014-07-16T16:59:59.856131:eb0b90c9-8d1e-45a3-ad98-12c1ac35af91",
+            guid: "urn:newsml:localhost:2014-07-16T16:59:59.856131:eb0b90c9-8d1e-45a3-ad98-12c1ac35af91",
+            _version: 1,
+            headline: "today's news 1",
+            _updated: "2014-07-16T14:14:06+0000",
+            _latest_version: 2,
+            _created: "2014-07-16T14:14:06+0000",
+            type: "text",
+            firstcreated: "2014-07-16T14:14:06+0000"
+        }
+
+## Archive Item Versions List [/archive/{_id}{?version}]
+
+### Version [GET]
+
++ Parameters
+    + version ('all') ... All versions
+
++ Response 200 (application/json)
+
+        {
+            _links: {
+                parent: {
+                    title: "home",
+                    href: "http://localhost:5000"
+                },
+                collection: {
+                    title: "archive",
+                    href: "http://localhost:5000/archive"
+                },
+            },
+            _items: [
+                {
+                    versioncreated: "2014-07-16T14:14:06+0000",
+                    _links: {
+                        self: {
+                            title: "Archive",
+                            href: "http://localhost:5000/archive/urn:newsml:localhost:2014-07-16T16:59:59.856131:eb0b90c9-8d1e-45a3-ad98-12c1ac35af91"
+                        }
+                    },
+                    _id: "urn:newsml:localhost:2014-07-16T16:59:59.856131:eb0b90c9-8d1e-45a3-ad98-12c1ac35af91",
+                    guid: "urn:newsml:localhost:2014-07-16T16:59:59.856131:eb0b90c9-8d1e-45a3-ad98-12c1ac35af91",
+                    _version: 1,
+                    headline: "today's news 1",
+                    _updated: "2014-07-16T14:14:06+0000",
+                    _latest_version: 21,
+                    _created: "2014-07-16T14:14:06+0000",
+                    type: "text",
+                    firstcreated: "2014-07-16T14:14:06+0000"
+                }
+            ]
+        }
 
 ## Archive Search [/archive{?source}]
 
