@@ -13,7 +13,7 @@ fs.readFile(path.join(__dirname, '/apiary.apib'), function(error, buffer) {
     protagonist.parse(data, function(error, result) {
         if (error) {
             console.error(error);
-            console.log('in', data.substr(error.location[0].index, 30));
+            console.log('in', data.substr(error.location[0].index, 50));
             process.exit(1);
         }
 
