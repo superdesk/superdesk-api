@@ -7,6 +7,7 @@ FORMAT: 1A
 List available resources.
 
 + Response 200 (application/json)
+
         {
             "_links": {
                 "child": [
@@ -97,11 +98,14 @@ List available resources.
                 ]
             }
         }
+
 # Group Authentication
 
 ## Auth [/auth]
 
 ### Authenticate [POST]
+
+The rest of the endpoints requiring authorization will have to supply the following header: "Authorization": b'basic ' + b64encode(token + b':')
 
 + Request (application/json;charset=UTF-8)
 
@@ -117,9 +121,6 @@ List available resources.
             "token": "aNcdefgH",
             "user": "123"
         }
-
-The rest of the endpoints requiring authorization will have to supply the following header:
-"Authorization": b'basic ' + b64encode(token + b':')
 
 # Group User Management
 
@@ -295,6 +296,7 @@ A single User resource.
 
 
 ## Reset user password [/reset_user_password]
+
 ### Initiate reset user password [POST]
 
 + Request (application/json)
@@ -304,6 +306,7 @@ A single User resource.
         }
 
 + Response 201 (application/json)
+
         {
             "email": "foo@bar.com",
             "_status": "OK",
@@ -315,7 +318,7 @@ A single User resource.
             }
         }
 
- Finalize reset user password with the emailed token [POST]
+### Finalize reset user password with the emailed token [POST]
 
 + Request (application/json)
 
@@ -325,6 +328,7 @@ A single User resource.
         }
 
 + Response 201 (application/json)
+
         {
             "email": "foo@bar.com",
             "_status": "OK",
@@ -449,24 +453,24 @@ A single Planning resource
 A single Desks resource
 
 + Parameters
-    -_id (string, `1`) ... Desks item identifier.
+    - _id (string, `1`) ... Desks item identifier.
     
 + Model (application/json)
 
-    {
-        "_links": {"self": {"href": "/desks/1"}},
-        "name": "My desk",
-        "_updated": "2014-07-17T06:34:00+0000",
-        "_id": "53c76e4dea8e150dc0fd8579",
-        "members": "[2]",
-        "0":  {
-        "user": "53c76e39ea8e150dc0fd8578"
-          },
-        "1":  {
-        "user": "53c4f366ea8e15141784de99"
-          },
-        "_created": "2014-07-17T06:33:49+0000"
-    }
+        {
+            "_links": {"self": {"href": "/desks/1"}},
+            "name": "My desk",
+            "_updated": "2014-07-17T06:34:00+0000",
+            "_id": "53c76e4dea8e150dc0fd8579",
+            "members": "[2]",
+            "0":  {
+            "user": "53c76e39ea8e150dc0fd8578"
+              },
+            "1":  {
+            "user": "53c4f366ea8e15141784de99"
+              },
+            "_created": "2014-07-17T06:33:49+0000"
+        }
     
 ### Retrieve a Desk [GET]
 
@@ -480,8 +484,7 @@ A single Desks resource
 
 + Request (application/json)
     
-    + Body
-            {"name": "Foo"}
+        {"name": "Foo"}
 
 + Response 200 (application/json)
 
@@ -493,10 +496,12 @@ A single Desks resource
 
 + Request
 
+        
+
 + Response 204
 
 
-## Desks collection [/desks]
+## Desks collection [/desks{?page,max_results}]
 
 ### Create desk [POST]
 
@@ -650,8 +655,7 @@ A single Desks resource
 
 + Request (application/json)
     
-    + Body
-            {"headline": "today's news 3"}
+        {"headline": "today's news 3"}
 
 + Response 200 (application/json)
 
@@ -678,6 +682,7 @@ A single Desks resource
 ### Restore Item Version [PUT]
 
 + Request (application/json)
+
         {
             "type": "text",
             "old_version": "3",
@@ -794,7 +799,8 @@ A single Desks resource
 ### Version [GET]
 
 + Parameters
-    + version (int, 1) ... Item version
+
+    - version (int, 1) ... Item version
 
 + Response 200 (application/json)
 
@@ -819,7 +825,7 @@ A single Desks resource
             firstcreated: "2014-07-16T14:14:06+0000"
         }
 
-## Archive Item Versions List [/archive/{_id}{?version}]
+## Archive Item Versions List [/archive/{_id}?version=all]
 
 ### Version [GET]
 
@@ -1005,6 +1011,7 @@ A single comment resource
     + _id (string, `1`) ... comment item identifier.
 
 + Model (application/json)
+
         {
             "_id": "53d60bde8e4eba31df0c9311",
             "text": "new comment",
@@ -1063,6 +1070,7 @@ A single comment resource
 ### Create comment item [POST]
 
 + Request (application/json)
+
         {
             "text": "new comment",
             "item": "urn:newsml:localhost:2014-07-16T16:31:35.006915:c5204127-eefa-46de-8ec6-d29a781d7c19"
@@ -1085,6 +1093,7 @@ A single comment resource
             "item": "urn:newsml:localhost:2014-07-16T16:31:35.006915:c5204127-eefa-46de-8ec6-d29a781d7c19",
             "_status": "OK"
         }
+
 ### List all comment items [GET]
 
 + Parameters
@@ -1092,6 +1101,7 @@ A single comment resource
     + max_results = `25`(optional, integer) ... Number of items to be returned
 
 + Response 200 (application/json)
+
         {
             "_meta": {
                 "max_results": 25,
