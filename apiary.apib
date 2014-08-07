@@ -79,6 +79,10 @@ List available resources.
                         "href": "http://superdesk.apiary.io/planning"
                     },
                     {
+                        "title": "coverages",
+                        "href": "http://superdesk.apiary.io/coverages"
+                    },
+                    {
                         "title": "users/<regex(\"[a-f0-9]{24}\"):user_id>/archive",
                         "href": "http://superdesk.apiary.io/users/<regex(\"[a-f0-9]{24}\"):user_id>/archive"
                     },
@@ -440,8 +444,108 @@ A single Planning resource
                 }
             ]
         }
+
+
+# Group Coverages 
+
+## Coverage item [/coverages/{_id}]
+
+A single coverage resource
+
++ Parameters
+    + _id (string, `1`) ... Coverage item identifier.
+    
++ Model (application/json)
+
+        {
+            "_links": {"self": {"href": "/coverages/1"}},
+            "_id": "53e1ed28ea8e154d69b79367",
+            "_created": "2014-08-06T08:54:00+0000",
+            "headline": "coverage1",
+            "_updated": "2014-08-06T09:29:32+0000",
+            "assigned_desk": "53c79364ea8e1515849ac068"
+        }
+
+### Retrieve a Coverage item [GET]
+
++ Response 200 (application/json)
+
+    [Coverage item][]
+
++ Response 404
+
+### Update Item [PATCH]
+
++ Request (application/json)
+    
+        {"ed_note": "foo"}
+
++ Response 200 (application/json)
+
+        {"_status": "OK"}
+
++ Response 403
+
+### Delete an Item [DELETE]
+
++ Request
+
+    + Headers
+
+            If-Match: etag
+
++ Response 204
+
+## Coverage item collection [/coverages{?page,max_results}]
+
+### Create item [POST]
+
++ Request (application/json)
+
+        {
+            "headline": "test coverage"
+        }
+
++ Response 201 (application/json)
+
+        {
+            "_links": {"self": {"href": "/coverages/2"}},
+            "_status": "OK"
+        }
         
-        
+### List all items [GET]
+
++ Parameters
+    + page = `1`(optional, integer) ... Page number
+    + max_results = `25`(optional, integer) ... Number of items to be returned
+    
++ Response 200 (application/json)
+
+        {
+            "_items": [
+                {
+                    "_links": {"self": {"href": "/coverages/1"}},
+                    "_id": "53e1ed28ea8e154d69b79367",
+                    "_created": "2014-08-06T08:54:00+0000",
+                    "headline": "coverage1",
+                    "_updated": "2014-08-06T09:29:32+0000",
+                    "assigned_desk": "53c79364ea8e1515849ac068",
+                    "assigned_user": "53c79018ea8e15145ff9863f"
+                    
+                },
+                {
+                    "_links": {"self": {"href": "/coverages/2"}},
+                    "_id": "53e34d78ea8e153e923ee119",
+                    "_created": "2014-08-07T09:57:12+0000",
+                    "headline": "test coverage",
+                    "_updated": "2014-08-07T10:09:07+0000",
+                    "ed_note": "test coverage editorial note",
+                    "planning_item": "urn:newsml:localhost:2014-08-07T13:08:03.499037:0245e791-b7d9-4a97-9b56-4dbf8fcdec15"
+                }
+            ]
+        }
+
+
 # Group Desks
 
 ## Desks item [/desks/{_id}]
