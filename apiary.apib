@@ -15,83 +15,83 @@ List available resources.
                 "child": [
                     {
                         "title": "archive_media",
-                        "href": "http://superdesk.apiary.io/archive_media"
+                        "href": "/archive_media"
                     },
                     {
                         "title": "ingest",
-                        "href": "http://superdesk.apiary.io/ingest"
+                        "href": "/ingest"
                     },
                     {
                         "title": "archive/<path:item>/comments",
-                        "href": "http://superdesk.apiary.io/archive/<path:item>/comments"
+                        "href": "/archive/<path:item>/comments"
                     },
                     {
                         "title": "item_comments",
-                        "href": "http://superdesk.apiary.io/item_comments"
+                        "href": "/item_comments"
                     },
                     {
                         "title": "reset_user_password",
-                        "href": "http://superdesk.apiary.io/reset_user_password"
+                        "href": "/reset_user_password"
                     },
                     {
                         "title": "auth",
-                        "href": "http://superdesk.apiary.io/auth"
+                        "href": "/auth"
                     },
                     {
                         "title": "ingest_providers",
-                        "href": "http://superdesk.apiary.io/ingest_providers"
+                        "href": "/ingest_providers"
                     },
                     {
                         "title": "users",
-                        "href": "http://superdesk.apiary.io/users"
+                        "href": "/users"
                     },
                     {
                         "title": "desks",
-                        "href": "http://superdesk.apiary.io/desks"
+                        "href": "/desks"
                     },
                     {
                         "title": "user_roles",
-                        "href": "http://superdesk.apiary.io/user_roles"
+                        "href": "/user_roles"
                     },
                     {
                         "title": "archive",
-                        "href": "http://superdesk.apiary.io/archive"
+                        "href": "/archive"
                     },
                     {
                         "title": "notification",
-                        "href": "http://superdesk.apiary.io/notification"
+                        "href": "/notification"
                     },
                     {
                         "title": "upload",
-                        "href": "http://superdesk.apiary.io/upload"
+                        "href": "/upload"
                     },
                     {
                         "title": "users/<regex(\"[a-f0-9]{24}\"):user_id>/desks",
-                        "href": "http://superdesk.apiary.io/users/<regex(\"[a-f0-9]{24}\"):user_id>/desks"
+                        "href": "/users/<regex(\"[a-f0-9]{24}\"):user_id>/desks"
                     },
                     {
                         "title": "archive_ingest",
-                        "href": "http://superdesk.apiary.io/archive_ingest"
+                        "href": "/archive_ingest"
                     },
                     {
                         "title": "activity",
-                        "href": "http://superdesk.apiary.io/activity"
+                        "href": "/activity"
                     },
                     {
                         "title": "planning",
-                        "href": "http://superdesk.apiary.io/planning"
+                        "href": "/planning"
                     },
                     {
                         "title": "coverages",
-                        "href": "http://superdesk.apiary.io/coverages"
+                        "href": "/coverages"
                     },
                     {
                         "title": "users/<regex(\"[a-f0-9]{24}\"):user_id>/archive",
-                        "href": "http://superdesk.apiary.io/users/<regex(\"[a-f0-9]{24}\"):user_id>/archive"
+                        "href": "/users/<regex(\"[a-f0-9]{24}\"):user_id>/archive"
                     },
                     {
                         "title": "sessions",
-                        "href": "http://superdesk.apiary.io/sessions"
+                        "href": "/sessions"
                     },
                     {
                         "title": "get_upload_as_data_uri",
@@ -99,7 +99,7 @@ List available resources.
                     },
                     {
                         "title": "get_subjectcodes",
-                        "href": "http://superdesk.apiary.io/subjectcodes/"
+                        "href": "/subjectcodes/"
                     }
                 ]
             }
@@ -1283,3 +1283,25 @@ A single comment resource
                 }
             }
         }
+
+# Group Content Item locking
+
+## Lock [/archive/{_id}/lock]
+
+### Create a lock [POST]
+
++ Request (application/json)
+
+        {}
+
++ Response 201
+
+## Unlock [/archive/{_id}/unlock]
+
+### Unlock an item [POST]
+
++ Request (application/json)
+
+        {}
+
++ Response 200
