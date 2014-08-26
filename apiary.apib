@@ -836,6 +836,99 @@ A single Desks resource
             ]
         }
 
+
+## Content view [/content_view.{_id}{?source}]
+
+### Search [GET]
+
++ Parameters
+    + source (optional, object) ... Elasticsearch query.
+
++ Response 200 (application/json)
+
+        {
+            "_items": [
+                {
+                    "type": "text",
+                    "body_html": "<p>By john</p><p>html content...</p>",
+                    "description_text": "text item",
+                    "self": {
+                        "title": "Archive",
+                        "href": "/archive/12345678"
+                    }
+                },
+                {
+                    "type": "picture",
+                    "mimetype": "image/jpeg",
+                    "description_text": "picture item - also applicable to audio/video",
+                    "renditions": {
+                        "original": {
+                            "href": "http://farm4.staticflickr.com/3665/9203816834_9f62964627_o_d.jpg",
+                            "mimetype": "image/jpeg",
+                            "width": 5198,
+                            "height": 3462
+                        }
+                    },
+                    "self": {
+                        "title": "Archive",
+                        "href": "/archive/12345679"
+                    }
+                },
+                {
+                    "type": "composite",
+                    "description_text": "a story like package with main content and sidebar",
+                    "groups": [
+                        {
+                            "id": "root",
+                            "role": "grpRole:NEP",
+                            "refs": [
+                                {"idRef": "main"},
+                                {"idRef": "sidebar"}
+                            ]
+                        },
+                        {
+                            "id": "main",
+                            "role": "grpRole:Main",
+                            "refs": [
+                                {
+                                    "mimetype": "application/vnd.iptc.g2.newsitem+xml",
+                                    "provider": "sourcefabric.org",
+                                    "residRef": "tag:sourcefabric.org,0000:newsml_BRE9AG0DM",
+                                    "type": "text",
+                                    "headline": "per package caption"
+                                },
+                                {
+                                    "mimetype": "application/vnd.iptc.g2.newsitem+xml",
+                                    "provider": "sourcefabric.org",
+                                    "residRef": "tag:sourcefabric.org,0000:newsml_CBRE9AG1HCJ00",
+                                    "type": "picture",
+                                    "headline": "picture caption"
+                                }
+                            ]
+                        },
+                        {
+                            "id": "sidebar",
+                            "role": "grpRole:Sidebar",
+                            "refs": [
+                                {
+                                    "mimetype": "application/vnd.iptc.g2.newsitem+xml",
+                                    "provider": "sourcefabric.org",
+                                    "residRef": "tag:sourcefabric.org,0000:newsml_BRE9AR0FF",
+                                    "type": "text",
+                                    "headline": "sidebar text caption"
+                                }
+                            ]
+                        }
+                    ],
+                    "self": {
+                        "title": "Archive",
+                        "href": "/archive/12345677"
+                    }
+                }
+            ]
+        }
+
+
 ## Activity Search [/activity{?page,max_results,where,sort}]
 
 ### List all Activities [GET]
