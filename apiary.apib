@@ -90,6 +90,10 @@ List available resources.
                         "href": "/users/<regex(\"[a-f0-9]{24}\"):user_id>/archive"
                     },
                     {
+                        "title": "Content_view",
+                        "href": "/content_view"
+                    },
+                    {
                         "title": "sessions",
                         "href": "/sessions"
                     },
@@ -1143,6 +1147,205 @@ A single Desks resource
                         "title": "Archive",
                         "href": "/archive/12345677"
                     }
+                }
+            ]
+        }
+
+
+
+## Content_view item [/content_view/{_id}]
+
+A single content_view item
+
++ Parameters
+    - _id (string, `1`) ... content_view item identifier.
+    
++ Model (application/json)
+
+        {
+            "_links": {"self": {"href": "/content_view/1"}},
+            "name": "Test_contentView1",
+            "_updated": "2014-08-21T11:29:09+0000",
+            "_id": "53f5d805ea8e1511bba1648e",
+            "description": "Shows all items with no exception",
+            "_created": "2014-08-21T11:29:09+0000",
+            "user": "53c79018ea8e15145ff9863f",
+            "location": "archive",
+            "filter": {
+                "query": {
+                    "filtered": {
+                      "query": {
+                        "query_string": {
+                          "query": "*"
+                        }
+                      }
+                    }
+                 }
+             }
+        }
+    
+
+### Update content_view [PATCH]
+
++ Request (application/json)
+    
+        {"name": "New name", "description": "new description"}
+
++ Response 200 (application/json)
+
+        {"_status": "OK"}
+
++ Response 403
+
+### Delete a content_view item [DELETE]
+
++ Request
+
+        
+
++ Response 204
+
+
+## content_view collection [/desks{?page,max_results}]
+
+### Create a content_view [POST]
+
++ Request (application/json)
+
+        {
+            "name": "Test_contentView2",
+            "filter": {
+                "query": {
+                    "filtered": {
+                      "query": {
+                        "query_string": {
+                          "query": "text"
+                        }
+                      }
+                    }
+                 }
+             },
+             "description": "Shows only text items"
+            
+        }
+
++ Response 201 (application/json)
+
+        {
+            "_links": {"self": {"href": "/content_view/2"}},
+            "_status": "OK"
+        }
+
+### List all the views [GET]
+
++ Parameters
+    + page = `1`(optional, integer) ... Page number
+    + max_results = `25`(optional, integer) ... Number of items to be returned
+    
++ Response 200 (application/json)
+
+        {
+            "_items": [
+                {
+                    "_links": {"self": {"href": "/content_view/1"}},
+                    "name": "Test_contentView1",
+                    "_updated": "2014-08-21T11:29:09+0000",
+                    "_id": "53f5d805ea8e1511bba1648e",
+                    "_created": "2014-08-21T11:29:09+0000",
+                    "description": "Shows all items with no exception",
+                    "user": "53c79018ea8e15145ff9863f",
+                    "location": "archive",
+                    "filter": {
+                        "query": {
+                            "filtered": {
+                              "query": {
+                                "query_string": {
+                                  "query": "*"
+                                }
+                              }
+                            }
+                        }
+                    }
+                },
+                {
+                    "_links": {"self": {"href": "/content_view/2"}},
+                    "name": "Test_contentView2",
+                    "_updated": "2014-08-27T10:30:57+0000",
+                    "_id": "53fda6a9ea8e1523980cb18e",
+                    "_created": "2014-08-27T09:36:40+0000",
+                    "description": "Shows only text items",
+                    "user": "53c790ffea8e15145ff98641",
+                    "location": "archive",
+                    "filter": {
+                        "query": {
+                            "filtered": {
+                              "query": {
+                                "query_string": {
+                                  "query": "*"
+                                }
+                              }
+                            }
+                        }
+                    }
+                }
+            ]
+        }
+
+## Content_view items [/content_view/1/items]
+
+### List the items for given view [GET]
+
++ Response 200 (application/json)
+
+        {
+            "_items": [
+                {
+                    "_links": {"self": {"href": "/content_view/<regex("[a-f0-9]{24}"):content_view_id>/items"}},
+            
+                },
+                {
+                    "_links": {"self": {"href": "content_view/1/items/1"}},
+                    "pubstatus": "usable",
+                    "guid: "tag:reuters.com,2014:newsml_KBN0GR0N9",
+                    "copyrightholder": "Thomson Reuters",
+                    "user": "53c79018ea8e15145ff9863f",
+                    "urgency": "4",
+                    "provider": "reuters.com",
+                    "language": "en-US",
+                    "_updated": "2014-08-27T08:44:09+0000",
+                    "subject": "[3]"
+                        "0":  
+                        {
+                        "name": "crime, law and justice"
+                        "code": "02000000"
+                        },
+                        "1":  
+                        {
+                        "name": "media"
+                        "code": "04010000"
+                        },
+                        "2":  
+                        {
+                        "name": "online"
+                        "code": "04010006"
+                        },
+                   "task_id": "7ce3ad8c-1b95-4ada-9a41-9e5dd9d60ebc",
+                  "_created: "2014-08-27T08:44:09+0000",
+                  "slugline: "US-SYRIA-CRISIS",
+                  "copyrightnotice": "(c) Copyright Thomson Reuters 2014.Click For Restrictions-http://about.reuters.com/fulllegal.asp",
+                  "renditions": "{}",
+                  "_id": "tag:reuters.com,2014:newsml_KBN0GR0N9",
+                  "firstcreated": "2014-08-27T07:51:38+0000",
+                  "created": "2014-08-27T07:51:38+00:00",
+                  "description_text": "US-SYRIA-CRISIS:Islamic State executes soldiers, takes hostages at Syria base: social media",
+                  "version": "1",
+                  "uri": "tag:reuters.com,2014:newsml_KBN0GR0N9",
+                  "updated": "2014-08-27T07:51:38+00:00",
+                  "type": "text",
+                  "body_html": "<p>By Hugh Lawson</p><p>html content...</p>",
+                  "creditline": "Reuters",
+                  "versioncreated": "2014-08-27T07:51:38+0000",
+                  "headline": "Islamic State executes soldiers, takes hostages at Syria base: social media"
                 }
             ]
         }
