@@ -99,7 +99,7 @@ List available resources.
                     },
                     {
                         "title": "get_upload_as_data_uri",
-                        "href": "http://superdesk.apiary.io/upload/<path:media_id>/raw"
+                        "href": "/upload/<path:media_id>/raw"
                     },
                     {
                         "title": "get_subjectcodes",
@@ -127,7 +127,7 @@ The rest of the endpoints requiring authorization will have to supply the follow
 + Response 200 (application/json)
 
         {
-            "_links": {"self": {"href": "http://superdesk.apiary.io/auth/523"}},
+            "_links": {"self": {"href": "/auth/523"}},
             "token": "aNcdefgH",
             "user": "123"
         }
@@ -144,7 +144,7 @@ A single User resource.
 + Model (application/json) 
 
         {
-            "_links": {"self": {"href": "http://superdesk.apiary.io/users/123"}},
+            "_links": {"self": {"href": "/users/123"}},
             "_id": "123",
             "username": "john",
             "email": "john.doe@email.com",
@@ -223,7 +223,7 @@ A single User resource.
         {
             "_items": [
                 {
-                    "_links": {"self": {"href": "http://superdesk.apiary.io/users/2"}},
+                    "_links": {"self": {"href": "/users/2"}},
                     "_id": "2",
                     "email": "john.doe@email.com",
                     "first_name": "John",
@@ -237,7 +237,7 @@ A single User resource.
                     "_etag": "xyz"
                 },
                 {
-                    "_links": {"self": {"href": "http://superdesk.apiary.io/users/3"}},
+                    "_links": {"self": {"href": "/users/3"}},
                     "_id": "3",
                     "email": "joe.hammer@email.com",
                     "first_name": "Joe",
@@ -271,7 +271,7 @@ A single User resource.
 + Response 201 (application/json)
 
         {
-            "_links": {"self": {"href": "http://superdesk.apiary.io/users/5"}},
+            "_links": {"self": {"href": "/users/5"}},
             "_status": "OK",
             "_etag": "xyz"
         }
@@ -322,7 +322,7 @@ A single User resource.
             "_status": "OK",
             "_links": {
                 "self": {
-                    "href": "http://superdesk.apiary.io/reset_user_password/53d607c48e4eba1fc50645ff",
+                    "href": "/reset_user_password/53d607c48e4eba1fc50645ff",
                     "title": "Reset_user_password"
                 }
             }
@@ -344,7 +344,7 @@ A single User resource.
             "_status": "OK",
             "_links": {
                 "self": {
-                    "href": "http://superdesk.apiary.io/reset_user_password/53d607c48e4eba1fc50645ff",
+                    "href": "/reset_user_password/53d607c48e4eba1fc50645ff",
                     "title": "Reset_user_password"
                 }
             }
@@ -669,7 +669,10 @@ A single Desks resource
             ]
         }
 
-## User desks [/users/1/desks]
+## User desks [/users/{_id}/desks]
+
++ Parameters
+    - _id (string) ... User id.
 
 ### List the desks for given users [GET]
 
@@ -678,33 +681,25 @@ A single Desks resource
         {
             "_items": [
                 {
-                    "_links": {"self": {"href": "/users/<regex("[a-f0-9]{24}"):user_id>/desks"}},
-            
-                },
-                {
-            "_links": {"self": {"href": "users/1/desks/1"}},
+                    "_links": {"self": {"href": "users/1/desks/1"}},
                     "name": "Admin desk",
-            "_updated": "2014-07-17T06:44:58+0000",
-            "_id": "53c4f5d6ea8e15141784df1a",
-            "members": "[1]",
-            "0":  {
-            "user": "53c4f366ea8e15141784de99"
-              },
-            "_created": "2014-07-15T09:35:18+0000"
+                    "_updated": "2014-07-17T06:44:58+0000",
+                    "_id": "53c4f5d6ea8e15141784df1a",
+                    "members": [
+                        {"user": "53c4f366ea8e15141784de99"}
+                    ],
+                    "_created": "2014-07-15T09:35:18+0000"
                 },
                 {
-            "_links": {"self": {"href": "users/1/desks/2"}}
-            "name": "My desk",
-            "_updated": "2014-07-17T06:34:00+0000",
-            "_id": "53c76e4dea8e150dc0fd8579",
-            "members": "[2]",
-            "0":  {
-            "user": "53c76e39ea8e150dc0fd8578"
-              },
-            "1":  {
-            "user": "53c4f366ea8e15141784de99"
-              },
-            "_created": "2014-07-17T06:33:49+0000"
+                    "_links": {"self": {"href": "users/1/desks/2"}},
+                    "name": "My desk",
+                    "_updated": "2014-07-17T06:34:00+0000",
+                    "_id": "53c76e4dea8e150dc0fd8579",
+                    "members": [
+                        {"user": "53c76e39ea8e150dc0fd8578"},
+                        {"user": "53c4f366ea8e15141784de99"}
+                    ],
+                    "_created": "2014-07-17T06:33:49+0000"
                 }
             ]
         }
@@ -720,7 +715,7 @@ A single Desks resource
 + Model (application/json)
 
         {
-            "_links": {"self": {"href": "http://superdesk.apiary.io/media/1"}},
+            "_links": {"self": {"href": "/media/1"}},
             "_etag": "abc",
             "uri": "tag:mycomp-ltd.com,0000:newsml_LM1EA5F0UUD01",
             "byline": "John Doe",
@@ -776,7 +771,7 @@ A single Desks resource
             _status: "OK",
             _links: {
                 self: {
-                    href: "http://superdesk.apiary.io/archive/urn:newsml:localhost:2014-07-16T16:59:59.856131:eb0b90c9-8d1e-45a3-ad98-12c1ac35af91",
+                    href: "/archive/urn:newsml:localhost:2014-07-16T16:59:59.856131:eb0b90c9-8d1e-45a3-ad98-12c1ac35af91",
                     title: "Archive"
                 }
             },
@@ -809,7 +804,7 @@ A single Desks resource
             _links: {
                 self: {
                     title: "Archive",
-                    href: "http://superdesk.apiary.io/archive/urn:newsml:localhost:2014-07-16T16:59:59.856131:eb0b90c9-8d1e-45a3-ad98-12c1ac35af91"
+                    href: "/archive/urn:newsml:localhost:2014-07-16T16:59:59.856131:eb0b90c9-8d1e-45a3-ad98-12c1ac35af91"
                 }
             },
             _version: 5,
@@ -852,14 +847,14 @@ A single Desks resource
                   "thumbnail": {
                         "media: "53c79121ea8e15145ff9864d"
                         "mimetype: "image/jpeg"
-                        "href": "http://superdesk.apiary.io/upload/53c79121ea8e15145ff9864d/raw?_schema=http"
+                        "href": "/upload/53c79121ea8e15145ff9864d/raw?_schema=http"
                         "height": "120"
                         "width": "90"
                         },
                   "original": {
                       "media": "53c79120ea8e15145ff98643"
                       "mimetype": "image/jpeg"
-                      "href": "http://superdesk.apiary.io/upload/53c79120ea8e15145ff98643/raw?_schema=http"
+                      "href": "/upload/53c79120ea8e15145ff98643/raw?_schema=http"
                       "height": "2592"
                       "width": "1944"
                         },
@@ -920,11 +915,11 @@ A single Desks resource
         {
             versioncreated: "2014-07-16T14:14:06+0000",
             _links: {
-                parent: { title: "home", href: "http://superdesk.apiary.io" },
-                collection: { title: "archive", href: "http://superdesk.apiary.io/archive" },
+                parent: { title: "home", href: "/" },
+                collection: { title: "archive", href: "/archive" },
                 self: {
                     title: "Archive",
-                    href: "http://superdesk.apiary.io/archive/urn:newsml:localhost:2014-07-16T16:59:59.856131:eb0b90c9-8d1e-45a3-ad98-12c1ac35af91"
+                    href: "/archive/urn:newsml:localhost:2014-07-16T16:59:59.856131:eb0b90c9-8d1e-45a3-ad98-12c1ac35af91"
                 }
             },
             _id: "urn:newsml:localhost:2014-07-16T16:59:59.856131:eb0b90c9-8d1e-45a3-ad98-12c1ac35af91",
@@ -951,11 +946,11 @@ A single Desks resource
             _links: {
                 parent: {
                     title: "home",
-                    href: "http://superdesk.apiary.io"
+                    href: "/"
                 },
                 collection: {
                     title: "archive",
-                    href: "http://superdesk.apiary.io/archive"
+                    href: "/archive"
                 },
             },
             _items: [
@@ -964,7 +959,7 @@ A single Desks resource
                     _links: {
                         self: {
                             title: "Archive",
-                            href: "http://superdesk.apiary.io/archive/urn:newsml:localhost:2014-07-16T16:59:59.856131:eb0b90c9-8d1e-45a3-ad98-12c1ac35af91"
+                            href: "/archive/urn:newsml:localhost:2014-07-16T16:59:59.856131:eb0b90c9-8d1e-45a3-ad98-12c1ac35af91"
                         }
                     },
                     _id: "urn:newsml:localhost:2014-07-16T16:59:59.856131:eb0b90c9-8d1e-45a3-ad98-12c1ac35af91",
@@ -1368,7 +1363,7 @@ A single content_view item
         {
             "_items" : [ { "_created" : "2014-07-11T11:04:15+0000",
             "_id" : "53bfc4af7121ed3a4d1931dd",
-            "_links" : { "self" : { "href" : "http://superdesk.apiary.io/activity/53bfc4af7121ed3a4d1931dd",
+            "_links" : { "self" : { "href" : "/activity/53bfc4af7121ed3a4d1931dd",
                     "title" : "Activity"
                   } },
             "_updated" : "2014-07-11T11:04:15+0000",
@@ -1386,7 +1381,7 @@ A single content_view item
           },
           { "_created" : "2014-07-11T11:01:26+0000",
             "_id" : "53bfc4067121ed3a4d1931da",
-            "_links" : { "self" : { "href" : "http://superdesk.apiary.io/activity/53bfc4067121ed3a4d1931da",
+            "_links" : { "self" : { "href" : "/activity/53bfc4067121ed3a4d1931da",
                     "title" : "Activity"
                   } },
             "_updated" : "2014-07-11T11:01:26+0000",
@@ -1428,15 +1423,15 @@ A single comment resource
             "_links": {
                 "collection": {
                     "title": "item_comments",
-                    "href": "http://superdesk.apiary.io/item_comments"
+                    "href": "/item_comments"
                 },
                 "self": {
                     "title": "Item_comment",
-                    "href": "http://superdesk.apiary.io/item_comments/53d60bde8e4eba31df0c9311"
+                    "href": "/item_comments/53d60bde8e4eba31df0c9311"
                 },
                 "parent": {
                     "title": "home",
-                    "href": "http://superdesk.apiary.io"
+                    "href": "/"
                 }
             },
             "item": "urn:newsml:localhost:2014-07-16T16:31:35.006915:c5204127-eefa-46de-8ec6-d29a781d7c19"
@@ -1494,7 +1489,7 @@ A single comment resource
             "_links": {
                 "self": {
                     "title": "Item_comment",
-                    "href": "http://superdesk.apiary.io/item_comments/53d60bde8e4eba31df0c9311"
+                    "href": "/item_comments/53d60bde8e4eba31df0c9311"
                 }
             },
             "item": "urn:newsml:localhost:2014-07-16T16:31:35.006915:c5204127-eefa-46de-8ec6-d29a781d7c19",
@@ -1525,7 +1520,7 @@ A single comment resource
                     "_links": {
                         "self": {
                             "title": "Item_comment",
-                            "href": "http://superdesk.apiary.io/item_comments/53d60bde8e4eba31df0c9311"
+                            "href": "/item_comments/53d60bde8e4eba31df0c9311"
                         }
                     },
                     "item": "urn:newsml:localhost:2014-07-16T16:31:35.006915:c5204127-eefa-46de-8ec6-d29a781d7c19"
@@ -1539,7 +1534,7 @@ A single comment resource
                     "_links": {
                         "self": {
                             "title": "Item_comment",
-                            "href": "http://superdesk.apiary.io/item_comments/53d60bd58e4eba31df0c930f"
+                            "href": "/item_comments/53d60bd58e4eba31df0c930f"
                         }
                     },
                     "item": "urn:newsml:localhost:2014-07-16T16:31:35.006915:c5204127-eefa-46de-8ec6-d29a781d7c19"
@@ -1553,7 +1548,7 @@ A single comment resource
                     "_links": {
                         "self": {
                             "title": "Item_comment",
-                            "href": "http://superdesk.apiary.io/item_comments/53c777e38e4eba1587e9be49"
+                            "href": "/item_comments/53c777e38e4eba1587e9be49"
                         }
                     },
                     "item": "urn:newsml:localhost:2014-07-16T16:31:35.006915:c5204127-eefa-46de-8ec6-d29a781d7c19"
@@ -1567,7 +1562,7 @@ A single comment resource
                     "_links": {
                         "self": {
                             "title": "Item_comment",
-                            "href": "http://superdesk.apiary.io/item_comments/53c777c98e4eba1587e9be48"
+                            "href": "/item_comments/53c777c98e4eba1587e9be48"
                         }
                     },
                     "item": "urn:newsml:localhost:2014-07-16T16:31:35.006915:c5204127-eefa-46de-8ec6-d29a781d7c19"
@@ -1576,11 +1571,11 @@ A single comment resource
             "_links": {
                 "self": {
                     "title": "item_comments",
-                    "href": "http://superdesk.apiary.io/item_comments"
+                    "href": "/item_comments"
                 },
                 "parent": {
                     "title": "home",
-                    "href": "http://superdesk.apiary.io"
+                    "href": "/"
                 }
             }
         }
