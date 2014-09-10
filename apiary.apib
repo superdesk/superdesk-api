@@ -1539,3 +1539,119 @@ A single content view item
                 }
             ]
         }
+
+# Group User Roles Management
+
+## User Roles [/user_roles/{_id}]
+
+A single User Roles resource.
+
++ Parameters
+    + _id (string) ... User Roles id.
+
++ Model (application/json) 
+
+        {
+            "_links": {"self": {"href": "/user_roles/123"}},
+            "_id": "123",
+            "name": "Copy Taster",
+            "permissions" : { "canread": "true" }
+        }
+
+### Retrieve a User Roles [GET]
+
++ Response 200 (application/json)
+
+    [User Roles][]
+
++ Response 404
+
+### Update User Roles [PATCH]
+
++ Request (application/json)
+
+    + Headers
+    
+            If-Match: xyz
+    
+    + Body
+
+            {"name": "Copy Taster"}
+
++ Response 200 (application/json)
+
+        {"_status": "OK"}
+
++ Response 403
+
+### Hard Delete a User Roles [DELETE]
+
++ Request
+
+    + Headers
+    
+            If-Match: xyz
+
++ Response 204
+
+## User Roles Search [/user_roles{?page,max_results,where,sort}]
+
+### List all User Roles [GET]
+
++ Parameters
+    + page = `0`(optional, integer) ... Page number
+    + max_results = `25`(optional, integer) ... Number of user roles to be returned
+    + where (optional, object) ... Filtering
+    + sort (optional, object) ... Sorting
+
++ Response 200 (application/json)
+
+        {
+            "_items": [
+                {
+                    "_links": {"self": {"href": "/user_roles/2"}},
+                    "_id": "2",
+                    "name": "Copy Taster",
+                    "permissions" : { "canread": "true" }
+                },
+                {
+                    "_links": {"self": {"href": "/user_roles/3"}},
+                    "_id": "3",
+                    "name": "Editor",
+                    "permissions" : { "canread": "true", "canwrite": "true" }
+                }
+            ]
+        }
+
+## User Roles collection [/user_roles]
+
+### Create user roles [POST]
+
++ Request (application/json)
+
+        {
+            "name": "Sub Editor",
+            "permissions" : { "canwrite": "true" }
+        }
+
++ Response 201 (application/json)
+
+        {
+            "_links": {"self": {"href": "/user_roles/5"}},
+            "_status": "OK"
+        }
+
++ Response 400 (application/json)
+
+        {
+            "_status": "ERR",
+            "_issues": {
+                "name": {
+                    "unique": {
+                        "msg": "There is already a user role this name"
+                    }
+                }
+            }
+        }
+
+
