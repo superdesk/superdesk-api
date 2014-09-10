@@ -4,7 +4,9 @@
   "dependencies": {
     "protagonist": "~0.12.0"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "aglio": "^1.16.1"
+  },
   "scripts": {
     "test": "node ./test.js"
   },
