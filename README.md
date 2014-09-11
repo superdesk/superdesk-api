@@ -4,7 +4,7 @@
 
 ## Render the api
 
-You can you `aglio` to render the api:
+You can use `aglio` to render the api:
 
     ./node_modules/aglio/bin/aglio.js -i apiary.apib -i out.html
 
