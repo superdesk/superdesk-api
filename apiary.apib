@@ -50,8 +50,8 @@ List available resources.
                         "href": "/desks"
                     },
                     {
-                        "title": "user_roles",
-                        "href": "/user_roles"
+                        "title": "roles",
+                        "href": "/roles"
                     },
                     {
                         "title": "archive",
@@ -1540,33 +1540,45 @@ A single content view item
             ]
         }
 
-# Group User Roles Management
+# Group Roles Management
 
-## User Roles [/user_roles/{_id}]
+## Roles [/roles/{_id}]
 
-A single User Roles resource.
+A single Roles resource.
 
 + Parameters
-    + _id (string) ... User Roles id.
+    + _id (string) ... Roles id.
 
 + Model (application/json) 
 
         {
-            "_links": {"self": {"href": "/user_roles/123"}},
+            "_links": {"self": {"href": "/roles/123"}},
             "_id": "123",
             "name": "Copy Taster",
             "permissions" : { "canread": "true" }
         }
 
-### Retrieve a User Roles [GET]
+### Retrieve a Roles [GET]
 
 + Response 200 (application/json)
 
-    [User Roles][]
+            {
+            "_links": {
+                "self": {
+                    "title": "Role",
+                    "href": "/roles/541061621d41c8ac80ff3b6e"
+                }
+            },
+            "_id": "541061621d41c8ac80ff3b6e",
+            "_created": "2014-09-10T14:34:10+0000",
+            "_status": "OK",
+            "name": "Copy Tester",
+            "_updated": "2014-09-10T14:34:10+0000"
+        }
 
 + Response 404
 
-### Update User Roles [PATCH]
+### Update Roles [PATCH]
 
 + Request (application/json)
 
@@ -1580,11 +1592,27 @@ A single User Roles resource.
 
 + Response 200 (application/json)
 
-        {"_status": "OK"}
+        {
+            "permissions": {
+                "read": "true"
+            },
+            "_links": {
+                "self": {
+                    "title": "Role",
+                    "href": "/roles/541061621d41c8ac80ff3b6e"
+                }
+            },
+            "_id": "541061621d41c8ac80ff3b6e",
+            "_created": "2014-09-10T14:34:10+0000",
+            "_status": "OK",
+            "name": "Copy Tester",
+            "_updated": "2014-09-10T14:44:36+0000"
+        }
+
 
 + Response 403
 
-### Hard Delete a User Roles [DELETE]
+### Hard Delete a Roles [DELETE]
 
 + Request
 
@@ -1592,40 +1620,83 @@ A single User Roles resource.
     
             If-Match: xyz
 
-+ Response 204
++ Response 200
 
-## User Roles Search [/user_roles{?page,max_results,where,sort}]
+## Roles Search [/roles{?page,max_results,where,sort}]
 
-### List all User Roles [GET]
+### List all Roles [GET]
 
 + Parameters
     + page = `0`(optional, integer) ... Page number
-    + max_results = `25`(optional, integer) ... Number of user roles to be returned
+    + max_results = `25`(optional, integer) ... Number of roles to be returned
     + where (optional, object) ... Filtering
     + sort (optional, object) ... Sorting
 
 + Response 200 (application/json)
 
         {
+            "_meta": {
+                "max_results": 25,
+                "page": 1,
+                "total": 3
+            },
             "_items": [
                 {
-                    "_links": {"self": {"href": "/user_roles/2"}},
-                    "_id": "2",
-                    "name": "Copy Taster",
-                    "permissions" : { "canread": "true" }
+                    "name": "Editor",
+                    "_links": {
+                        "self": {
+                            "title": "Role",
+                            "href": "/roles/5410641c1d41c8ac80ff3b73"
+                        }
+                    },
+                    "_updated": "2014-09-10T14:45:48+0000",
+                    "_id": "5410641c1d41c8ac80ff3b73",
+                    "_created": "2014-09-10T14:45:48+0000"
                 },
                 {
-                    "_links": {"self": {"href": "/user_roles/3"}},
-                    "_id": "3",
-                    "name": "Editor",
-                    "permissions" : { "canread": "true", "canwrite": "true" }
+                    "_created": "2014-09-10T14:34:10+0000",
+                    "_links": {
+                        "self": {
+                            "title": "Role",
+                            "href": "/roles/541061621d41c8ac80ff3b6e"
+                        }
+                    },
+                    "_id": "541061621d41c8ac80ff3b6e",
+                    "permissions": {
+                        "read": "true"
+                    },
+                    "name": "Copy Tester",
+                    "_updated": "2014-09-10T14:44:36+0000"
+                },
+                {
+                    "name": "Sub Editor",
+                    "_links": {
+                        "self": {
+                            "title": "Role",
+                            "href": "/roles/541064241d41c8ac80ff3b75"
+                        }
+                    },
+                    "_updated": "2014-09-10T14:45:56+0000",
+                    "_id": "541064241d41c8ac80ff3b75",
+                    "_created": "2014-09-10T14:45:56+0000"
                 }
-            ]
+            ],
+            "_links": {
+                "parent": {
+                    "title": "home",
+                    "href": "/"
+                },
+                "self": {
+                    "title": "roles",
+                    "href": "/roles"
+                }
+            }
         }
 
-## User Roles collection [/user_roles]
 
-### Create user roles [POST]
+## Roles collection [/roles]
+
+### Create roles [POST]
 
 + Request (application/json)
 
@@ -1636,9 +1707,18 @@ A single User Roles resource.
 
 + Response 201 (application/json)
 
-        {
-            "_links": {"self": {"href": "/user_roles/5"}},
-            "_status": "OK"
+       {
+            "_links": {
+        "self": {
+                    "title": "Role",
+                    "href": "/roles/541061621d41c8ac80ff3b6e"
+                }
+            },
+            "_id": "541061621d41c8ac80ff3b6e",
+            "_created": "2014-09-10T14:34:10+0000",
+            "_status": "OK",
+            "name": "Copy Tester",
+            "_updated": "2014-09-10T14:34:10+0000"
         }
 
 + Response 400 (application/json)
@@ -1648,7 +1728,7 @@ A single User Roles resource.
             "_issues": {
                 "name": {
                     "unique": {
-                        "msg": "There is already a user role this name"
+                        "msg": "There is already a role with this name"
                     }
                 }
             }
