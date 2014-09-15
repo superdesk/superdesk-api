@@ -86,6 +86,10 @@ List available resources.
                         "href": "/coverages"
                     },
                     {
+                        "title": "preferences",
+                        "href": "/preferences"
+                    },
+                    {
                         "title": "users/<regex(\"[a-f0-9]{24}\"):user_id>/archive",
                         "href": "/users/<regex(\"[a-f0-9]{24}\"):user_id>/archive"
                     },
@@ -554,6 +558,98 @@ A single coverage resource
                     "ed_note": "test coverage editorial note",
                     "planning_item": "urn:newsml:localhost:2014-08-07T13:08:03.499037:0245e791-b7d9-4a97-9b56-4dbf8fcdec15",
                     "coverage_type": "story"
+                }
+            ]
+        }
+
+
+# Group Preferences 
+
+## Preferences item [/preferences/{_id}]
+
+A single preference resource
+
++ Parameters
+    + _id (string, `1`) ... Preferences item identifier.
+    
++ Model (application/json)
+
+        {
+            "_links": {"self": {"href": "/preferences/1"}},
+            "_id": "5412c9e1ea8e152117726f83",
+            "_created": "2014-09-15T08:54:00+0000",
+            "_updated": "2014-09-15T09:29:32+0000"
+        }
+
+
+### Retrieve a Preferences item [GET]
+
++ Response 200 (application/json)
+
+    [Preferences item][]
+
++ Response 404
+
+### Update Item [PATCH]
+
++ Request (application/json)
+    
+        {"preferences": {"category": "send notification"}}
+
++ Response 200 (application/json)
+
+        {"_status": "OK"}
+
++ Response 403
+
+### Delete an Item [DELETE]
+
++ Request
+
+    + Headers
+
+            If-Match: etag
+
++ Response 204
+
+## Preference item collection [/preferences{?page,max_results}]
+
+### Create item [POST] to users
+
++ Request (application/json)
+
+        {
+            "username": "user_pref2", "password": "preference2", "email": "user_pref2@gmail.com"
+        }
+
++ Response 201 (application/json)
+
+        {
+            "_links": {"self": {"href": "/preferences/2"}},
+            "_status": "OK"
+        }
+        
+### List all items [GET]
+
++ Parameters
+    + page = `1`(optional, integer) ... Page number
+    + max_results = `25`(optional, integer) ... Number of items to be returned
+    
++ Response 200 (application/json)
+
+        {
+            "_items": [
+                {
+                    "_links": {"self": {"href": "/preferences/1"}},
+                    "_id": "5412c9e1ea8e152117726f83",
+                    "_created": "2014-09-15T08:54:00+0000",
+                    "_updated": "2014-09-15T09:29:32+0000"
+                },
+                {
+                    "_links": {"self": {"href": "/preferences/2"}},
+                    "_id": "5416a208ea8e151301a02cca",
+                    "_created": "2014-09-15T09:57:12+0000",
+                    "_updated": "2014-09-15T10:09:07+0000",
                 }
             ]
         }
