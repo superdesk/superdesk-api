@@ -104,6 +104,10 @@ List available resources.
                     {
                         "title": "get_subjectcodes",
                         "href": "/subjectcodes/"
+                    },
+                    {
+                        "title": "preferences",
+                        "href": "/users/<regex():user_id>/preferences"
                     }
                 ]
             }
@@ -1710,9 +1714,9 @@ A single Roles resource.
 
 + Response 201 (application/json)
 
-       {
+        {
             "_links": {
-        "self": {
+                "self": {
                     "title": "Role",
                     "href": "/roles/541061621d41c8ac80ff3b6e"
                 }
@@ -1737,4 +1741,43 @@ A single Roles resource.
             }
         }
 
+# Group Preferences
 
+## User Preferences [/users/{_id}/preferences]
+
++ Parameters
+    + _id (string) ... User id.
+
++ Model (application/json)
+
+        {
+            "preferences": {
+                "email.notification": 1,
+                "ingest.view": "list",
+                "content.view": "grid"
+            }
+        }
+
+### Set user preferences [PATCH]
+
++ Request (application/json)
+
+        {
+            "preferences": {
+                "email.notification": 1
+            }
+        }
+
++ Response 200
+
+        {
+            "_status": "OK"
+        }
+
+### Get user preferences [GET]
+
++ Request (application/json)
+
++ Response 200
+
+        [User Preferences][]
