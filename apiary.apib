@@ -108,6 +108,10 @@ List available resources.
                     {
                         "title": "preferences",
                         "href": "/users/<regex():user_id>/preferences"
+                    },
+                     {
+                        "title": "available_preferences",
+                        "href": "/available_preferences"
                     }
                 ]
             }
@@ -1781,3 +1785,37 @@ A single Roles resource.
 + Response 200
 
         [User Preferences][]
+
+## Get preferences [/available_preferences]
+
++ Request (application/json)
+
++ Response 200
+
+        [Available Preferences][]
+
+### List all items [GET]
+
++ Parameters
+    + page = `1`(optional, integer) ... Page number
+    + max_results = `25`(optional, integer) ... Number of items to be returned
+    
++ Response 200 (application/json)
+
+        {
+            "_items": [
+                {
+                    "_links": {"self": {"href": "/available_preferences/1"}},
+                    "_created": "2014-09-19T08:54:00+0000",
+                    "resource_name": "activity",
+                    "_updated": "2014-09-19T09:29:32+0000",
+                    "email_notification": 
+                            {"enable": false,
+                             "options": 
+                                {"type": "bool",
+                                 "default": "false"
+                                }
+                            },  
+                }
+            ]
+        }
