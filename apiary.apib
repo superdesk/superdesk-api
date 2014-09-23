@@ -1786,15 +1786,7 @@ A single Roles resource.
 
         [User Preferences][]
 
-## Get preferences [/available_preferences]
-
-+ Request (application/json)
-
-+ Response 200
-
-        [Available Preferences][]
-
-### List all items [GET]
+### List all items for specific user [GET]
 
 + Parameters
     + page = `1`(optional, integer) ... Page number
@@ -1805,17 +1797,21 @@ A single Roles resource.
         {
             "_items": [
                 {
-                    "_links": {"self": {"href": "/available_preferences/1"}},
-                    "_created": "2014-09-19T08:54:00+0000",
-                    "resource_name": "activity",
+                    "_links": {"self": {"href": "/preferences/541fce38ea8e1511d5bd770e"}},
+                    "_created": "2014-09-19T08:54:00+0000", 
                     "_updated": "2014-09-19T09:29:32+0000",
-                    "email_notification": 
-                            {"enable": false,
-                             "options": 
-                                {"type": "bool",
-                                 "default": "false"
-                                }
-                            },  
+                    "_id": "541fce38ea8e1511d5bd770e",
+                    "preferences": 
+                            {
+                            "email:notification": 
+                              {
+                                "category": "notifications",
+                                "enabled": "true",
+                                "type": "bool",
+                                "default": "true",
+                                "label": "Send notifications via email"
+                               }
+                            }
                 }
             ]
         }
