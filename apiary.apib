@@ -173,12 +173,15 @@ A single User resource.
                         "_id" : "world-clock"
                     }
                 ]
-            }
+            },
+           "readonly": ["username", "display_name", "password", "email", "phone", "first_name", "last_name"]
         }
 
 ### Retrieve a User [GET]
 
 + Response 200 (application/json)
+
+   "readonly" attribute is included only if AD is enabled.
 
     [User][]
 
@@ -223,7 +226,7 @@ A single User resource.
     + sort (optional, object) ... Sorting
 
 + Response 200 (application/json)
-
+        "readonly" attribute is included only if AD is enabled.
         {
             "_items": [
                 {
@@ -238,7 +241,8 @@ A single User resource.
                     "_created": "2014-02-18T14:42:16Z",
                     "_updated": "2014-02-18T14:42:16Z",
                     "picture_url": "http://www.gravatar.com/avatar/205e460b479e2e5b48aec07710c08d50",
-                    "_etag": "xyz"
+                    "_etag": "xyz",
+                    "readonly": ["username", "display_name", "password", "email", "phone", "first_name", "last_name"]
                 },
                 {
                     "_links": {"self": {"href": "/users/3"}},
@@ -252,7 +256,8 @@ A single User resource.
                     "_created": "2014-02-18T14:43:27Z",
                     "_updated": "2014-02-18T14:43:27Z",
                     "picture_url": "http://www.gravatar.com/avatar/205e460b479e2e5b48aec07710c08d50",
-                    "_etag": "xyz"
+                    "_etag": "xyz",
+                    "readonly": ["username", "display_name", "password", "email", "phone", "first_name", "last_name"]
                 }
             ]
         }
@@ -311,6 +316,8 @@ A single User resource.
 
 ## Reset user password [/reset_user_password]
 
+This will not be exposed if AD is enabled.
+
 ### Initiate reset user password [POST]
 
 + Request (application/json)
@@ -331,6 +338,9 @@ A single User resource.
                 }
             }
         }
+
++ Response 404
+   When API Consumer tries to access this API and AD is enabled.
 
 ### Finalize reset user password with the emailed token [POST]
 
@@ -353,6 +363,8 @@ A single User resource.
                 }
             }
         }
++ Response 404
+   When API Consumer tries to access this API and AD is enabled.
 
 
 # Group Planning 
