@@ -6,5 +6,8 @@
 
 You can use `aglio` to render the api:
 
-    ./node_modules/aglio/bin/aglio.js -i apiary.apib -i out.html
+    ./node_modules/aglio/bin/aglio.js -i apiary.apib -o out.html
 
+You can use `protagonist` to test that the api has valid json:
+
+    node test.js

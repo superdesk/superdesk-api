@@ -108,6 +108,14 @@ List available resources.
                     {
                         "title": "preferences",
                         "href": "/users/<regex():user_id>/preferences"
+                    },
+                    {
+                        "title": "tasks",
+                        "href": "/tasks"
+                    },
+                    {
+                        "title": "stages",
+                        "href": "/stages"
                     }
                 ]
             }
@@ -1787,7 +1795,7 @@ A single Roles resource.
 + Parameters
     + page = `1`(optional, integer) ... Page number
     + max_results = `25`(optional, integer) ... Number of items to be returned
-    
+
 + Response 200 (application/json)
 
         {
@@ -1808,6 +1816,263 @@ A single Roles resource.
                                 "label": "Send notifications via email"
                                }
                             }
+                }
+            ]
+        }
+ 
+# Group Tasks
+
+## Task [/tasks/{_id}]
+
++ Parameters
+    - _id (string, `1`) ... Task Identifier.
+
++ Model (application/json)
+
+        {
+            "_links": {"self": {"href": "/media/1"}},
+            "_etag": "abc",
+            "uri": "tag:mycomp-ltd.com,0000:newsml_LM1EA5F0UUD01",
+            "byline": "John Doe",
+            "provider": "My Company LTD",
+            "mimetype": "image/jpeg",
+            "type": "picture",
+            "firstcreated": "2013-07-03T10:11:12Z",
+            "version": "1",
+            "versioncreated": "2013-07-03T10:11:12Z",
+            "pubstatus": "usable",
+            "filemeta": {
+                "Manufacturer": "CANON",
+                "Orientation": "landscape"
+            },
+            "copyrightholder": "Sourcefabric o.p.s.",
+            "copyrightnotice": "(c) Copyright Sourcefabric o.p.s. 2014",
+            "usageterms": "You are not allowed.",
+            "headline": "No news today",
+            "language": "en",
+            "description_text": "Flower picture",
+            "urgency": 4,
+            "task": {
+                "status": "todo",
+                "user": "1",
+                "desk": "2",
+                "stage": "3"
+            },
+            "renditions": {
+                "thumbnail": {
+                    "href": "http://farm4.staticflickr.com/3665/9203816834_3329fac058_q_d.jpg",
+                    "mimetype": "image/jpeg",
+                    "width": 150,
+                    "height": 150
+                },
+                "original": {
+                    "href": "http://farm4.staticflickr.com/3665/9203816834_9f62964627_o_d.jpg",
+                    "mimetype": "image/jpeg",
+                    "width": 5198,
+                    "height": 3462
+                }
+            }
+        }
+
+### Create a task [POST]
+
++ Request (application/json)
+
+        {
+            "type": "picture",
+            "slugline": "No news today",
+            "description_text": "Flower picture",
+            "task": {
+                "status": "todo",
+                "user": "1",
+                "desk": "2",
+                "stage": "3"
+            }
+        }
+
++ Response 201 (application/json)
+
+        {
+            "_links": {"self": {"href": "/tasks/1"}},
+            "_status": "OK"
+        }
+
+
+
+### Fetch task [GET]
+
++ Response 200 (application/json)
+
+    [Task][]
+
+### Update Task [PATCH]
+
++ Request (application/json)
+
+        {"headline": "today's news 3",
+         "task": {
+             "status": "in-progress",
+             "user": "2",
+             "desk": "2",
+             "stage": "4"
+            }
+        }
+
++ Response 200 (application/json)
+
+        {
+            _status: "OK",
+            _links: {
+                self: {
+                    href: "/tasks/urn:newsml:localhost:2014-07-16T16:59:59.856131:eb0b90c9-8d1e-45a3-ad98-12c1ac35af91",
+                    title: "Tasks"
+                }
+            },
+            _created: "2014-07-16T14:14:06+0000",
+            type: "text",
+            _latest_version: 5,
+            _updated: "2014-07-17T18:19:15+0000",
+            firstcreated: "2014-07-16T14:14:06+0000",
+            _version: 5,
+            headline: "today's news 3",
+            "task": {
+                "status": "in-progress",
+                "user": "2",
+                "desk": "2",
+                "stage": "4"
+            },
+            guid: "urn:newsml:localhost:2014-07-16T16:59:59.856131:eb0b90c9-8d1e-45a3-ad98-12c1ac35af91",
+            versioncreated: "2014-07-17T18:19:15+0000",
+            _id: "urn:newsml:localhost:2014-07-16T16:59:59.856131:eb0b90c9-8d1e-45a3-ad98-12c1ac35af91"
+        }
+
+
+# Group Stages
+
+## Stage item [/stages/{_id}]
+
+A single stage
+
++ Parameters
+    - _id (string, `1`) ... stage identifier.
+
++ Model (application/json)
+
+        {
+            "_links": {"self": {"href": "/stages/1"}},
+            "name": "test stage",
+            "_updated": "2014-08-21T11:29:09+0000",
+            "_id": "53f5d805ea8e1511bba1648e",
+            "description": "Shows all items for the current workflow stage",
+            "_created": "2014-08-21T11:29:09+0000",
+            "default_incoming": "false",
+            "desk": "53c79018ea8e15145ff9863f",
+            "outgoing": [
+                {"stage": "53c79018ea8e15145ff9863h"},
+                {"stage": "53c79018ea8e17145ff9863h"}
+            ]
+        }
+
+### Create a stage [POST]
+
++ Request (application/json)
+
+        {
+            "name": "test stage",
+            "description": "Shows all items for the current workflow stage",
+            "default_incoming": "false",
+            "desk": "53c79018ea8e15145ff9863f",
+            "outgoing": [
+                {"stage": "53c79018ea8e15145ff9863h"},
+                {"stage": "53c79018ea8e17145ff9863h"}
+            ]
+        }
+
++ Response 201 (application/json)
+
+        {
+            "_links": {"self": {"href": "/stages/2"}},
+            "_status": "OK"
+        }
+
+
+### Update stage [PATCH]
+
++ Request (application/json)
+
+        {"name": "New name", "description": "new description"}
+
++ Response 200 (application/json)
+
+        {"_status": "OK"}
+
++ Response 403
+
+### Delete a stage [DELETE]
+
++ Request (application/json)
+
+        {}
+
++ Response 204
+
+## Stages resource [/stages{?page,max_results}]
+
+### Create a stage [POST]
+
++ Request (application/json)
+
+        {
+            "name": "test stage",
+            "description": "Shows all items for the current workflow stage",
+            "default_incoming": "false",
+            "desk": "53c79018ea8e15145ff9863f",
+            "outgoing": [
+                {"stage": "53c79018ea8e15145ff9863h"},
+                {"stage": "53c79018ea8e17145ff9863h"}
+            ]
+        }
+
++ Response 201 (application/json)
+
+        {
+            "_links": {"self": {"href": "/stages/2"}},
+            "_status": "OK"
+        }
+
+### List stages [GET]
+
++ Parameters
+    + page = `1`(optional, integer) ... Page number
+    + max_results = `25`(optional, integer) ... Number of items to be returned
+
++ Response 200 (application/json)
+
+        {
+            "_items": [
+                {
+                    "_links": {"self": {"href": "/stages/1"}},
+                    "name": "test stage",
+                    "_updated": "2014-08-21T11:29:09+0000",
+                    "_id": "53f5d805ea8e1511bba1648e",
+                    "description": "Shows all items for the current workflow stage",
+                    "_created": "2014-08-21T11:29:09+0000",
+                    "default_incoming": "false",
+                    "desk": "53c79018ea8e15145ff9863f",
+                    "outgoing": [
+                        {"stage": "53c79018ea8e15145ff9863h"},
+                        {"stage": "53c79018ea8e17145ff9863h"}
+                    ]
+                },
+                {
+                    "_links": {"self": {"href": "/stages/2"}},
+                    "name": "test stage 2",
+                    "_updated": "2014-08-21T11:29:09+0000",
+                    "_id": "53f5d805ea8e4511bba1648e",
+                    "_created": "2014-08-21T11:29:09+0000",
+                    "description": "Shows all items with no exception",
+                    "default_incoming": "false",
+                    "desk": "53c79018ea8e15145ff9863f",
                 }
             ]
         }
