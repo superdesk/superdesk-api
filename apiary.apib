@@ -174,14 +174,14 @@ A single User resource.
                     }
                 ]
             },
-           "readonly": ["username", "display_name", "password", "email", "phone", "first_name", "last_name"]
+           "_readonly": ["username", "display_name", "password", "email", "phone", "first_name", "last_name"]
         }
 
 ### Retrieve a User [GET]
 
 + Response 200 (application/json)
 
-   "readonly" attribute is included only if AD is enabled.
+   "_readonly" attribute is included only if AD is enabled.
 
     [User][]
 
@@ -226,7 +226,7 @@ A single User resource.
     + sort (optional, object) ... Sorting
 
 + Response 200 (application/json)
-        "readonly" attribute is included only if AD is enabled.
+        "_readonly" attribute is included only if AD is enabled.
         {
             "_items": [
                 {
@@ -242,7 +242,7 @@ A single User resource.
                     "_updated": "2014-02-18T14:42:16Z",
                     "picture_url": "http://www.gravatar.com/avatar/205e460b479e2e5b48aec07710c08d50",
                     "_etag": "xyz",
-                    "readonly": ["username", "display_name", "password", "email", "phone", "first_name", "last_name"]
+                    "_readonly": ["username", "display_name", "password", "email", "phone", "first_name", "last_name"]
                 },
                 {
                     "_links": {"self": {"href": "/users/3"}},
@@ -257,7 +257,7 @@ A single User resource.
                     "_updated": "2014-02-18T14:43:27Z",
                     "picture_url": "http://www.gravatar.com/avatar/205e460b479e2e5b48aec07710c08d50",
                     "_etag": "xyz",
-                    "readonly": ["username", "display_name", "password", "email", "phone", "first_name", "last_name"]
+                    "_readonly": ["username", "display_name", "password", "email", "phone", "first_name", "last_name"]
                 }
             ]
         }
