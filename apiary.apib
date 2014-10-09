@@ -182,14 +182,16 @@ A single User resource.
                     }
                 ]
             },
-           "_readonly": ["username", "display_name", "password", "email", "phone", "first_name", "last_name"]
+            "_readonly": ["username", "display_name", "password", "email", "phone", "first_name", "last_name"]
         }
 
 ### Retrieve a User [GET]
 
-+ Response 200 (application/json)
+"_readonly" attribute is included only if AD is enabled.
 
-   "_readonly" attribute is included only if AD is enabled.
++ Request (application/json)
+
++ Response 200 (application/json)
 
     [User][]
 
@@ -227,6 +229,8 @@ A single User resource.
 
 ### List all Users [GET]
 
+"_readonly" attribute is included only if AD is enabled.
+
 + Parameters
     + page = `0`(optional, integer) ... Page number
     + max_results = `25`(optional, integer) ... Number of users to be returned
@@ -234,7 +238,7 @@ A single User resource.
     + sort (optional, object) ... Sorting
 
 + Response 200 (application/json)
-        "_readonly" attribute is included only if AD is enabled.
+        
         {
             "_items": [
                 {
@@ -347,9 +351,6 @@ This will not be exposed if AD is enabled.
             }
         }
 
-+ Response 404
-   When API Consumer tries to access this API and AD is enabled.
-
 ### Finalize reset user password with the emailed token [POST]
 
 + Request (application/json)
@@ -371,9 +372,6 @@ This will not be exposed if AD is enabled.
                 }
             }
         }
-+ Response 404
-   When API Consumer tries to access this API and AD is enabled.
-
 
 # Group Planning 
 
@@ -1800,38 +1798,8 @@ A single Roles resource.
 
 + Response 200
 
-        [User Preferences][]
+    [User Preferences][]
 
-### List all items for specific user [GET]
-
-+ Parameters
-    + page = `1`(optional, integer) ... Page number
-    + max_results = `25`(optional, integer) ... Number of items to be returned
-
-+ Response 200 (application/json)
-
-        {
-            "_items": [
-                {
-                    "_links": {"self": {"href": "/preferences/541fce38ea8e1511d5bd770e"}},
-                    "_created": "2014-09-19T08:54:00+0000", 
-                    "_updated": "2014-09-19T09:29:32+0000",
-                    "_id": "541fce38ea8e1511d5bd770e",
-                    "preferences": 
-                            {
-                            "email:notification": 
-                              {
-                                "category": "notifications",
-                                "enabled": "true",
-                                "type": "bool",
-                                "default": "true",
-                                "label": "Send notifications via email"
-                               }
-                            }
-                }
-            ]
-        }
- 
 # Group Tasks
 
 ## Task [/tasks/{_id}]
