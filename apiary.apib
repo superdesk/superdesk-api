@@ -1953,29 +1953,6 @@ A single stage
             ]
         }
 
-### Create a stage [POST]
-
-+ Request (application/json)
-
-        {
-            "name": "test stage",
-            "description": "Shows all items for the current workflow stage",
-            "default_incoming": "false",
-            "desk": "53c79018ea8e15145ff9863f",
-            "outgoing": [
-                {"stage": "53c79018ea8e15145ff9863h"},
-                {"stage": "53c79018ea8e17145ff9863h"}
-            ]
-        }
-
-+ Response 201 (application/json)
-
-        {
-            "_links": {"self": {"href": "/stages/2"}},
-            "_status": "OK"
-        }
-
-
 ### Update stage [PATCH]
 
 + Request (application/json)
