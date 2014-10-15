@@ -1800,6 +1800,45 @@ A single Roles resource.
 
     [User Preferences][]
 
+## Session Preferences [/session/{_id}/preferences]
+
++ Parameters
+    + _id (string) ... Session id.
+
++ Model (application/json)
+
+        {
+            "preferences": {
+                "email.notification": 1,
+                "ingest.view": "list",
+                "content.view": "grid"
+            }
+        }
+
+### Set session preferences [PATCH]
+
++ Request (application/json)
+
+        {
+            "preferences": {
+                "email.notification": 1
+            }
+        }
+
++ Response 200
+
+        {
+            "_status": "OK"
+        }
+
+### Get session preferences [GET]
+
++ Request (application/json)
+
++ Response 200
+
+    [Session Preferences][]
+
 # Group Tasks
 
 ## Task [/tasks/{_id}]
@@ -1926,6 +1965,90 @@ A single Roles resource.
             _id: "urn:newsml:localhost:2014-07-16T16:59:59.856131:eb0b90c9-8d1e-45a3-ad98-12c1ac35af91"
         }
 
+# Group Session Management
+
+## Session [/sessions/{_id}]
+
+A single Session resource.
+
++ Parameters
+    +   _id (string) ... Session id.
+
++ Model (application/json)
+
+        {
+                "_id" : ObjectId("5435f6761d41c82566fa7064"),
+                "_updated" : ISODate("2014-10-09T02:44:05Z"),
+                "user" : ObjectId("5405b3c61d41c872aae70c5e"),
+                "username" : "tolga",
+                "_created" : ISODate("2014-10-09T02:44:05Z"),
+                "preferences" : {
+                        "Current Desks" : [ObjectId("5405b3c61d41c872aae70c5k"), ObjectId("5405b3c61d41c872aae70c5k")]
+                }
+        }
+
+### Retrieve a Session [GET]
+
++ Request (application/json)
+
++ Response 200 (application/json)
+
+    [Session][]
+
++ Response 404
+
++ Response 403
+
+### Delete a Session [DELETE]
+
++ Request
+
+    + Headers
+
+            If-Match: xyz
+
++ Response 204
+
++ Response 403
+
+## Session Search [/sessions{?page,max_results,where,sort}]
+
+### List all Sessions [GET]
+
++ Parameters
+    + page = `0`(optional, integer) ... Page number
+    + max_results = `25`(optional, integer) ... Number of sessions to be returned
+    + where (optional, object) ... Filtering
+    + sort (optional, object) ... Sorting
+
++ Response 200 (application/json)
+
+        {
+            "items" : [
+                {
+                    "_id" : ObjectId("5435f6761d41c82566fa7064"),
+                    "_updated" : ISODate("2014-10-09T02:44:05Z"),
+                    "user" : ObjectId("5405b3c61d41c872aae70c5e"),
+                    "username" : "tolga",
+                    "_created" : ISODate("2014-10-09T02:44:05Z"),
+                    "preferences" : {
+                        "Current Desks" : [ObjectId("5405b3c61d41c872aae70c5k"), ObjectId("5405b3c61d41c872aae70c5k")]
+                    }
+                },
+                {
+                    "_id" : ObjectId("5435f6761d41c82566fa7065"),
+                    "_updated" : ISODate("2014-10-09T02:44:05Z"),
+                    "user" : ObjectId("5405b3c61d41c872aae70c5k"),
+                    "username" : "tolga",
+                    "_created" : ISODate("2014-10-09T02:44:05Z"),
+                    "preferences" : {
+                        "Current Desks" : [ObjectId("5405b3c61d41c872aae70c5k"), ObjectId("5405b3c61d41c872aae70c5k")]
+                    }
+                }
+            ]
+        }
+
++ Response 403
 
 # Group Stages
 
