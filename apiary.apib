@@ -116,6 +116,10 @@ List available resources.
                     {
                         "title": "stages",
                         "href": "/stages"
+                    },
+                    {
+                        "title": "archive_autosave",
+                        "href": "/archive_autosave"
                     }
                 ]
             }
@@ -727,7 +731,7 @@ A single Desks resource
         }
 
 
-# Group Content Archive
+# Group Content
 
 ## Item [/archive/{_id}]
 
@@ -1309,6 +1313,35 @@ A single comment resource
                     "href": "/"
                 }
             }
+        }
+
+## Content autosave [/archive_autosave/{_id}]
+
+### Create an autosave [POST]
+
++ Request (application/json)
+
+        {
+            "_id": "urn:newsml:localhost:2014-01-01:31-ea",
+            "headline": "first draft",
+            "body_html": "<p>some content</p>"
+        }
+
++ Response 201
+
+### Get an autosave for an item [GET]
+
++ Parameters
+    - _id
+
++ Request (application/json)
+
++ Response 200 (application/json)
+
+        {
+            "_id": "urn:...",
+            "headline": "first draft",
+            "body_html": "<p>some content</p>"
         }
 
 # Group Content Item locking
