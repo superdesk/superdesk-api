@@ -1761,46 +1761,9 @@ A single Roles resource.
 
 # Group Preferences
 
-## User Preferences [/users/{_id}/preferences]
+## Preference [/preferences/{_id}]
 
-+ Parameters
-    + _id (string) ... User id.
-
-+ Model (application/json)
-
-        {
-            "preferences": {
-                "email.notification": 1,
-                "ingest.view": "list",
-                "content.view": "grid"
-            }
-        }
-
-### Set user preferences [PATCH]
-
-+ Request (application/json)
-
-        {
-            "preferences": {
-                "email.notification": 1
-            }
-        }
-
-+ Response 200
-
-        {
-            "_status": "OK"
-        }
-
-### Get user preferences [GET]
-
-+ Request (application/json)
-
-+ Response 200
-
-    [User Preferences][]
-
-## Session Preferences [/session/{_id}/preferences]
+User level and session level preference by given session id
 
 + Parameters
     + _id (string) ... Session id.
@@ -1808,36 +1771,92 @@ A single Roles resource.
 + Model (application/json)
 
         {
-            "preferences": {
-                "email.notification": 1,
-                "ingest.view": "list",
-                "content.view": "grid"
-            }
+            "_updated": "1970-01-01T00:00:00+0000",
+            "session_preferences" : {
+                "beta":1
+            },
+            "user_preferences": {
+                "feature:preview": {
+                    "type": "bool",
+                    "label": "Enable Feature Preview",
+                    "category": "feature",
+                    "default": false,
+                    "enabled": false
+                },
+                "email:notification": {
+                    "type": "bool",
+                    "label": "Send notifications via email",
+                    "category": "notifications",
+                    "default": true,
+                    "enabled": true
+                },
+                "label": "Andrew",
+                "archive:view": {
+                    "type": "string",
+                    "label": "Users archive view format",
+                    "default": "mgrid",
+                    "view": "mgrid",
+                    "category": "archive",
+                    "allowed": [
+                        "mgrid",
+                        "compact"
+                    ]
+                }
+            },
+            "_etag": "4cdf7ec9b0e5c4f74aef306f672a422c6012b8ce",
+            "user": "5405b3c61d41c872aae70c5e",
+            "_links": {
+                "parent": {
+                    "title": "home",
+                    "href": "/"
+                },
+                "self": {
+                    "title": "Preference",
+                    "href": "/preferences/54087e611d41c82b8a4b1ced"
+                },
+                "collection": {
+                    "title": "preferences",
+                    "href": "/preferences"
+                }
+            },
+            "_id": "54087e611d41c82b8a4b1ced",
+            "_created": "1970-01-01T00:00:00+0000"
         }
 
-### Set session preferences [PATCH]
+### Retrieve a preference [GET]
 
 + Request (application/json)
 
++ Response 200 (application/json)
+
+    [Preference][]
+
++ Response 404
+
+
+### Update preferences [PATCH]
+
++ Request (application/json)
+
+    + Headers
+
+        If-Match: xyz
+
+    + Body
+
         {
-            "preferences": {
+            "user_preferences": {
                 "email.notification": 1
             }
         }
 
-+ Response 200
++ Response 200 (application/json)
 
         {
             "_status": "OK"
         }
 
-### Get session preferences [GET]
-
-+ Request (application/json)
-
-+ Response 200
-
-    [Session Preferences][]
++ Response 403
 
 # Group Tasks
 
@@ -1977,14 +1996,57 @@ A single Session resource.
 + Model (application/json)
 
         {
-                "_id" : ObjectId("5435f6761d41c82566fa7064"),
-                "_updated" : ISODate("2014-10-09T02:44:05Z"),
-                "user" : ObjectId("5405b3c61d41c872aae70c5e"),
-                "username" : "tolga",
-                "_created" : ISODate("2014-10-09T02:44:05Z"),
-                "preferences" : {
-                        "Current Desks" : [ObjectId("5405b3c61d41c872aae70c5k"), ObjectId("5405b3c61d41c872aae70c5k")]
+            "_etag": "bd854e1089328a306de5cfb012fc8731aae64054",
+            "_created": "2014-10-16T03:21:38+0000",
+            "_id": "543f39c31d41c810df6120d3",
+            "user": {
+                "email": "akint@aap.com.au",
+                "user_type": "administrator",
+                "_created": "2014-09-02T12:10:45+0000",
+                "_id": "5405b3c61d41c872aae70c5e",
+                "workspace": {
+                    "widgets": [
+                        {
+                            "sizey": 1,
+                            "sizex": 1,
+                            "row": 1,
+                            "_id": "ingest-stats",
+                            "col": 1,
+                            "configuration": {
+                                "colorScheme": "superdesk",
+                                "source": "provider",
+                                "updateInterval": 5
+                            }
+                        }
+                    ]
+                },
+                "preferences": {
+                    "archive:view": {
+                        "type": "string",
+                        "label": "Test label",
+                        "category": "archive",
+                        "default": "mgrid",
+                        "view": "mgrid"
+                    }
+                },
+                "username": "tolga",
+                "_updated": "2014-10-09T02:57:39+0000"
+            },
+            "_links": {
+                "parent": {
+                    "title": "home",
+                    "href": "/"
+                },
+                "collection": {
+                    "title": "sessions",
+                    "href": "/sessions"
+                },
+                "self": {
+                    "title": "Session",
+                    "href": "/sessions/543f39c31d41c810df6120d3"
                 }
+            },
+            "_updated": "2014-10-16T03:21:38+0000"
         }
 
 ### Retrieve a Session [GET]
@@ -2024,26 +2086,96 @@ A single Session resource.
 + Response 200 (application/json)
 
         {
-            "items" : [
+            "_items": [
                 {
-                    "_id" : ObjectId("5435f6761d41c82566fa7064"),
-                    "_updated" : ISODate("2014-10-09T02:44:05Z"),
-                    "user" : ObjectId("5405b3c61d41c872aae70c5e"),
-                    "username" : "tolga",
-                    "_created" : ISODate("2014-10-09T02:44:05Z"),
-                    "preferences" : {
-                        "Current Desks" : [ObjectId("5405b3c61d41c872aae70c5k"), ObjectId("5405b3c61d41c872aae70c5k")]
-                    }
+                    "user": {
+                        "user_type": "administrator",
+                        "username": "tolga",
+                        "_created": "2014-09-02T12:10:45+0000",
+                        "email": "akint@aap.com.au",
+                        "_id": "5405b3c61d41c872aae70c5e",
+                        "_updated": "2014-10-09T02:57:39+0000",
+                        "workspace": {
+                            "widgets": [
+                                {
+                                    "configuration": {
+                                        "source": "provider",
+                                        "colorScheme": "superdesk",
+                                        "updateInterval": 5
+                                    },
+                                    "_id": "ingest-stats",
+                                    "sizey": 1,
+                                    "sizex": 1,
+                                    "row": 1,
+                                    "col": 1
+                                }
+                            ]
+                        },
+                        "preferences": {
+                            "archive:view": {
+                                "type": "string",
+                                "label": "Test label",
+                                "category": "archive",
+                                "default": "mgrid",
+                                "view": "mgrid"
+                            }
+                        }
+                    },
+                    "_etag": "bd854e1089328a306de5cfb012fc8731aae64054",
+                    "_links": {
+                        "self": {
+                            "title": "Session",
+                            "href": "/sessions/543f39c31d41c810df6120d3"
+                        }
+                    },
+                    "_created": "2014-10-16T03:21:38+0000",
+                    "_id": "543f39c31d41c810df6120d3",
+                    "_updated": "2014-10-16T03:21:38+0000"
                 },
                 {
-                    "_id" : ObjectId("5435f6761d41c82566fa7065"),
-                    "_updated" : ISODate("2014-10-09T02:44:05Z"),
-                    "user" : ObjectId("5405b3c61d41c872aae70c5k"),
-                    "username" : "tolga",
-                    "_created" : ISODate("2014-10-09T02:44:05Z"),
-                    "preferences" : {
-                        "Current Desks" : [ObjectId("5405b3c61d41c872aae70c5k"), ObjectId("5405b3c61d41c872aae70c5k")]
-                    }
+                    "user": {
+                        "user_type": "administrator",
+                        "username": "tolga",
+                        "_created": "2014-09-02T12:10:45+0000",
+                        "email": "akint@aap.com.au",
+                        "_id": "5405b3c61d41c872aae70c5e",
+                        "_updated": "2014-10-09T02:57:39+0000",
+                        "workspace": {
+                            "widgets": [
+                                {
+                                    "configuration": {
+                                        "source": "provider",
+                                        "colorScheme": "superdesk",
+                                        "updateInterval": 5
+                                    },
+                                    "_id": "ingest-stats",
+                                    "sizey": 1,
+                                    "sizex": 1,
+                                    "row": 1,
+                                    "col": 1
+                                }
+                            ]
+                        },
+                        "preferences": {
+                            "archive:view": {
+                                "type": "string",
+                                "label": "Test label",
+                                "category": "archive",
+                                "default": "mgrid",
+                                "view": "mgrid"
+                            }
+                        }
+                    },
+                    "_etag": "29a9c8d10f5e2cadf8520c17518190832b63b2af",
+                    "_links": {
+                        "self": {
+                            "title": "Session",
+                            "href": "/sessions/543de3a41d41c8eea99ddfc7"
+                        }
+                    },
+                    "_created": "2014-10-15T03:01:55+0000",
+                    "_id": "543de3a41d41c8eea99ddfc7",
+                    "_updated": "2014-10-15T03:01:55+0000"
                 }
             ]
         }
