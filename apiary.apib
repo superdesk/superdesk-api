@@ -120,6 +120,14 @@ List available resources.
                     {
                         "title": "archive_autosave",
                         "href": "/archive_autosave"
+                    },
+                    {
+                        "title": "groups",
+                        "href": "/groups"
+                    },
+                    {
+                        "title": "users/<regex(\"[a-f0-9]{24}\"):user_id>/groups",
+                        "href": "/users/<regex(\"[a-f0-9]{24}\"):user_id>/groups"
                     }
                 ]
             }
@@ -601,13 +609,10 @@ A single Desks resource
             "name": "My desk",
             "_updated": "2014-07-17T06:34:00+0000",
             "_id": "53c76e4dea8e150dc0fd8579",
-            "members": "[2]",
-            "0":  {
-            "user": "53c76e39ea8e150dc0fd8578"
-              },
-            "1":  {
-            "user": "53c4f366ea8e15141784de99"
-              },
+            "members": [
+                {"user": "53c76e39ea8e150dc0fd8578"},
+                {"user": "53c4f366ea8e15141784de99"}
+            ],
             "_created": "2014-07-17T06:33:49+0000"
         }
     
@@ -668,29 +673,20 @@ A single Desks resource
         {
             "_items": [
                 {
+                    "_created": "2014-07-15T09:35:18+0000",
+                    "_id": "53c4f5d6ea8e15141784df1a",
                     "_links": {"self": {"href": "/desks/1"}},
-                    "name": "Admin desk",
-            "_updated": "2014-07-17T06:44:58+0000",
-            "_id": "53c4f5d6ea8e15141784df1a",
-            "members": "[1]",
-            "0":  {
-            "user": "53c4f366ea8e15141784de99"
-              },
-            "_created": "2014-07-15T09:35:18+0000",
+                    "_updated": "2014-07-17T06:44:58+0000",
+                    "members": [{"user": "53c76e39ea8e150dc0fd8578"}],
+                    "name": "Admin desk"
                 },
                 {
-            "_links": {"self": {"href": "/desks/2"}},
-            "name": "My desk",
-            "_updated": "2014-07-17T06:34:00+0000",
-            "_id": "53c76e4dea8e150dc0fd8579",
-            "members": "[2]",
-            "0":  {
-            "user": "53c76e39ea8e150dc0fd8578"
-              },
-            "1":  {
-            "user": "53c4f366ea8e15141784de99"
-              },
-            "_created": "2014-07-17T06:33:49+0000"
+                    "_created": "2014-07-17T06:33:49+0000",
+                    "_id": "53c76e4dea8e150dc0fd8579",
+                    "_links": {"self": {"href": "/desks/2"}},
+                    "_updated": "2014-07-17T06:34:00+0000",
+                    "members": [{"user": "53c76e39ea8e150dc0fd8578"}, {"user": "53c4f366ea8e15141784de99"}],
+                    "name": "My desk"
                 }
             ]
         }
@@ -2063,6 +2059,132 @@ A single stage
                     "description": "Shows all items with no exception",
                     "default_incoming": "false",
                     "desk": "53c79018ea8e15145ff9863f",
+                }
+            ]
+        }
+
+
+# Group Groups
+
+## Groups item [/groups/{_id}]
+
+A single Group resource
+
++ Parameters
+    - _id (string, `1`) ... Group item identifier.
+    
++ Model (application/json)
+
+        {
+            "_created": "2014-07-17T06:33:49+0000",
+            "_id": "53c76e4dea8e150dc0fd8579",
+            "_links": {"self": {"href": "/groups/1"}},
+            "_updated": "2014-07-17T06:34:00+0000",
+            "members": [{"user": "53c76e39ea8e150dc0fd8578"}, {"user": "53c4f366ea8e15141784de99"}],
+            "name": "My group"
+        }
+    
+### Retrieve a Group [GET]
+
++ Response 200 (application/json)
+
+    [Groups item][]
+
++ Response 404
+
+### Update Group [PATCH]
+
++ Request (application/json)
+    
+        {"name": "Foo"}
+
++ Response 200 (application/json)
+
+        {"_status": "OK"}
+
++ Response 403
+
+### Delete a Group [DELETE]
+
++ Request (application/json)
+
+        {}
+
++ Response 204
+
+
+## Groups collection [/groups{?page,max_results}]
+
+### Create Group [POST]
+
++ Request (application/json)
+
+        {
+            "name": "Foo"
+        }
+
++ Response 201 (application/json)
+
+        {
+            "_links": {"self": {"href": "/groups/2"}},
+            "_status": "OK"
+        }
+
+### List all Groups [GET]
+
++ Parameters
+    + page = `1`(optional, integer) ... Page number
+    + max_results = `25`(optional, integer) ... Number of items to be returned
+    
++ Response 200 (application/json)
+
+        {
+            "_items": [
+                {
+                    "_created": "2014-07-15T09:35:18+0000",
+                    "_id": "53c4f5d6ea8e15141784df1a",
+                    "_links": {"self": {"href": "/groups/1"}},
+                    "_updated": "2014-07-17T06:44:58+0000",
+                    "members": [{"user": "53c4f366ea8e15141784de99"}],
+                    "name": "Admin group"
+                },
+                {
+                    "_created": "2014-07-17T06:33:49+0000",
+                    "_id": "53c76e4dea8e150dc0fd8579",
+                    "_links": {"self": {"href": "/groups/2"}},
+                    "_updated": "2014-07-17T06:34:00+0000",
+                    "members": [{"user": "53c76e39ea8e150dc0fd8578"}, {"user": "53c4f366ea8e15141784de99"}],
+                    "name": "My group"
+                }
+            ]
+        }
+
+## User Groups [/users/{_id}/groups]
+
++ Parameters
+    - _id (string) ... User id.
+
+### List the Groups for given users [GET]
+
++ Response 200 (application/json)
+
+        {
+            "_items": [
+                {
+                    "_created": "2014-07-15T09:35:18+0000",
+                    "_id": "53c4f5d6ea8e15141784df1a",
+                    "_links": {"self": {"href": "users/1/groups/1"}},
+                    "_updated": "2014-07-17T06:44:58+0000",
+                    "members": [{"user": "53c4f366ea8e15141784de99"}],
+                    "name": "Admin group"
+                },
+                {
+                    "_created": "2014-07-17T06:33:49+0000",
+                    "_id": "53c76e4dea8e150dc0fd8579",
+                    "_links": {"self": {"href": "users/1/groups/2"}},
+                    "_updated": "2014-07-17T06:34:00+0000",
+                    "members": [{"user": "53c76e39ea8e150dc0fd8578"}, {"user": "53c4f366ea8e15141784de99"}],
+                    "name": "My group"
                 }
             ]
         }
