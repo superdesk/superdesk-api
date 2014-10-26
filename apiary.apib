@@ -367,6 +367,48 @@ This will not be exposed if AD is enabled.
    When API Consumer tries to access this API and AD is enabled.
 
 
+## Import Profile from AD [/import_profile]
+
+This will be exposed if AD is enabled.
+
+### Import User Profile from AD [POST]
+
++ Request (application/json)
+
+        {
+            "username": "admin",
+            "password": "admin",
+            "profile_to_import": "sduser"
+        }
+
++ Response 201 (application/json)
+
+        {
+	    "_status": "OK",
+	    "_id": "5449e53fc3747c105fa69f53",
+	    "_etag": "5cc244e4acb76505127cd1555ee13d93e0f85e39",
+	    "first_name": "User",
+	    "last_name": "SD",
+	    "display_name": "SD User",
+	    "is_active": true,
+	    "_created": "2014-10-24T05:35:54+0000",
+	    "_updated": "2014-10-24T05:35:54+0000",
+	    "user_type": "user",
+	    "username": "sduser",
+	    "phone": "+61 2 9322 8598",
+	    "email": "sduser@sourcefabric.org",
+	    "_links": {
+		"self": {
+		    "href": "/import_profile/5449e53fc3747c105fa69f53",
+		    "title": "Import_profile"
+		}
+	    }
+        }
+
++ Response 404
+   When API Consumer tries to access this API and AD is not enabled.
+
+
 # Group Planning 
 
 ## Planning item [/planning/{_id}]
