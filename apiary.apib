@@ -128,6 +128,10 @@ List available resources.
                     {
                         "title": "users/<regex(\"[a-f0-9]{24}\"):user_id>/groups",
                         "href": "/users/<regex(\"[a-f0-9]{24}\"):user_id>/groups"
+                    },
+                    {
+                    "href": "/vocabularies",
+                    "title": "vocabularies"
                     }
                 ]
             }
@@ -2485,3 +2489,127 @@ A single Group resource
                 }
             ]
         }
+
+# Group Vocabularies
+
+## List Vocabularies [/vocabularies] 
+
+### Retrieves a list of vocabularies [GET]
+
++ Response 200 (application/json)
+
+        {
+            "_items": [
+            {
+                "_created": "2014-11-03T00:30:30+0000",
+                "_links": {
+                    "self": {
+                        "href": "/vocabularies/categories",
+                        "title": "Vocabularie"
+                    }
+                },
+                "_id": "categories",
+                "_updated": "2014-11-03T00:30:30+0000",
+                "items": [
+                    {
+                        "value": "A",
+                        "is_active": true,
+                        "name": "National"
+                    },
+                    {
+                        "value": "T",
+                        "is_active": false,
+                        "name": "Domestic Sports"
+                    },
+                    {
+                        "value": "S",
+                        "is_active": true,
+                        "name": "International Sports"
+                    }
+                ],
+                "_etag": "cb3c21161a82db4ed85d84e777b5e04c460e7c27"
+            },
+            {
+                "_created": "2014-11-03T00:30:30+0000",
+                "_links": {
+                    "self": {
+                        "href": "/vocabularies/newsvalue",
+                        "title": "Vocabularie"
+                    }
+                },
+                "_id": "newsvalue",
+                "_updated": "2014-11-03T00:30:30+0000",
+                "items": [
+                    {
+                        "value": "1",
+                        "is_active": true,
+                        "name": "1"
+                    },
+                    {
+                        "value": "2",
+                        "is_active": true,
+                        "name": "2"
+                    },
+                    {
+                        "value": "3",
+                        "is_active": true,
+                        "name": "3"
+                    },
+                    {
+                        "value": "4",
+                        "is_active": false,
+                        "name": "4"
+                    }
+                ],
+                "_etag": "9ceb3968d5ad80a8fa2330f3e57e0457c433f63f"
+            }
+            ]
+        }
+
+## Vocabularies Item [/vocabularies/{_id}]
+
++ Parameters
+    - _id (string) ... vocabulary id.
+
+### Retrieves a vocabulary [GET]
+
++ Response 200 (application/json)
+
+        {
+            "_created": "2014-11-03T00:30:30+0000",
+            "_links": {
+            "self": {
+                "href": "/vocabularies/categories",
+                "title": "Vocabularie"
+            },
+            "collection": {
+                "href": "/vocabularies",
+                "title": "vocabularies"
+            },
+            "parent": {
+                "href": "/",
+                "title": "home"
+            }
+            },
+            "_id": "categories",
+            "_updated": "2014-11-03T00:30:30+0000",
+            "items": [
+            {
+                "value": "A",
+                "is_active": true,
+                "name": "National"
+            },
+            {
+                "value": "T",
+                "is_active": false,
+                "name": "Domestic Sports"
+            },
+            {
+                "value": "S",
+                "is_active": true,
+                "name": "International Sports"
+            }
+            ],
+            "_etag": "cb3c21161a82db4ed85d84e777b5e04c460e7c27"
+        }
+
