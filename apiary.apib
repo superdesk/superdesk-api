@@ -724,7 +724,8 @@ A single Desks resource
                     "_links": {"self": {"href": "/desks/1"}},
                     "_updated": "2014-07-17T06:44:58+0000",
                     "members": [{"user": "53c76e39ea8e150dc0fd8578"}],
-                    "name": "Admin desk"
+                    "name": "Admin desk",
+                    "spike_expiry": 60
                 },
                 {
                     "_created": "2014-07-17T06:33:49+0000",
@@ -732,7 +733,8 @@ A single Desks resource
                     "_links": {"self": {"href": "/desks/2"}},
                     "_updated": "2014-07-17T06:34:00+0000",
                     "members": [{"user": "53c76e39ea8e150dc0fd8578"}, {"user": "53c4f366ea8e15141784de99"}],
-                    "name": "My desk"
+                    "name": "My desk",
+                    "spike_expiry": 360
                 }
             ]
         }
@@ -756,7 +758,8 @@ A single Desks resource
                     "members": [
                         {"user": "53c4f366ea8e15141784de99"}
                     ],
-                    "_created": "2014-07-15T09:35:18+0000"
+                    "_created": "2014-07-15T09:35:18+0000",
+                    "spike_expiry": 360
                 },
                 {
                     "_links": {"self": {"href": "users/1/desks/2"}},
@@ -767,7 +770,8 @@ A single Desks resource
                         {"user": "53c76e39ea8e150dc0fd8578"},
                         {"user": "53c4f366ea8e15141784de99"}
                     ],
-                    "_created": "2014-07-17T06:33:49+0000"
+                    "_created": "2014-07-17T06:33:49+0000",
+                    "spike_expiry": 360
                 }
             ]
         }
@@ -1386,6 +1390,53 @@ A single comment resource
             "body_html": "<p>some content</p>"
         }
 
+## Get Spiked Content [/spikes{?source}]
+
+### Search content for spiked items [GET]
+
++ Parameters
+    
+    + source (optional, object) ... Elasticsearch query.
+
++ Response 200 (application/json)
+
+    {
+    "_items": [
+        {
+            "user": "544594e81d41c837d05e3419",
+            "headline": "444",
+            "_id": "urn:newsml:localhost:2014-10-30T11:43:39.269210:8dd4cc0a-2b96-481f-8ec9-51a354a303f3",
+            "guid": "urn:newsml:localhost:2014-10-30T11:43:39.269210:8dd4cc0a-2b96-481f-8ec9-51a354a303f3",
+            "versioncreated": "2014-10-30T00:43:44+0000",
+            "expiry": "2014-11-05T01:54:49+0000",
+            "_created": "2014-10-30T00:43:39+0000",
+            "lock_user": null,
+            "_version": 2,
+            "force_unlock": true,
+            "lock_time": "2014-11-05T21:40:40+0000",
+            "_updated": "2014-10-30T00:43:44+0000",
+            "body_html": "sdasdsd<p></p>",
+            "task": {
+                "user": "544594e81d41c837d05e3419",
+                "desk": "5445962a1d41c82e35ef2990"
+            },
+            "original_creator": "544594e81d41c837d05e3419",
+            "firstcreated": "2014-10-30T00:43:39+0000",
+            "_etag": "336bbceb7a1ba35b09477f573de0cd53a7570221",
+            "_links": {
+                "self": {
+                    "title": "Spike",
+                    "href": "/spikes/urn:newsml:localhost:2014-10-30T11:43:39.269210:8dd4cc0a-2b96-481f-8ec9-51a354a303f3"
+                }
+            },
+            "type": "text",
+            "version_creator": "544594e81d41c837d05e3419",
+            "is_spiked": true,
+            "lock_session": null
+        }
+    ]
+}
+
 # Group Content Item locking
 
 ## Lock [/archive/{_id}/lock]
@@ -1408,6 +1459,27 @@ A single comment resource
 
 + Response 200
 
+# Group Content Item spiking
+
+## Spike [/archive/{_id}/spike]
+
+### Create a spike [POST]
+
++ Request (application/json)
+
+        {"is_spike": True}
+
++ Response 200
+
+## Unspike [/archive/{_id}/spike]
+
+### Unspike an item [DELETE]
+
++ Request (application/json)
+
+        {}
+
++ Response 200
 
 # Group Content View
 
