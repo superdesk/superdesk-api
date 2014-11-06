@@ -2562,6 +2562,205 @@ A single Group resource
             ]
         }
 
+# Group Ingest Providers
+
+## List Ingest Providers [/ingest_providers]
+
+### Retrieves a list of vocabularies [GET]
+
++ Response 200 (application/json)
+
+        {
+            "_items": [
+                {
+                    "_links": {
+                        "self": {
+                            "href": "/ingest_providers/54599a941d41c853c71bea40",
+                            "title": "Ingest_provider"
+                        }
+                    },
+                    "source": "MCT",
+                    "config": {
+                        "path": "/aap/mct"
+                    },
+                    "type": "aap",
+                    "name": "McClatchy",
+                    "_id": "54599a941d41c853c71bea40",
+                    "_updated": "2014-11-06T00:33:30+0000",
+                    "_created": "2014-11-05T03:33:40+0000",
+                    "days_to_keep": 2,
+                    "_etag": "fa1711532d64729db20f1b6334c384643d9a3c82"
+                },
+                {
+                    "_links": {
+                        "self": {
+                            "href": "/ingest_providers/54599ab21d41c853c71bea42",
+                            "title": "Ingest_provider"
+                        }
+                    },
+                    "source": "AFPS",
+                    "config": {
+                        "path": "/afp/sports"
+                    },
+                    "type": "afp",
+                    "name": "AFP Sports",
+                    "_id": "54599ab21d41c853c71bea42",
+                    "_updated": "2014-11-05T03:52:36+0000",
+                    "_created": "2014-11-05T03:34:10+0000",
+                    "days_to_keep": 2,
+                    "_etag": "5653aa8da7c85f8e43d30908a7f0e45a63b1b008"
+                }
+            ],
+            "_links": {
+                "self": {
+                    "href": "/ingest_providers",
+                    "title": "ingest_providers"
+                },
+                "parent": {
+                    "href": "/",
+                    "title": "home"
+                }
+            },
+            "_meta": {
+                "max_results": 25,
+                "total": 2,
+                "page": 1
+            }
+        }
+
++ Response 403
+
+## Ingest Provider Item [/ingest_providers/{_id}]
+
+### Retrieves a single Ingest Provider resource [GET]
+
++ Parameters
+    - _id (string, `1`) ... Ingest Provider identifier.
+
++ Response 200 (application/json)
+        {
+            "_links": {
+                "self": {
+                    "href": "/ingest_providers/54599a941d41c853c71bea40",
+                    "title": "Ingest_provider"
+                },
+                "collection": {
+                    "href": "/ingest_providers",
+                    "title": "ingest_providers"
+                },
+                "parent": {
+                    "href": "/",
+                    "title": "home"
+                }
+            },
+            "source": "MCT",
+            "config": {
+                "path": "/aap/mct"
+            },
+            "type": "aap",
+            "name": "McClatchy",
+            "_id": "54599a941d41c853c71bea40",
+            "_updated": "2014-11-06T00:33:30+0000",
+            "_created": "2014-11-05T03:33:40+0000",
+            "days_to_keep": 2,
+            "_etag": "fa1711532d64729db20f1b6334c384643d9a3c82"
+        }
+
++ Response 404
+
++ Response 403
+
+### Create Ingest Provider item [POST]
+
++ Request (application/json)
+
+    + Body
+            {
+                "source": "Ingest Provider Source",
+                "config": {
+                    "path": "/aap/mct"
+                },
+                "type": "aap",
+                "name": "Ingest Provider Name"
+            }
+
++ Response 201 (application/json)
+
+        {
+            "_status": "OK",
+            "_links": {
+                "self": {
+                    "href": "/ingest_providers/545b127d1d41c8a571d486e2",
+                    "title": "Ingest_provider"
+                }
+            },
+            "_created": "2014-11-06T06:17:33+0000",
+            "_id": "545b127d1d41c8a571d486e2",
+            "config": {
+                "path": "/aap/mct"
+            },
+            "type": "aap",
+            "name": "Ingest Provider Name",
+            "_etag": "1813c8a77abcffdb691600374fb35528d8be9556",
+            "_updated": "2014-11-06T06:17:33+0000",
+            "source": "Ingest Provider Source",
+            "days_to_keep": 2
+        }
+
++ Response 404
+
++ Response 403
+
+### Update Ingest Provider item [PATCH]
+
++ Request (application/json)
+
+    + Headers
+    
+            If-Match: xyz
+
+    + Body
+            {"name": "Foo"}
+
++ Response 200 (application/json)
+
+        {
+            "_status": "OK",
+            "_links": {
+                "self": {
+                    "href": "/ingest_providers/545b127d1d41c8a571d486e2",
+                    "title": "Ingest_provider"
+                }
+            },
+            "_created": "2014-11-06T06:17:33+0000",
+            "_id": "545b127d1d41c8a571d486e2",
+            "config": {
+                "path": "/aap/mct"
+            },
+            "type": "aap",
+            "name": "Foo",
+            "_etag": "1813c8a77abcffdb691600374fb35528d8be9556",
+            "_updated": "2014-11-06T06:17:33+0000",
+            "source": "Ingest Provider Source",
+            "days_to_keep": 2
+        }
+
++ Response 404
+
++ Response 403
+
+### Hard Delete Ingest Provider item [DELETE]
+
++ Request
+
+    + Headers
+    
+            If-Match: xyz
+
++ Response 204
+
++ Response 403
+
 # Group Vocabularies
 
 ## List Vocabularies [/vocabularies] 
