@@ -2600,7 +2600,8 @@ A single Group resource
                     "_updated": "2014-11-06T00:33:30+0000",
                     "_created": "2014-11-05T03:33:40+0000",
                     "days_to_keep": 2,
-                    "_etag": "fa1711532d64729db20f1b6334c384643d9a3c82"
+                    "_etag": "fa1711532d64729db20f1b6334c384643d9a3c82",
+                    "rule_set": "54599a941d41c853c71beaab"
                 },
                 {
                     "_links": {
@@ -2619,7 +2620,8 @@ A single Group resource
                     "_updated": "2014-11-05T03:52:36+0000",
                     "_created": "2014-11-05T03:34:10+0000",
                     "days_to_keep": 2,
-                    "_etag": "5653aa8da7c85f8e43d30908a7f0e45a63b1b008"
+                    "_etag": "5653aa8da7c85f8e43d30908a7f0e45a63b1b008",
+                    "rule_set": "54599a941d41c853c71beaab"
                 }
             ],
             "_links": {
@@ -2772,6 +2774,21 @@ A single Group resource
 
 + Response 403
 
+## Rule sets [/rule_sets]
+
+Set of transformation rules that can be applied to ingested content.
+
++ Model (application/json)
+
+        {
+            "_id": "54599a941d41c853c71beaab",
+            "name": "set name",
+            "rules": [
+                {"old": "x", "new": "X"},
+                {"old": "{", "new": "("}
+            ]
+        }
+
 # Group Vocabularies
 
 ## List Vocabularies [/vocabularies] 
@@ -2894,21 +2911,6 @@ A single Group resource
             ],
             "_etag": "cb3c21161a82db4ed85d84e777b5e04c460e7c27"
         }
-
-## Rule sets [/rule_sets]
-
-Set of transformation rules that can be applied to ingested content.
-
-+ Model (application/json)
-
-        {
-            "name": "set name",
-            "rules": [
-                {"old": "x", "new": "X"},
-                {"old": "{", "new": "("}
-            ]
-        }
-
 
 # Group Search
 
