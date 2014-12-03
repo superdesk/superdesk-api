@@ -130,8 +130,12 @@ List available resources.
                         "href": "/users/<regex(\"[a-f0-9]{24}\"):user_id>/groups"
                     },
                     {
-                    "href": "/vocabularies",
-                    "title": "vocabularies"
+                        "href": "/vocabularies",
+                        "title": "vocabularies"
+                    },
+                    {
+                        "href": "/search",
+                        "title": "search"
                     }
                 ]
             }
@@ -1919,6 +1923,9 @@ User level and session level preference by given session id
 
         {
             "_updated": "1970-01-01T00:00:00+0000",
+            "active_privileges" : {
+                "privilege1":1
+            },
             "session_preferences" : {
                 "beta":1
             },
@@ -2890,3 +2897,18 @@ A single Group resource
             "_etag": "cb3c21161a82db4ed85d84e777b5e04c460e7c27"
         }
 
+# Group Search
+
+## Federated Search [/search{?source,repo}]
+
+Here you can query items within different repositories together (eg. ingest + archive).
+
+### Query [GET]
+
++ Parameters
+    - source (Object) ... elastic query.
+    - repo (string) ... Comma separated list of repositories to query.
+
++ Response 200 (application/json)
+
+        {"_items": []}
