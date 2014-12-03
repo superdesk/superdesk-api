@@ -42,6 +42,10 @@ List available resources.
                         "href": "/ingest_providers"
                     },
                     {
+                        "title": "rule_sets",
+                        "href": "/rule_sets"
+                    },
+                    {
                         "title": "users",
                         "href": "/users"
                     },
@@ -2890,6 +2894,21 @@ A single Group resource
             ],
             "_etag": "cb3c21161a82db4ed85d84e777b5e04c460e7c27"
         }
+
+## Rule sets [/rule_sets]
+
+Set of transformation rules that can be applied to ingested content.
+
++ Model (application/json)
+
+        {
+            "name": "set name",
+            "rules": [
+                {"old": "x", "new": "X"},
+                {"old": "{", "new": "("}
+            ]
+        }
+
 
 # Group Search
 
