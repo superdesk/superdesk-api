@@ -140,6 +140,10 @@ List available resources.
                     {
                         "href": "/search",
                         "title": "search"
+                    },
+                    {
+                        "href": "/privileges",
+                        "title": "privileges"
                     }
                 ]
             }
@@ -206,7 +210,11 @@ A single User resource.
                     }
                 ]
             },
-            "_readonly": ["username", "display_name", "password", "email", "phone", "first_name", "last_name"]
+            "_readonly": ["username", "display_name", "password", "email", "phone", "first_name", "last_name"],
+            "privileges": {
+                "users": 1,
+                "ingest": 0
+            }
         }
 
 ### Retrieve a User [GET]
@@ -438,6 +446,18 @@ This will be exposed if AD is enabled.
 + Response 404
    When API Consumer tries to access this API and AD is not enabled.
 
+## Privileges [/privileges]
+
+List of available privileges in the system.
+
++ Model (application/json)
+
+        {
+            "_items": [
+                {"name": "ingest", "label": "Ingest", "description": "Fetch content from ingest."},
+                {"name": "users", "label": "Users", "description": "Manage users and user roles."}
+            ]
+        }
 
 # Group Planning 
 
@@ -1735,7 +1755,10 @@ A single Roles resource.
             "_links": {"self": {"href": "/roles/123"}},
             "_id": "123",
             "name": "Copy Taster",
-            "permissions" : { "canread": "true" }
+            "privileges": {
+                "ingest": 1,
+                "users": 0
+            }
         }
 
 ### Retrieve a Roles [GET]
