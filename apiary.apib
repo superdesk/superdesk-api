@@ -2600,8 +2600,9 @@ A single Group resource
                     "_updated": "2014-11-06T00:33:30+0000",
                     "_created": "2014-11-05T03:33:40+0000",
                     "days_to_keep": 2,
-                    "_etag": "fa1711532d64729db20f1b6334c384643d9a3c82",
-                    "rule_set": "54599a941d41c853c71beaab"
+                    "is_closed": true,
+                    "rule_set": "54599a941d41c853c71beaab",
+                    "_etag": "fa1711532d64729db20f1b6334c384643d9a3c82"
                 },
                 {
                     "_links": {
@@ -2620,8 +2621,9 @@ A single Group resource
                     "_updated": "2014-11-05T03:52:36+0000",
                     "_created": "2014-11-05T03:34:10+0000",
                     "days_to_keep": 2,
-                    "_etag": "5653aa8da7c85f8e43d30908a7f0e45a63b1b008",
-                    "rule_set": "54599a941d41c853c71beaab"
+                    "is_closed": false,
+                    "rule_set": "54599a941d41c853c71beaab",
+                    "_etag": "5653aa8da7c85f8e43d30908a7f0e45a63b1b008"
                 }
             ],
             "_links": {
@@ -2676,6 +2678,7 @@ A single Group resource
             "_updated": "2014-11-06T00:33:30+0000",
             "_created": "2014-11-05T03:33:40+0000",
             "days_to_keep": 2,
+            "is_closed": false
             "_etag": "fa1711532d64729db20f1b6334c384643d9a3c82"
         }
 
@@ -2694,7 +2697,8 @@ A single Group resource
                     "path": "/aap/mct"
                 },
                 "type": "aap",
-                "name": "Ingest Provider Name"
+                "name": "Ingest Provider Name",
+                "is_closed": false
             }
 
 + Response 201 (application/json)
@@ -2717,7 +2721,8 @@ A single Group resource
             "_etag": "1813c8a77abcffdb691600374fb35528d8be9556",
             "_updated": "2014-11-06T06:17:33+0000",
             "source": "Ingest Provider Source",
-            "days_to_keep": 2
+            "days_to_keep": 2,
+            "is_closed": false
         }
 
 + Response 404
@@ -2755,6 +2760,7 @@ A single Group resource
             "_etag": "1813c8a77abcffdb691600374fb35528d8be9556",
             "_updated": "2014-11-06T06:17:33+0000",
             "source": "Ingest Provider Source",
+            "is_closed": false
             "days_to_keep": 2
         }
 
