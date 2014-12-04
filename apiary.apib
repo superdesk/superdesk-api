@@ -223,7 +223,7 @@ A single User resource.
 
 + Request (application/json)
 
-+ Response 200 (application/json)
++ Response 200
 
     [User][]
 
@@ -444,11 +444,10 @@ This will be exposed if AD is enabled.
         }
 
 + Response 404
-   When API Consumer tries to access this API and AD is not enabled.
+
+        {}
 
 ## Privileges [/privileges]
-
-List of available privileges in the system.
 
 + Model (application/json)
 
@@ -458,6 +457,12 @@ List of available privileges in the system.
                 {"name": "users", "label": "Users", "description": "Manage users and user roles."}
             ]
         }
+
+### List available privileges in the system [GET]
+
++ Response 200
+
+    [Privileges][]
 
 # Group Planning 
 
@@ -484,7 +489,7 @@ A single Planning resource
 
 ### Retrieve a Planning item [GET]
 
-+ Response 200 (application/json)
++ Response 200
 
     [Planning item][]
 
@@ -587,7 +592,7 @@ A single coverage resource
 
 ### Retrieve a Coverage item [GET]
 
-+ Response 200 (application/json)
++ Response 200
 
     [Coverage item][]
 
@@ -692,7 +697,7 @@ A single Desks resource
     
 ### Retrieve a Desk [GET]
 
-+ Response 200 (application/json)
++ Response 200
 
     [Desks item][]
 
@@ -855,7 +860,7 @@ A single Desks resource
 
 ### Fetch item [GET]
 
-+ Response 200 (application/json)
++ Response 200
 
     [Item][]
 
@@ -1246,7 +1251,7 @@ A single comment resource
 
 ### Retrieve a Single Archive comment [GET]
 
-+ Response 200 (application/json)
++ Response 200
 
     [Archive comment][]
 
@@ -1428,42 +1433,42 @@ A single comment resource
 
 + Response 200 (application/json)
 
-    {
-    "_items": [
         {
-            "user": "544594e81d41c837d05e3419",
-            "headline": "444",
-            "_id": "urn:newsml:localhost:2014-10-30T11:43:39.269210:8dd4cc0a-2b96-481f-8ec9-51a354a303f3",
-            "guid": "urn:newsml:localhost:2014-10-30T11:43:39.269210:8dd4cc0a-2b96-481f-8ec9-51a354a303f3",
-            "versioncreated": "2014-10-30T00:43:44+0000",
-            "expiry": "2014-11-05T01:54:49+0000",
-            "_created": "2014-10-30T00:43:39+0000",
-            "lock_user": null,
-            "_version": 2,
-            "force_unlock": true,
-            "lock_time": "2014-11-05T21:40:40+0000",
-            "_updated": "2014-10-30T00:43:44+0000",
-            "body_html": "sdasdsd<p></p>",
-            "task": {
-                "user": "544594e81d41c837d05e3419",
-                "desk": "5445962a1d41c82e35ef2990"
-            },
-            "original_creator": "544594e81d41c837d05e3419",
-            "firstcreated": "2014-10-30T00:43:39+0000",
-            "_etag": "336bbceb7a1ba35b09477f573de0cd53a7570221",
-            "_links": {
-                "self": {
-                    "title": "Spike",
-                    "href": "/spikes/urn:newsml:localhost:2014-10-30T11:43:39.269210:8dd4cc0a-2b96-481f-8ec9-51a354a303f3"
+            "_items": [
+                {
+                    "user": "544594e81d41c837d05e3419",
+                    "headline": "444",
+                    "_id": "urn:newsml:localhost:2014-10-30T11:43:39.269210:8dd4cc0a-2b96-481f-8ec9-51a354a303f3",
+                    "guid": "urn:newsml:localhost:2014-10-30T11:43:39.269210:8dd4cc0a-2b96-481f-8ec9-51a354a303f3",
+                    "versioncreated": "2014-10-30T00:43:44+0000",
+                    "expiry": "2014-11-05T01:54:49+0000",
+                    "_created": "2014-10-30T00:43:39+0000",
+                    "lock_user": null,
+                    "_version": 2,
+                    "force_unlock": true,
+                    "lock_time": "2014-11-05T21:40:40+0000",
+                    "_updated": "2014-10-30T00:43:44+0000",
+                    "body_html": "sdasdsd<p></p>",
+                    "task": {
+                        "user": "544594e81d41c837d05e3419",
+                        "desk": "5445962a1d41c82e35ef2990"
+                    },
+                    "original_creator": "544594e81d41c837d05e3419",
+                    "firstcreated": "2014-10-30T00:43:39+0000",
+                    "_etag": "336bbceb7a1ba35b09477f573de0cd53a7570221",
+                    "_links": {
+                        "self": {
+                            "title": "Spike",
+                            "href": "/spikes/urn:newsml:localhost:2014-10-30T11:43:39.269210:8dd4cc0a-2b96-481f-8ec9-51a354a303f3"
+                        }
+                    },
+                    "type": "text",
+                    "version_creator": "544594e81d41c837d05e3419",
+                    "is_spiked": true,
+                    "lock_session": null
                 }
-            },
-            "type": "text",
-            "version_creator": "544594e81d41c837d05e3419",
-            "is_spiked": true,
-            "lock_session": null
+            ]
         }
-    ]
-}
 
 # Group Content Item locking
 
@@ -1498,8 +1503,6 @@ A single comment resource
         {"is_spike": True}
 
 + Response 200
-
-## Unspike [/archive/{_id}/spike]
 
 ### Unspike an item [DELETE]
 
@@ -1796,8 +1799,8 @@ A single Roles resource.
 + Response 200 (application/json)
 
         {
-            "permissions": {
-                "read": "true"
+            "privileges": {
+                "users": 1
             },
             "_links": {
                 "self": {
@@ -1865,8 +1868,8 @@ A single Roles resource.
                         }
                     },
                     "_id": "541061621d41c8ac80ff3b6e",
-                    "permissions": {
-                        "read": "true"
+                    "privileges": {
+                        "search": 1
                     },
                     "name": "Copy Tester",
                     "_updated": "2014-09-10T14:44:36+0000"
@@ -1905,7 +1908,7 @@ A single Roles resource.
 
         {
             "name": "Sub Editor",
-            "permissions" : { "canwrite": "true" }
+            "privileges": {"content": 1}
         }
 
 + Response 201 (application/json)
@@ -2008,7 +2011,7 @@ User level and session level preference by given session id
 
 + Request (application/json)
 
-+ Response 200 (application/json)
++ Response 200
 
     [Preference][]
 
@@ -2021,15 +2024,15 @@ User level and session level preference by given session id
 
     + Headers
 
-        If-Match: xyz
+            If-Match: xyz
 
     + Body
-
-        {
-            "user_preferences": {
-                "email.notification": 1
+    
+            {
+                "user_preferences": {
+                    "email.notification": 1
+                }
             }
-        }
 
 + Response 200 (application/json)
 
@@ -2120,7 +2123,7 @@ User level and session level preference by given session id
 
 ### Fetch task [GET]
 
-+ Response 200 (application/json)
++ Response 200
 
     [Task][]
 
@@ -2234,7 +2237,7 @@ A single Session resource.
 
 + Request (application/json)
 
-+ Response 200 (application/json)
++ Response 200
 
     [Session][]
 
@@ -2493,7 +2496,7 @@ A single Group resource
     
 ### Retrieve a Group [GET]
 
-+ Response 200 (application/json)
++ Response 200
 
     [Groups item][]
 
@@ -2676,6 +2679,7 @@ A single Group resource
     - _id (string, `1`) ... Ingest Provider identifier.
 
 + Response 200 (application/json)
+
         {
             "_links": {
                 "self": {
@@ -2714,6 +2718,7 @@ A single Group resource
 + Request (application/json)
 
     + Body
+    
             {
                 "source": "Ingest Provider Source",
                 "config": {
@@ -2761,6 +2766,7 @@ A single Group resource
             If-Match: xyz
 
     + Body
+    
             {"name": "Foo"}
 
 + Response 200 (application/json)
@@ -2803,9 +2809,12 @@ A single Group resource
 
 + Response 403
 
-## Rule sets [/rule_sets]
+## Rule set [/rule_sets/{_id}]
 
 Set of transformation rules that can be applied to ingested content.
+
++ Parameters
+    - _id (string) ... rule set id.
 
 + Model (application/json)
 
@@ -2817,6 +2826,12 @@ Set of transformation rules that can be applied to ingested content.
                 {"old": "{", "new": "("}
             ]
         }
+
+## Get rule set [GET]
+
++ Response 200
+
+    [Rule set][]
 
 # Group Vocabularies
 
