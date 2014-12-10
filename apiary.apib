@@ -111,7 +111,7 @@ List available resources.
                     },
                     {
                         "title": "preferences",
-                        "href": "/users/<regex():user_id>/preferences"
+                        "href": "/preferences/<regex():session_id>"
                     },
                     {
                         "title": "tasks",
@@ -144,6 +144,14 @@ List available resources.
                     {
                         "href": "/privileges",
                         "title": "privileges"
+                    },
+                    {
+                        "href":"/archive/spike",
+                        "title":"archive_spike"
+                    },
+                    {
+                        "href":"/archive/unspike",
+                        "title":"archive_unspike"
                     }
                 ]
             }
@@ -1492,26 +1500,6 @@ A single comment resource
 
 + Response 200
 
-# Group Content Item spiking
-
-## Spike [/archive/{_id}/spike]
-
-### Create a spike [POST]
-
-+ Request (application/json)
-
-        {"is_spike": True}
-
-+ Response 200
-
-### Unspike an item [DELETE]
-
-+ Request (application/json)
-
-        {}
-
-+ Response 200
-
 # Group Content View
 
 ## Content view item [/content_view/{_id}]
@@ -1987,6 +1975,30 @@ User level and session level preference by given session id
                     ]
                 }
             },
+            "allowed_actions": [
+                {
+                    "include_states": [],
+                    "exclude_states": [
+                        "spiked",
+                        "published",
+                        "killed"
+                    ],
+                    "name": "spike",
+                    "privileges": [
+                        "spike"
+                    ]
+                },
+                {
+                    "include_states": [
+                        "spiked"
+                    ],
+                    "exclude_states": [],
+                    "name": "unspike",
+                    "privileges": [
+                        "unspike"
+                    ]
+                }
+            ],
             "_etag": "4cdf7ec9b0e5c4f74aef306f672a422c6012b8ce",
             "user": "5405b3c61d41c872aae70c5e",
             "_links": {
@@ -2971,3 +2983,104 @@ Here you can query items within different repositories together (eg. ingest + ar
 + Response 200 (application/json)
 
         {"_items": []}
+
+# Group Spiking Content
+
+## Spiking a content item [/archive/spike/{_id}]
+
+This endpoint allows the spiking of content
+
+### Spike item [PATCH]
+
++ Parameters
+    - _id (string) ... Identifier of the item you wish to spike
+
++ Response 200 (application/json)
+
+    {
+   "versioncreated":"2014-12-10T05:02:43+0000",
+   "unique_id":14347,
+   "headline":"test",
+   "guid":"item-1",
+   "language":"en",
+   "_version":2,
+   "_links":{
+      "parent":{
+         "title":"home",
+         "href":"/"
+      },
+      "self":{
+         "title":"Archive",
+         "href":"/archive/item-1"
+      },
+      "collection":{
+         "title":"archive",
+         "href":"/archive"
+      }
+   },
+   "expiry":"2014-12-10T10:02:43+0000",
+   "_type":"archive",
+   "version_creator":"",
+   "_created":"2014-12-10T05:02:43+0000",
+   "_etag":"088999a217d2ad85831ed7bd356518029eb7e750",
+   "pubstatus":"Usable",
+   "original_creator":"",
+   "_id":"item-1",
+   "state":"spiked",
+   "type":"text",
+   "firstcreated":"2014-12-10T05:02:43+0000",
+   "_latest_version":2,
+   "_updated":"2014-12-10T05:02:43+0000",
+   "unique_name":"#14347",
+   "revert_state":"draft"
+}
+
+## Un-Spiking a content item [/archive/unspike/{_id}]
+
+This endpoint allows the unspiking of content
+
+### UnSpike item [PATCH]
+
++ Parameters
+    - _id (string) ... Identifier of the item you wish to unspike
+
++ Response 200 (application/json)
+
+{  
+   "_links":{  
+      "parent":{  
+         "title":"home",
+         "href":"/"
+      },
+      "self":{  
+         "title":"Archive",
+         "href":"/archive/item-1"
+      },
+      "collection":{  
+         "title":"archive",
+         "href":"/archive"
+      }
+   },
+   "_created":"2014-12-10T05:20:34+0000",
+   "_etag":"d7de5d608f51fe840cd8535fae5479b32c5e6565",
+   "revert_state":null,
+   "unique_name":"#14350",
+   "language":"en",
+   "original_creator":"",
+   "_updated":"2014-12-10T05:20:34+0000",
+   "_version":3,
+   "type":"text",
+   "unique_id":14350,
+   "state":"draft",
+   "expiry":"2014-12-10T05:20:40+0000",
+   "_latest_version":3,
+   "version_creator":"",
+   "firstcreated":"2014-12-10T05:20:34+0000",
+   "headline":"test",
+   "guid":"item-1",
+   "versioncreated":"2014-12-10T05:20:34+0000",
+   "pubstatus":"Usable",
+   "_id":"item-1",
+   "_type":"archive"
+}
+
