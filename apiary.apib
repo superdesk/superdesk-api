@@ -828,42 +828,40 @@ A single Desks resource
 + Model (application/json)
 
         {
-            "_links": {"self": {"href": "/media/1"}},
             "_etag": "abc",
-            "uri": "tag:mycomp-ltd.com,0000:newsml_LM1EA5F0UUD01",
+            "_links": {"self": {"href": "/media/1"}},
+            "abstract": "abstract needed...",
             "byline": "John Doe",
-            "provider": "My Company LTD",
-            "mimetype": "image/jpeg",
-            "type": "picture",
-            "firstcreated": "2013-07-03T10:11:12Z",
-            "version": "1",
-            "versioncreated": "2013-07-03T10:11:12Z",
-            "pubstatus": "usable",
-            "filemeta": {
-                "Manufacturer": "CANON",
-                "Orientation": "landscape"
-            },
             "copyrightholder": "Sourcefabric o.p.s.",
             "copyrightnotice": "(c) Copyright Sourcefabric o.p.s. 2014",
-            "usageterms": "You are not allowed.",
+            "description_text": "Flower picture",
+            "filemeta": {"Manufacturer": "CANON", "Orientation": "landscape"},
+            "firstcreated": "2013-07-03T10:11:12Z",
             "headline": "No news today",
             "language": "en",
-            "description_text": "Flower picture",
-            "urgency": 4,
+            "mimetype": "image/jpeg",
+            "provider": "My Company LTD",
+            "pubstatus": "usable",
             "renditions": {
-                "thumbnail": {
-                    "href": "http://farm4.staticflickr.com/3665/9203816834_3329fac058_q_d.jpg",
-                    "mimetype": "image/jpeg",
-                    "width": 150,
-                    "height": 150
-                },
                 "original": {
+                    "height": 3462,
                     "href": "http://farm4.staticflickr.com/3665/9203816834_9f62964627_o_d.jpg",
                     "mimetype": "image/jpeg",
-                    "width": 5198,
-                    "height": 3462
+                    "width": 5198
+                },
+                "thumbnail": {
+                    "height": 150,
+                    "href": "http://farm4.staticflickr.com/3665/9203816834_3329fac058_q_d.jpg",
+                    "mimetype": "image/jpeg",
+                    "width": 150
                 }
-            }
+            },
+            "type": "picture",
+            "urgency": 4,
+            "uri": "tag:mycomp-ltd.com,0000:newsml_LM1EA5F0UUD01",
+            "usageterms": "You are not allowed.",
+            "version": "1",
+            "versioncreated": "2013-07-03T10:11:12Z"
         }
 
 ### Fetch item [GET]
