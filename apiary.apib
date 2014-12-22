@@ -86,6 +86,10 @@ List available resources.
                         "href": "/planning"
                     },
                     {
+                        "title": "Packages",
+                        "href": "/packages"
+                    },
+                    {
                         "title": "coverages",
                         "href": "/coverages"
                     },
@@ -2995,43 +2999,34 @@ This endpoint allows the spiking of content
 
 + Response 200 (application/json)
 
-    {
-   "versioncreated":"2014-12-10T05:02:43+0000",
-   "unique_id":14347,
-   "headline":"test",
-   "guid":"item-1",
-   "language":"en",
-   "_version":2,
-   "_links":{
-      "parent":{
-         "title":"home",
-         "href":"/"
-      },
-      "self":{
-         "title":"Archive",
-         "href":"/archive/item-1"
-      },
-      "collection":{
-         "title":"archive",
-         "href":"/archive"
-      }
-   },
-   "expiry":"2014-12-10T10:02:43+0000",
-   "_type":"archive",
-   "version_creator":"",
-   "_created":"2014-12-10T05:02:43+0000",
-   "_etag":"088999a217d2ad85831ed7bd356518029eb7e750",
-   "pubstatus":"Usable",
-   "original_creator":"",
-   "_id":"item-1",
-   "state":"spiked",
-   "type":"text",
-   "firstcreated":"2014-12-10T05:02:43+0000",
-   "_latest_version":2,
-   "_updated":"2014-12-10T05:02:43+0000",
-   "unique_name":"#14347",
-   "revert_state":"draft"
-}
+        {
+            "_created": "2014-12-10T05:02:43+0000",
+            "_etag": "088999a217d2ad85831ed7bd356518029eb7e750",
+            "_id": "item-1",
+            "_latest_version": 2,
+            "_links": {
+                "collection": {"href": "/archive", "title": "archive"},
+                "parent": {"href": "/", "title": "home"},
+                "self": {"href": "/archive/item-1", "title": "Archive"}
+            },
+            "_type": "archive",
+            "_updated": "2014-12-10T05:02:43+0000",
+            "_version": 2,
+            "expiry": "2014-12-10T10:02:43+0000",
+            "firstcreated": "2014-12-10T05:02:43+0000",
+            "guid": "item-1",
+            "headline": "test",
+            "language": "en",
+            "original_creator": "",
+            "pubstatus": "Usable",
+            "revert_state": "draft",
+            "state": "spiked",
+            "type": "text",
+            "unique_id": 14347,
+            "unique_name": "#14347",
+            "version_creator": "",
+            "versioncreated": "2014-12-10T05:02:43+0000"
+        }
 
 ## Un-Spiking a content item [/archive/unspike/{_id}]
 
@@ -3044,41 +3039,275 @@ This endpoint allows the unspiking of content
 
 + Response 200 (application/json)
 
-{  
-   "_links":{  
-      "parent":{  
-         "title":"home",
-         "href":"/"
-      },
-      "self":{  
-         "title":"Archive",
-         "href":"/archive/item-1"
-      },
-      "collection":{  
-         "title":"archive",
-         "href":"/archive"
-      }
-   },
-   "_created":"2014-12-10T05:20:34+0000",
-   "_etag":"d7de5d608f51fe840cd8535fae5479b32c5e6565",
-   "revert_state":null,
-   "unique_name":"#14350",
-   "language":"en",
-   "original_creator":"",
-   "_updated":"2014-12-10T05:20:34+0000",
-   "_version":3,
-   "type":"text",
-   "unique_id":14350,
-   "state":"draft",
-   "expiry":"2014-12-10T05:20:40+0000",
-   "_latest_version":3,
-   "version_creator":"",
-   "firstcreated":"2014-12-10T05:20:34+0000",
-   "headline":"test",
-   "guid":"item-1",
-   "versioncreated":"2014-12-10T05:20:34+0000",
-   "pubstatus":"Usable",
-   "_id":"item-1",
-   "_type":"archive"
-}
+        {
+            "_created": "2014-12-10T05:20:34+0000",
+            "_etag": "d7de5d608f51fe840cd8535fae5479b32c5e6565",
+            "_id": "item-1",
+            "_latest_version": 3,
+            "_links": {
+                "collection": {"href": "/archive", "title": "archive"},
+                "parent": {"href": "/", "title": "home"},
+                "self": {"href": "/archive/item-1", "title": "Archive"}
+            },
+            "_type": "archive",
+            "_updated": "2014-12-10T05:20:34+0000",
+            "_version": 3,
+            "expiry": "2014-12-10T05:20:40+0000",
+            "firstcreated": "2014-12-10T05:20:34+0000",
+            "guid": "item-1",
+            "headline": "test",
+            "language": "en",
+            "original_creator": "",
+            "pubstatus": "Usable",
+            "revert_state": null,
+            "state": "draft",
+            "type": "text",
+            "unique_id": 14350,
+            "unique_name": "#14350",
+            "version_creator": "",
+            "versioncreated": "2014-12-10T05:20:34+0000"
+        }
 
+# Group Packages
+
+## Package [/packages/{_id}]
+
++ Parameters
+    - _id (string, `1`) ... Package Identifier.
+
++ Model (application/json)
+
+        {
+            "_created": "2014-12-11T13:20:18+0000",
+            "_etag": "194506956b64410edbf2e175a13adf3cc2df921d",
+            "_id": "urn:newsml:localhost:2014-12-11T15:20:18.510755:65b31275-0513-4ee5-9879-1ef9fae5fa33",
+            "_latest_version": 3,
+            "_links": {
+                "collection": {"href": "/packages", "title": "packages"},
+                "parent": {"href": "/", "title": "home"},
+                "self": {
+                    "href": "/packages/urn:newsml:localhost:2014-12-11T15:20:18.510755:65b31275-0513-4ee5-9879-1ef9fae5fa33",
+                    "title": "Package"
+                }
+            },
+            "_updated": "2014-12-11T14:01:27+0000",
+            "_version": 3,
+            "description": "MARKETS-HONGKONG-STOCKS/CLOSE (URGENT):Hong Kong shares end lower on profit-taking, China slump",
+            "firstcreated": "2014-12-11T13:20:18+0000",
+            "groups": [
+                {"id": "root", "refs": [{"idRef": "main"}], "role": "grpRole:NEP"},
+                {
+                    "id": "main",
+                    "refs": [
+                        {
+                            "guid": "tag:reuters.com,0000:newsml_ZZN2NBZ00",
+                            "headline": "Hong Kong shares end lower on profit-taking, China slump",
+                            "location": "archive",
+                            "renditions": {},
+                            "residRef": "tag:reuters.com,0000:newsml_ZZN2NBZ00",
+                            "slugline": "MARKETS-HONGKONG-STOCKS/CLOSE (URGENT)",
+                            "type": "text"
+                        },
+                        {
+                            "guid": "tag:reuters.com,0000:newsml_GM1EAC918J701",
+                            "headline": "Servicemen from the Georgian Armed Forces stand at attention during a farewell ceremony at the Vaziani military base outside Tbilisi",
+                            "location": "archive",
+                            "renditions": {
+                                "baseImage": {
+                                    "href": "http://localhost:5000/api/upload/5486b1674ee1f90ae02e936a/raw?_schema=http",
+                                    "media": "5486b1674ee1f90ae02e936a",
+                                    "mimetype": "image/jpeg",
+                                    "rendition": "baseImage",
+                                    "residRef": "tag:reuters.com,0000:binary_GM1EAC918J701-BASEIMAGE",
+                                    "sizeinbytes": 738762
+                                },
+                                "thumbnail": {
+                                    "href": "http://localhost:5000/api/upload/5486b1664ee1f90ae12e936a/raw?_schema=http",
+                                    "media": "5486b1664ee1f90ae12e936a",
+                                    "mimetype": "image/jpeg",
+                                    "rendition": "thumbnail",
+                                    "residRef": "tag:reuters.com,0000:binary_GM1EAC918J701-THUMBNAIL",
+                                    "sizeinbytes": 18874
+                                },
+                                "viewImage": {
+                                    "href": "http://localhost:5000/api/upload/5486b1674ee1f90adf2e936d/raw?_schema=http",
+                                    "media": "5486b1674ee1f90adf2e936d",
+                                    "mimetype": "image/jpeg",
+                                    "rendition": "viewImage",
+                                    "residRef": "tag:reuters.com,0000:binary_GM1EAC918J701-VIEWIMAGE",
+                                    "sizeinbytes": 188030
+                                }
+                            },
+                            "residRef": "tag:reuters.com,0000:newsml_GM1EAC918J701",
+                            "slugline": "GEORGIA-MILITARY/",
+                            "type": "picture"
+                        },
+                        {
+                            "guid": "tag:reuters.com,2014:newsml_LYNXMPEAB80B9",
+                            "headline": "An elderly woman shields herself from the rain brought by Typhoon Hagupit in Noveleta town, Cavite province, south of Manila",
+                            "location": "archive",
+                            "renditions": {
+                                "baseImage": {
+                                    "href": "http://localhost:5000/api/upload/5486b16a4ee1f90ae22e9372/raw?_schema=http",
+                                    "media": "5486b16a4ee1f90ae22e9372",
+                                    "mimetype": "image/jpeg",
+                                    "rendition": "baseImage",
+                                    "residRef": "tag:reuters.com,2014:binary_LYNXMPEAB80B9-BASEIMAGE",
+                                    "sizeinbytes": 43248
+                                },
+                                "filedImage": {
+                                    "href": "http://localhost:5000/api/upload/5486b16c4ee1f90ae22e9374/raw?_schema=http",
+                                    "media": "5486b16c4ee1f90ae22e9374",
+                                    "mimetype": "image/jpeg",
+                                    "rendition": "filedImage",
+                                    "residRef": "tag:reuters.com,2014:binary_LYNXMPEAB80B9-FILEDIMAGE",
+                                    "sizeinbytes": 708156
+                                },
+                                "thumbnail": {
+                                    "href": "http://localhost:5000/api/upload/5486b16a4ee1f90adf2e936f/raw?_schema=http",
+                                    "media": "5486b16a4ee1f90adf2e936f",
+                                    "mimetype": "image/jpeg",
+                                    "rendition": "thumbnail",
+                                    "residRef": "tag:reuters.com,2014:binary_LYNXMPEAB80B9-THUMBNAIL",
+                                    "sizeinbytes": 4859
+                                },
+                                "viewImage": {
+                                    "href": "http://localhost:5000/api/upload/5486b16a4ee1f90ae02e9371/raw?_schema=http",
+                                    "media": "5486b16a4ee1f90ae02e9371",
+                                    "mimetype": "image/jpeg",
+                                    "rendition": "viewImage",
+                                    "residRef": "tag:reuters.com,2014:binary_LYNXMPEAB80B9-VIEWIMAGE",
+                                    "sizeinbytes": 18766
+                                }
+                            },
+                            "residRef": "tag:reuters.com,2014:newsml_LYNXMPEAB80B9",
+                            "slugline": "PHILIPPINES-TYPHOON",
+                            "type": "picture"
+                        }
+                    ],
+                    "role": "grpRole:main"
+                }
+            ],
+            "guid": "urn:newsml:localhost:2014-12-11T15:20:18.510755:65b31275-0513-4ee5-9879-1ef9fae5fa33",
+            "headline": "Hong Kong shares end lower on profit-taking, China slump",
+            "language": "en",
+            "original_creator": "5481aab74ee1f927e56944cc",
+            "pubstatus": "Usable",
+            "slugline": "MARKETS-HONGKONG-STOCKS/CLOSE (URGENT)",
+            "type": "composite",
+            "unique_id": 5266,
+            "unique_name": "#5266",
+            "version_creator": "5481aab74ee1f927e56944cc",
+            "versioncreated": "2014-12-11T14:01:27+0000"
+        }
+
+
+### Create a package [POST]
+
++ Request (application/json)
+
+        {
+            "groups": [
+                {"id": "root", "refs": [{"idRef": "main"}], "role": "grpRole:NEP"},
+                {
+                    "id": "main",
+                    "refs": [
+                        {
+                            "headline": "test package with text",
+                            "residRef": "tag:reuters.com,2014:newsml_LYNXMPEAB80B9",
+                            "slugline": "awesome article"
+                        }
+                    ],
+                    "role": "main"
+                }
+            ]
+        }
+
++ Response 201 (application/json)
+
+        {
+            "_links": {"self": {"href": "/packages/1"}},
+            "_status": "OK"
+        }
+
+
+### Fetch package [GET]
+
++ Response 200
+
+    [Package][]
+
+### Update Package [PATCH]
+
++ Request (application/json)
+
+        {
+            "groups": [
+                {"id": "root", "refs": [{"idRef": "main"}], "role": "grpRole:NEP"},
+                {
+                    "id": "main",
+                    "refs": [
+                        {
+                            "guid": "tag:reuters.com,0000:newsml_ZZN2NBZ00",
+                            "headline": "Hong Kong shares end lower on profit-taking, China slump",
+                            "location": "archive",
+                            "renditions": {},
+                            "residRef": "tag:reuters.com,0000:newsml_ZZN2NBZ00",
+                            "slugline": "MARKETS-HONGKONG-STOCKS/CLOSE (URGENT)",
+                            "type": "text"
+                        }
+                    ],
+                    "role": "grpRole:main"
+                }
+            ]
+        }
+
++ Response 200 (application/json)
+
+        {
+            "_created": "2014-12-11T13:20:18+0000",
+            "_etag": "194506956b64410edbf2e175a13adf3cc2df921d",
+            "_id": "urn:newsml:localhost:2014-12-11T15:20:18.510755:65b31275-0513-4ee5-9879-1ef9fae5fa33",
+            "_latest_version": 3,
+            "_links": {
+                "collection": {"href": "/packages", "title": "packages"},
+                "parent": {"href": "/", "title": "home"},
+                "self": {
+                    "href": "/packages/urn:newsml:localhost:2014-12-11T15:20:18.510755:65b31275-0513-4ee5-9879-1ef9fae5fa33",
+                    "title": "Package"
+                }
+            },
+            "_updated": "2014-12-11T14:01:27+0000",
+            "_version": 3,
+            "description": "MARKETS-HONGKONG-STOCKS/CLOSE (URGENT):Hong Kong shares end lower on profit-taking, China slump",
+            "firstcreated": "2014-12-11T13:20:18+0000",
+            "groups": [
+                {"id": "root", "refs": [{"idRef": "main"}], "role": "grpRole:NEP"},
+                {
+                    "id": "main",
+                    "refs": [
+                        {
+                            "guid": "tag:reuters.com,0000:newsml_ZZN2NBZ00",
+                            "headline": "Hong Kong shares end lower on profit-taking, China slump",
+                            "location": "archive",
+                            "renditions": {},
+                            "residRef": "tag:reuters.com,0000:newsml_ZZN2NBZ00",
+                            "slugline": "MARKETS-HONGKONG-STOCKS/CLOSE (URGENT)",
+                            "type": "text"
+                        }
+                    ],
+                    "role": "grpRole:main"
+                }
+            ],
+            "guid": "urn:newsml:localhost:2014-12-11T15:20:18.510755:65b31275-0513-4ee5-9879-1ef9fae5fa33",
+            "headline": "Hong Kong shares end lower on profit-taking, China slump",
+            "language": "en",
+            "original_creator": "5481aab74ee1f927e56944cc",
+            "pubstatus": "Usable",
+            "slugline": "MARKETS-HONGKONG-STOCKS/CLOSE (URGENT)",
+            "type": "composite",
+            "unique_id": 5266,
+            "unique_name": "#5266",
+            "version_creator": "5481aab74ee1f927e56944cc",
+            "versioncreated": "2014-12-11T14:01:27+0000"
+        }
