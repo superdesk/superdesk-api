@@ -2637,6 +2637,12 @@ A single Group resource
                     "_created": "2014-11-05T03:33:40+0000",
                     "days_to_keep": 2,
                     "is_closed": true,
+                    "notifications": {
+                        "on_update": true,
+                        "on_close": true,
+                        "on_open": true,
+                        "on_error": true,
+                    },
                     "rule_set": "54599a941d41c853c71beaab",
                     "_etag": "fa1711532d64729db20f1b6334c384643d9a3c82"
                 },
@@ -2658,6 +2664,12 @@ A single Group resource
                     "_created": "2014-11-05T03:34:10+0000",
                     "days_to_keep": 2,
                     "is_closed": false,
+                    "notifications": {
+                        "on_update": true,
+                        "on_close": true,
+                        "on_open": true,
+                        "on_error": true,
+                    },                    
                     "rule_set": "54599a941d41c853c71beaab",
                     "_etag": "5653aa8da7c85f8e43d30908a7f0e45a63b1b008"
                 }
@@ -2715,7 +2727,13 @@ A single Group resource
             "_updated": "2014-11-06T00:33:30+0000",
             "_created": "2014-11-05T03:33:40+0000",
             "days_to_keep": 2,
-            "is_closed": false
+            "is_closed": false,
+            "notifications": {
+                "on_update": true,
+                "on_close": true,
+                "on_open": true,
+                "on_error": true,
+            },            
             "_etag": "fa1711532d64729db20f1b6334c384643d9a3c82"
         }
 
@@ -2736,7 +2754,13 @@ A single Group resource
                 },
                 "type": "aap",
                 "name": "Ingest Provider Name",
-                "is_closed": false
+                "is_closed": false,
+                "notifications": {
+                    "on_update": true,
+                    "on_close": true,
+                    "on_open": true,
+                    "on_error": true,
+                }
             }
 
 + Response 201 (application/json)
@@ -2760,7 +2784,13 @@ A single Group resource
             "_updated": "2014-11-06T06:17:33+0000",
             "source": "Ingest Provider Source",
             "days_to_keep": 2,
-            "is_closed": false
+            "is_closed": false,
+            "notifications": {
+                "on_update": true,
+                "on_close": true,
+                "on_open": true,
+                "on_error": true,
+            }
         }
 
 + Response 404
@@ -2799,8 +2829,14 @@ A single Group resource
             "_etag": "1813c8a77abcffdb691600374fb35528d8be9556",
             "_updated": "2014-11-06T06:17:33+0000",
             "source": "Ingest Provider Source",
-            "is_closed": false
-            "days_to_keep": 2
+            "is_closed": false,
+            "days_to_keep": 2,
+            "notifications": {
+                "on_update": true,
+                "on_close": true,
+                "on_open": true,
+                "on_error": true,
+            }
         }
 
 + Response 404
