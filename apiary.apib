@@ -98,8 +98,8 @@ List available resources.
                         "href": "/users/<regex(\"[a-f0-9]{24}\"):user_id>/archive"
                     },
                     {
-                        "title": "content_view",
-                        "href": "/content_view"
+                        "title": "saved_searches",
+                        "href": "/users/<regex(\"[a-zA-Z0-9:\\-\\.]+\"):user>/saved_searches"
                     },
                     {
                         "title": "sessions",
@@ -475,6 +475,102 @@ This will be exposed if AD is enabled.
 + Response 200
 
     [Privileges][]
+
+## Saved Searches [/users/{_id}/saved_searches]
+
+### List user's Saved Searches [GET]
+
++ Parameters
+    + _id (string) ... UserID
+
++ Response 200 (application/json)
+
+        {
+            "_links": {
+                "parent": {
+                    "title": "home", 
+                    "href": "/"
+                }, 
+                "self": {
+                    "title": "saved_searches", 
+                    "href": "/users/548a5490c3747c30e50f32d0/saved_searches"
+                }
+            },
+            "_items": [
+                {
+                    "_id": "549752abc3747c04a816b816",
+                    "_created": "2014-12-21T23:07:19+0000"
+                    "_updated": "2014-12-21T23:07:19+0000",
+                    "_etag": "f6f5e6b214ec73f2354968004dce30616c27f9d1",
+                    "name": "sports",
+                    "filter": {
+                        "query": {
+                            "repo": "ingest",
+                            "q": "sports"
+                        }
+                    },
+                    "user": "548a5490c3747c30e50f32d0",
+                    "_links": {
+                        "self": {
+                            "title": "Saved_searche",
+                            "href": "/users/548a5490c3747c30e50f32d0/saved_searches/549752abc3747c04a816b816"
+                        }
+                    }
+                }
+            ], 
+            "_meta": {
+                "max_results": 25, 
+                "total": 1, 
+                "page": 1
+            }
+        }
+
+### Create a Saved Search [POST]
+
++ Request (application/json)
+
+        {
+            "name":"sports",
+            "filter":{
+                "query":{
+                    "q":"sports",
+                    "repo":"ingest"
+                }
+            }
+        }
+
++ Parameters
+    + _id (string) ... UserID
+
++ Response 201 (application/json)
+
+        {
+            "_id": "549752abc3747c04a816b816",
+            "_created": "2014-12-21T23:07:19+0000"
+            "_updated": "2014-12-21T23:07:19+0000",
+            "_etag": "f6f5e6b214ec73f2354968004dce30616c27f9d1",
+            "name": "sports",
+            "filter": {
+                "query": {
+                    "repo": "ingest",
+                    "q": "sports"
+                }
+            },
+            "user": "548a5490c3747c30e50f32d0",
+            "_links": {
+                "self": {
+                    "title": "Saved_searche",
+                    "href": "/users/548a5490c3747c30e50f32d0/saved_searches/549752abc3747c04a816b816"
+                }
+            }
+        }
+
+### Delete a Saved Search [DELETE]
+
++ URL would be /users/{_id}/saved_searches/{saved_search_id}
+
++ Response 200 (application/json)
+
 
 # Group Planning 
 
@@ -1501,237 +1597,6 @@ A single comment resource
         {}
 
 + Response 200
-
-# Group Content View
-
-## Content view item [/content_view/{_id}]
-
-A single content view item
-
-+ Parameters
-    - _id (string, `1`) ... content_view item identifier.
-    
-+ Model (application/json)
-
-        {
-            "_links": {"self": {"href": "/content_view/1"}},
-            "name": "Test_contentView1",
-            "_updated": "2014-08-21T11:29:09+0000",
-            "_id": "53f5d805ea8e1511bba1648e",
-            "description": "Shows all items with no exception",
-            "_created": "2014-08-21T11:29:09+0000",
-            "user": "53c79018ea8e15145ff9863f",
-            "location": "archive",
-            "filter": {
-                "query": {
-                    "filtered": {
-                      "query": {
-                        "query_string": {
-                          "query": "*"
-                        }
-                      }
-                    }
-                 }
-             }
-        }
-    
-
-### Update content_view [PATCH]
-
-+ Request (application/json)
-    
-        {"name": "New name", "description": "new description"}
-
-+ Response 200 (application/json)
-
-        {"_status": "OK"}
-
-+ Response 403
-
-### Delete a content_view item [DELETE]
-
-+ Request (application/json)
-
-        {}
-
-+ Response 204
-
-## Content view resource [/content_view{?page,max_results}]
-
-### Create a view [POST]
-
-+ Request (application/json)
-
-        {
-            "name": "Test_contentView2",
-            "filter": {
-                "query": {
-                    "filtered": {
-                      "query": {
-                        "query_string": {
-                          "query": "text"
-                        }
-                      }
-                    }
-                 }
-             },
-             "description": "Shows only text items"
-        }
-
-+ Response 201 (application/json)
-
-        {
-            "_links": {"self": {"href": "/content_view/2"}},
-            "_status": "OK"
-        }
-
-### List views [GET]
-
-+ Parameters
-    + page = `1`(optional, integer) ... Page number
-    + max_results = `25`(optional, integer) ... Number of items to be returned
-    
-+ Response 200 (application/json)
-
-        {
-            "_items": [
-                {
-                    "_links": {"self": {"href": "/content_view/1"}},
-                    "name": "Test_contentView1",
-                    "_updated": "2014-08-21T11:29:09+0000",
-                    "_id": "53f5d805ea8e1511bba1648e",
-                    "_created": "2014-08-21T11:29:09+0000",
-                    "description": "Shows all items with no exception",
-                    "user": "53c79018ea8e15145ff9863f",
-                    "location": "archive",
-                    "filter": {
-                        "query": {
-                            "filtered": {
-                              "query": {
-                                "query_string": {
-                                  "query": "*"
-                                }
-                              }
-                            }
-                        }
-                    }
-                },
-                {
-                    "_links": {"self": {"href": "/content_view/2"}},
-                    "name": "Test_contentView2",
-                    "_updated": "2014-08-27T10:30:57+0000",
-                    "_id": "53fda6a9ea8e1523980cb18e",
-                    "_created": "2014-08-27T09:36:40+0000",
-                    "description": "Shows only text items",
-                    "user": "53c790ffea8e15145ff98641",
-                    "location": "archive",
-                    "filter": {
-                        "query": {
-                            "filtered": {
-                              "query": {
-                                "query_string": {
-                                  "query": "*"
-                                }
-                              }
-                            }
-                        }
-                    }
-                }
-            ]
-        }
-
-
-## Content view items [/content_view/{_id}/items{?source}]
-
-### List view items [GET]
-
-+ Parameters
-    + _id (string) ... content view id.
-    + source (optional, object) ... Elasticsearch query.
-
-+ Response 200 (application/json)
-
-        {
-            "_items": [
-                {
-                    "type": "text",
-                    "body_html": "<p>By john</p><p>html content...</p>",
-                    "description_text": "text item",
-                    "self": {
-                        "title": "Archive",
-                        "href": "/archive/12345678"
-                    }
-                },
-                {
-                    "type": "picture",
-                    "mimetype": "image/jpeg",
-                    "description_text": "picture item - also applicable to audio/video",
-                    "renditions": {
-                        "original": {
-                            "href": "http://farm4.staticflickr.com/3665/9203816834_9f62964627_o_d.jpg",
-                            "mimetype": "image/jpeg",
-                            "width": 5198,
-                            "height": 3462
-                        }
-                    },
-                    "self": {
-                        "title": "Archive",
-                        "href": "/archive/12345679"
-                    }
-                },
-                {
-                    "type": "composite",
-                    "description_text": "a story like package with main content and sidebar",
-                    "groups": [
-                        {
-                            "id": "root",
-                            "role": "grpRole:NEP",
-                            "refs": [
-                                {"idRef": "main"},
-                                {"idRef": "sidebar"}
-                            ]
-                        },
-                        {
-                            "id": "main",
-                            "role": "grpRole:Main",
-                            "refs": [
-                                {
-                                    "mimetype": "application/vnd.iptc.g2.newsitem+xml",
-                                    "provider": "sourcefabric.org",
-                                    "residRef": "tag:sourcefabric.org,0000:newsml_BRE9AG0DM",
-                                    "type": "text",
-                                    "headline": "per package caption"
-                                },
-                                {
-                                    "mimetype": "application/vnd.iptc.g2.newsitem+xml",
-                                    "provider": "sourcefabric.org",
-                                    "residRef": "tag:sourcefabric.org,0000:newsml_CBRE9AG1HCJ00",
-                                    "type": "picture",
-                                    "headline": "picture caption"
-                                }
-                            ]
-                        },
-                        {
-                            "id": "sidebar",
-                            "role": "grpRole:Sidebar",
-                            "refs": [
-                                {
-                                    "mimetype": "application/vnd.iptc.g2.newsitem+xml",
-                                    "provider": "sourcefabric.org",
-                                    "residRef": "tag:sourcefabric.org,0000:newsml_BRE9AR0FF",
-                                    "type": "text",
-                                    "headline": "sidebar text caption"
-                                }
-                            ]
-                        }
-                    ],
-                    "self": {
-                        "title": "Archive",
-                        "href": "/archive/12345677"
-                    }
-                }
-            ]
-        }
 
 # Group Roles Management
 
