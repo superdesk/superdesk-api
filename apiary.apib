@@ -46,6 +46,10 @@ List available resources.
                         "href": "/rule_sets"
                     },
                     {
+                        "title": "routing schemes",
+                        "href": "/routing_schemes"
+                    },
+                    {
                         "title": "users",
                         "href": "/users"
                     },
@@ -2513,6 +2517,7 @@ A single Group resource
                         "on_error": true,
                     },
                     "rule_set": "54599a941d41c853c71beaab",
+                    "routing_scheme": "5459a91d41c853c71b",
                     "_etag": "fa1711532d64729db20f1b6334c384643d9a3c82"
                 },
                 {
@@ -2747,6 +2752,250 @@ Set of transformation rules that can be applied to ingested content.
 + Response 200
 
     [Rule set][]
+
+## Routing Schemes  [/routing_schemes]
+An endpoint to manage Routing Rule Schemes
+
+### Retrieves a list of Routing Rule Schemes [GET]
+Fetches all routing schemes
+
++ Parameters
+    - _id (string) ... Routing Rule Scheme Id.
+
++ Response 200 (application/json)
+        {
+            "_items": [
+                {
+                    "_id": "54599a941d41c853c71beaab",
+                    "name": "routing rule scheme 1",
+                    "rules": [
+                        {
+                            "name": "Sports Rule",
+                            "filter": { 
+                                "category": [{"qcode": "S", "name": "Sports"}],
+                                "subject": [{"qcode": "15030000", "name": "Horse Racing"}],
+                                "type": ["text", "preformatted"],
+                                "genre": ["sidebar"],
+                                "headline": "Melbourne Cup",
+                                "slugline": "Melbourne Cup 2015",
+                                "body": "Melbourne Cup 2015"
+                            },
+                            "actions": {
+                                "fetch": [ {"desk": "12sbvfkjd378mn111", "stage": "sdf67764102dfsdf"}],
+                                "publish": [{"desk": "12sbvfkjd378mn111fgh", "stage": "sdf67764102dfsdf445"}],
+                                "exit": "false"
+                            },
+                            "schedule": {
+                                "day_of_week": ["MON", "TUE"]
+                                "hour_of_day_from": "1000",
+                                "hour_of_day_to": "2000"
+                            }
+                        }
+                    ],
+                    "_created": "2014-11-03T00:30:30+0000",
+                    "_updated": "2014-11-03T00:30:30+0000",
+                    "_links": {
+                        "self": {
+                            "href": "/routing_schemes/54599a941d41c853c71beaab",
+                            "title": "routing_schemes"
+                        }
+                    }
+                }
+            ],
+            "_links": {
+                "self": {
+                    "href": "/routing_schemes",
+                    "title": "routing_schemes"
+                },
+                "parent": {
+                    "href": "/",
+                    "title": "home"
+                }
+            },
+            "_meta": {
+                "max_results": 25,
+                "total": 2,
+                "page": 1
+            }
+        }
+
+### Routing Rule Scheme Item [/routing_schemes/{_id}]
+
+#### Retrieve a single Routing Rule Scheme [GET]
+Retrieves a Routing Rule Scheme 
+
++ Response 200 (application/json)
+        {
+            "_id": "54599a941d41c853c71beaab",
+            "name": "routing rule scheme 1",
+            "rules": [
+                {
+                    "name": "Sports Rule",
+                    "filter": { 
+                        "category": [{"qcode": "S", "name": "Sports"}],
+                        "subject": [{"qcode": "15030000", "name": "Horse Racing"}],
+                        "type": ["text", "preformatted"],
+                        "genre": ["sidebar"],
+                        "headline": "Melbourne Cup",
+                        "slugline": "Melbourne Cup 2015",
+                        "body": "Melbourne Cup 2015"
+                    },
+                    "actions": {
+                        "fetch": [ {"desk": "12sbvfkjd378mn111", "stage": "sdf67764102dfsdf"}],
+                        "publish": [{"desk": "12sbvfkjd378mn111fgh", "stage": "sdf67764102dfsdf445"}],
+                        "exit": "false"
+                    },
+                    "schedule": {
+                        "day_of_week": ["MON", "TUE"]
+                        "hour_of_day_from": "1000",
+                        "hour_of_day_to": "2000"
+                    }
+                }
+            ],
+            "_created": "2014-11-03T00:30:30+0000",
+            "_updated": "2014-11-03T00:30:30+0000",
+            "_links": {
+                "self": {
+                    "href": "/routing_schemes/54599a941d41c853c71beaab",
+                    "title": "routing_schemes"
+                }
+            }
+        }
+
+#### Create a Routing Scheme [POST]
+Creates a Routing Rule Scheme
+
++ Request (application/json)
+
+    + Body
+        {
+            "name": "routing rule scheme 1",
+            "rules": [
+                {
+                    "name": "Sports Rule",
+                    "filter": { 
+                        "category": [{"qcode": "S", "name": "Sports"}],
+                        "subject": [{"qcode": "15030000", "name": "Horse Racing"}],
+                        "type": ["text", "preformatted"]
+                    },
+                    "actions": {
+                        "fetch": [ {"desk": "12sbvfkjd378mn111", "stage": "sdf67764102dfsdf"}],
+                        "publish": [],
+                        "exit": "false"
+                    }
+                }
+            ]
+        }
+
++ Response 201 (application/json)
+
+        {
+            "_status": "OK",
+            "_links": {
+                "self": {
+                    "href": "/routing_schemes/545b127d1d41c8a571d486e2",
+                    "title": "routing_schemes"
+                }
+            },
+            "_created": "2014-11-06T06:17:33+0000",
+            "_id": "545b127d1d41c8a571d486e2",
+            "_etag": "1813c8a77abcffdb691600374fb35528d8be9556",
+            "_updated": "2014-11-06T06:17:33+0000",
+            "name": "routing rule scheme 1",
+            "rules": [
+                {
+                    "name": "Sports Rule",
+                    "filter": { 
+                        "category": [{"qcode": "S", "name": "Sports"}],
+                        "subject": [{"qcode": "15030000", "name": "Horse Racing"}],
+                        "type": ["text", "preformatted"]
+                    },
+                    "actions": {
+                        "fetch": [ {"desk": "12sbvfkjd378mn111", "stage": "sdf67764102dfsdf"}],
+                        "publish": [],
+                        "exit": "false"
+                    }
+                }
+            ]
+        }
+
++ Response 400
+If Routing Scheme is being created without a rule or a rule without filter and actions.
+
+#### Update a Routing Scheme [PATCH]
+Updates a Routing Rule Scheme
+
++ Request (application/json)
+
+    + Headers
+        If-Match: xyz
+
+    + Body
+        {
+            "name": "routing rule scheme 1",
+            "rules": [
+                {
+                    "name": "Sports Rule",
+                    "filter": { 
+                        "category": [{"qcode": "S", "name": "Sports"}],
+                        "subject": [{"qcode": "15030000", "name": "Horse Racing"}],
+                        "type": ["text"]
+                    },
+                    "actions": {
+                        "fetch": [ {"desk": "12sbvfkjd378mn111", "stage": "sdf67764102dfsdf"}],
+                        "publish": [{"desk": "12sbvfkjd378mn11sdf1", "stage": "sdf67764102df12sdf"}],
+                        "exit": "true"
+                    }
+                }
+            ]
+        }
+
++ Response 201 (application/json)
+
+        {
+            "_status": "OK",
+            "_links": {
+                "self": {
+                    "href": "/routing_schemes/545b127d1d41c8a571d486e2",
+                    "title": "routing_schemes"
+                }
+            },
+            "_created": "2014-11-06T06:17:33+0000",
+            "_id": "545b127d1d41c8a571d486e2",
+            "_etag": "1813c8a77abcffdb691600374fb35528d8be9556",
+            "_updated": "2014-11-06T06:17:33+0000",
+            "name": "routing rule scheme 1",
+            "rules": [
+                {
+                    "name": "Sports Rule",
+                    "filter": { 
+                        "category": [{"qcode": "S", "name": "Sports"}],
+                        "subject": [{"qcode": "15030000", "name": "Horse Racing"}],
+                        "type": ["text"],
+                    },
+                    "actions": {
+                        "fetch": [ {"desk": "12sbvfkjd378mn111", "stage": "sdf67764102dfsdf"}],
+                        "publish": [{"desk": "12sbvfkjd378mn11sdf1", "stage": "sdf67764102df12sdf"}],
+                        "exit": "false"
+                    }
+                }
+            ]
+        }
+
++ Response 400
+If Routing Scheme is being updated without a rule or a rule without filter and actions.
+
+#### Hard Delete Routing Rule Scheme [DELETE]
+
++ Request
+
+    + Headers
+        If-Match: xyz
+
++ Response 200 (application/json)
+
++ Response 400
+If the scheme is already associated with an Ingest Provider
 
 # Group Vocabularies
 
