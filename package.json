@@ -2,10 +2,10 @@
   "name": "superdesk-api",
   "description": "superdesk api blueprint",
   "dependencies": {
-    "protagonist": "~0.12.0"
+    "drafter": "^2.0.0-pre.1"
   },
   "devDependencies": {
-    "aglio": "^1.16.1"
+    "aglio": "^2.3.0"
   },
   "scripts": {
     "test": "node ./test.js"
