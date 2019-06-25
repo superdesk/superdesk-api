@@ -1,5 +1,5 @@
 
-var protagonist = require('protagonist'),
+var protagonist = require('drafter'),
     path = require('path'),
     fs = require('fs');
 

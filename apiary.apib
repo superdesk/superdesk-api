@@ -1,3463 +1,761 @@
 FORMAT: 1A
 
-# Superdesk
+# Superdesk API
 
-# Group Resources
+Superdesk is an open source end-to-end news creation, production, curation, distribution and publishing platform developed and maintained 
+by Sourcefabric with the sole purpose of making the best possible software for journalism. 
 
-## GET /
+This is the offical documentation of Superdesk API used by Superdesk application. It features all the resources to 
+ - manage a newsroom (i.e. users, desks, stages etc)
+ - manage stories (i.e. templates, stories, multimedia etc)
+ - manage distribution (i.e. subscribers, filters, destinations etc) 
 
-List available resources.
+---
 
-+ Response 200 (application/json)
+## Before You Begin
 
-        {
-            "_links": {
-                "child": [
-                    {
-                        "title": "archive_media",
-                        "href": "/archive_media"
-                    },
-                    {
-                        "title": "ingest",
-                        "href": "/ingest"
-                    },
-                    {
-                        "title": "archive/<path:item>/comments",
-                        "href": "/archive/<path:item>/comments"
-                    },
-                    {
-                        "title": "item_comments",
-                        "href": "/item_comments"
-                    },
-                    {
-                        "title": "reset_user_password",
-                        "href": "/reset_user_password"
-                    },
-                    {
-                        "title": "auth",
-                        "href": "/auth"
-                    },
-                    {
-                        "title": "ingest_providers",
-                        "href": "/ingest_providers"
-                    },
-                    {
-                        "title": "rule_sets",
-                        "href": "/rule_sets"
-                    },
-                    {
-                        "title": "routing schemes",
-                        "href": "/routing_schemes"
-                    },
-                    {
-                        "title": "users",
-                        "href": "/users"
-                    },
-                    {
-                        "title": "desks",
-                        "href": "/desks"
-                    },
-                    {
-                        "title": "roles",
-                        "href": "/roles"
-                    },
-                    {
-                        "title": "archive",
-                        "href": "/archive"
-                    },
-                    {
-                        "title": "notification",
-                        "href": "/notification"
-                    },
-                    {
-                        "title": "upload",
-                        "href": "/upload"
-                    },
-                    {
-                        "title": "users/<regex(\"[a-f0-9]{24}\"):user_id>/desks",
-                        "href": "/users/<regex(\"[a-f0-9]{24}\"):user_id>/desks"
-                    },
-                    {
-                        "title": "archive_ingest",
-                        "href": "/archive_ingest"
-                    },
-                    {
-                        "title": "activity",
-                        "href": "/activity"
-                    },
-                    {
-                        "title": "planning",
-                        "href": "/planning"
-                    },
-                    {
-                        "title": "Packages",
-                        "href": "/packages"
-                    },
-                    {
-                        "title": "coverages",
-                        "href": "/coverages"
-                    },
-                    {
-                        "title": "users/<regex(\"[a-f0-9]{24}\"):user_id>/archive",
-                        "href": "/users/<regex(\"[a-f0-9]{24}\"):user_id>/archive"
-                    },
-                    {
-                        "title": "saved_searches",
-                        "href": "/users/<regex(\"[a-zA-Z0-9:\\-\\.]+\"):user>/saved_searches"
-                    },
-                    {
-                        "title": "sessions",
-                        "href": "/sessions"
-                    },
-                    {
-                        "title": "get_upload_as_data_uri",
-                        "href": "/upload/<path:media_id>/raw"
-                    },
-                    {
-                        "title": "get_subjectcodes",
-                        "href": "/subjectcodes/"
-                    },
-                    {
-                        "title": "preferences",
-                        "href": "/preferences/<regex():session_id>"
-                    },
-                    {
-                        "title": "tasks",
-                        "href": "/tasks"
-                    },
-                    {
-                        "title": "stages",
-                        "href": "/stages"
-                    },
-                    {
-                        "title": "archive_autosave",
-                        "href": "/archive_autosave"
-                    },
-                    {
-                        "title": "groups",
-                        "href": "/groups"
-                    },
-                    {
-                        "title": "users/<regex(\"[a-f0-9]{24}\"):user_id>/groups",
-                        "href": "/users/<regex(\"[a-f0-9]{24}\"):user_id>/groups"
-                    },
-                    {
-                        "href": "/vocabularies",
-                        "title": "vocabularies"
-                    },
-                    {
-                        "href": "/search",
-                        "title": "search"
-                    },
-                    {
-                        "href": "/privileges",
-                        "title": "privileges"
-                    },
-                    {
-                        "href":"/archive/spike",
-                        "title":"archive_spike"
-                    },
-                    {
-                        "href":"/archive/unspike",
-                        "title":"archive_unspike"
-                    }
-                ]
-            }
-        }
+The base URI for all requests is http://{{host}/api where host will be the host address where the server runs.
+
+To run the server locally please check [Superdesk](https://github.com/superdesk/superdesk) repo for all the information
+
+---
 
 # Group Authentication
 
-## Auth [/auth]
+## Basic Authentication [/auth_db]
 
 ### Authenticate [POST]
+
+Uses basic authentication with username and password to authenticate the user
 
 The rest of the endpoints requiring authorization will have to supply the following header: "Authorization": b'basic ' + b64encode(token + b':')
 
 + Request (application/json;charset=UTF-8)
 
         {
-            "username": "admin",
-            "password": "admin"
+            "username": {{uername}},
+            "password": {{password}}
         }
 
 + Response 200 (application/json)
 
         {
-            "_links": {"self": {"href": "/auth/523"}},
-            "token": "aNcdefgH",
-            "user": "123"
-        }
-
-# Group User Management
-
-## User [/users/{_id}]
-
-A single User resource.
-
-+ Parameters
-    + _id (string) ... User id.
-
-+ Model (application/json) 
-
-        {
-            "_links": {"self": {"href": "/users/123"}},
-            "_id": "123",
-            "username": "john",
-            "email": "john.doe@email.com",
-            "first_name": "John",
-            "last_name": "Doe",
-            "display_name": "John Doe",
-            "phone_number": "0123456789",
-            "_created": "2014-02-18T14:42:16Z",
-            "_updated": "2014-02-18T14:42:16Z",
-            "_etag": "xyz",
-            "picture_url": "http://www.gravatar.com/avatar/205e460b479e2e5b48aec07710c08d50?s=200",
-            "workspace": {
-                "widgets": [
-                    {
-                        "col": 1,
-                        "configuration": {
-                            "zones": ["Europe/London", "Asia/Tokyo", "Europe/Prague"]
-                        },
-                        "row": 1,
-                        "sizex": 1,
-                        "sizey": 1,
-                        "_id" : "world-clock"
-                    }
-                ]
-            },
-            "_readonly": ["username", "display_name", "password", "email", "phone", "first_name", "last_name"],
-            "privileges": {
-                "users": 1,
-                "ingest": 0
-            }
-        }
-
-### Retrieve a User [GET]
-
-"_readonly" attribute is included only if AD is enabled.
-
-+ Request (application/json)
-
-+ Response 200
-
-    [User][]
-
-+ Response 404
-
-### Update User [PATCH]
-
-+ Request (application/json)
-
-    + Headers
-    
-            If-Match: xyz
-    
-    + Body
-
-            {"last_name": "Baz"}
-
-+ Response 200 (application/json)
-
-        {"_status": "OK"}
-
-+ Response 403
-
-### Hard Delete a User [DELETE]
-
-+ Request
-
-    + Headers
-    
-            If-Match: xyz
-
-+ Response 204
-
-## User Search [/users{?page,max_results,where,sort}]
-
-### List all Users [GET]
-
-"_readonly" attribute is included only if AD is enabled.
-
-+ Parameters
-    + page = `0`(optional, integer) ... Page number
-    + max_results = `25`(optional, integer) ... Number of users to be returned
-    + where (optional, object) ... Filtering
-    + sort (optional, object) ... Sorting
-
-+ Response 200 (application/json)
-        
-        {
-            "_items": [
-                {
-                    "_links": {"self": {"href": "/users/2"}},
-                    "_id": "2",
-                    "email": "john.doe@email.com",
-                    "first_name": "John",
-                    "display_name": "John Doe",
-                    "last_name": "Doe",
-                    "username": "john",
-                    "phone_number": "0123456789",
-                    "_created": "2014-02-18T14:42:16Z",
-                    "_updated": "2014-02-18T14:42:16Z",
-                    "picture_url": "http://www.gravatar.com/avatar/205e460b479e2e5b48aec07710c08d50",
-                    "_etag": "xyz",
-                    "_readonly": ["username", "display_name", "password", "email", "phone", "first_name", "last_name"]
-                },
-                {
-                    "_links": {"self": {"href": "/users/3"}},
-                    "_id": "3",
-                    "email": "joe.hammer@email.com",
-                    "first_name": "Joe",
-                    "display_name": "Joe Hammer",
-                    "last_name": "Hammer",
-                    "username": "joe",
-                    "phone_number": "0223456789",
-                    "_created": "2014-02-18T14:43:27Z",
-                    "_updated": "2014-02-18T14:43:27Z",
-                    "picture_url": "http://www.gravatar.com/avatar/205e460b479e2e5b48aec07710c08d50",
-                    "_etag": "xyz",
-                    "_readonly": ["username", "display_name", "password", "email", "phone", "first_name", "last_name"]
-                }
-            ]
-        }
-
-## User collection [/users]
-
-### Create user [POST]
-
-+ Request (application/json)
-
-        {
-            "first_name": "John",
-            "last_name": "Doe",
-            "username": "john",
-            "email": "john.doe@email.com",
-            "password": "a3r546465676bgyhyyehy",
-            "phone_number": "0223456789"
-        }
-
-+ Response 201 (application/json)
-
-        {
-            "_links": {"self": {"href": "/users/5"}},
-            "_status": "OK",
-            "_etag": "xyz"
-        }
-
-+ Response 400 (application/json)
-
-        {
-            "_status": "ERR",
-            "_issues": {
-                "username": {
-                    "unique": {
-                        "msg": "There is already an active user with this name"
-                    }
-                },
-                "email": {
-                    "unique": { "msg": "Unique constraint failed" }
-                },
-                "email": {
-                    "format": { "msg": "Invalid EMail" }
-                },
-                "phone": {
-                    "format": {
-                        "msg": "Invalid phone number format"
-                        "example": "+123123456789 or 0123456789 or 123456789"
-                    }
-                },
-                "password": {
-                    "required": { "msg": "Mandatory value is missing" }
-                }
-            }
-        }
-
-
-## Reset user password [/reset_user_password]
-
-This will not be exposed if AD is enabled.
-
-### Initiate reset user password [POST]
-
-+ Request (application/json)
-
-        {
-            "email": "foo@bar.com"
-        }
-
-+ Response 201 (application/json)
-
-        {
-            "email": "foo@bar.com",
             "_status": "OK",
             "_links": {
                 "self": {
-                    "href": "/reset_user_password/53d607c48e4eba1fc50645ff",
+                    "href": "auth_db/123",
+                    "title": "Auth_db"
+                }
+            },
+            "username": "user_name",
+            "_etag": "35186487751b000740635868c46ec1679f35acb0",
+            "_updated": "2019-06-23T04:42:52+0000",
+            "token": "07b2be11-5edc-4efd-b021-h34h34434",
+            "user": "5ab1a33434dfe38019f0a875a",
+            "_id": "123",
+            "_created": "2019-06-23T04:42:52+0000"
+        }
+
+## Reset User Password [/reset_user_password]
+
+### Reset User Password [POST]
+
+If email is provided starts reset password process and sends an email to users email address.
+If a token and password is provided, it resets the password for the user where reset password
+process has started.
+    
++ email (string) - Email of user
++ token (string) - Token for reset password process
++ password (string) - New password of user
+
++ Request
+
+        {
+            "email": "a2@a.com"
+        }
+
++ Response (application/json)
+
+        {
+            "email": "user@email.com",
+            "_etag": "ef2aef3faebc6d1c25d8a259d81be06d8174e429",
+            "_links": {
+                "self": {
+                    "href": "reset_user_password/5d0f6ea41d41c8f11e5a11bc",
                     "title": "Reset_user_password"
                 }
-            }
-        }
-
-### Finalize reset user password with the emailed token [POST]
-
-+ Request (application/json)
-
-        {
-            "token": "emailed token"
-            "password": "new password"
-        }
-
-+ Response 201 (application/json)
-
-        {
-            "email": "foo@bar.com",
+            },
             "_status": "OK",
-            "_links": {
-                "self": {
-                    "href": "/reset_user_password/53d607c48e4eba1fc50645ff",
-                    "title": "Reset_user_password"
-                }
-            }
-        }
-
-## Import Profile from AD [/import_profile]
-
-This will be exposed if AD is enabled.
-
-### Import User Profile from AD [POST]
-
-+ Request (application/json)
-
-        {
-            "username": "admin",
-            "password": "admin",
-            "profile_to_import": "sduser"
-        }
-
-+ Response 201 (application/json)
-
-        {
-           "_status": "OK",
-           "_id": "5449e53fc3747c105fa69f53",
-           "_etag": "5cc244e4acb76505127cd1555ee13d93e0f85e39",
-           "first_name": "User",
-           "last_name": "SD",
-           "display_name": "SD User",
-           "is_active": true,
-           "_created": "2014-10-24T05:35:54+0000",
-           "_updated": "2014-10-24T05:35:54+0000",
-           "user_type": "user",
-           "username": "sduser",
-           "phone": "+61 2 9322 8598",
-           "email": "sduser@sourcefabric.org",
-           "_links": {
-              "self": {
-                 "href": "/import_profile/5449e53fc3747c105fa69f53",
-                 "title": "Import_profile"
-               }
-           }
-        }
-
-+ Response 404
-
-        {}
-
-## Privileges [/privileges]
-
-+ Model (application/json)
-
-        {
-            "_items": [
-                {"name": "ingest", "label": "Ingest", "description": "Fetch content from ingest."},
-                {"name": "users", "label": "Users", "description": "Manage users and user roles."}
-            ]
-        }
-
-### List available privileges in the system [GET]
-
-+ Response 200
-
-    [Privileges][]
-
-## Saved Searches [/users/{_id}/saved_searches]
-
-### List user's Saved Searches [GET]
-
-+ Parameters
-    + _id (string) ... UserID
-
-+ Response 200 (application/json)
-
-        {
-            "_links": {
-                "parent": {
-                    "title": "home", 
-                    "href": "/"
-                }, 
-                "self": {
-                    "title": "saved_searches", 
-                    "href": "/users/548a5490c3747c30e50f32d0/saved_searches"
-                }
-            },
-            "_items": [
-                {
-                    "_id": "549752abc3747c04a816b816",
-                    "_created": "2014-12-21T23:07:19+0000"
-                    "_updated": "2014-12-21T23:07:19+0000",
-                    "_etag": "f6f5e6b214ec73f2354968004dce30616c27f9d1",
-                    "name": "sports",
-                    "filter": {
-                        "query": {
-                            "repo": "ingest",
-                            "q": "sports"
-                        }
-                    },
-                    "user": "548a5490c3747c30e50f32d0",
-                    "_links": {
-                        "self": {
-                            "title": "Saved_searche",
-                            "href": "/users/548a5490c3747c30e50f32d0/saved_searches/549752abc3747c04a816b816"
-                        }
-                    }
-                }
-            ], 
-            "_meta": {
-                "max_results": 25, 
-                "total": 1, 
-                "page": 1
-            }
-        }
-
-### Create a Saved Search [POST]
-
-+ Request (application/json)
-
-        {
-            "name":"sports",
-            "filter":{
-                "query":{
-                    "q":"sports",
-                    "repo":"ingest"
-                }
-            }
-        }
-
-+ Parameters
-    + _id (string) ... UserID
-
-+ Response 201 (application/json)
-
-        {
-            "_id": "549752abc3747c04a816b816",
-            "_created": "2014-12-21T23:07:19+0000"
-            "_updated": "2014-12-21T23:07:19+0000",
-            "_etag": "f6f5e6b214ec73f2354968004dce30616c27f9d1",
-            "name": "sports",
-            "filter": {
-                "query": {
-                    "repo": "ingest",
-                    "q": "sports"
-                }
-            },
-            "user": "548a5490c3747c30e50f32d0",
-            "_links": {
-                "self": {
-                    "title": "Saved_searche",
-                    "href": "/users/548a5490c3747c30e50f32d0/saved_searches/549752abc3747c04a816b816"
-                }
-            }
-        }
-
-### Delete a Saved Search [DELETE]
-
-+ URL would be /users/{_id}/saved_searches/{saved_search_id}
-
-+ Response 200 (application/json)
-
-
-# Group Planning 
-
-## Planning item [/planning/{_id}]
-
-A single Planning resource
-
-+ Parameters
-    + _id (string, `1`) ... Planning item identifier.
-    
-+ Model (application/json)
-
-        {
-            "_links": {"self": {"href": "/planning/1"}},
-            "_id": "urn:newsml:localhost:2014-07-04T14:27:18.989271:b49dd8bc-4916-44fc-977e-933c8128ba42",
-            "_created": "2014-07-04T11:27:18+0000",
-            "headline": "my item",
-            "versioncreated": "2014-07-04T11:27:18+0000",
-            "firstcreated": "2014-07-04T11:27:18+0000",
-            "_updated": "2014-07-04T11:27:18+0000",
-            "description_text": "item description",
-            "desk": "53b12930ea8e151bbcaeca07"
-        }
-
-### Retrieve a Planning item [GET]
-
-+ Response 200
-
-    [Planning item][]
-
-+ Response 404
-
-### Update Item [PATCH]
-
-+ Request (application/json)
-    
-        {"description_text": "foo"}
-
-+ Response 200 (application/json)
-
-        {"_status": "OK"}
-
-+ Response 403
-
-### Delete an Item [DELETE]
-
-+ Request
-
-    + Headers
-
-            If-Match: etag
-
-+ Response 204
-
-## Planning item collection [/planning{?page,max_results}]
-
-### Create item [POST]
-
-+ Request (application/json)
-
-        {
-            "headline": "a task"
-        }
-
-+ Response 201 (application/json)
-
-        {
-            "_links": {"self": {"href": "/planning/2"}},
-            "_status": "OK"
-        }
-        
-### List all items [GET]
-
-+ Parameters
-    + page = `1`(optional, integer) ... Page number
-    + max_results = `25`(optional, integer) ... Number of items to be returned
-    
-+ Response 200 (application/json)
-
-        {
-            "_items": [
-                {
-                    "_links": {"self": {"href": "/planning/1"}},
-                    "guid": "urn:newsml:localhost:2014-07-04T14:27:18.989271:b49dd8bc-4916-44fc-977e-933c8128ba42",
-                    "_id": "urn:newsml:localhost:2014-07-04T14:27:18.989271:b49dd8bc-4916-44fc-977e-933c8128ba42",
-                    "_created": "2014-07-04T11:27:18+0000",
-                    "headline": "my item",
-                    "versioncreated": "2014-07-04T11:27:18+0000",
-                    "firstcreated": "2014-07-04T11:27:18+0000",
-                    "_updated": "2014-07-04T11:27:18+0000"
-                },
-                {
-                    "_links": {"self": {"href": "/planning/2"}},
-                    "_id": "urn:newsml:localhost:2014-07-03T13:41:04.620956:14f2e70f-b7e5-4d4a-88fb-d0e563ce2f29",
-                    "guid": "urn:newsml:localhost:2014-07-03T13:41:04.620956:14f2e70f-b7e5-4d4a-88fb-d0e563ce2f29",
-                    "_created": "2014-07-03T10:41:04+0000",
-                    "headline": "item1",
-                    "desk": "53b12930ea8e151bbcaeca07",
-                    "versioncreated": "2014-07-03T10:41:04+0000",
-                    "_updated": "2014-07-03T10:41:31+0000",
-                    "firstcreated": "2014-07-03T10:41:04+0000"
-                }
-            ]
-        }
-
-
-# Group Coverages 
-
-## Coverage item [/coverages/{_id}]
-
-A single coverage resource
-
-+ Parameters
-    + _id (string, `1`) ... Coverage item identifier.
-    
-+ Model (application/json)
-
-        {
-            "_links": {"self": {"href": "/coverages/1"}},
-            "_id": "53e1ed28ea8e154d69b79367",
-            "_created": "2014-08-06T08:54:00+0000",
-            "headline": "coverage1",
-            "_updated": "2014-08-06T09:29:32+0000",
-            "assigned_desk": "53c79364ea8e1515849ac068",
-            "coverage_type": "video"
-        }
-
-### Retrieve a Coverage item [GET]
-
-+ Response 200
-
-    [Coverage item][]
-
-+ Response 404
-
-### Update Item [PATCH]
-
-+ Request (application/json)
-    
-        {"ed_note": "foo"}
-
-+ Response 200 (application/json)
-
-        {"_status": "OK"}
-
-+ Response 403
-
-### Delete an Item [DELETE]
-
-+ Request
-
-    + Headers
-
-            If-Match: etag
-
-+ Response 204
-
-## Coverage item collection [/coverages{?page,max_results}]
-
-### Create item [POST]
-
-+ Request (application/json)
-
-        {
-            "headline": "test coverage"
-        }
-
-+ Response 201 (application/json)
-
-        {
-            "_links": {"self": {"href": "/coverages/2"}},
-            "_status": "OK"
-        }
-        
-### List all items [GET]
-
-+ Parameters
-    + page = `1`(optional, integer) ... Page number
-    + max_results = `25`(optional, integer) ... Number of items to be returned
-    
-+ Response 200 (application/json)
-
-        {
-            "_items": [
-                {
-                    "_links": {"self": {"href": "/coverages/1"}},
-                    "_id": "53e1ed28ea8e154d69b79367",
-                    "_created": "2014-08-06T08:54:00+0000",
-                    "headline": "coverage1",
-                    "_updated": "2014-08-06T09:29:32+0000",
-                    "assigned_desk": "53c79364ea8e1515849ac068",
-                    "assigned_user": "53c79018ea8e15145ff9863f",
-                    "coverage_type": "video"
-                    
-                },
-                {
-                    "_links": {"self": {"href": "/coverages/2"}},
-                    "_id": "53e34d78ea8e153e923ee119",
-                    "_created": "2014-08-07T09:57:12+0000",
-                    "headline": "test coverage",
-                    "_updated": "2014-08-07T10:09:07+0000",
-                    "ed_note": "test coverage editorial note",
-                    "planning_item": "urn:newsml:localhost:2014-08-07T13:08:03.499037:0245e791-b7d9-4a97-9b56-4dbf8fcdec15",
-                    "coverage_type": "story"
-                }
-            ]
-        }
-
-
-# Group Desks
-
-## Desks item [/desks/{_id}]
-
-A single Desks resource
-
-+ Parameters
-    - _id (string, `1`) ... Desks item identifier.
-    
-+ Model (application/json)
-
-        {
-            "_links": {"self": {"href": "/desks/1"}},
-            "name": "My desk",
-            "_updated": "2014-07-17T06:34:00+0000",
-            "_id": "53c76e4dea8e150dc0fd8579",
-            "members": [
-                {"user": "53c76e39ea8e150dc0fd8578"},
-                {"user": "53c4f366ea8e15141784de99"}
-            ],
-            "_created": "2014-07-17T06:33:49+0000"
+            "_id": "5d0f6ea41d41c8f11e5a11bc",
+            "expire_time": "2019-06-24T12:20:52+0000",
+            "_updated": "2019-06-23T12:20:52+0000",
+            "_created": "2019-06-23T12:20:52+0000"
         }
     
-### Retrieve a Desk [GET]
 
-+ Response 200
+# Group All Resources
 
-    [Desks item][]
+List of resources related to questions in the API.
 
-+ Response 404
+## All Resources [/]
 
-### Update Desk [PATCH]
+List available resources.
 
-+ Request (application/json)
-    
-        {"name": "Foo"}
-
-+ Response 200 (application/json)
-
-        {"_status": "OK"}
-
-+ Response 403
-
-### Delete a Desk [DELETE]
-
-+ Request (application/json)
-
-        {}
-
-+ Response 204
-
-
-## Desks collection [/desks{?page,max_results}]
-
-### Create desk [POST]
-
-+ Request (application/json)
-
-        {
-            "name": "Foo"
-        }
-
-+ Response 201 (application/json)
-
-        {
-            "_links": {"self": {"href": "/desks/2"}},
-            "_status": "OK"
-        }
-
-### List all desks [GET]
-
-+ Parameters
-    + page = `1`(optional, integer) ... Page number
-    + max_results = `25`(optional, integer) ... Number of items to be returned
-    
-+ Response 200 (application/json)
-
-        {
-            "_items": [
-                {
-                    "_created": "2014-07-15T09:35:18+0000",
-                    "_id": "53c4f5d6ea8e15141784df1a",
-                    "_links": {"self": {"href": "/desks/1"}},
-                    "_updated": "2014-07-17T06:44:58+0000",
-                    "members": [{"user": "53c76e39ea8e150dc0fd8578"}],
-                    "name": "Admin desk",
-                    "spike_expiry": 60
-                },
-                {
-                    "_created": "2014-07-17T06:33:49+0000",
-                    "_id": "53c76e4dea8e150dc0fd8579",
-                    "_links": {"self": {"href": "/desks/2"}},
-                    "_updated": "2014-07-17T06:34:00+0000",
-                    "members": [{"user": "53c76e39ea8e150dc0fd8578"}, {"user": "53c4f366ea8e15141784de99"}],
-                    "name": "My desk",
-                    "spike_expiry": 360
-                }
-            ]
-        }
-
-## User desks [/users/{_id}/desks]
-
-+ Parameters
-    - _id (string) ... User id.
-
-### List the desks for given users [GET]
+### List All Resources [GET]
 
 + Response 200 (application/json)
 
         {
-            "_items": [
+        "_links": {
+            "child": [
                 {
-                    "_links": {"self": {"href": "users/1/desks/1"}},
-                    "name": "Admin desk",
-                    "_updated": "2014-07-17T06:44:58+0000",
-                    "_id": "53c4f5d6ea8e15141784df1a",
-                    "members": [
-                        {"user": "53c4f366ea8e15141784de99"}
-                    ],
-                    "_created": "2014-07-15T09:35:18+0000",
-                    "spike_expiry": 360
+                    "href": "published",
+                    "title": "published"
                 },
                 {
-                    "_links": {"self": {"href": "users/1/desks/2"}},
-                    "name": "My desk",
-                    "_updated": "2014-07-17T06:34:00+0000",
-                    "_id": "53c76e4dea8e150dc0fd8579",
-                    "members": [
-                        {"user": "53c76e39ea8e150dc0fd8578"},
-                        {"user": "53c4f366ea8e15141784de99"}
-                    ],
-                    "_created": "2014-07-17T06:33:49+0000",
-                    "spike_expiry": 360
-                }
-            ]
-        }
-
-
-# Group Content
-
-## Item [/archive/{_id}]
-
-+ Parameters
-    - _id (string, `1`) ... Item Identifier.
-
-+ Model (application/json)
-
-        {
-            "_etag": "abc",
-            "_links": {"self": {"href": "/media/1"}},
-            "abstract": "abstract needed...",
-            "byline": "John Doe",
-            "copyrightholder": "Sourcefabric o.p.s.",
-            "copyrightnotice": "(c) Copyright Sourcefabric o.p.s. 2014",
-            "description_text": "Flower picture",
-            "filemeta": {"Manufacturer": "CANON", "Orientation": "landscape"},
-            "firstcreated": "2013-07-03T10:11:12Z",
-            "headline": "No news today",
-            "language": "en",
-            "mimetype": "image/jpeg",
-            "provider": "My Company LTD",
-            "pubstatus": "usable",
-            "renditions": {
-                "original": {
-                    "height": 3462,
-                    "href": "http://farm4.staticflickr.com/3665/9203816834_9f62964627_o_d.jpg",
-                    "mimetype": "image/jpeg",
-                    "width": 5198
-                },
-                "thumbnail": {
-                    "height": 150,
-                    "href": "http://farm4.staticflickr.com/3665/9203816834_3329fac058_q_d.jpg",
-                    "mimetype": "image/jpeg",
-                    "width": 150
-                }
-            },
-            "type": "picture",
-            "urgency": 4,
-            "uri": "tag:mycomp-ltd.com,0000:newsml_LM1EA5F0UUD01",
-            "usageterms": "You are not allowed.",
-            "version": "1",
-            "versioncreated": "2013-07-03T10:11:12Z"
-        }
-
-### Fetch item [GET]
-
-+ Response 200
-
-    [Item][]
-
-### Update Item [PATCH]
-
-+ Request (application/json)
-    
-        {"headline": "today's news 3"}
-
-+ Response 200 (application/json)
-
-        {
-            _status: "OK",
-            _links: {
-                self: {
-                    href: "/archive/urn:newsml:localhost:2014-07-16T16:59:59.856131:eb0b90c9-8d1e-45a3-ad98-12c1ac35af91",
-                    title: "Archive"
-                }
-            },
-            _created: "2014-07-16T14:14:06+0000",
-            type: "text",
-            _latest_version: 5,
-            _updated: "2014-07-17T18:19:15+0000",
-            firstcreated: "2014-07-16T14:14:06+0000",
-            _version: 5,
-            headline: "today's news 3",
-            guid: "urn:newsml:localhost:2014-07-16T16:59:59.856131:eb0b90c9-8d1e-45a3-ad98-12c1ac35af91",
-            versioncreated: "2014-07-17T18:19:15+0000",
-            _id: "urn:newsml:localhost:2014-07-16T16:59:59.856131:eb0b90c9-8d1e-45a3-ad98-12c1ac35af91"
-        }
-
-### Restore Item Version [PUT]
-
-+ Request (application/json)
-
-        {
-            "type": "text",
-            "old_version": "3",
-            "last_version": "4"
-        }
-
-+ Response 200 (application/json)
-
-        {
-            _id: "urn:newsml:localhost:2014-07-16T16:59:59.856131:eb0b90c9-8d1e-45a3-ad98-12c1ac35af91",
-            _links: {
-                self: {
-                    title: "Archive",
-                    href: "/archive/urn:newsml:localhost:2014-07-16T16:59:59.856131:eb0b90c9-8d1e-45a3-ad98-12c1ac35af91"
-                }
-            },
-            _version: 5,
-            guid: "urn:newsml:localhost:2014-07-16T16:59:59.856131:eb0b90c9-8d1e-45a3-ad98-12c1ac35af91",
-            versioncreated: "2014-07-17T20:24:32+0000",
-            _created: "2014-07-16T14:14:06+0000",
-            headline: "today's news 1",
-            _updated: "2014-07-17T20:24:32+0000",
-            firstcreated: "2014-07-16T14:14:06+0000",
-            _latest_version: 21,
-            type: "text"
-        }
-
-## User archive [/users/1/archive]
-
-### List the content items for given authors(users) [GET]
-
-+ Response 200 (application/json)
-
-        {
-            "_items": [
-                {
-                    "_links": {"self": {"href": "/users/<regex("[a-f0-9]{24}"):user_id>/archive"}},
-            
+                    "href": "filter_conditions",
+                    "title": "filter_conditions"
                 },
                 {
-            "_links": {"self": {"href": "users/1/archive/1"}},
-            "media": {
-                  "file": "null"
-                  "length": "1143731"
-                  "content_type": "image/jpeg"
-                  "name": "d29bbc8e6958004db0e3cb9216736fd56e040cfc6b468c6f6d4efac7e3bfff65"
-                  },
-            "_id": "53c79121ea8e15145ff9864f",
-            "guid": "tag:localhost:2014:2d3ea50a-3bbb-4d88-adbb-36c566b7afb7",
-            "_created: "2014-07-17T09:02:24+0000",
-            "mimetype": "image/jpeg",
-            "firstcreated": "2014-07-17T09:02:25+0000",
-            "renditions": {
-                  "thumbnail": {
-                        "media: "53c79121ea8e15145ff9864d"
-                        "mimetype: "image/jpeg"
-                        "href": "/upload/53c79121ea8e15145ff9864d/raw?_schema=http"
-                        "height": "120"
-                        "width": "90"
-                        },
-                  "original": {
-                      "media": "53c79120ea8e15145ff98643"
-                      "mimetype": "image/jpeg"
-                      "href": "/upload/53c79120ea8e15145ff98643/raw?_schema=http"
-                      "height": "2592"
-                      "width": "1944"
-                        },
-              "filemeta: {
-                  "filesource": "3"
-                  "digitalzoomratio": "[2]"
-                    "0":  "65536"
-                    "1":  "65536"
-                  "subsectimedigitized": "765289"
-                  "saturation": "0"
-                  "isospeedratings": "229"
-                  "yresolution": "[2]"
-                    "0":  "72"
-                    "1":  "1"
-                  "datetimedigitized: "2014:05:14 14:17:59"
-                  "model": "LG-P970"
-                  "flash": "24"
-                  "make": "LG Electronics"
-                  "datetime": "2014:05:14 14:17:59"
-                  "resolutionunit": 2
-                  "contrast": "0"
-                  "orientation": "1"
-                  "meteringmode": "1"
-                  "lightsource": "0"
-                  "datetimeoriginal": "2014:05:14 14:17:59"
-                 },
-              "versioncreated": "2014-07-17T09:07:36+0000",
-              "type": "picture",
-              "version": "1",
-              "headline": "my picture"
+                    "href": "content_filters",
+                    "title": "content_filters"
                 },
                 {
-            "_links": {"self": {"href": "users/1/archive/2"}},
-            "_updated": "2014-07-17T10:13:30+0000",
-            "_version": "2",
-            "versioncreated": "2014-07-17T10:13:30+0000",
-            "guid": "urn:newsml:localhost:2014-07-17T13:13:19.563032:0be87c05-ef88-4794-9d6d-d01e9302a98c",
-            "type": "text",
-            "_created": "2014-07-17T10:13:19+0000",
-            "_id": "urn:newsml:localhost:2014-07-17T13:13:19.563032:0be87c05-ef88-4794-9d6d-d01e9302a98c",
-            "firstcreated": "2014-07-17T10:13:19+0000",
-            "headline": "second item"
-                }
-            ]
-        }
-            
-
-## Archive Item Version [/archive/{_id}{?version}]
-
-### Version [GET]
-
-+ Parameters
-
-    - version (int, `1`) ... Item version
-
-+ Response 200 (application/json)
-
-        {
-            versioncreated: "2014-07-16T14:14:06+0000",
-            _links: {
-                parent: { title: "home", href: "/" },
-                collection: { title: "archive", href: "/archive" },
-                self: {
-                    title: "Archive",
-                    href: "/archive/urn:newsml:localhost:2014-07-16T16:59:59.856131:eb0b90c9-8d1e-45a3-ad98-12c1ac35af91"
-                }
-            },
-            _id: "urn:newsml:localhost:2014-07-16T16:59:59.856131:eb0b90c9-8d1e-45a3-ad98-12c1ac35af91",
-            guid: "urn:newsml:localhost:2014-07-16T16:59:59.856131:eb0b90c9-8d1e-45a3-ad98-12c1ac35af91",
-            _version: 1,
-            headline: "today's news 1",
-            _updated: "2014-07-16T14:14:06+0000",
-            _latest_version: 2,
-            _created: "2014-07-16T14:14:06+0000",
-            type: "text",
-            firstcreated: "2014-07-16T14:14:06+0000"
-        }
-
-## Archive Item Versions List [/archive/{_id}?version=all]
-
-### Version [GET]
-
-+ Parameters
-    + version ('all') ... All versions
-
-+ Response 200 (application/json)
-
-        {
-            _links: {
-                parent: {
-                    title: "home",
-                    href: "/"
-                },
-                collection: {
-                    title: "archive",
-                    href: "/archive"
-                },
-            },
-            _items: [
-                {
-                    versioncreated: "2014-07-16T14:14:06+0000",
-                    _links: {
-                        self: {
-                            title: "Archive",
-                            href: "/archive/urn:newsml:localhost:2014-07-16T16:59:59.856131:eb0b90c9-8d1e-45a3-ad98-12c1ac35af91"
-                        }
-                    },
-                    _id: "urn:newsml:localhost:2014-07-16T16:59:59.856131:eb0b90c9-8d1e-45a3-ad98-12c1ac35af91",
-                    guid: "urn:newsml:localhost:2014-07-16T16:59:59.856131:eb0b90c9-8d1e-45a3-ad98-12c1ac35af91",
-                    _version: 1,
-                    headline: "today's news 1",
-                    _updated: "2014-07-16T14:14:06+0000",
-                    _latest_version: 21,
-                    _created: "2014-07-16T14:14:06+0000",
-                    type: "text",
-                    firstcreated: "2014-07-16T14:14:06+0000"
-                }
-            ]
-        }
-
-## Archive Search [/archive{?source}]
-
-### Search [GET]
-
-+ Parameters
-    + source (optional, object) ... Elasticsearch query.
-
-+ Response 200 (application/json)
-
-        {
-            "_items": [
-                {
-                    "type": "text",
-                    "body_html": "<p>By john</p><p>html content...</p>",
-                    "description_text": "text item"
+                    "href": "archive/<item_id>/broadcast",
+                    "title": "archive_broadcast"
                 },
                 {
-                    "type": "picture",
-                    "mimetype": "image/jpeg",
-                    "description_text": "picture item - also applicable to audio/video",
-                    "renditions": {
-                        "original": {
-                            "href": "http://farm4.staticflickr.com/3665/9203816834_9f62964627_o_d.jpg",
-                            "mimetype": "image/jpeg",
-                            "width": 5198,
-                            "height": 3462
-                        }
-                    }
+                    "href": "picture_crop",
+                    "title": "picture_crop"
                 },
                 {
-                    "type": "composite",
-                    "description_text": "a story like package with main content and sidebar",
-                    "groups": [
-                        {
-                            "id": "root",
-                            "role": "grpRole:NEP",
-                            "refs": [
-                                {"idRef": "main"},
-                                {"idRef": "sidebar"}
-                            ]
-                        },
-                        {
-                            "id": "main",
-                            "role": "grpRole:Main",
-                            "refs": [
-                                {
-                                    "mimetype": "application/vnd.iptc.g2.newsitem+xml",
-                                    "provider": "sourcefabric.org",
-                                    "residRef": "tag:sourcefabric.org,0000:newsml_BRE9AG0DM",
-                                    "type": "text",
-                                    "headline": "per package caption"
-                                },
-                                {
-                                    "mimetype": "application/vnd.iptc.g2.newsitem+xml",
-                                    "provider": "sourcefabric.org",
-                                    "residRef": "tag:sourcefabric.org,0000:newsml_CBRE9AG1HCJ00",
-                                    "type": "picture",
-                                    "headline": "picture caption"
-                                }
-                            ]
-                        },
-                        {
-                            "id": "sidebar",
-                            "role": "grpRole:Sidebar",
-                            "refs": [
-                                {
-                                    "mimetype": "application/vnd.iptc.g2.newsitem+xml",
-                                    "provider": "sourcefabric.org",
-                                    "residRef": "tag:sourcefabric.org,0000:newsml_BRE9AR0FF",
-                                    "type": "text",
-                                    "headline": "sidebar text caption"
-                                }
-                            ]
-                        }
-                    ]
-                }
-            ]
-        }
-
-## Activity Search [/activity{?page,max_results,where,sort}]
-
-### List all Activities [GET]
-
-+ Parameters
-    + page = `0`(optional, integer) ... Page number
-    + max_results = `25`(optional, integer) ... Number of users to be returned
-    + where (optional, object) ... Filtering
-    + sort (optional, object) ... Sorting
-
-+ Response 200 (application/json)
-
-        {
-            "_items" : [ { "_created" : "2014-07-11T11:04:15+0000",
-            "_id" : "53bfc4af7121ed3a4d1931dd",
-            "_links" : { "self" : { "href" : "/activity/53bfc4af7121ed3a4d1931dd",
-                    "title" : "Activity"
-                  } },
-            "_updated" : "2014-07-11T11:04:15+0000",
-            "action" : "create",
-            "extra" : { "_created" : "2014-07-11T11:04:15+0000",
-                "_updated" : "2014-07-11T11:04:15+0000",
-                "email" : "test@test.testi",
-                "first_name" : "iiiiiiii",
-                "last_name" : "iiiiiiiiiiii",
-                "password" : "iiiii",
-                "username" : "iiiiiiiiiiiii"
-              },
-            "resource" : "users",
-            "user" : "53bfc4067121ed3a4d1931db"
-          },
-          { "_created" : "2014-07-11T11:01:26+0000",
-            "_id" : "53bfc4067121ed3a4d1931da",
-            "_links" : { "self" : { "href" : "/activity/53bfc4067121ed3a4d1931da",
-                    "title" : "Activity"
-                  } },
-            "_updated" : "2014-07-11T11:01:26+0000",
-            "action" : "create",
-            "extra" : { "_created" : "2014-07-11T11:01:26+0000",
-                "_updated" : "2014-07-11T11:01:26+0000",
-                "email" : "test@test.test",
-                "first_name" : "test",
-                "last_name" : "test",
-                "password" : "admin",
-                "username" : "test"
-              },
-            "resource" : "users",
-            "user" : "53a297df7121ed7be0a876df"
-          }
-        ]
-        }
-        
-        
-## Activity collection [/activity]
-
-# Archive Item Comments
-
-## Archive comment [/item_comments/{_id}]
-
-A single comment resource
-
-+ Parameters
-    + _id (string, `1`) ... comment item identifier.
-
-+ Model (application/json)
-
-        {
-            "_id": "53d60bde8e4eba31df0c9311",
-            "text": "new comment for @user_name",
-            "_created": "2014-07-28T08:37:50+0000",
-            "user": "53d60bde8e4eba31dfc11",
-            "mentioned_users": {"user_name": "10d60bde8e4eba31df0c9311"}, 
-            "_updated": "2014-07-28T08:37:50+0000",
-            "_links": {
-                "collection": {
-                    "title": "item_comments",
-                    "href": "/item_comments"
-                },
-                "self": {
-                    "title": "Item_comment",
-                    "href": "/item_comments/53d60bde8e4eba31df0c9311"
-                },
-                "parent": {
-                    "title": "home",
-                    "href": "/"
-                }
-            },
-            "item": "urn:newsml:localhost:2014-07-16T16:31:35.006915:c5204127-eefa-46de-8ec6-d29a781d7c19"
-        }
-
-### Retrieve a Single Archive comment [GET]
-
-+ Response 200
-
-    [Archive comment][]
-
-+ Response 404
-
-### Update Item [PATCH]
-
-+ Request (application/json)
-
-        {"text": "foo"}
-
-+ Response 200 (application/json)
-
-        {"_status": "OK"}
-
-+ Response 403
-
-### Delete an Item [DELETE]
-
-+ Request
-
-    + Headers
-
-            If-Match: etag
-
-+ Response 204
-
-## Item comments collection [/item_comments{?page,max_results}]
-
-### Create comment item [POST]
-
-+ Request (application/json)
-
-        {
-            "text": "new comment for @user_name",
-            "item": "urn:newsml:localhost:2014-07-16T16:31:35.006915:c5204127-eefa-46de-8ec6-d29a781d7c19"
-        }
-
-+ Response 201 (application/json)
-
-        {
-            "_id": "53d60bde8e4eba31df0c9311",
-            "text": "new comment for @user_name",
-            "mentioned_users": {"user_name": "10d60bde8e4eba31df0c9311"},
-            "_created": "2014-07-28T08:37:50+0000",
-            "user": "None",
-            "_updated": "2014-07-28T08:37:50+0000",
-            "_links": {
-                "self": {
-                    "title": "Item_comment",
-                    "href": "/item_comments/53d60bde8e4eba31df0c9311"
-                }
-            },
-            "item": "urn:newsml:localhost:2014-07-16T16:31:35.006915:c5204127-eefa-46de-8ec6-d29a781d7c19",
-            "_status": "OK"
-        }
-
-### List all comment items [GET]
-
-+ Parameters
-    + page = `1`(optional, integer) ... Page number
-    + max_results = `25`(optional, integer) ... Number of items to be returned
-
-+ Response 200 (application/json)
-
-        {
-            "_meta": {
-                "max_results": 25,
-                "total": 4,
-                "page": 1
-            },
-            "_items": [
-                {
-                    "_id": "53d60bde8e4eba31df0c9311",
-                    "text": "new comment for @user_name",
-                    "mentioned_users": {"user_name": "10d60bde8e4eba31df0c9311"},
-                    "_created": "2014-07-28T08:37:50+0000",
-                    "user": "None",
-                    "_updated": "2014-07-28T08:37:50+0000",
-                    "_links": {
-                        "self": {
-                            "title": "Item_comment",
-                            "href": "/item_comments/53d60bde8e4eba31df0c9311"
-                        }
-                    },
-                    "item": "urn:newsml:localhost:2014-07-16T16:31:35.006915:c5204127-eefa-46de-8ec6-d29a781d7c19"
+                    "href": "upload",
+                    "title": "upload"
                 },
                 {
-                    "_id": "53d60bd58e4eba31df0c930f",
-                    "text": "new comment 2",
-                    "_created": "2014-07-28T08:37:41+0000",
-                    "user": "None",
-                    "_updated": "2014-07-28T08:37:41+0000",
-                    "_links": {
-                        "self": {
-                            "title": "Item_comment",
-                            "href": "/item_comments/53d60bd58e4eba31df0c930f"
-                        }
-                    },
-                    "item": "urn:newsml:localhost:2014-07-16T16:31:35.006915:c5204127-eefa-46de-8ec6-d29a781d7c19"
+                    "href": "events",
+                    "title": "events"
                 },
                 {
-                    "_id": "53c777e38e4eba1587e9be49",
-                    "text": "new comment 233",
-                    "_created": "2014-07-17T07:14:43+0000",
-                    "user": "53bf9cfa8e4eba0e08a12993",
-                    "_updated": "2014-07-17T07:14:43+0000",
-                    "_links": {
-                        "self": {
-                            "title": "Item_comment",
-                            "href": "/item_comments/53c777e38e4eba1587e9be49"
-                        }
-                    },
-                    "item": "urn:newsml:localhost:2014-07-16T16:31:35.006915:c5204127-eefa-46de-8ec6-d29a781d7c19"
+                    "href": "roles",
+                    "title": "roles"
                 },
                 {
-                    "_id": "53c777c98e4eba1587e9be48",
-                    "text": "new comment 2",
-                    "_created": "2014-07-17T07:14:17+0000",
-                    "user": "53bf9cfa8e4eba0e08a12993",
-                    "_updated": "2014-07-17T07:14:17+0000",
-                    "_links": {
-                        "self": {
-                            "title": "Item_comment",
-                            "href": "/item_comments/53c777c98e4eba1587e9be48"
-                        }
-                    },
-                    "item": "urn:newsml:localhost:2014-07-16T16:31:35.006915:c5204127-eefa-46de-8ec6-d29a781d7c19"
-                },
-            ],
-            "_links": {
-                "self": {
-                    "title": "item_comments",
-                    "href": "/item_comments"
-                },
-                "parent": {
-                    "title": "home",
-                    "href": "/"
-                }
-            }
-        }
-
-## Content autosave [/archive_autosave/{_id}]
-
-### Create an autosave [POST]
-
-+ Request (application/json)
-
-        {
-            "_id": "urn:newsml:localhost:2014-01-01:31-ea",
-            "headline": "first draft",
-            "body_html": "<p>some content</p>"
-        }
-
-+ Response 201
-
-### Get an autosave for an item [GET]
-
-+ Parameters
-    - _id
-
-+ Request (application/json)
-
-+ Response 200 (application/json)
-
-        {
-            "_id": "urn:...",
-            "headline": "first draft",
-            "body_html": "<p>some content</p>"
-        }
-
-## Get Spiked Content [/spikes{?source}]
-
-### Search content for spiked items [GET]
-
-+ Parameters
-    
-    + source (optional, object) ... Elasticsearch query.
-
-+ Response 200 (application/json)
-
-        {
-            "_items": [
-                {
-                    "user": "544594e81d41c837d05e3419",
-                    "headline": "444",
-                    "_id": "urn:newsml:localhost:2014-10-30T11:43:39.269210:8dd4cc0a-2b96-481f-8ec9-51a354a303f3",
-                    "guid": "urn:newsml:localhost:2014-10-30T11:43:39.269210:8dd4cc0a-2b96-481f-8ec9-51a354a303f3",
-                    "versioncreated": "2014-10-30T00:43:44+0000",
-                    "expiry": "2014-11-05T01:54:49+0000",
-                    "_created": "2014-10-30T00:43:39+0000",
-                    "lock_user": null,
-                    "_version": 2,
-                    "force_unlock": true,
-                    "lock_time": "2014-11-05T21:40:40+0000",
-                    "_updated": "2014-10-30T00:43:44+0000",
-                    "body_html": "sdasdsd<p></p>",
-                    "task": {
-                        "user": "544594e81d41c837d05e3419",
-                        "desk": "5445962a1d41c82e35ef2990"
-                    },
-                    "original_creator": "544594e81d41c837d05e3419",
-                    "firstcreated": "2014-10-30T00:43:39+0000",
-                    "_etag": "336bbceb7a1ba35b09477f573de0cd53a7570221",
-                    "_links": {
-                        "self": {
-                            "title": "Spike",
-                            "href": "/spikes/urn:newsml:localhost:2014-10-30T11:43:39.269210:8dd4cc0a-2b96-481f-8ec9-51a354a303f3"
-                        }
-                    },
-                    "type": "text",
-                    "version_creator": "544594e81d41c837d05e3419",
-                    "is_spiked": true,
-                    "lock_session": null
-                }
-            ]
-        }
-
-# Group Content Item locking
-
-## Lock [/archive/{_id}/lock]
-
-### Create a lock [POST]
-
-+ Request (application/json)
-
-        {}
-
-+ Response 201
-
-## Unlock [/archive/{_id}/unlock]
-
-### Unlock an item [POST]
-
-+ Request (application/json)
-
-        {}
-
-+ Response 200
-
-# Group Roles Management
-
-## Roles [/roles/{_id}]
-
-A single Roles resource.
-
-+ Parameters
-    + _id (string) ... Roles id.
-
-+ Model (application/json) 
-
-        {
-            "_links": {"self": {"href": "/roles/123"}},
-            "_id": "123",
-            "name": "Copy Taster",
-            "privileges": {
-                "ingest": 1,
-                "users": 0
-            }
-        }
-
-### Retrieve a Roles [GET]
-
-+ Response 200 (application/json)
-
-            {
-            "_links": {
-                "self": {
-                    "title": "Role",
-                    "href": "/roles/541061621d41c8ac80ff3b6e"
-                }
-            },
-            "_id": "541061621d41c8ac80ff3b6e",
-            "_created": "2014-09-10T14:34:10+0000",
-            "_status": "OK",
-            "name": "Copy Tester",
-            "_updated": "2014-09-10T14:34:10+0000"
-        }
-
-+ Response 404
-
-### Update Roles [PATCH]
-
-+ Request (application/json)
-
-    + Headers
-    
-            If-Match: xyz
-    
-    + Body
-
-            {"name": "Copy Taster"}
-
-+ Response 200 (application/json)
-
-        {
-            "privileges": {
-                "users": 1
-            },
-            "_links": {
-                "self": {
-                    "title": "Role",
-                    "href": "/roles/541061621d41c8ac80ff3b6e"
-                }
-            },
-            "_id": "541061621d41c8ac80ff3b6e",
-            "_created": "2014-09-10T14:34:10+0000",
-            "_status": "OK",
-            "name": "Copy Tester",
-            "_updated": "2014-09-10T14:44:36+0000"
-        }
-
-
-+ Response 403
-
-### Hard Delete a Roles [DELETE]
-
-+ Request
-
-    + Headers
-    
-            If-Match: xyz
-
-+ Response 200
-
-## Roles Search [/roles{?page,max_results,where,sort}]
-
-### List all Roles [GET]
-
-+ Parameters
-    + page = `0`(optional, integer) ... Page number
-    + max_results = `25`(optional, integer) ... Number of roles to be returned
-    + where (optional, object) ... Filtering
-    + sort (optional, object) ... Sorting
-
-+ Response 200 (application/json)
-
-        {
-            "_meta": {
-                "max_results": 25,
-                "page": 1,
-                "total": 3
-            },
-            "_items": [
-                {
-                    "name": "Editor",
-                    "_links": {
-                        "self": {
-                            "title": "Role",
-                            "href": "/roles/5410641c1d41c8ac80ff3b73"
-                        }
-                    },
-                    "_updated": "2014-09-10T14:45:48+0000",
-                    "_id": "5410641c1d41c8ac80ff3b73",
-                    "_created": "2014-09-10T14:45:48+0000"
+                    "href": "archive/<item>/comments",
+                    "title": "archive/<path:item>/comments"
                 },
                 {
-                    "_created": "2014-09-10T14:34:10+0000",
-                    "_links": {
-                        "self": {
-                            "title": "Role",
-                            "href": "/roles/541061621d41c8ac80ff3b6e"
-                        }
-                    },
-                    "_id": "541061621d41c8ac80ff3b6e",
-                    "privileges": {
-                        "search": 1
-                    },
-                    "name": "Copy Tester",
-                    "_updated": "2014-09-10T14:44:36+0000"
+                    "href": "products/test",
+                    "title": "product_tests"
                 },
                 {
-                    "name": "Sub Editor",
-                    "_links": {
-                        "self": {
-                            "title": "Role",
-                            "href": "/roles/541064241d41c8ac80ff3b75"
-                        }
-                    },
-                    "_updated": "2014-09-10T14:45:56+0000",
-                    "_id": "541064241d41c8ac80ff3b75",
-                    "_created": "2014-09-10T14:45:56+0000"
-                }
-            ],
-            "_links": {
-                "parent": {
-                    "title": "home",
-                    "href": "/"
-                },
-                "self": {
-                    "title": "roles",
-                    "href": "/roles"
-                }
-            }
-        }
-
-
-## Roles collection [/roles]
-
-### Create roles [POST]
-
-+ Request (application/json)
-
-        {
-            "name": "Sub Editor",
-            "privileges": {"content": 1}
-        }
-
-+ Response 201 (application/json)
-
-        {
-            "_links": {
-                "self": {
-                    "title": "Role",
-                    "href": "/roles/541061621d41c8ac80ff3b6e"
-                }
-            },
-            "_id": "541061621d41c8ac80ff3b6e",
-            "_created": "2014-09-10T14:34:10+0000",
-            "_status": "OK",
-            "name": "Copy Tester",
-            "_updated": "2014-09-10T14:34:10+0000"
-        }
-
-+ Response 400 (application/json)
-
-        {
-            "_status": "ERR",
-            "_issues": {
-                "name": {
-                    "unique": {
-                        "msg": "There is already a role with this name"
-                    }
-                }
-            }
-        }
-
-# Group Preferences
-
-## Preference [/preferences/{_id}]
-
-User level and session level preference by given session id
-
-+ Parameters
-    + _id (string) ... Session id.
-
-+ Model (application/json)
-
-        {
-            "_updated": "1970-01-01T00:00:00+0000",
-            "active_privileges" : {
-                "privilege1":1
-            },
-            "session_preferences" : {
-                "beta":1
-            },
-            "user_preferences": {
-                "feature:preview": {
-                    "type": "bool",
-                    "label": "Enable Feature Preview",
-                    "category": "feature",
-                    "default": false,
-                    "enabled": false
-                },
-                "email:notification": {
-                    "type": "bool",
-                    "label": "Send notifications via email",
-                    "category": "notifications",
-                    "default": true,
-                    "enabled": true
-                },
-                "label": "Andrew",
-                "archive:view": {
-                    "type": "string",
-                    "label": "Users archive view format",
-                    "default": "mgrid",
-                    "view": "mgrid",
-                    "category": "archive",
-                    "allowed": [
-                        "mgrid",
-                        "compact"
-                    ]
-                }
-            },
-            "allowed_actions": [
-                {
-                    "include_states": [],
-                    "exclude_states": [
-                        "spiked",
-                        "published",
-                        "killed"
-                    ],
-                    "name": "spike",
-                    "privileges": [
-                        "spike"
-                    ]
+                    "href": "planning/unspike",
+                    "title": "planning_unspike"
                 },
                 {
-                    "include_states": [
-                        "spiked"
-                    ],
-                    "exclude_states": [],
-                    "name": "unspike",
-                    "privileges": [
-                        "unspike"
-                    ]
-                }
-            ],
-            "_etag": "4cdf7ec9b0e5c4f74aef306f672a422c6012b8ce",
-            "user": "5405b3c61d41c872aae70c5e",
-            "_links": {
-                "parent": {
-                    "title": "home",
-                    "href": "/"
-                },
-                "self": {
-                    "title": "Preference",
-                    "href": "/preferences/54087e611d41c82b8a4b1ced"
-                },
-                "collection": {
-                    "title": "preferences",
-                    "href": "/preferences"
-                }
-            },
-            "_id": "54087e611d41c82b8a4b1ced",
-            "_created": "1970-01-01T00:00:00+0000"
-        }
-
-### Retrieve a preference [GET]
-
-+ Request (application/json)
-
-+ Response 200
-
-    [Preference][]
-
-+ Response 404
-
-
-### Update preferences [PATCH]
-
-+ Request (application/json)
-
-    + Headers
-
-            If-Match: xyz
-
-    + Body
-    
-            {
-                "user_preferences": {
-                    "email.notification": 1
-                }
-            }
-
-+ Response 200 (application/json)
-
-        {
-            "_status": "OK"
-        }
-
-+ Response 403
-
-# Group Tasks
-
-## Task [/tasks/{_id}]
-
-+ Parameters
-    - _id (string, `1`) ... Task Identifier.
-
-+ Model (application/json)
-
-        {
-            "_links": {"self": {"href": "/media/1"}},
-            "_etag": "abc",
-            "uri": "tag:mycomp-ltd.com,0000:newsml_LM1EA5F0UUD01",
-            "byline": "John Doe",
-            "provider": "My Company LTD",
-            "mimetype": "image/jpeg",
-            "type": "picture",
-            "firstcreated": "2013-07-03T10:11:12Z",
-            "version": "1",
-            "versioncreated": "2013-07-03T10:11:12Z",
-            "pubstatus": "usable",
-            "filemeta": {
-                "Manufacturer": "CANON",
-                "Orientation": "landscape"
-            },
-            "copyrightholder": "Sourcefabric o.p.s.",
-            "copyrightnotice": "(c) Copyright Sourcefabric o.p.s. 2014",
-            "usageterms": "You are not allowed.",
-            "headline": "No news today",
-            "language": "en",
-            "description_text": "Flower picture",
-            "urgency": 4,
-            "task": {
-                "status": "todo",
-                "user": "1",
-                "desk": "2",
-                "stage": "3"
-            },
-            "renditions": {
-                "thumbnail": {
-                    "href": "http://farm4.staticflickr.com/3665/9203816834_3329fac058_q_d.jpg",
-                    "mimetype": "image/jpeg",
-                    "width": 150,
-                    "height": 150
-                },
-                "original": {
-                    "href": "http://farm4.staticflickr.com/3665/9203816834_9f62964627_o_d.jpg",
-                    "mimetype": "image/jpeg",
-                    "width": 5198,
-                    "height": 3462
-                }
-            }
-        }
-
-### Create a task [POST]
-
-+ Request (application/json)
-
-        {
-            "type": "picture",
-            "slugline": "No news today",
-            "description_text": "Flower picture",
-            "task": {
-                "status": "todo",
-                "user": "1",
-                "desk": "2",
-                "stage": "3"
-            }
-        }
-
-+ Response 201 (application/json)
-
-        {
-            "_links": {"self": {"href": "/tasks/1"}},
-            "_status": "OK"
-        }
-
-
-
-### Fetch task [GET]
-
-+ Response 200
-
-    [Task][]
-
-### Update Task [PATCH]
-
-+ Request (application/json)
-
-        {"headline": "today's news 3",
-         "task": {
-             "status": "in-progress",
-             "user": "2",
-             "desk": "2",
-             "stage": "4"
-            }
-        }
-
-+ Response 200 (application/json)
-
-        {
-            _status: "OK",
-            _links: {
-                self: {
-                    href: "/tasks/urn:newsml:localhost:2014-07-16T16:59:59.856131:eb0b90c9-8d1e-45a3-ad98-12c1ac35af91",
-                    title: "Tasks"
-                }
-            },
-            _created: "2014-07-16T14:14:06+0000",
-            type: "text",
-            _latest_version: 5,
-            _updated: "2014-07-17T18:19:15+0000",
-            firstcreated: "2014-07-16T14:14:06+0000",
-            _version: 5,
-            headline: "today's news 3",
-            "task": {
-                "status": "in-progress",
-                "user": "2",
-                "desk": "2",
-                "stage": "4"
-            },
-            guid: "urn:newsml:localhost:2014-07-16T16:59:59.856131:eb0b90c9-8d1e-45a3-ad98-12c1ac35af91",
-            versioncreated: "2014-07-17T18:19:15+0000",
-            _id: "urn:newsml:localhost:2014-07-16T16:59:59.856131:eb0b90c9-8d1e-45a3-ad98-12c1ac35af91"
-        }
-
-# Group Session Management
-
-## Session [/sessions/{_id}]
-
-A single Session resource.
-
-+ Parameters
-    +   _id (string) ... Session id.
-
-+ Model (application/json)
-
-        {
-            "_etag": "bd854e1089328a306de5cfb012fc8731aae64054",
-            "_created": "2014-10-16T03:21:38+0000",
-            "_id": "543f39c31d41c810df6120d3",
-            "user": {
-                "email": "akint@aap.com.au",
-                "user_type": "administrator",
-                "_created": "2014-09-02T12:10:45+0000",
-                "_id": "5405b3c61d41c872aae70c5e",
-                "workspace": {
-                    "widgets": [
-                        {
-                            "sizey": 1,
-                            "sizex": 1,
-                            "row": 1,
-                            "_id": "ingest-stats",
-                            "col": 1,
-                            "configuration": {
-                                "colorScheme": "superdesk",
-                                "source": "provider",
-                                "updateInterval": 5
-                            }
-                        }
-                    ]
-                },
-                "preferences": {
-                    "archive:view": {
-                        "type": "string",
-                        "label": "Test label",
-                        "category": "archive",
-                        "default": "mgrid",
-                        "view": "mgrid"
-                    }
-                },
-                "username": "tolga",
-                "_updated": "2014-10-09T02:57:39+0000"
-            },
-            "_links": {
-                "parent": {
-                    "title": "home",
-                    "href": "/"
-                },
-                "collection": {
-                    "title": "sessions",
-                    "href": "/sessions"
-                },
-                "self": {
-                    "title": "Session",
-                    "href": "/sessions/543f39c31d41c810df6120d3"
-                }
-            },
-            "_updated": "2014-10-16T03:21:38+0000"
-        }
-
-### Retrieve a Session [GET]
-
-+ Request (application/json)
-
-+ Response 200
-
-    [Session][]
-
-+ Response 404
-
-+ Response 403
-
-### Delete a Session [DELETE]
-
-+ Request
-
-    + Headers
-
-            If-Match: xyz
-
-+ Response 204
-
-+ Response 403
-
-## Session Search [/sessions{?page,max_results,where,sort}]
-
-### List all Sessions [GET]
-
-+ Parameters
-    + page = `0`(optional, integer) ... Page number
-    + max_results = `25`(optional, integer) ... Number of sessions to be returned
-    + where (optional, object) ... Filtering
-    + sort (optional, object) ... Sorting
-
-+ Response 200 (application/json)
-
-        {
-            "_items": [
-                {
-                    "user": {
-                        "user_type": "administrator",
-                        "username": "tolga",
-                        "_created": "2014-09-02T12:10:45+0000",
-                        "email": "akint@aap.com.au",
-                        "_id": "5405b3c61d41c872aae70c5e",
-                        "_updated": "2014-10-09T02:57:39+0000",
-                        "workspace": {
-                            "widgets": [
-                                {
-                                    "configuration": {
-                                        "source": "provider",
-                                        "colorScheme": "superdesk",
-                                        "updateInterval": 5
-                                    },
-                                    "_id": "ingest-stats",
-                                    "sizey": 1,
-                                    "sizex": 1,
-                                    "row": 1,
-                                    "col": 1
-                                }
-                            ]
-                        },
-                        "preferences": {
-                            "archive:view": {
-                                "type": "string",
-                                "label": "Test label",
-                                "category": "archive",
-                                "default": "mgrid",
-                                "view": "mgrid"
-                            }
-                        }
-                    },
-                    "_etag": "bd854e1089328a306de5cfb012fc8731aae64054",
-                    "_links": {
-                        "self": {
-                            "title": "Session",
-                            "href": "/sessions/543f39c31d41c810df6120d3"
-                        }
-                    },
-                    "_created": "2014-10-16T03:21:38+0000",
-                    "_id": "543f39c31d41c810df6120d3",
-                    "_updated": "2014-10-16T03:21:38+0000"
+                    "href": "archive/kill",
+                    "title": "archive_kill"
                 },
                 {
-                    "user": {
-                        "user_type": "administrator",
-                        "username": "tolga",
-                        "_created": "2014-09-02T12:10:45+0000",
-                        "email": "akint@aap.com.au",
-                        "_id": "5405b3c61d41c872aae70c5e",
-                        "_updated": "2014-10-09T02:57:39+0000",
-                        "workspace": {
-                            "widgets": [
-                                {
-                                    "configuration": {
-                                        "source": "provider",
-                                        "colorScheme": "superdesk",
-                                        "updateInterval": 5
-                                    },
-                                    "_id": "ingest-stats",
-                                    "sizey": 1,
-                                    "sizex": 1,
-                                    "row": 1,
-                                    "col": 1
-                                }
-                            ]
-                        },
-                        "preferences": {
-                            "archive:view": {
-                                "type": "string",
-                                "label": "Test label",
-                                "category": "archive",
-                                "default": "mgrid",
-                                "view": "mgrid"
-                            }
-                        }
-                    },
-                    "_etag": "29a9c8d10f5e2cadf8520c17518190832b63b2af",
-                    "_links": {
-                        "self": {
-                            "title": "Session",
-                            "href": "/sessions/543de3a41d41c8eea99ddfc7"
-                        }
-                    },
-                    "_created": "2014-10-15T03:01:55+0000",
-                    "_id": "543de3a41d41c8eea99ddfc7",
-                    "_updated": "2014-10-15T03:01:55+0000"
-                }
-            ]
-        }
-
-+ Response 403
-
-# Group Stages
-
-## Stage item [/stages/{_id}]
-
-A single stage
-
-+ Parameters
-    - _id (string, `1`) ... stage identifier.
-
-+ Model (application/json)
-
-        {
-            "_links": {"self": {"href": "/stages/1"}},
-            "name": "test stage",
-            "_updated": "2014-08-21T11:29:09+0000",
-            "_id": "53f5d805ea8e1511bba1648e",
-            "description": "Shows all items for the current workflow stage",
-            "_created": "2014-08-21T11:29:09+0000",
-            "default_incoming": "false",
-            "desk": "53c79018ea8e15145ff9863f",
-            "outgoing": [
-                {"stage": "53c79018ea8e15145ff9863h"},
-                {"stage": "53c79018ea8e17145ff9863h"}
-            ]
-        }
-
-### Update stage [PATCH]
-
-+ Request (application/json)
-
-        {"name": "New name", "description": "new description"}
-
-+ Response 200 (application/json)
-
-        {"_status": "OK"}
-
-+ Response 403
-
-### Delete a stage [DELETE]
-
-+ Request (application/json)
-
-        {}
-
-+ Response 204
-
-## Stages resource [/stages{?page,max_results}]
-
-### Create a stage [POST]
-
-+ Request (application/json)
-
-        {
-            "name": "test stage",
-            "description": "Shows all items for the current workflow stage",
-            "default_incoming": "false",
-            "desk": "53c79018ea8e15145ff9863f",
-            "outgoing": [
-                {"stage": "53c79018ea8e15145ff9863h"},
-                {"stage": "53c79018ea8e17145ff9863h"}
-            ]
-        }
-
-+ Response 201 (application/json)
-
-        {
-            "_links": {"self": {"href": "/stages/2"}},
-            "_status": "OK"
-        }
-
-### List stages [GET]
-
-+ Parameters
-    + page = `1`(optional, integer) ... Page number
-    + max_results = `25`(optional, integer) ... Number of items to be returned
-
-+ Response 200 (application/json)
-
-        {
-            "_items": [
-                {
-                    "_links": {"self": {"href": "/stages/1"}},
-                    "name": "test stage",
-                    "_updated": "2014-08-21T11:29:09+0000",
-                    "_id": "53f5d805ea8e1511bba1648e",
-                    "description": "Shows all items for the current workflow stage",
-                    "_created": "2014-08-21T11:29:09+0000",
-                    "default_incoming": "false",
-                    "desk": "53c79018ea8e15145ff9863f",
-                    "outgoing": [
-                        {"stage": "53c79018ea8e15145ff9863h"},
-                        {"stage": "53c79018ea8e17145ff9863h"}
-                    ]
+                    "href": "desks",
+                    "title": "desks"
                 },
                 {
-                    "_links": {"self": {"href": "/stages/2"}},
-                    "name": "test stage 2",
-                    "_updated": "2014-08-21T11:29:09+0000",
-                    "_id": "53f5d805ea8e4511bba1648e",
-                    "_created": "2014-08-21T11:29:09+0000",
-                    "description": "Shows all items with no exception",
-                    "default_incoming": "false",
-                    "desk": "53c79018ea8e15145ff9863f",
-                }
-            ]
-        }
-
-
-# Group Groups
-
-## Groups item [/groups/{_id}]
-
-A single Group resource
-
-+ Parameters
-    - _id (string, `1`) ... Group item identifier.
-    
-+ Model (application/json)
-
-        {
-            "_created": "2014-07-17T06:33:49+0000",
-            "_id": "53c76e4dea8e150dc0fd8579",
-            "_links": {"self": {"href": "/groups/1"}},
-            "_updated": "2014-07-17T06:34:00+0000",
-            "members": [{"user": "53c76e39ea8e150dc0fd8578"}, {"user": "53c4f366ea8e15141784de99"}],
-            "name": "My group"
-        }
-    
-### Retrieve a Group [GET]
-
-+ Response 200
-
-    [Groups item][]
-
-+ Response 404
-
-### Update Group [PATCH]
-
-+ Request (application/json)
-    
-        {"name": "Foo"}
-
-+ Response 200 (application/json)
-
-        {"_status": "OK"}
-
-+ Response 403
-
-### Delete a Group [DELETE]
-
-+ Request (application/json)
-
-        {}
-
-+ Response 204
-
-
-## Groups collection [/groups{?page,max_results}]
-
-### Create Group [POST]
-
-+ Request (application/json)
-
-        {
-            "name": "Foo"
-        }
-
-+ Response 201 (application/json)
-
-        {
-            "_links": {"self": {"href": "/groups/2"}},
-            "_status": "OK"
-        }
-
-### List all Groups [GET]
-
-+ Parameters
-    + page = `1`(optional, integer) ... Page number
-    + max_results = `25`(optional, integer) ... Number of items to be returned
-    
-+ Response 200 (application/json)
-
-        {
-            "_items": [
-                {
-                    "_created": "2014-07-15T09:35:18+0000",
-                    "_id": "53c4f5d6ea8e15141784df1a",
-                    "_links": {"self": {"href": "/groups/1"}},
-                    "_updated": "2014-07-17T06:44:58+0000",
-                    "members": [{"user": "53c4f366ea8e15141784de99"}],
-                    "name": "Admin group"
+                    "href": "assignments_history",
+                    "title": "assignments_history"
                 },
                 {
-                    "_created": "2014-07-17T06:33:49+0000",
-                    "_id": "53c76e4dea8e150dc0fd8579",
-                    "_links": {"self": {"href": "/groups/2"}},
-                    "_updated": "2014-07-17T06:34:00+0000",
-                    "members": [{"user": "53c76e39ea8e150dc0fd8578"}, {"user": "53c4f366ea8e15141784de99"}],
-                    "name": "My group"
-                }
-            ]
-        }
-
-## User Groups [/users/{_id}/groups]
-
-+ Parameters
-    - _id (string) ... User id.
-
-### List the Groups for given users [GET]
-
-+ Response 200 (application/json)
-
-        {
-            "_items": [
-                {
-                    "_created": "2014-07-15T09:35:18+0000",
-                    "_id": "53c4f5d6ea8e15141784df1a",
-                    "_links": {"self": {"href": "users/1/groups/1"}},
-                    "_updated": "2014-07-17T06:44:58+0000",
-                    "members": [{"user": "53c4f366ea8e15141784de99"}],
-                    "name": "Admin group"
+                    "href": "events_history",
+                    "title": "events_history"
                 },
                 {
-                    "_created": "2014-07-17T06:33:49+0000",
-                    "_id": "53c76e4dea8e150dc0fd8579",
-                    "_links": {"self": {"href": "users/1/groups/2"}},
-                    "_updated": "2014-07-17T06:34:00+0000",
-                    "members": [{"user": "53c76e39ea8e150dc0fd8578"}, {"user": "53c4f366ea8e15141784de99"}],
-                    "name": "My group"
-                }
-            ]
-        }
-
-# Group Ingest Providers
-
-## List of Ingest Providers [/ingest_providers]
-
-### Retrieves a list of vocabularies [GET]
-
-+ Response 200 (application/json)
-
-        {
-            "_items": [
-                {
-                    "_links": {
-                        "self": {
-                            "href": "/ingest_providers/54599a941d41c853c71bea40",
-                            "title": "Ingest_provider"
-                        }
-                    },
-                    "source": "MCT",
-                    "config": {
-                        "path": "/aap/mct"
-                    },
-                    "type": "aap",
-                    "name": "McClatchy",
-                    "_id": "54599a941d41c853c71bea40",
-                    "_updated": "2014-11-06T00:33:30+0000",
-                    "_created": "2014-11-05T03:33:40+0000",
-                    "days_to_keep": 2,
-                    "is_closed": true,
-                    "notifications": {
-                        "on_update": true,
-                        "on_close": true,
-                        "on_open": true,
-                        "on_error": true,
-                    },
-                    "rule_set": "54599a941d41c853c71beaab",
-                    "routing_scheme": "5459a91d41c853c71b",
-                    "_etag": "fa1711532d64729db20f1b6334c384643d9a3c82"
+                    "href": "vocabularies",
+                    "title": "vocabularies"
                 },
                 {
-                    "_links": {
-                        "self": {
-                            "href": "/ingest_providers/54599ab21d41c853c71bea42",
-                            "title": "Ingest_provider"
-                        }
-                    },
-                    "source": "AFPS",
-                    "config": {
-                        "path": "/afp/sports"
-                    },
-                    "type": "afp",
-                    "name": "AFP Sports",
-                    "_id": "54599ab21d41c853c71bea42",
-                    "_updated": "2014-11-05T03:52:36+0000",
-                    "_created": "2014-11-05T03:34:10+0000",
-                    "days_to_keep": 2,
-                    "is_closed": false,
-                    "notifications": {
-                        "on_update": true,
-                        "on_close": true,
-                        "on_open": true,
-                        "on_error": true,
-                    },                    
-                    "rule_set": "54599a941d41c853c71beaab",
-                    "_etag": "5653aa8da7c85f8e43d30908a7f0e45a63b1b008"
-                }
-            ],
-            "_links": {
-                "self": {
-                    "href": "/ingest_providers",
+                    "href": "archive/takedown",
+                    "title": "archive_takedown"
+                },
+                {
+                    "href": "feed_parsers_allowed",
+                    "title": "feed_parsers_allowed"
+                },
+                {
+                    "href": "feeding_services_allowed",
+                    "title": "feeding_services_allowed"
+                },
+                {
+                    "href": "planning_article_export",
+                    "title": "planning_article_export"
+                },
+                {
+                    "href": "planning_history",
+                    "title": "planning_history"
+                },
+                {
+                    "href": "privileges",
+                    "title": "privileges"
+                },
+                {
+                    "href": "events_template",
+                    "title": "events_template"
+                },
+                {
+                    "href": "dictionaries",
+                    "title": "dictionaries"
+                },
+                {
+                    "href": "archive/unspike",
+                    "title": "archive_unspike"
+                },
+                {
+                    "href": "planning/spike",
+                    "title": "planning_spike"
+                },
+                {
+                    "href": "events/post",
+                    "title": "events_post"
+                },
+                {
+                    "href": "search",
+                    "title": "search"
+                },
+                {
+                    "href": "events/cancel",
+                    "title": "events_cancel"
+                },
+                {
+                    "href": "saved_searches",
+                    "title": "saved_searches"
+                },
+                {
+                    "href": "users/<user_id>/desks",
+                    "title": "user_desks"
+                },
+                {
+                    "href": "planning/<item_id>/lock",
+                    "title": "planning_lock"
+                },
+                {
+                    "href": "attachments",
+                    "title": "attachments"
+                },
+                {
+                    "href": "change_user_password",
+                    "title": "change_user_password"
+                },
+                {
+                    "href": "users",
+                    "title": "users"
+                },
+                {
+                    "href": "assignments/<item_id>/lock",
+                    "title": "assignments_lock"
+                },
+                {
+                    "href": "planning_export_templates",
+                    "title": "planning_export_templates"
+                },
+                {
+                    "href": "contacts",
+                    "title": "contacts"
+                },
+                {
+                    "href": "archive_history",
+                    "title": "archive_history"
+                },
+                {
+                    "href": "archive/correct",
+                    "title": "archive_correct"
+                },
+                {
+                    "href": "events/unspike",
+                    "title": "events_unspike"
+                },
+                {
+                    "href": "search_capi",
+                    "title": "search_capi"
+                },
+                {
+                    "href": "all_saved_searches",
+                    "title": "all_saved_searches"
+                },
+                {
+                    "href": "search_providers",
+                    "title": "search_providers"
+                },
+                {
+                    "href": "events_files",
+                    "title": "events_files"
+                },
+                {
+                    "href": "assignments/unlink",
+                    "title": "assignments_unlink"
+                },
+                {
+                    "href": "client_config",
+                    "title": "client_config"
+                },
+                {
+                    "href": "spikes",
+                    "title": "spikes"
+                },
+                {
+                    "href": "validators",
+                    "title": "validators"
+                },
+                {
+                    "href": "archive/translate",
+                    "title": "translate"
+                },
+                {
+                    "href": "events/<item_id>/duplicate",
+                    "title": "events_duplicate"
+                },
+                {
+                    "href": "assignments/content",
+                    "title": "assignments_content"
+                },
+                {
+                    "href": "planning_search",
+                    "title": "planning_search"
+                },
+                {
+                    "href": "reset_user_password",
+                    "title": "reset_user_password"
+                },
+                {
+                    "href": "archive/<original_id>/rewrite",
+                    "title": "archive_rewrite"
+                },
+                {
+                    "href": "desks/<desk_id>/sluglines",
+                    "title": "desks/<regex(\"[a-f0-9]{24}\"):desk_id>/sluglines"
+                },
+                {
+                    "href": "planning_featured",
+                    "title": "planning_featured"
+                },
+                {
+                    "href": "planning_featured_unlock",
+                    "title": "planning_featured_unlock"
+                },
+                {
+                    "href": "assignments/complete",
+                    "title": "assignments_complete"
+                },
+                {
+                    "href": "content_templates",
+                    "title": "content_templates"
+                },
+                {
+                    "href": "archived",
+                    "title": "archived"
+                },
+                {
+                    "href": "workspaces",
+                    "title": "workspaces"
+                },
+                {
+                    "href": "marked_for_desks",
+                    "title": "marked_for_desks"
+                },
+                {
+                    "href": "filter_conditions/parameters",
+                    "title": "filter_conditions/parameters"
+                },
+                {
+                    "href": "content_types",
+                    "title": "content_types"
+                },
+                {
+                    "href": "events/<item_id>/unlock",
+                    "title": "events_unlock"
+                },
+                {
+                    "href": "recent_events_template",
+                    "title": "recent_events_template"
+                },
+                {
+                    "href": "ingest",
+                    "title": "ingest"
+                },
+                {
+                    "href": "planning/cancel",
+                    "title": "planning_cancel"
+                },
+                {
+                    "href": "agenda",
+                    "title": "agenda"
+                },
+                {
+                    "href": "item_comments",
+                    "title": "item_comments"
+                },
+                {
+                    "href": "closed_desks",
+                    "title": "closed_desks"
+                },
+                {
+                    "href": "processed_items_report",
+                    "title": "processed_items_report"
+                },
+                {
+                    "href": "workqueue",
+                    "title": "workqueue"
+                },
+                {
+                    "href": "highlights",
+                    "title": "highlights"
+                },
+                {
+                    "href": "internal_destinations",
+                    "title": "internal_destinations"
+                },
+                {
+                    "href": "planning_types",
+                    "title": "planning_types"
+                },
+                {
+                    "href": "contacts/organisations",
+                    "title": "contacts_organisations"
+                },
+                {
+                    "href": "picture_renditions",
+                    "title": "picture_renditions"
+                },
+                {
+                    "href": "content_quota_report",
+                    "title": "content_quota_report"
+                },
+                {
+                    "href": "events/postpone",
+                    "title": "events_postpone"
+                },
+                {
+                    "href": "events/update_time",
+                    "title": "events_update_time"
+                },
+                {
+                    "href": "planning/<item_id>/unlock",
+                    "title": "planning_unlock"
+                },
+                {
+                    "href": "allowed_values",
+                    "title": "allowed_values"
+                },
+                {
+                    "href": "events/update_repetitions",
+                    "title": "events_update_repetitions"
+                },
+                {
+                    "href": "subscriber_token",
+                    "title": "subscriber_token"
+                },
+                {
+                    "href": "stages",
+                    "title": "stages"
+                },
+                {
+                    "href": "planning_autosave",
+                    "title": "planning_autosave"
+                },
+                {
+                    "href": "planning",
+                    "title": "planning"
+                },
+                {
+                    "href": "media_references",
+                    "title": "media_references"
+                },
+                {
+                    "href": "io_errors",
+                    "title": "io_errors"
+                },
+                {
+                    "href": "subscribers",
+                    "title": "subscribers"
+                },
+                {
+                    "href": "activity_report",
+                    "title": "activity_report"
+                },
+                {
+                    "href": "archive",
+                    "title": "archive"
+                },
+                {
+                    "href": "archive/<guid>/duplicate",
+                    "title": "duplicate"
+                },
+                {
+                    "href": "ingest/<id>/fetch",
+                    "title": "fetch"
+                },
+                {
+                    "href": "content_templates_apply",
+                    "title": "content_templates_apply"
+                },
+                {
+                    "href": "events/reschedule",
+                    "title": "events_reschedule"
+                },
+                {
+                    "href": "download",
+                    "title": "download"
+                },
+                {
+                    "href": "saved_searches/<saved_search_id>/items",
+                    "title": "saved_search_items"
+                },
+                {
+                    "href": "suggestions/<item_id>",
+                    "title": "suggestions/<regex(\"[\\w,.:_-]+\"):item_id>"
+                },
+                {
+                    "href": "auth",
+                    "title": "auth"
+                },
+                {
+                    "href": "activity",
+                    "title": "activity"
+                },
+                {
+                    "href": "generate_highlights",
+                    "title": "generate_highlights"
+                },
+                {
+                    "href": "events_planning_search",
+                    "title": "events_planning_search"
+                },
+                {
+                    "href": "search_providers_proxy",
+                    "title": "search_providers_proxy"
+                },
+                {
+                    "href": "published_package_items",
+                    "title": "published_package_items"
+                },
+                {
+                    "href": "events/<item_id>/lock",
+                    "title": "events_lock"
+                },
+                {
+                    "href": "archive/<item_id>/lock",
+                    "title": "archive_lock"
+                },
+                {
+                    "href": "event_autosave",
+                    "title": "event_autosave"
+                },
+                {
+                    "href": "archive/<original_id>/resend",
+                    "title": "archive_resend"
+                },
+                {
+                    "href": "backend_meta",
+                    "title": "backend_meta"
+                },
+                {
+                    "href": "planning/post",
+                    "title": "planning_post"
+                },
+                {
+                    "href": "events_planning_filters",
+                    "title": "events_planning_filters"
+                },
+                {
+                    "href": "auth_db",
+                    "title": "auth_db"
+                },
+                {
+                    "href": "saved_activity_reports",
+                    "title": "saved_activity_reports"
+                },
+                {
+                    "href": "assignments/revert",
+                    "title": "assignments_revert"
+                },
+                {
+                    "href": "comments",
+                    "title": "comments"
+                },
+                {
+                    "href": "routing_schemes",
+                    "title": "routing_schemes"
+                },
+                {
+                    "href": "items",
+                    "title": "items"
+                },
+                {
+                    "href": "planning_download",
+                    "title": "planning_download"
+                },
+                {
+                    "href": "media_editor",
+                    "title": "media_editor"
+                },
+                {
+                    "href": "preferences",
+                    "title": "preferences"
+                },
+                {
+                    "href": "archive/<guid>/move",
+                    "title": "move"
+                },
+                {
+                    "href": "archive/publish",
+                    "title": "archive_publish"
+                },
+                {
+                    "href": "locations",
+                    "title": "locations"
+                },
+                {
+                    "href": "users/<original_creator>/content",
+                    "title": "user_content"
+                },
+                {
+                    "href": "archive_autosave",
+                    "title": "archive_autosave"
+                },
+                {
+                    "href": "archive/spike",
+                    "title": "archive_spike"
+                },
+                {
+                    "href": "published_planning",
+                    "title": "published_planning"
+                },
+                {
+                    "href": "planning_featured_lock",
+                    "title": "planning_featured_lock"
+                },
+                {
+                    "href": "export",
+                    "title": "export"
+                },
+                {
+                    "href": "ingest_providers",
                     "title": "ingest_providers"
                 },
-                "parent": {
-                    "href": "/",
-                    "title": "home"
-                }
-            },
-            "_meta": {
-                "max_results": 25,
-                "total": 2,
-                "page": 1
-            }
-        }
-
-+ Response 403
-
-## Ingest Provider Item [/ingest_providers/{_id}]
-
-### Retrieves a single Ingest Provider resource [GET]
-
-+ Parameters
-    - _id (string, `1`) ... Ingest Provider identifier.
-
-+ Response 200 (application/json)
-
-        {
-            "_links": {
-                "self": {
-                    "href": "/ingest_providers/54599a941d41c853c71bea40",
-                    "title": "Ingest_provider"
+                {
+                    "href": "audit",
+                    "title": "audit"
                 },
-                "collection": {
-                    "href": "/ingest_providers",
-                    "title": "ingest_providers"
+                {
+                    "href": "marked_for_highlights",
+                    "title": "marked_for_highlights"
                 },
-                "parent": {
-                    "href": "/",
-                    "title": "home"
-                }
-            },
-            "source": "MCT",
-            "config": {
-                "path": "/aap/mct"
-            },
-            "type": "aap",
-            "name": "McClatchy",
-            "_id": "54599a941d41c853c71bea40",
-            "_updated": "2014-11-06T00:33:30+0000",
-            "_created": "2014-11-05T03:33:40+0000",
-            "days_to_keep": 2,
-            "is_closed": false,
-            "notifications": {
-                "on_update": true,
-                "on_close": true,
-                "on_open": true,
-                "on_error": true,
-            },            
-            "_etag": "fa1711532d64729db20f1b6334c384643d9a3c82"
-        }
-
-+ Response 404
-
-+ Response 403
-
-### Create Ingest Provider item [POST]
-
-+ Request (application/json)
-
-    + Body
-    
-            {
-                "source": "Ingest Provider Source",
-                "config": {
-                    "path": "/aap/mct"
+                {
+                    "href": "users/<user_id>/sessions",
+                    "title": "clear_sessions"
                 },
-                "type": "aap",
-                "name": "Ingest Provider Name",
-                "is_closed": false,
-                "notifications": {
-                    "on_update": true,
-                    "on_close": true,
-                    "on_open": true,
-                    "on_error": true,
-                }
-            }
-
-+ Response 201 (application/json)
-
-        {
-            "_status": "OK",
-            "_links": {
-                "self": {
-                    "href": "/ingest_providers/545b127d1d41c8a571d486e2",
-                    "title": "Ingest_provider"
-                }
-            },
-            "_created": "2014-11-06T06:17:33+0000",
-            "_id": "545b127d1d41c8a571d486e2",
-            "config": {
-                "path": "/aap/mct"
-            },
-            "type": "aap",
-            "name": "Ingest Provider Name",
-            "_etag": "1813c8a77abcffdb691600374fb35528d8be9556",
-            "_updated": "2014-11-06T06:17:33+0000",
-            "source": "Ingest Provider Source",
-            "days_to_keep": 2,
-            "is_closed": false,
-            "notifications": {
-                "on_update": true,
-                "on_close": true,
-                "on_open": true,
-                "on_error": true,
-            }
-        }
-
-+ Response 404
-
-+ Response 403
-
-### Update Ingest Provider item [PATCH]
-
-+ Request (application/json)
-
-    + Headers
-    
-            If-Match: xyz
-
-    + Body
-    
-            {"name": "Foo"}
-
-+ Response 200 (application/json)
-
-        {
-            "_status": "OK",
-            "_links": {
-                "self": {
-                    "href": "/ingest_providers/545b127d1d41c8a571d486e2",
-                    "title": "Ingest_provider"
-                }
-            },
-            "_created": "2014-11-06T06:17:33+0000",
-            "_id": "545b127d1d41c8a571d486e2",
-            "config": {
-                "path": "/aap/mct"
-            },
-            "type": "aap",
-            "name": "Foo",
-            "_etag": "1813c8a77abcffdb691600374fb35528d8be9556",
-            "_updated": "2014-11-06T06:17:33+0000",
-            "source": "Ingest Provider Source",
-            "is_closed": false,
-            "days_to_keep": 2,
-            "notifications": {
-                "on_update": true,
-                "on_close": true,
-                "on_open": true,
-                "on_error": true,
-            }
-        }
-
-+ Response 404
-
-+ Response 403
-
-### Hard Delete Ingest Provider item [DELETE]
-
-+ Request
-
-    + Headers
-    
-            If-Match: xyz
-
-+ Response 204
-
-+ Response 403
-
-## Rule set [/rule_sets/{_id}]
-
-Set of transformation rules that can be applied to ingested content.
-
-+ Parameters
-    - _id (string) ... rule set id.
-
-+ Model (application/json)
-
-        {
-            "_id": "54599a941d41c853c71beaab",
-            "name": "set name",
-            "rules": [
-                {"old": "x", "new": "X"},
-                {"old": "{", "new": "("}
-            ]
-        }
-
-## Get rule set [GET]
-
-+ Response 200
-
-    [Rule set][]
-
-## Routing Schemes  [/routing_schemes]
-An endpoint to manage Routing Rule Schemes
-
-### Retrieves a list of Routing Rule Schemes [GET]
-Fetches all routing schemes
-
-+ Parameters
-    - _id (string) ... Routing Rule Scheme Id.
-
-+ Response 200 (application/json)
-        {
-            "_items": [
                 {
-                    "_id": "54599a941d41c853c71beaab",
-                    "name": "routing rule scheme 1",
-                    "rules": [
-                        {
-                            "name": "Sports Rule",
-                            "filter": { 
-                                "category": [{"qcode": "S", "name": "Sports"}],
-                                "subject": [{"qcode": "15030000", "name": "Horse Racing"}],
-                                "type": ["text", "preformatted"],
-                                "genre": ["sidebar"],
-                                "headline": "Melbourne Cup",
-                                "slugline": "Melbourne Cup 2015",
-                                "body": "Melbourne Cup 2015"
-                            },
-                            "actions": {
-                                "fetch": [ {"desk": "12sbvfkjd378mn111", "stage": "sdf67764102dfsdf"}],
-                                "publish": [{"desk": "12sbvfkjd378mn111fgh", "stage": "sdf67764102dfsdf445"}],
-                                "exit": "false"
-                            },
-                            "schedule": {
-                                "day_of_week": ["MON", "TUE"]
-                                "hour_of_day_from": "1000",
-                                "hour_of_day_to": "2000"
-                            }
-                        }
-                    ],
-                    "_created": "2014-11-03T00:30:30+0000",
-                    "_updated": "2014-11-03T00:30:30+0000",
-                    "_links": {
-                        "self": {
-                            "href": "/routing_schemes/54599a941d41c853c71beaab",
-                            "title": "routing_schemes"
-                        }
-                    }
-                }
-            ],
-            "_links": {
-                "self": {
-                    "href": "/routing_schemes",
-                    "title": "routing_schemes"
+                    "href": "validate",
+                    "title": "validate"
                 },
-                "parent": {
-                    "href": "/",
-                    "title": "home"
-                }
-            },
-            "_meta": {
-                "max_results": 25,
-                "total": 2,
-                "page": 1
-            }
-        }
-
-### Routing Rule Scheme Item [/routing_schemes/{_id}]
-
-#### Retrieve a single Routing Rule Scheme [GET]
-Retrieves a Routing Rule Scheme 
-
-+ Response 200 (application/json)
-        {
-            "_id": "54599a941d41c853c71beaab",
-            "name": "routing rule scheme 1",
-            "rules": [
                 {
-                    "name": "Sports Rule",
-                    "filter": { 
-                        "category": [{"qcode": "S", "name": "Sports"}],
-                        "subject": [{"qcode": "15030000", "name": "Horse Racing"}],
-                        "type": ["text", "preformatted"],
-                        "genre": ["sidebar"],
-                        "headline": "Melbourne Cup",
-                        "slugline": "Melbourne Cup 2015",
-                        "body": "Melbourne Cup 2015"
-                    },
-                    "actions": {
-                        "fetch": [ {"desk": "12sbvfkjd378mn111", "stage": "sdf67764102dfsdf"}],
-                        "publish": [{"desk": "12sbvfkjd378mn111fgh", "stage": "sdf67764102dfsdf445"}],
-                        "exit": "false"
-                    },
-                    "schedule": {
-                        "day_of_week": ["MON", "TUE"]
-                        "hour_of_day_from": "1000",
-                        "hour_of_day_to": "2000"
-                    }
-                }
-            ],
-            "_created": "2014-11-03T00:30:30+0000",
-            "_updated": "2014-11-03T00:30:30+0000",
-            "_links": {
-                "self": {
-                    "href": "/routing_schemes/54599a941d41c853c71beaab",
-                    "title": "routing_schemes"
-                }
-            }
-        }
-
-#### Create a Routing Scheme [POST]
-Creates a Routing Rule Scheme
-
-+ Request (application/json)
-
-    + Body
-        {
-            "name": "routing rule scheme 1",
-            "rules": [
-                {
-                    "name": "Sports Rule",
-                    "filter": { 
-                        "category": [{"qcode": "S", "name": "Sports"}],
-                        "subject": [{"qcode": "15030000", "name": "Horse Racing"}],
-                        "type": ["text", "preformatted"]
-                    },
-                    "actions": {
-                        "fetch": [ {"desk": "12sbvfkjd378mn111", "stage": "sdf67764102dfsdf"}],
-                        "publish": [],
-                        "exit": "false"
-                    }
-                }
-            ]
-        }
-
-+ Response 201 (application/json)
-
-        {
-            "_status": "OK",
-            "_links": {
-                "self": {
-                    "href": "/routing_schemes/545b127d1d41c8a571d486e2",
-                    "title": "routing_schemes"
-                }
-            },
-            "_created": "2014-11-06T06:17:33+0000",
-            "_id": "545b127d1d41c8a571d486e2",
-            "_etag": "1813c8a77abcffdb691600374fb35528d8be9556",
-            "_updated": "2014-11-06T06:17:33+0000",
-            "name": "routing rule scheme 1",
-            "rules": [
-                {
-                    "name": "Sports Rule",
-                    "filter": { 
-                        "category": [{"qcode": "S", "name": "Sports"}],
-                        "subject": [{"qcode": "15030000", "name": "Horse Racing"}],
-                        "type": ["text", "preformatted"]
-                    },
-                    "actions": {
-                        "fetch": [ {"desk": "12sbvfkjd378mn111", "stage": "sdf67764102dfsdf"}],
-                        "publish": [],
-                        "exit": "false"
-                    }
-                }
-            ]
-        }
-
-+ Response 400
-If Routing Scheme is being created without a rule or a rule without filter and actions.
-
-#### Update a Routing Scheme [PATCH]
-Updates a Routing Rule Scheme
-
-+ Request (application/json)
-
-    + Headers
-        If-Match: xyz
-
-    + Body
-        {
-            "name": "routing rule scheme 1",
-            "rules": [
-                {
-                    "name": "Sports Rule",
-                    "filter": { 
-                        "category": [{"qcode": "S", "name": "Sports"}],
-                        "subject": [{"qcode": "15030000", "name": "Horse Racing"}],
-                        "type": ["text"]
-                    },
-                    "actions": {
-                        "fetch": [ {"desk": "12sbvfkjd378mn111", "stage": "sdf67764102dfsdf"}],
-                        "publish": [{"desk": "12sbvfkjd378mn11sdf1", "stage": "sdf67764102df12sdf"}],
-                        "exit": "true"
-                    }
-                }
-            ]
-        }
-
-+ Response 201 (application/json)
-
-        {
-            "_status": "OK",
-            "_links": {
-                "self": {
-                    "href": "/routing_schemes/545b127d1d41c8a571d486e2",
-                    "title": "routing_schemes"
-                }
-            },
-            "_created": "2014-11-06T06:17:33+0000",
-            "_id": "545b127d1d41c8a571d486e2",
-            "_etag": "1813c8a77abcffdb691600374fb35528d8be9556",
-            "_updated": "2014-11-06T06:17:33+0000",
-            "name": "routing rule scheme 1",
-            "rules": [
-                {
-                    "name": "Sports Rule",
-                    "filter": { 
-                        "category": [{"qcode": "S", "name": "Sports"}],
-                        "subject": [{"qcode": "15030000", "name": "Horse Racing"}],
-                        "type": ["text"],
-                    },
-                    "actions": {
-                        "fetch": [ {"desk": "12sbvfkjd378mn111", "stage": "sdf67764102dfsdf"}],
-                        "publish": [{"desk": "12sbvfkjd378mn11sdf1", "stage": "sdf67764102df12sdf"}],
-                        "exit": "false"
-                    }
-                }
-            ]
-        }
-
-+ Response 400
-If Routing Scheme is being updated without a rule or a rule without filter and actions.
-
-#### Hard Delete Routing Rule Scheme [DELETE]
-
-+ Request
-
-    + Headers
-        If-Match: xyz
-
-+ Response 200 (application/json)
-
-+ Response 400
-If the scheme is already associated with an Ingest Provider
-
-# Group Vocabularies
-
-## List Vocabularies [/vocabularies] 
-
-### Retrieves a list of vocabularies [GET]
-
-+ Response 200 (application/json)
-
-        {
-            "_items": [
-            {
-                "_created": "2014-11-03T00:30:30+0000",
-                "_links": {
-                    "self": {
-                        "href": "/vocabularies/categories",
-                        "title": "Vocabularie"
-                    }
+                    "href": "rule_sets",
+                    "title": "rule_sets"
                 },
-                "_id": "categories",
-                "_updated": "2014-11-03T00:30:30+0000",
-                "items": [
-                    {
-                        "value": "A",
-                        "is_active": true,
-                        "name": "National"
-                    },
-                    {
-                        "value": "T",
-                        "is_active": false,
-                        "name": "Domestic Sports"
-                    },
-                    {
-                        "value": "S",
-                        "is_active": true,
-                        "name": "International Sports"
-                    }
-                ],
-                "_etag": "cb3c21161a82db4ed85d84e777b5e04c460e7c27"
-            },
-            {
-                "_created": "2014-11-03T00:30:30+0000",
-                "_links": {
-                    "self": {
-                        "href": "/vocabularies/newsvalue",
-                        "title": "Vocabularie"
-                    }
+                {
+                    "href": "products",
+                    "title": "products"
                 },
-                "_id": "newsvalue",
-                "_updated": "2014-11-03T00:30:30+0000",
-                "items": [
-                    {
-                        "value": "1",
-                        "is_active": true,
-                        "name": "1"
-                    },
-                    {
-                        "value": "2",
-                        "is_active": true,
-                        "name": "2"
-                    },
-                    {
-                        "value": "3",
-                        "is_active": true,
-                        "name": "3"
-                    },
-                    {
-                        "value": "4",
-                        "is_active": false,
-                        "name": "4"
-                    }
-                ],
-                "_etag": "9ceb3968d5ad80a8fa2330f3e57e0457c433f63f"
-            }
-            ]
-        }
-
-## Vocabularies Item [/vocabularies/{_id}]
-
-+ Parameters
-    - _id (string) ... vocabulary id.
-
-### Retrieves a vocabulary [GET]
-
-+ Response 200 (application/json)
-
-        {
-            "_created": "2014-11-03T00:30:30+0000",
-            "_links": {
-            "self": {
-                "href": "/vocabularies/categories",
-                "title": "Vocabularie"
-            },
-            "collection": {
-                "href": "/vocabularies",
-                "title": "vocabularies"
-            },
-            "parent": {
-                "href": "/",
-                "title": "home"
-            }
-            },
-            "_id": "categories",
-            "_updated": "2014-11-03T00:30:30+0000",
-            "items": [
-            {
-                "value": "A",
-                "is_active": true,
-                "name": "National"
-            },
-            {
-                "value": "T",
-                "is_active": false,
-                "name": "Domestic Sports"
-            },
-            {
-                "value": "S",
-                "is_active": true,
-                "name": "International Sports"
-            }
-            ],
-            "_etag": "cb3c21161a82db4ed85d84e777b5e04c460e7c27"
-        }
-
-# Group Search
-
-## Federated Search [/search{?source,repo}]
-
-Here you can query items within different repositories together (eg. ingest + archive).
-
-### Query [GET]
-
-+ Parameters
-    - source (Object) ... elastic query.
-    - repo (string) ... Comma separated list of repositories to query.
-
-+ Response 200 (application/json)
-
-        {"_items": []}
-
-# Group Spiking Content
-
-## Spiking a content item [/archive/spike/{_id}]
-
-This endpoint allows the spiking of content
-
-### Spike item [PATCH]
-
-+ Parameters
-    - _id (string) ... Identifier of the item you wish to spike
-
-+ Response 200 (application/json)
-
-        {
-            "_created": "2014-12-10T05:02:43+0000",
-            "_etag": "088999a217d2ad85831ed7bd356518029eb7e750",
-            "_id": "item-1",
-            "_latest_version": 2,
-            "_links": {
-                "collection": {"href": "/archive", "title": "archive"},
-                "parent": {"href": "/", "title": "home"},
-                "self": {"href": "/archive/item-1", "title": "Archive"}
-            },
-            "_type": "archive",
-            "_updated": "2014-12-10T05:02:43+0000",
-            "_version": 2,
-            "expiry": "2014-12-10T10:02:43+0000",
-            "firstcreated": "2014-12-10T05:02:43+0000",
-            "guid": "item-1",
-            "headline": "test",
-            "language": "en",
-            "original_creator": "",
-            "pubstatus": "Usable",
-            "revert_state": "draft",
-            "state": "spiked",
-            "type": "text",
-            "unique_id": 14347,
-            "unique_name": "#14347",
-            "version_creator": "",
-            "versioncreated": "2014-12-10T05:02:43+0000"
-        }
-
-## Un-Spiking a content item [/archive/unspike/{_id}]
-
-This endpoint allows the unspiking of content
-
-### UnSpike item [PATCH]
-
-+ Parameters
-    - _id (string) ... Identifier of the item you wish to unspike
-
-+ Response 200 (application/json)
-
-        {
-            "_created": "2014-12-10T05:20:34+0000",
-            "_etag": "d7de5d608f51fe840cd8535fae5479b32c5e6565",
-            "_id": "item-1",
-            "_latest_version": 3,
-            "_links": {
-                "collection": {"href": "/archive", "title": "archive"},
-                "parent": {"href": "/", "title": "home"},
-                "self": {"href": "/archive/item-1", "title": "Archive"}
-            },
-            "_type": "archive",
-            "_updated": "2014-12-10T05:20:34+0000",
-            "_version": 3,
-            "expiry": "2014-12-10T05:20:40+0000",
-            "firstcreated": "2014-12-10T05:20:34+0000",
-            "guid": "item-1",
-            "headline": "test",
-            "language": "en",
-            "original_creator": "",
-            "pubstatus": "Usable",
-            "revert_state": null,
-            "state": "draft",
-            "type": "text",
-            "unique_id": 14350,
-            "unique_name": "#14350",
-            "version_creator": "",
-            "versioncreated": "2014-12-10T05:20:34+0000"
-        }
-
-# Group Packages
-
-## Package [/packages/{_id}]
-
-+ Parameters
-    - _id (string, `1`) ... Package Identifier.
-
-+ Model (application/json)
-
-        {
-            "_created": "2014-12-11T13:20:18+0000",
-            "_etag": "194506956b64410edbf2e175a13adf3cc2df921d",
-            "_id": "urn:newsml:localhost:2014-12-11T15:20:18.510755:65b31275-0513-4ee5-9879-1ef9fae5fa33",
-            "_latest_version": 3,
-            "_links": {
-                "collection": {"href": "/packages", "title": "packages"},
-                "parent": {"href": "/", "title": "home"},
-                "self": {
-                    "href": "/packages/urn:newsml:localhost:2014-12-11T15:20:18.510755:65b31275-0513-4ee5-9879-1ef9fae5fa33",
-                    "title": "Package"
-                }
-            },
-            "_updated": "2014-12-11T14:01:27+0000",
-            "_version": 3,
-            "description": "MARKETS-HONGKONG-STOCKS/CLOSE (URGENT):Hong Kong shares end lower on profit-taking, China slump",
-            "firstcreated": "2014-12-11T13:20:18+0000",
-            "groups": [
-                {"id": "root", "refs": [{"idRef": "main"}], "role": "grpRole:NEP"},
                 {
-                    "id": "main",
-                    "refs": [
-                        {
-                            "guid": "tag:reuters.com,0000:newsml_ZZN2NBZ00",
-                            "headline": "Hong Kong shares end lower on profit-taking, China slump",
-                            "location": "archive",
-                            "renditions": {},
-                            "residRef": "tag:reuters.com,0000:newsml_ZZN2NBZ00",
-                            "slugline": "MARKETS-HONGKONG-STOCKS/CLOSE (URGENT)",
-                            "type": "text"
-                        },
-                        {
-                            "guid": "tag:reuters.com,0000:newsml_GM1EAC918J701",
-                            "headline": "Servicemen from the Georgian Armed Forces stand at attention during a farewell ceremony at the Vaziani military base outside Tbilisi",
-                            "location": "archive",
-                            "renditions": {
-                                "baseImage": {
-                                    "href": "http://localhost:5000/api/upload/5486b1674ee1f90ae02e936a/raw?_schema=http",
-                                    "media": "5486b1674ee1f90ae02e936a",
-                                    "mimetype": "image/jpeg",
-                                    "rendition": "baseImage",
-                                    "residRef": "tag:reuters.com,0000:binary_GM1EAC918J701-BASEIMAGE",
-                                    "sizeinbytes": 738762
-                                },
-                                "thumbnail": {
-                                    "href": "http://localhost:5000/api/upload/5486b1664ee1f90ae12e936a/raw?_schema=http",
-                                    "media": "5486b1664ee1f90ae12e936a",
-                                    "mimetype": "image/jpeg",
-                                    "rendition": "thumbnail",
-                                    "residRef": "tag:reuters.com,0000:binary_GM1EAC918J701-THUMBNAIL",
-                                    "sizeinbytes": 18874
-                                },
-                                "viewImage": {
-                                    "href": "http://localhost:5000/api/upload/5486b1674ee1f90adf2e936d/raw?_schema=http",
-                                    "media": "5486b1674ee1f90adf2e936d",
-                                    "mimetype": "image/jpeg",
-                                    "rendition": "viewImage",
-                                    "residRef": "tag:reuters.com,0000:binary_GM1EAC918J701-VIEWIMAGE",
-                                    "sizeinbytes": 188030
-                                }
-                            },
-                            "residRef": "tag:reuters.com,0000:newsml_GM1EAC918J701",
-                            "slugline": "GEORGIA-MILITARY/",
-                            "type": "picture"
-                        },
-                        {
-                            "guid": "tag:reuters.com,2014:newsml_LYNXMPEAB80B9",
-                            "headline": "An elderly woman shields herself from the rain brought by Typhoon Hagupit in Noveleta town, Cavite province, south of Manila",
-                            "location": "archive",
-                            "renditions": {
-                                "baseImage": {
-                                    "href": "http://localhost:5000/api/upload/5486b16a4ee1f90ae22e9372/raw?_schema=http",
-                                    "media": "5486b16a4ee1f90ae22e9372",
-                                    "mimetype": "image/jpeg",
-                                    "rendition": "baseImage",
-                                    "residRef": "tag:reuters.com,2014:binary_LYNXMPEAB80B9-BASEIMAGE",
-                                    "sizeinbytes": 43248
-                                },
-                                "filedImage": {
-                                    "href": "http://localhost:5000/api/upload/5486b16c4ee1f90ae22e9374/raw?_schema=http",
-                                    "media": "5486b16c4ee1f90ae22e9374",
-                                    "mimetype": "image/jpeg",
-                                    "rendition": "filedImage",
-                                    "residRef": "tag:reuters.com,2014:binary_LYNXMPEAB80B9-FILEDIMAGE",
-                                    "sizeinbytes": 708156
-                                },
-                                "thumbnail": {
-                                    "href": "http://localhost:5000/api/upload/5486b16a4ee1f90adf2e936f/raw?_schema=http",
-                                    "media": "5486b16a4ee1f90adf2e936f",
-                                    "mimetype": "image/jpeg",
-                                    "rendition": "thumbnail",
-                                    "residRef": "tag:reuters.com,2014:binary_LYNXMPEAB80B9-THUMBNAIL",
-                                    "sizeinbytes": 4859
-                                },
-                                "viewImage": {
-                                    "href": "http://localhost:5000/api/upload/5486b16a4ee1f90ae02e9371/raw?_schema=http",
-                                    "media": "5486b16a4ee1f90ae02e9371",
-                                    "mimetype": "image/jpeg",
-                                    "rendition": "viewImage",
-                                    "residRef": "tag:reuters.com,2014:binary_LYNXMPEAB80B9-VIEWIMAGE",
-                                    "sizeinbytes": 18766
-                                }
-                            },
-                            "residRef": "tag:reuters.com,2014:newsml_LYNXMPEAB80B9",
-                            "slugline": "PHILIPPINES-TYPHOON",
-                            "type": "picture"
-                        }
-                    ],
-                    "role": "grpRole:main"
-                }
-            ],
-            "guid": "urn:newsml:localhost:2014-12-11T15:20:18.510755:65b31275-0513-4ee5-9879-1ef9fae5fa33",
-            "headline": "Hong Kong shares end lower on profit-taking, China slump",
-            "language": "en",
-            "original_creator": "5481aab74ee1f927e56944cc",
-            "pubstatus": "Usable",
-            "slugline": "MARKETS-HONGKONG-STOCKS/CLOSE (URGENT)",
-            "type": "composite",
-            "unique_id": 5266,
-            "unique_name": "#5266",
-            "version_creator": "5481aab74ee1f927e56944cc",
-            "versioncreated": "2014-12-11T14:01:27+0000"
-        }
-
-
-### Create a package [POST]
-
-+ Request (application/json)
-
-        {
-            "groups": [
-                {"id": "root", "refs": [{"idRef": "main"}], "role": "grpRole:NEP"},
+                    "href": "content_filters/test",
+                    "title": "content_filter_tests"
+                },
                 {
-                    "id": "main",
-                    "refs": [
-                        {
-                            "headline": "test package with text",
-                            "residRef": "tag:reuters.com,2014:newsml_LYNXMPEAB80B9",
-                            "slugline": "awesome article"
-                        }
-                    ],
-                    "role": "main"
+                    "href": "config",
+                    "title": "config"
+                },
+                {
+                    "href": "tasks",
+                    "title": "tasks"
+                },
+                {
+                    "href": "webhook",
+                    "title": "webhook"
+                },
+                {
+                    "href": "archive/<guid>/copy",
+                    "title": "copy"
+                },
+                {
+                    "href": "track_activity_report",
+                    "title": "track_activity_report"
+                },
+                {
+                    "href": "concept_items",
+                    "title": "concept_items"
+                },
+                {
+                    "href": "publish_queue",
+                    "title": "publish_queue"
+                },
+                {
+                    "href": "spellcheck",
+                    "title": "spellcheck"
+                },
+                {
+                    "href": "planning_files",
+                    "title": "planning_files"
+                },
+                {
+                    "href": "assignments/link",
+                    "title": "assignments_link"
+                },
+                {
+                    "href": "formatters",
+                    "title": "formatters"
+                },
+                {
+                    "href": "planning/<item_id>/duplicate",
+                    "title": "planning_duplicate"
+                },
+                {
+                    "href": "sessions",
+                    "title": "sessions"
+                },
+                {
+                    "href": "auth_xmpp",
+                    "title": "auth_xmpp"
+                },
+                {
+                    "href": "events/spike",
+                    "title": "events_spike"
+                },
+                {
+                    "href": "content_api",
+                    "title": "content_api"
+                },
+                {
+                    "href": "planning_validator",
+                    "title": "planning_validator"
+                },
+                {
+                    "href": "assignments",
+                    "title": "assignments"
+                },
+                {
+                    "href": "search_providers_allowed",
+                    "title": "search_providers_allowed"
+                },
+                {
+                    "href": "macros",
+                    "title": "macros"
+                },
+                {
+                    "href": "assignments/<item_id>/unlock",
+                    "title": "assignments_unlock"
+                },
+                {
+                    "href": "archive/<item_id>/unlock",
+                    "title": "archive_unlock"
                 }
             ]
         }
-
-+ Response 201 (application/json)
-
-        {
-            "_links": {"self": {"href": "/packages/1"}},
-            "_status": "OK"
-        }
-
-
-### Fetch package [GET]
-
-+ Response 200
-
-    [Package][]
-
-### Update Package [PATCH]
-
-+ Request (application/json)
-
-        {
-            "groups": [
-                {"id": "root", "refs": [{"idRef": "main"}], "role": "grpRole:NEP"},
-                {
-                    "id": "main",
-                    "refs": [
-                        {
-                            "guid": "tag:reuters.com,0000:newsml_ZZN2NBZ00",
-                            "headline": "Hong Kong shares end lower on profit-taking, China slump",
-                            "location": "archive",
-                            "renditions": {},
-                            "residRef": "tag:reuters.com,0000:newsml_ZZN2NBZ00",
-                            "slugline": "MARKETS-HONGKONG-STOCKS/CLOSE (URGENT)",
-                            "type": "text"
-                        }
-                    ],
-                    "role": "grpRole:main"
-                }
-            ]
-        }
-
-+ Response 200 (application/json)
-
-        {
-            "_created": "2014-12-11T13:20:18+0000",
-            "_etag": "194506956b64410edbf2e175a13adf3cc2df921d",
-            "_id": "urn:newsml:localhost:2014-12-11T15:20:18.510755:65b31275-0513-4ee5-9879-1ef9fae5fa33",
-            "_latest_version": 3,
-            "_links": {
-                "collection": {"href": "/packages", "title": "packages"},
-                "parent": {"href": "/", "title": "home"},
-                "self": {
-                    "href": "/packages/urn:newsml:localhost:2014-12-11T15:20:18.510755:65b31275-0513-4ee5-9879-1ef9fae5fa33",
-                    "title": "Package"
-                }
-            },
-            "_updated": "2014-12-11T14:01:27+0000",
-            "_version": 3,
-            "description": "MARKETS-HONGKONG-STOCKS/CLOSE (URGENT):Hong Kong shares end lower on profit-taking, China slump",
-            "firstcreated": "2014-12-11T13:20:18+0000",
-            "groups": [
-                {"id": "root", "refs": [{"idRef": "main"}], "role": "grpRole:NEP"},
-                {
-                    "id": "main",
-                    "refs": [
-                        {
-                            "guid": "tag:reuters.com,0000:newsml_ZZN2NBZ00",
-                            "headline": "Hong Kong shares end lower on profit-taking, China slump",
-                            "location": "archive",
-                            "renditions": {},
-                            "residRef": "tag:reuters.com,0000:newsml_ZZN2NBZ00",
-                            "slugline": "MARKETS-HONGKONG-STOCKS/CLOSE (URGENT)",
-                            "type": "text"
-                        }
-                    ],
-                    "role": "grpRole:main"
-                }
-            ],
-            "guid": "urn:newsml:localhost:2014-12-11T15:20:18.510755:65b31275-0513-4ee5-9879-1ef9fae5fa33",
-            "headline": "Hong Kong shares end lower on profit-taking, China slump",
-            "language": "en",
-            "original_creator": "5481aab74ee1f927e56944cc",
-            "pubstatus": "Usable",
-            "slugline": "MARKETS-HONGKONG-STOCKS/CLOSE (URGENT)",
-            "type": "composite",
-            "unique_id": 5266,
-            "unique_name": "#5266",
-            "version_creator": "5481aab74ee1f927e56944cc",
-            "versioncreated": "2014-12-11T14:01:27+0000"
         }

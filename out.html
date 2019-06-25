@@ -1,0 +1,948 @@
+<!DOCTYPE html><html><head><meta charset="utf-8"><title>Superdesk API</title><link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css"><style>@import url('https://fonts.googleapis.com/css?family=Roboto:400,700|Inconsolata|Raleway:200');.hljs-comment,.hljs-title{color:#8e908c}.hljs-variable,.hljs-attribute,.hljs-tag,.hljs-regexp,.ruby .hljs-constant,.xml .hljs-tag .hljs-title,.xml .hljs-pi,.xml .hljs-doctype,.html .hljs-doctype,.css .hljs-id,.css .hljs-class,.css .hljs-pseudo{color:#c82829}.hljs-number,.hljs-preprocessor,.hljs-pragma,.hljs-built_in,.hljs-literal,.hljs-params,.hljs-constant{color:#f5871f}.ruby .hljs-class .hljs-title,.css .hljs-rules .hljs-attribute{color:#eab700}.hljs-string,.hljs-value,.hljs-inheritance,.hljs-header,.ruby .hljs-symbol,.xml .hljs-cdata{color:#718c00}.css .hljs-hexcolor{color:#3e999f}.hljs-function,.python .hljs-decorator,.python .hljs-title,.ruby .hljs-function .hljs-title,.ruby .hljs-title .hljs-keyword,.perl .hljs-sub,.javascript .hljs-title,.coffeescript .hljs-title{color:#4271ae}.hljs-keyword,.javascript .hljs-function{color:#8959a8}.hljs{display:block;background:white;color:#4d4d4c;padding:.5em}.coffeescript .javascript,.javascript .xml,.tex .hljs-formula,.xml .javascript,.xml .vbscript,.xml .css,.xml .hljs-cdata{opacity:.5}.right .hljs-comment{color:#969896}.right .css .hljs-class,.right .css .hljs-id,.right .css .hljs-pseudo,.right .hljs-attribute,.right .hljs-regexp,.right .hljs-tag,.right .hljs-variable,.right .html .hljs-doctype,.right .ruby .hljs-constant,.right .xml .hljs-doctype,.right .xml .hljs-pi,.right .xml .hljs-tag .hljs-title{color:#c66}.right .hljs-built_in,.right .hljs-constant,.right .hljs-literal,.right .hljs-number,.right .hljs-params,.right .hljs-pragma,.right .hljs-preprocessor{color:#de935f}.right .css .hljs-rule .hljs-attribute,.right .ruby .hljs-class .hljs-title{color:#f0c674}.right .hljs-header,.right .hljs-inheritance,.right .hljs-name,.right .hljs-string,.right .hljs-value,.right .ruby .hljs-symbol,.right .xml .hljs-cdata{color:#b5bd68}.right .css .hljs-hexcolor,.right .hljs-title{color:#8abeb7}.right .coffeescript .hljs-title,.right .hljs-function,.right .javascript .hljs-title,.right .perl .hljs-sub,.right .python .hljs-decorator,.right .python .hljs-title,.right .ruby .hljs-function .hljs-title,.right .ruby .hljs-title .hljs-keyword{color:#81a2be}.right .hljs-keyword,.right .javascript .hljs-function{color:#b294bb}.right .hljs{display:block;overflow-x:auto;background:#1d1f21;color:#c5c8c6;padding:.5em;-webkit-text-size-adjust:none}.right .coffeescript .javascript,.right .javascript .xml,.right .tex .hljs-formula,.right .xml .css,.right .xml .hljs-cdata,.right .xml .javascript,.right .xml .vbscript{opacity:.5}body{color:black;background:white;font:400 14px / 1.42 'Roboto',Helvetica,sans-serif}header{border-bottom:1px solid #f2f2f2;margin-bottom:12px}h1,h2,h3,h4,h5{color:black;margin:12px 0}h1 .permalink,h2 .permalink,h3 .permalink,h4 .permalink,h5 .permalink{margin-left:0;opacity:0;transition:opacity .25s ease}h1:hover .permalink,h2:hover .permalink,h3:hover .permalink,h4:hover .permalink,h5:hover .permalink{opacity:1}.triple h1 .permalink,.triple h2 .permalink,.triple h3 .permalink,.triple h4 .permalink,.triple h5 .permalink{opacity:.15}.triple h1:hover .permalink,.triple h2:hover .permalink,.triple h3:hover .permalink,.triple h4:hover .permalink,.triple h5:hover .permalink{opacity:.15}h1{font:200 36px 'Raleway',Helvetica,sans-serif;font-size:36px}h2{font:200 36px 'Raleway',Helvetica,sans-serif;font-size:30px}h3{font-size:100%;text-transform:uppercase}h5{font-size:100%;font-weight:normal}p{margin:0 0 10px}p.choices{line-height:1.6}a{color:#428bca;text-decoration:none}li p{margin:0}hr.split{border:0;height:1px;width:100%;padding-left:6px;margin:12px auto;background-image:linear-gradient(to right, rgba(0,0,0,0) 20%, rgba(0,0,0,0.2) 51.4%, rgba(255,255,255,0.2) 51.4%, rgba(255,255,255,0) 80%)}dl dt{float:left;width:130px;clear:left;text-align:right;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-weight:700}dl dd{margin-left:150px}blockquote{color:rgba(0,0,0,0.5);font-size:15.5px;padding:10px 20px;margin:12px 0;border-left:5px solid #e8e8e8}blockquote p:last-child{margin-bottom:0}pre{background-color:#f5f5f5;padding:12px;border:1px solid #cfcfcf;border-radius:6px;overflow:auto}pre code{color:black;background-color:transparent;padding:0;border:none}code{color:#444;background-color:#f5f5f5;font:'Inconsolata',monospace;padding:1px 4px;border:1px solid #cfcfcf;border-radius:3px}ul,ol{padding-left:2em}table{border-collapse:collapse;border-spacing:0;margin-bottom:12px}table tr:nth-child(2n){background-color:#fafafa}table th,table td{padding:6px 12px;border:1px solid #e6e6e6}.text-muted{opacity:.5}.note,.warning{padding:.3em 1em;margin:1em 0;border-radius:2px;font-size:90%}.note h1,.warning h1,.note h2,.warning h2,.note h3,.warning h3,.note h4,.warning h4,.note h5,.warning h5,.note h6,.warning h6{font-family:200 36px 'Raleway',Helvetica,sans-serif;font-size:135%;font-weight:500}.note p,.warning p{margin:.5em 0}.note{color:black;background-color:#f0f6fb;border-left:4px solid #428bca}.note h1,.note h2,.note h3,.note h4,.note h5,.note h6{color:#428bca}.warning{color:black;background-color:#fbf1f0;border-left:4px solid #c9302c}.warning h1,.warning h2,.warning h3,.warning h4,.warning h5,.warning h6{color:#c9302c}header{margin-top:24px}nav{position:fixed;top:24px;bottom:0;overflow-y:auto}nav .resource-group{padding:0}nav .resource-group .heading{position:relative}nav .resource-group .heading .chevron{position:absolute;top:12px;right:12px;opacity:.5}nav .resource-group .heading a{display:block;color:black;opacity:.7;border-left:2px solid transparent;margin:0}nav .resource-group .heading a:hover{text-decoration:none;background-color:bad-color;border-left:2px solid black}nav ul{list-style-type:none;padding-left:0}nav ul a{display:block;font-size:13px;color:rgba(0,0,0,0.7);padding:8px 12px;border-top:1px solid #d9d9d9;border-left:2px solid transparent;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}nav ul a:hover{text-decoration:none;background-color:bad-color;border-left:2px solid black}nav ul>li{margin:0}nav ul>li:first-child{margin-top:-12px}nav ul>li:last-child{margin-bottom:-12px}nav ul ul a{padding-left:24px}nav ul ul li{margin:0}nav ul ul li:first-child{margin-top:0}nav ul ul li:last-child{margin-bottom:0}nav>div>div>ul>li:first-child>a{border-top:none}.preload *{transition:none !important}.pull-left{float:left}.pull-right{float:right}.badge{display:inline-block;float:right;min-width:10px;min-height:14px;padding:3px 7px;font-size:12px;color:#000;background-color:#f2f2f2;border-radius:10px;margin:-2px 0}.badge.get{color:#70bbe1;background-color:#d9edf7}.badge.head{color:#70bbe1;background-color:#d9edf7}.badge.options{color:#70bbe1;background-color:#d9edf7}.badge.put{color:#f0db70;background-color:#fcf8e3}.badge.patch{color:#f0db70;background-color:#fcf8e3}.badge.post{color:#93cd7c;background-color:#dff0d8}.badge.delete{color:#ce8383;background-color:#f2dede}.collapse-button{float:right}.collapse-button .close{display:none;color:#428bca;cursor:pointer}.collapse-button .open{color:#428bca;cursor:pointer}.collapse-button.show .close{display:inline}.collapse-button.show .open{display:none}.collapse-content{max-height:0;overflow:hidden;transition:max-height .3s ease-in-out}nav{width:220px}.container{max-width:940px;margin-left:auto;margin-right:auto}.container .row .content{margin-left:244px;width:696px}.container .row:after{content:'';display:block;clear:both}.container-fluid nav{width:22%}.container-fluid .row .content{margin-left:24%}.container-fluid.triple nav{width:16.5%;padding-right:1px}.container-fluid.triple .row .content{position:relative;margin-left:16.5%;padding-left:24px}.middle:before,.middle:after{content:'';display:table}.middle:after{clear:both}.middle{box-sizing:border-box;width:51.5%;padding-right:12px}.right{box-sizing:border-box;float:right;width:48.5%;padding-left:12px}.right a{color:#428bca}.right h1,.right h2,.right h3,.right h4,.right h5,.right p,.right div{color:white}.right pre{background-color:#1d1f21;border:1px solid #1d1f21}.right pre code{color:#c5c8c6}.right .description{margin-top:12px}.triple .resource-heading{font-size:125%}.definition{margin-top:12px;margin-bottom:12px}.definition .method{font-weight:bold}.definition .method.get{color:#2e8ab8}.definition .method.head{color:#2e8ab8}.definition .method.options{color:#2e8ab8}.definition .method.post{color:#56b82e}.definition .method.put{color:#b8a22e}.definition .method.patch{color:#b8a22e}.definition .method.delete{color:#b82e2e}.definition .uri{word-break:break-all;word-wrap:break-word}.definition .hostname{opacity:.5}.example-names{background-color:#eee;padding:12px;border-radius:6px}.example-names .tab-button{cursor:pointer;color:black;border:1px solid #ddd;padding:6px;margin-left:12px}.example-names .tab-button.active{background-color:#d5d5d5}.right .example-names{background-color:#444}.right .example-names .tab-button{color:white;border:1px solid #666;border-radius:6px}.right .example-names .tab-button.active{background-color:#5e5e5e}#nav-background{position:fixed;left:0;top:0;bottom:0;width:16.5%;padding-right:14.4px;background-color:#fbfbfb;border-right:1px solid #f0f0f0;z-index:-1}#right-panel-background{position:absolute;right:-12px;top:-12px;bottom:-12px;width:48.6%;background-color:#333;z-index:-1}@media (max-width:1200px){nav{width:198px}.container{max-width:840px}.container .row .content{margin-left:224px;width:606px}}@media (max-width:992px){nav{width:169.4px}.container{max-width:720px}.container .row .content{margin-left:194px;width:526px}}@media (max-width:768px){nav{display:none}.container{width:95%;max-width:none}.container .row .content,.container-fluid .row .content,.container-fluid.triple .row .content{margin-left:auto;margin-right:auto;width:95%}#nav-background{display:none}#right-panel-background{width:48.6%}}.back-to-top{position:fixed;z-index:1;bottom:0;right:24px;padding:4px 8px;color:rgba(0,0,0,0.5);background-color:#f2f2f2;text-decoration:none !important;border-top:1px solid #d9d9d9;border-left:1px solid #d9d9d9;border-right:1px solid #d9d9d9;border-top-left-radius:3px;border-top-right-radius:3px}.resource-group{padding:12px;margin-bottom:12px;background-color:white;border:1px solid #d9d9d9;border-radius:6px}.resource-group h2.group-heading,.resource-group .heading a{padding:12px;margin:-12px -12px 12px -12px;background-color:#f2f2f2;border-bottom:1px solid #d9d9d9;border-top-left-radius:6px;border-top-right-radius:6px;white-space:nowrap;text-overflow:ellipsis;overflow:hidden}.triple .content .resource-group{padding:0;border:none}.triple .content .resource-group h2.group-heading,.triple .content .resource-group .heading a{margin:0 0 12px 0;border:1px solid #d9d9d9}nav .resource-group .heading a{padding:12px;margin-bottom:0}nav .resource-group .collapse-content{padding:0}.action{margin-bottom:12px;padding:12px 12px 0 12px;overflow:hidden;border:1px solid transparent;border-radius:6px}.action h4.action-heading{padding:6px 12px;margin:-12px -12px 12px -12px;border-bottom:1px solid transparent;border-top-left-radius:6px;border-top-right-radius:6px;overflow:hidden}.action h4.action-heading .name{float:right;font-weight:normal;padding:6px 0}.action h4.action-heading .method{padding:6px 12px;margin-right:12px;border-radius:3px;display:inline-block}.action h4.action-heading .method.get{color:#fff;background-color:#337ab7}.action h4.action-heading .method.head{color:#fff;background-color:#337ab7}.action h4.action-heading .method.options{color:#fff;background-color:#337ab7}.action h4.action-heading .method.put{color:#fff;background-color:#ed9c28}.action h4.action-heading .method.patch{color:#fff;background-color:#ed9c28}.action h4.action-heading .method.post{color:#fff;background-color:#5cb85c}.action h4.action-heading .method.delete{color:#fff;background-color:#d9534f}.action h4.action-heading code{color:#444;background-color:#f5f5f5;border-color:#cfcfcf;font-weight:normal;word-break:break-all;display:inline-block;margin-top:2px}.action dl.inner{padding-bottom:2px}.action .title{border-bottom:1px solid white;margin:0 -12px -1px -12px;padding:12px}.action.get{border-color:#bce8f1}.action.get h4.action-heading{color:#337ab7;background:#d9edf7;border-bottom-color:#bce8f1}.action.head{border-color:#bce8f1}.action.head h4.action-heading{color:#337ab7;background:#d9edf7;border-bottom-color:#bce8f1}.action.options{border-color:#bce8f1}.action.options h4.action-heading{color:#337ab7;background:#d9edf7;border-bottom-color:#bce8f1}.action.post{border-color:#d6e9c6}.action.post h4.action-heading{color:#5cb85c;background:#dff0d8;border-bottom-color:#d6e9c6}.action.put{border-color:#faebcc}.action.put h4.action-heading{color:#ed9c28;background:#fcf8e3;border-bottom-color:#faebcc}.action.patch{border-color:#faebcc}.action.patch h4.action-heading{color:#ed9c28;background:#fcf8e3;border-bottom-color:#faebcc}.action.delete{border-color:#ebccd1}.action.delete h4.action-heading{color:#d9534f;background:#f2dede;border-bottom-color:#ebccd1}</style></head><body class="preload"><a href="#top" class="text-muted back-to-top"><i class="fa fa-toggle-up"></i>&nbsp;Back to top</a><div class="container"><div class="row"><nav><div class="resource-group"><div class="heading"><div class="chevron"><i class="open fa fa-angle-down"></i></div><a href="#top">Overview</a></div><div class="collapse-content"><ul><li><a href="#header-before-you-begin">Before You Begin</a></li></ul></div></div><div class="resource-group"><div class="heading"><div class="chevron"><i class="open fa fa-angle-down"></i></div><a href="#authentication">Authentication</a></div><div class="collapse-content"><ul><li><a href="#authentication-basic-authentication-post"><span class="badge post"><i class="fa fa-plus"></i></span>Authenticate</a></li><li><a href="#authentication-reset-user-password-post"><span class="badge post"><i class="fa fa-plus"></i></span>Reset User Password</a></li></ul></div></div><div class="resource-group"><div class="heading"><div class="chevron"><i class="open fa fa-angle-down"></i></div><a href="#all-resources">All Resources</a></div><div class="collapse-content"><ul><li><a href="#all-resources-all-resources-get"><span class="badge get"><i class="fa fa-arrow-down"></i></span>List All Resources</a></li></ul></div></div></nav><div class="content"><header><h1 id="top">Superdesk API</h1></header><p>Superdesk is an open source end-to-end news creation, production, curation, distribution and publishing platform developed and maintained
+by Sourcefabric with the sole purpose of making the best possible software for journalism.</p>
+<p>This is the offical documentation of Superdesk API used by Superdesk application. It features all the resources to</p>
+<ul>
+<li>
+<p>manage a newsroom (i.e. users, desks, stages etc)</p>
+</li>
+<li>
+<p>manage stories (i.e. templates, stories, multimedia etc)</p>
+</li>
+<li>
+<p>manage distribution (i.e. subscribers, filters, destinations etc)</p>
+</li>
+</ul>
+<hr>
+<h2 id="header-before-you-begin">Before You Begin <a class="permalink" href="#header-before-you-begin" aria-hidden="true">¶</a></h2>
+<p>The base URI for all requests is http://{{host}/api where host will be the host address where the server runs.</p>
+<p>To run the server locally please check <a href="https://github.com/superdesk/superdesk">Superdesk</a> repo for all the information</p>
+<hr>
+<section id="authentication" class="resource-group"><h2 class="group-heading">Authentication <a href="#authentication" class="permalink">&para;</a></h2><div id="authentication-basic-authentication" class="resource"><h3 class="resource-heading">Basic Authentication <a href="#authentication-basic-authentication" class="permalink">&nbsp;&para;</a></h3><div id="authentication-basic-authentication-post" class="action post"><h4 class="action-heading"><div class="name">Authenticate</div><a href="#authentication-basic-authentication-post" class="method post">POST</a><code class="uri">/auth_db</code></h4><p>Uses basic authentication with username and password to authenticate the user</p>
+<p>The rest of the endpoints requiring authorization will have to supply the following header: “Authorization”: b’basic ’ + b64encode(token + b’:’)</p>
+<h4>Example URI</h4><div class="definition"><span class="method post">POST</span>&nbsp;<span class="uri"><span class="hostname"></span>/auth_db</span></div><div class="title"><strong>Request</strong><div class="collapse-button"><span class="close">Hide</span><span class="open">Show</span></div></div><div class="collapse-content"><div class="inner"><h5>Headers</h5><pre><code><span class="hljs-attribute">Content-Type</span>: <span class="hljs-string">application/json;charset=UTF-8</span></code></pre><div style="height: 1px;"></div><h5>Body</h5><pre><code>{
+    <span class="hljs-string">"username"</span>: {{uername}},
+    <span class="hljs-string">"password"</span>: {{password}}
+}</code></pre><div style="height: 1px;"></div></div></div><div class="title"><strong>Response&nbsp;&nbsp;<code>200</code></strong><div class="collapse-button"><span class="close">Hide</span><span class="open">Show</span></div></div><div class="collapse-content"><div class="inner"><h5>Headers</h5><pre><code><span class="hljs-attribute">Content-Type</span>: <span class="hljs-string">application/json</span></code></pre><div style="height: 1px;"></div><h5>Body</h5><pre><code>{
+  "<span class="hljs-attribute">_status</span>": <span class="hljs-value"><span class="hljs-string">"OK"</span></span>,
+  "<span class="hljs-attribute">_links</span>": <span class="hljs-value">{
+    "<span class="hljs-attribute">self</span>": <span class="hljs-value">{
+      "<span class="hljs-attribute">href</span>": <span class="hljs-value"><span class="hljs-string">"auth_db/123"</span></span>,
+      "<span class="hljs-attribute">title</span>": <span class="hljs-value"><span class="hljs-string">"Auth_db"</span>
+    </span>}
+  </span>}</span>,
+  "<span class="hljs-attribute">username</span>": <span class="hljs-value"><span class="hljs-string">"user_name"</span></span>,
+  "<span class="hljs-attribute">_etag</span>": <span class="hljs-value"><span class="hljs-string">"35186487751b000740635868c46ec1679f35acb0"</span></span>,
+  "<span class="hljs-attribute">_updated</span>": <span class="hljs-value"><span class="hljs-string">"2019-06-23T04:42:52+0000"</span></span>,
+  "<span class="hljs-attribute">token</span>": <span class="hljs-value"><span class="hljs-string">"07b2be11-5edc-4efd-b021-h34h34434"</span></span>,
+  "<span class="hljs-attribute">user</span>": <span class="hljs-value"><span class="hljs-string">"5ab1a33434dfe38019f0a875a"</span></span>,
+  "<span class="hljs-attribute">_id</span>": <span class="hljs-value"><span class="hljs-string">"123"</span></span>,
+  "<span class="hljs-attribute">_created</span>": <span class="hljs-value"><span class="hljs-string">"2019-06-23T04:42:52+0000"</span>
+</span>}</code></pre><div style="height: 1px;"></div></div></div></div></div><div id="authentication-reset-user-password" class="resource"><h3 class="resource-heading">Reset User Password <a href="#authentication-reset-user-password" class="permalink">&nbsp;&para;</a></h3><div id="authentication-reset-user-password-post" class="action post"><h4 class="action-heading"><div class="name">Reset User Password</div><a href="#authentication-reset-user-password-post" class="method post">POST</a><code class="uri">/reset_user_password</code></h4><p>If email is provided starts reset password process and sends an email to users email address.
+If a token and password is provided, it resets the password for the user where reset password
+process has started.</p>
+<ul>
+<li>
+<p>email (string) - Email of user</p>
+</li>
+<li>
+<p>token (string) - Token for reset password process</p>
+</li>
+<li>
+<p>password (string) - New password of user</p>
+</li>
+</ul>
+<h4>Example URI</h4><div class="definition"><span class="method post">POST</span>&nbsp;<span class="uri"><span class="hostname"></span>/reset_user_password</span></div><div class="title"><strong>Request</strong><div class="collapse-button"><span class="close">Hide</span><span class="open">Show</span></div></div><div class="collapse-content"><div class="inner"><h5>Body</h5><pre><code>{
+  "<span class="hljs-attribute">email</span>": <span class="hljs-value"><span class="hljs-string">"a2@a.com"</span>
+</span>}</code></pre><div style="height: 1px;"></div></div></div><div class="title"><strong>Response&nbsp;&nbsp;<code>200</code></strong><div class="collapse-button"><span class="close">Hide</span><span class="open">Show</span></div></div><div class="collapse-content"><div class="inner"><h5>Headers</h5><pre><code><span class="hljs-attribute">Content-Type</span>: <span class="hljs-string">application/json</span></code></pre><div style="height: 1px;"></div><h5>Body</h5><pre><code>{
+  "<span class="hljs-attribute">email</span>": <span class="hljs-value"><span class="hljs-string">"user@email.com"</span></span>,
+  "<span class="hljs-attribute">_etag</span>": <span class="hljs-value"><span class="hljs-string">"ef2aef3faebc6d1c25d8a259d81be06d8174e429"</span></span>,
+  "<span class="hljs-attribute">_links</span>": <span class="hljs-value">{
+    "<span class="hljs-attribute">self</span>": <span class="hljs-value">{
+      "<span class="hljs-attribute">href</span>": <span class="hljs-value"><span class="hljs-string">"reset_user_password/5d0f6ea41d41c8f11e5a11bc"</span></span>,
+      "<span class="hljs-attribute">title</span>": <span class="hljs-value"><span class="hljs-string">"Reset_user_password"</span>
+    </span>}
+  </span>}</span>,
+  "<span class="hljs-attribute">_status</span>": <span class="hljs-value"><span class="hljs-string">"OK"</span></span>,
+  "<span class="hljs-attribute">_id</span>": <span class="hljs-value"><span class="hljs-string">"5d0f6ea41d41c8f11e5a11bc"</span></span>,
+  "<span class="hljs-attribute">expire_time</span>": <span class="hljs-value"><span class="hljs-string">"2019-06-24T12:20:52+0000"</span></span>,
+  "<span class="hljs-attribute">_updated</span>": <span class="hljs-value"><span class="hljs-string">"2019-06-23T12:20:52+0000"</span></span>,
+  "<span class="hljs-attribute">_created</span>": <span class="hljs-value"><span class="hljs-string">"2019-06-23T12:20:52+0000"</span>
+</span>}</code></pre><div style="height: 1px;"></div></div></div></div></div></section><section id="all-resources" class="resource-group"><h2 class="group-heading">All Resources <a href="#all-resources" class="permalink">&para;</a></h2><p>List of resources related to questions in the API.</p>
+<div id="all-resources-all-resources" class="resource"><h3 class="resource-heading">All Resources <a href="#all-resources-all-resources" class="permalink">&nbsp;&para;</a></h3><p>List available resources.</p>
+<div id="all-resources-all-resources-get" class="action get"><h4 class="action-heading"><div class="name">List All Resources</div><a href="#all-resources-all-resources-get" class="method get">GET</a><code class="uri">/</code></h4><h4>Example URI</h4><div class="definition"><span class="method get">GET</span>&nbsp;<span class="uri"><span class="hostname"></span>/</span></div><div class="title"><strong>Response&nbsp;&nbsp;<code>200</code></strong><div class="collapse-button"><span class="close">Hide</span><span class="open">Show</span></div></div><div class="collapse-content"><div class="inner"><h5>Headers</h5><pre><code><span class="hljs-attribute">Content-Type</span>: <span class="hljs-string">application/json</span></code></pre><div style="height: 1px;"></div><h5>Body</h5><pre><code>{
+  "<span class="hljs-attribute">_links</span>": <span class="hljs-value">{
+    "<span class="hljs-attribute">child</span>": <span class="hljs-value">[
+      {
+        "<span class="hljs-attribute">href</span>": <span class="hljs-value"><span class="hljs-string">"published"</span></span>,
+        "<span class="hljs-attribute">title</span>": <span class="hljs-value"><span class="hljs-string">"published"</span>
+      </span>},
+      {
+        "<span class="hljs-attribute">href</span>": <span class="hljs-value"><span class="hljs-string">"filter_conditions"</span></span>,
+        "<span class="hljs-attribute">title</span>": <span class="hljs-value"><span class="hljs-string">"filter_conditions"</span>
+      </span>},
+      {
+        "<span class="hljs-attribute">href</span>": <span class="hljs-value"><span class="hljs-string">"content_filters"</span></span>,
+        "<span class="hljs-attribute">title</span>": <span class="hljs-value"><span class="hljs-string">"content_filters"</span>
+      </span>},
+      {
+        "<span class="hljs-attribute">href</span>": <span class="hljs-value"><span class="hljs-string">"archive/&lt;item_id&gt;/broadcast"</span></span>,
+        "<span class="hljs-attribute">title</span>": <span class="hljs-value"><span class="hljs-string">"archive_broadcast"</span>
+      </span>},
+      {
+        "<span class="hljs-attribute">href</span>": <span class="hljs-value"><span class="hljs-string">"picture_crop"</span></span>,
+        "<span class="hljs-attribute">title</span>": <span class="hljs-value"><span class="hljs-string">"picture_crop"</span>
+      </span>},
+      {
+        "<span class="hljs-attribute">href</span>": <span class="hljs-value"><span class="hljs-string">"upload"</span></span>,
+        "<span class="hljs-attribute">title</span>": <span class="hljs-value"><span class="hljs-string">"upload"</span>
+      </span>},
+      {
+        "<span class="hljs-attribute">href</span>": <span class="hljs-value"><span class="hljs-string">"events"</span></span>,
+        "<span class="hljs-attribute">title</span>": <span class="hljs-value"><span class="hljs-string">"events"</span>
+      </span>},
+      {
+        "<span class="hljs-attribute">href</span>": <span class="hljs-value"><span class="hljs-string">"roles"</span></span>,
+        "<span class="hljs-attribute">title</span>": <span class="hljs-value"><span class="hljs-string">"roles"</span>
+      </span>},
+      {
+        "<span class="hljs-attribute">href</span>": <span class="hljs-value"><span class="hljs-string">"archive/&lt;item&gt;/comments"</span></span>,
+        "<span class="hljs-attribute">title</span>": <span class="hljs-value"><span class="hljs-string">"archive/&lt;path:item&gt;/comments"</span>
+      </span>},
+      {
+        "<span class="hljs-attribute">href</span>": <span class="hljs-value"><span class="hljs-string">"products/test"</span></span>,
+        "<span class="hljs-attribute">title</span>": <span class="hljs-value"><span class="hljs-string">"product_tests"</span>
+      </span>},
+      {
+        "<span class="hljs-attribute">href</span>": <span class="hljs-value"><span class="hljs-string">"planning/unspike"</span></span>,
+        "<span class="hljs-attribute">title</span>": <span class="hljs-value"><span class="hljs-string">"planning_unspike"</span>
+      </span>},
+      {
+        "<span class="hljs-attribute">href</span>": <span class="hljs-value"><span class="hljs-string">"archive/kill"</span></span>,
+        "<span class="hljs-attribute">title</span>": <span class="hljs-value"><span class="hljs-string">"archive_kill"</span>
+      </span>},
+      {
+        "<span class="hljs-attribute">href</span>": <span class="hljs-value"><span class="hljs-string">"desks"</span></span>,
+        "<span class="hljs-attribute">title</span>": <span class="hljs-value"><span class="hljs-string">"desks"</span>
+      </span>},
+      {
+        "<span class="hljs-attribute">href</span>": <span class="hljs-value"><span class="hljs-string">"assignments_history"</span></span>,
+        "<span class="hljs-attribute">title</span>": <span class="hljs-value"><span class="hljs-string">"assignments_history"</span>
+      </span>},
+      {
+        "<span class="hljs-attribute">href</span>": <span class="hljs-value"><span class="hljs-string">"events_history"</span></span>,
+        "<span class="hljs-attribute">title</span>": <span class="hljs-value"><span class="hljs-string">"events_history"</span>
+      </span>},
+      {
+        "<span class="hljs-attribute">href</span>": <span class="hljs-value"><span class="hljs-string">"vocabularies"</span></span>,
+        "<span class="hljs-attribute">title</span>": <span class="hljs-value"><span class="hljs-string">"vocabularies"</span>
+      </span>},
+      {
+        "<span class="hljs-attribute">href</span>": <span class="hljs-value"><span class="hljs-string">"archive/takedown"</span></span>,
+        "<span class="hljs-attribute">title</span>": <span class="hljs-value"><span class="hljs-string">"archive_takedown"</span>
+      </span>},
+      {
+        "<span class="hljs-attribute">href</span>": <span class="hljs-value"><span class="hljs-string">"feed_parsers_allowed"</span></span>,
+        "<span class="hljs-attribute">title</span>": <span class="hljs-value"><span class="hljs-string">"feed_parsers_allowed"</span>
+      </span>},
+      {
+        "<span class="hljs-attribute">href</span>": <span class="hljs-value"><span class="hljs-string">"feeding_services_allowed"</span></span>,
+        "<span class="hljs-attribute">title</span>": <span class="hljs-value"><span class="hljs-string">"feeding_services_allowed"</span>
+      </span>},
+      {
+        "<span class="hljs-attribute">href</span>": <span class="hljs-value"><span class="hljs-string">"planning_article_export"</span></span>,
+        "<span class="hljs-attribute">title</span>": <span class="hljs-value"><span class="hljs-string">"planning_article_export"</span>
+      </span>},
+      {
+        "<span class="hljs-attribute">href</span>": <span class="hljs-value"><span class="hljs-string">"planning_history"</span></span>,
+        "<span class="hljs-attribute">title</span>": <span class="hljs-value"><span class="hljs-string">"planning_history"</span>
+      </span>},
+      {
+        "<span class="hljs-attribute">href</span>": <span class="hljs-value"><span class="hljs-string">"privileges"</span></span>,
+        "<span class="hljs-attribute">title</span>": <span class="hljs-value"><span class="hljs-string">"privileges"</span>
+      </span>},
+      {
+        "<span class="hljs-attribute">href</span>": <span class="hljs-value"><span class="hljs-string">"events_template"</span></span>,
+        "<span class="hljs-attribute">title</span>": <span class="hljs-value"><span class="hljs-string">"events_template"</span>
+      </span>},
+      {
+        "<span class="hljs-attribute">href</span>": <span class="hljs-value"><span class="hljs-string">"dictionaries"</span></span>,
+        "<span class="hljs-attribute">title</span>": <span class="hljs-value"><span class="hljs-string">"dictionaries"</span>
+      </span>},
+      {
+        "<span class="hljs-attribute">href</span>": <span class="hljs-value"><span class="hljs-string">"archive/unspike"</span></span>,
+        "<span class="hljs-attribute">title</span>": <span class="hljs-value"><span class="hljs-string">"archive_unspike"</span>
+      </span>},
+      {
+        "<span class="hljs-attribute">href</span>": <span class="hljs-value"><span class="hljs-string">"planning/spike"</span></span>,
+        "<span class="hljs-attribute">title</span>": <span class="hljs-value"><span class="hljs-string">"planning_spike"</span>
+      </span>},
+      {
+        "<span class="hljs-attribute">href</span>": <span class="hljs-value"><span class="hljs-string">"events/post"</span></span>,
+        "<span class="hljs-attribute">title</span>": <span class="hljs-value"><span class="hljs-string">"events_post"</span>
+      </span>},
+      {
+        "<span class="hljs-attribute">href</span>": <span class="hljs-value"><span class="hljs-string">"search"</span></span>,
+        "<span class="hljs-attribute">title</span>": <span class="hljs-value"><span class="hljs-string">"search"</span>
+      </span>},
+      {
+        "<span class="hljs-attribute">href</span>": <span class="hljs-value"><span class="hljs-string">"events/cancel"</span></span>,
+        "<span class="hljs-attribute">title</span>": <span class="hljs-value"><span class="hljs-string">"events_cancel"</span>
+      </span>},
+      {
+        "<span class="hljs-attribute">href</span>": <span class="hljs-value"><span class="hljs-string">"saved_searches"</span></span>,
+        "<span class="hljs-attribute">title</span>": <span class="hljs-value"><span class="hljs-string">"saved_searches"</span>
+      </span>},
+      {
+        "<span class="hljs-attribute">href</span>": <span class="hljs-value"><span class="hljs-string">"users/&lt;user_id&gt;/desks"</span></span>,
+        "<span class="hljs-attribute">title</span>": <span class="hljs-value"><span class="hljs-string">"user_desks"</span>
+      </span>},
+      {
+        "<span class="hljs-attribute">href</span>": <span class="hljs-value"><span class="hljs-string">"planning/&lt;item_id&gt;/lock"</span></span>,
+        "<span class="hljs-attribute">title</span>": <span class="hljs-value"><span class="hljs-string">"planning_lock"</span>
+      </span>},
+      {
+        "<span class="hljs-attribute">href</span>": <span class="hljs-value"><span class="hljs-string">"attachments"</span></span>,
+        "<span class="hljs-attribute">title</span>": <span class="hljs-value"><span class="hljs-string">"attachments"</span>
+      </span>},
+      {
+        "<span class="hljs-attribute">href</span>": <span class="hljs-value"><span class="hljs-string">"change_user_password"</span></span>,
+        "<span class="hljs-attribute">title</span>": <span class="hljs-value"><span class="hljs-string">"change_user_password"</span>
+      </span>},
+      {
+        "<span class="hljs-attribute">href</span>": <span class="hljs-value"><span class="hljs-string">"users"</span></span>,
+        "<span class="hljs-attribute">title</span>": <span class="hljs-value"><span class="hljs-string">"users"</span>
+      </span>},
+      {
+        "<span class="hljs-attribute">href</span>": <span class="hljs-value"><span class="hljs-string">"assignments/&lt;item_id&gt;/lock"</span></span>,
+        "<span class="hljs-attribute">title</span>": <span class="hljs-value"><span class="hljs-string">"assignments_lock"</span>
+      </span>},
+      {
+        "<span class="hljs-attribute">href</span>": <span class="hljs-value"><span class="hljs-string">"planning_export_templates"</span></span>,
+        "<span class="hljs-attribute">title</span>": <span class="hljs-value"><span class="hljs-string">"planning_export_templates"</span>
+      </span>},
+      {
+        "<span class="hljs-attribute">href</span>": <span class="hljs-value"><span class="hljs-string">"contacts"</span></span>,
+        "<span class="hljs-attribute">title</span>": <span class="hljs-value"><span class="hljs-string">"contacts"</span>
+      </span>},
+      {
+        "<span class="hljs-attribute">href</span>": <span class="hljs-value"><span class="hljs-string">"archive_history"</span></span>,
+        "<span class="hljs-attribute">title</span>": <span class="hljs-value"><span class="hljs-string">"archive_history"</span>
+      </span>},
+      {
+        "<span class="hljs-attribute">href</span>": <span class="hljs-value"><span class="hljs-string">"archive/correct"</span></span>,
+        "<span class="hljs-attribute">title</span>": <span class="hljs-value"><span class="hljs-string">"archive_correct"</span>
+      </span>},
+      {
+        "<span class="hljs-attribute">href</span>": <span class="hljs-value"><span class="hljs-string">"events/unspike"</span></span>,
+        "<span class="hljs-attribute">title</span>": <span class="hljs-value"><span class="hljs-string">"events_unspike"</span>
+      </span>},
+      {
+        "<span class="hljs-attribute">href</span>": <span class="hljs-value"><span class="hljs-string">"search_capi"</span></span>,
+        "<span class="hljs-attribute">title</span>": <span class="hljs-value"><span class="hljs-string">"search_capi"</span>
+      </span>},
+      {
+        "<span class="hljs-attribute">href</span>": <span class="hljs-value"><span class="hljs-string">"all_saved_searches"</span></span>,
+        "<span class="hljs-attribute">title</span>": <span class="hljs-value"><span class="hljs-string">"all_saved_searches"</span>
+      </span>},
+      {
+        "<span class="hljs-attribute">href</span>": <span class="hljs-value"><span class="hljs-string">"search_providers"</span></span>,
+        "<span class="hljs-attribute">title</span>": <span class="hljs-value"><span class="hljs-string">"search_providers"</span>
+      </span>},
+      {
+        "<span class="hljs-attribute">href</span>": <span class="hljs-value"><span class="hljs-string">"events_files"</span></span>,
+        "<span class="hljs-attribute">title</span>": <span class="hljs-value"><span class="hljs-string">"events_files"</span>
+      </span>},
+      {
+        "<span class="hljs-attribute">href</span>": <span class="hljs-value"><span class="hljs-string">"assignments/unlink"</span></span>,
+        "<span class="hljs-attribute">title</span>": <span class="hljs-value"><span class="hljs-string">"assignments_unlink"</span>
+      </span>},
+      {
+        "<span class="hljs-attribute">href</span>": <span class="hljs-value"><span class="hljs-string">"client_config"</span></span>,
+        "<span class="hljs-attribute">title</span>": <span class="hljs-value"><span class="hljs-string">"client_config"</span>
+      </span>},
+      {
+        "<span class="hljs-attribute">href</span>": <span class="hljs-value"><span class="hljs-string">"spikes"</span></span>,
+        "<span class="hljs-attribute">title</span>": <span class="hljs-value"><span class="hljs-string">"spikes"</span>
+      </span>},
+      {
+        "<span class="hljs-attribute">href</span>": <span class="hljs-value"><span class="hljs-string">"validators"</span></span>,
+        "<span class="hljs-attribute">title</span>": <span class="hljs-value"><span class="hljs-string">"validators"</span>
+      </span>},
+      {
+        "<span class="hljs-attribute">href</span>": <span class="hljs-value"><span class="hljs-string">"archive/translate"</span></span>,
+        "<span class="hljs-attribute">title</span>": <span class="hljs-value"><span class="hljs-string">"translate"</span>
+      </span>},
+      {
+        "<span class="hljs-attribute">href</span>": <span class="hljs-value"><span class="hljs-string">"events/&lt;item_id&gt;/duplicate"</span></span>,
+        "<span class="hljs-attribute">title</span>": <span class="hljs-value"><span class="hljs-string">"events_duplicate"</span>
+      </span>},
+      {
+        "<span class="hljs-attribute">href</span>": <span class="hljs-value"><span class="hljs-string">"assignments/content"</span></span>,
+        "<span class="hljs-attribute">title</span>": <span class="hljs-value"><span class="hljs-string">"assignments_content"</span>
+      </span>},
+      {
+        "<span class="hljs-attribute">href</span>": <span class="hljs-value"><span class="hljs-string">"planning_search"</span></span>,
+        "<span class="hljs-attribute">title</span>": <span class="hljs-value"><span class="hljs-string">"planning_search"</span>
+      </span>},
+      {
+        "<span class="hljs-attribute">href</span>": <span class="hljs-value"><span class="hljs-string">"reset_user_password"</span></span>,
+        "<span class="hljs-attribute">title</span>": <span class="hljs-value"><span class="hljs-string">"reset_user_password"</span>
+      </span>},
+      {
+        "<span class="hljs-attribute">href</span>": <span class="hljs-value"><span class="hljs-string">"archive/&lt;original_id&gt;/rewrite"</span></span>,
+        "<span class="hljs-attribute">title</span>": <span class="hljs-value"><span class="hljs-string">"archive_rewrite"</span>
+      </span>},
+      {
+        "<span class="hljs-attribute">href</span>": <span class="hljs-value"><span class="hljs-string">"desks/&lt;desk_id&gt;/sluglines"</span></span>,
+        "<span class="hljs-attribute">title</span>": <span class="hljs-value"><span class="hljs-string">"desks/&lt;regex(\"[a-f0-9]{24}\"):desk_id&gt;/sluglines"</span>
+      </span>},
+      {
+        "<span class="hljs-attribute">href</span>": <span class="hljs-value"><span class="hljs-string">"planning_featured"</span></span>,
+        "<span class="hljs-attribute">title</span>": <span class="hljs-value"><span class="hljs-string">"planning_featured"</span>
+      </span>},
+      {
+        "<span class="hljs-attribute">href</span>": <span class="hljs-value"><span class="hljs-string">"planning_featured_unlock"</span></span>,
+        "<span class="hljs-attribute">title</span>": <span class="hljs-value"><span class="hljs-string">"planning_featured_unlock"</span>
+      </span>},
+      {
+        "<span class="hljs-attribute">href</span>": <span class="hljs-value"><span class="hljs-string">"assignments/complete"</span></span>,
+        "<span class="hljs-attribute">title</span>": <span class="hljs-value"><span class="hljs-string">"assignments_complete"</span>
+      </span>},
+      {
+        "<span class="hljs-attribute">href</span>": <span class="hljs-value"><span class="hljs-string">"content_templates"</span></span>,
+        "<span class="hljs-attribute">title</span>": <span class="hljs-value"><span class="hljs-string">"content_templates"</span>
+      </span>},
+      {
+        "<span class="hljs-attribute">href</span>": <span class="hljs-value"><span class="hljs-string">"archived"</span></span>,
+        "<span class="hljs-attribute">title</span>": <span class="hljs-value"><span class="hljs-string">"archived"</span>
+      </span>},
+      {
+        "<span class="hljs-attribute">href</span>": <span class="hljs-value"><span class="hljs-string">"workspaces"</span></span>,
+        "<span class="hljs-attribute">title</span>": <span class="hljs-value"><span class="hljs-string">"workspaces"</span>
+      </span>},
+      {
+        "<span class="hljs-attribute">href</span>": <span class="hljs-value"><span class="hljs-string">"marked_for_desks"</span></span>,
+        "<span class="hljs-attribute">title</span>": <span class="hljs-value"><span class="hljs-string">"marked_for_desks"</span>
+      </span>},
+      {
+        "<span class="hljs-attribute">href</span>": <span class="hljs-value"><span class="hljs-string">"filter_conditions/parameters"</span></span>,
+        "<span class="hljs-attribute">title</span>": <span class="hljs-value"><span class="hljs-string">"filter_conditions/parameters"</span>
+      </span>},
+      {
+        "<span class="hljs-attribute">href</span>": <span class="hljs-value"><span class="hljs-string">"content_types"</span></span>,
+        "<span class="hljs-attribute">title</span>": <span class="hljs-value"><span class="hljs-string">"content_types"</span>
+      </span>},
+      {
+        "<span class="hljs-attribute">href</span>": <span class="hljs-value"><span class="hljs-string">"events/&lt;item_id&gt;/unlock"</span></span>,
+        "<span class="hljs-attribute">title</span>": <span class="hljs-value"><span class="hljs-string">"events_unlock"</span>
+      </span>},
+      {
+        "<span class="hljs-attribute">href</span>": <span class="hljs-value"><span class="hljs-string">"recent_events_template"</span></span>,
+        "<span class="hljs-attribute">title</span>": <span class="hljs-value"><span class="hljs-string">"recent_events_template"</span>
+      </span>},
+      {
+        "<span class="hljs-attribute">href</span>": <span class="hljs-value"><span class="hljs-string">"ingest"</span></span>,
+        "<span class="hljs-attribute">title</span>": <span class="hljs-value"><span class="hljs-string">"ingest"</span>
+      </span>},
+      {
+        "<span class="hljs-attribute">href</span>": <span class="hljs-value"><span class="hljs-string">"planning/cancel"</span></span>,
+        "<span class="hljs-attribute">title</span>": <span class="hljs-value"><span class="hljs-string">"planning_cancel"</span>
+      </span>},
+      {
+        "<span class="hljs-attribute">href</span>": <span class="hljs-value"><span class="hljs-string">"agenda"</span></span>,
+        "<span class="hljs-attribute">title</span>": <span class="hljs-value"><span class="hljs-string">"agenda"</span>
+      </span>},
+      {
+        "<span class="hljs-attribute">href</span>": <span class="hljs-value"><span class="hljs-string">"item_comments"</span></span>,
+        "<span class="hljs-attribute">title</span>": <span class="hljs-value"><span class="hljs-string">"item_comments"</span>
+      </span>},
+      {
+        "<span class="hljs-attribute">href</span>": <span class="hljs-value"><span class="hljs-string">"closed_desks"</span></span>,
+        "<span class="hljs-attribute">title</span>": <span class="hljs-value"><span class="hljs-string">"closed_desks"</span>
+      </span>},
+      {
+        "<span class="hljs-attribute">href</span>": <span class="hljs-value"><span class="hljs-string">"processed_items_report"</span></span>,
+        "<span class="hljs-attribute">title</span>": <span class="hljs-value"><span class="hljs-string">"processed_items_report"</span>
+      </span>},
+      {
+        "<span class="hljs-attribute">href</span>": <span class="hljs-value"><span class="hljs-string">"workqueue"</span></span>,
+        "<span class="hljs-attribute">title</span>": <span class="hljs-value"><span class="hljs-string">"workqueue"</span>
+      </span>},
+      {
+        "<span class="hljs-attribute">href</span>": <span class="hljs-value"><span class="hljs-string">"highlights"</span></span>,
+        "<span class="hljs-attribute">title</span>": <span class="hljs-value"><span class="hljs-string">"highlights"</span>
+      </span>},
+      {
+        "<span class="hljs-attribute">href</span>": <span class="hljs-value"><span class="hljs-string">"internal_destinations"</span></span>,
+        "<span class="hljs-attribute">title</span>": <span class="hljs-value"><span class="hljs-string">"internal_destinations"</span>
+      </span>},
+      {
+        "<span class="hljs-attribute">href</span>": <span class="hljs-value"><span class="hljs-string">"planning_types"</span></span>,
+        "<span class="hljs-attribute">title</span>": <span class="hljs-value"><span class="hljs-string">"planning_types"</span>
+      </span>},
+      {
+        "<span class="hljs-attribute">href</span>": <span class="hljs-value"><span class="hljs-string">"contacts/organisations"</span></span>,
+        "<span class="hljs-attribute">title</span>": <span class="hljs-value"><span class="hljs-string">"contacts_organisations"</span>
+      </span>},
+      {
+        "<span class="hljs-attribute">href</span>": <span class="hljs-value"><span class="hljs-string">"picture_renditions"</span></span>,
+        "<span class="hljs-attribute">title</span>": <span class="hljs-value"><span class="hljs-string">"picture_renditions"</span>
+      </span>},
+      {
+        "<span class="hljs-attribute">href</span>": <span class="hljs-value"><span class="hljs-string">"content_quota_report"</span></span>,
+        "<span class="hljs-attribute">title</span>": <span class="hljs-value"><span class="hljs-string">"content_quota_report"</span>
+      </span>},
+      {
+        "<span class="hljs-attribute">href</span>": <span class="hljs-value"><span class="hljs-string">"events/postpone"</span></span>,
+        "<span class="hljs-attribute">title</span>": <span class="hljs-value"><span class="hljs-string">"events_postpone"</span>
+      </span>},
+      {
+        "<span class="hljs-attribute">href</span>": <span class="hljs-value"><span class="hljs-string">"events/update_time"</span></span>,
+        "<span class="hljs-attribute">title</span>": <span class="hljs-value"><span class="hljs-string">"events_update_time"</span>
+      </span>},
+      {
+        "<span class="hljs-attribute">href</span>": <span class="hljs-value"><span class="hljs-string">"planning/&lt;item_id&gt;/unlock"</span></span>,
+        "<span class="hljs-attribute">title</span>": <span class="hljs-value"><span class="hljs-string">"planning_unlock"</span>
+      </span>},
+      {
+        "<span class="hljs-attribute">href</span>": <span class="hljs-value"><span class="hljs-string">"allowed_values"</span></span>,
+        "<span class="hljs-attribute">title</span>": <span class="hljs-value"><span class="hljs-string">"allowed_values"</span>
+      </span>},
+      {
+        "<span class="hljs-attribute">href</span>": <span class="hljs-value"><span class="hljs-string">"events/update_repetitions"</span></span>,
+        "<span class="hljs-attribute">title</span>": <span class="hljs-value"><span class="hljs-string">"events_update_repetitions"</span>
+      </span>},
+      {
+        "<span class="hljs-attribute">href</span>": <span class="hljs-value"><span class="hljs-string">"subscriber_token"</span></span>,
+        "<span class="hljs-attribute">title</span>": <span class="hljs-value"><span class="hljs-string">"subscriber_token"</span>
+      </span>},
+      {
+        "<span class="hljs-attribute">href</span>": <span class="hljs-value"><span class="hljs-string">"stages"</span></span>,
+        "<span class="hljs-attribute">title</span>": <span class="hljs-value"><span class="hljs-string">"stages"</span>
+      </span>},
+      {
+        "<span class="hljs-attribute">href</span>": <span class="hljs-value"><span class="hljs-string">"planning_autosave"</span></span>,
+        "<span class="hljs-attribute">title</span>": <span class="hljs-value"><span class="hljs-string">"planning_autosave"</span>
+      </span>},
+      {
+        "<span class="hljs-attribute">href</span>": <span class="hljs-value"><span class="hljs-string">"planning"</span></span>,
+        "<span class="hljs-attribute">title</span>": <span class="hljs-value"><span class="hljs-string">"planning"</span>
+      </span>},
+      {
+        "<span class="hljs-attribute">href</span>": <span class="hljs-value"><span class="hljs-string">"media_references"</span></span>,
+        "<span class="hljs-attribute">title</span>": <span class="hljs-value"><span class="hljs-string">"media_references"</span>
+      </span>},
+      {
+        "<span class="hljs-attribute">href</span>": <span class="hljs-value"><span class="hljs-string">"io_errors"</span></span>,
+        "<span class="hljs-attribute">title</span>": <span class="hljs-value"><span class="hljs-string">"io_errors"</span>
+      </span>},
+      {
+        "<span class="hljs-attribute">href</span>": <span class="hljs-value"><span class="hljs-string">"subscribers"</span></span>,
+        "<span class="hljs-attribute">title</span>": <span class="hljs-value"><span class="hljs-string">"subscribers"</span>
+      </span>},
+      {
+        "<span class="hljs-attribute">href</span>": <span class="hljs-value"><span class="hljs-string">"activity_report"</span></span>,
+        "<span class="hljs-attribute">title</span>": <span class="hljs-value"><span class="hljs-string">"activity_report"</span>
+      </span>},
+      {
+        "<span class="hljs-attribute">href</span>": <span class="hljs-value"><span class="hljs-string">"archive"</span></span>,
+        "<span class="hljs-attribute">title</span>": <span class="hljs-value"><span class="hljs-string">"archive"</span>
+      </span>},
+      {
+        "<span class="hljs-attribute">href</span>": <span class="hljs-value"><span class="hljs-string">"archive/&lt;guid&gt;/duplicate"</span></span>,
+        "<span class="hljs-attribute">title</span>": <span class="hljs-value"><span class="hljs-string">"duplicate"</span>
+      </span>},
+      {
+        "<span class="hljs-attribute">href</span>": <span class="hljs-value"><span class="hljs-string">"ingest/&lt;id&gt;/fetch"</span></span>,
+        "<span class="hljs-attribute">title</span>": <span class="hljs-value"><span class="hljs-string">"fetch"</span>
+      </span>},
+      {
+        "<span class="hljs-attribute">href</span>": <span class="hljs-value"><span class="hljs-string">"content_templates_apply"</span></span>,
+        "<span class="hljs-attribute">title</span>": <span class="hljs-value"><span class="hljs-string">"content_templates_apply"</span>
+      </span>},
+      {
+        "<span class="hljs-attribute">href</span>": <span class="hljs-value"><span class="hljs-string">"events/reschedule"</span></span>,
+        "<span class="hljs-attribute">title</span>": <span class="hljs-value"><span class="hljs-string">"events_reschedule"</span>
+      </span>},
+      {
+        "<span class="hljs-attribute">href</span>": <span class="hljs-value"><span class="hljs-string">"download"</span></span>,
+        "<span class="hljs-attribute">title</span>": <span class="hljs-value"><span class="hljs-string">"download"</span>
+      </span>},
+      {
+        "<span class="hljs-attribute">href</span>": <span class="hljs-value"><span class="hljs-string">"saved_searches/&lt;saved_search_id&gt;/items"</span></span>,
+        "<span class="hljs-attribute">title</span>": <span class="hljs-value"><span class="hljs-string">"saved_search_items"</span>
+      </span>},
+      {
+        "<span class="hljs-attribute">href</span>": <span class="hljs-value"><span class="hljs-string">"suggestions/&lt;item_id&gt;"</span></span>,
+        "<span class="hljs-attribute">title</span>": <span class="hljs-value"><span class="hljs-string">"suggestions/&lt;regex(\"[\\w,.:_-]+\"):item_id&gt;"</span>
+      </span>},
+      {
+        "<span class="hljs-attribute">href</span>": <span class="hljs-value"><span class="hljs-string">"auth"</span></span>,
+        "<span class="hljs-attribute">title</span>": <span class="hljs-value"><span class="hljs-string">"auth"</span>
+      </span>},
+      {
+        "<span class="hljs-attribute">href</span>": <span class="hljs-value"><span class="hljs-string">"activity"</span></span>,
+        "<span class="hljs-attribute">title</span>": <span class="hljs-value"><span class="hljs-string">"activity"</span>
+      </span>},
+      {
+        "<span class="hljs-attribute">href</span>": <span class="hljs-value"><span class="hljs-string">"generate_highlights"</span></span>,
+        "<span class="hljs-attribute">title</span>": <span class="hljs-value"><span class="hljs-string">"generate_highlights"</span>
+      </span>},
+      {
+        "<span class="hljs-attribute">href</span>": <span class="hljs-value"><span class="hljs-string">"events_planning_search"</span></span>,
+        "<span class="hljs-attribute">title</span>": <span class="hljs-value"><span class="hljs-string">"events_planning_search"</span>
+      </span>},
+      {
+        "<span class="hljs-attribute">href</span>": <span class="hljs-value"><span class="hljs-string">"search_providers_proxy"</span></span>,
+        "<span class="hljs-attribute">title</span>": <span class="hljs-value"><span class="hljs-string">"search_providers_proxy"</span>
+      </span>},
+      {
+        "<span class="hljs-attribute">href</span>": <span class="hljs-value"><span class="hljs-string">"published_package_items"</span></span>,
+        "<span class="hljs-attribute">title</span>": <span class="hljs-value"><span class="hljs-string">"published_package_items"</span>
+      </span>},
+      {
+        "<span class="hljs-attribute">href</span>": <span class="hljs-value"><span class="hljs-string">"events/&lt;item_id&gt;/lock"</span></span>,
+        "<span class="hljs-attribute">title</span>": <span class="hljs-value"><span class="hljs-string">"events_lock"</span>
+      </span>},
+      {
+        "<span class="hljs-attribute">href</span>": <span class="hljs-value"><span class="hljs-string">"archive/&lt;item_id&gt;/lock"</span></span>,
+        "<span class="hljs-attribute">title</span>": <span class="hljs-value"><span class="hljs-string">"archive_lock"</span>
+      </span>},
+      {
+        "<span class="hljs-attribute">href</span>": <span class="hljs-value"><span class="hljs-string">"event_autosave"</span></span>,
+        "<span class="hljs-attribute">title</span>": <span class="hljs-value"><span class="hljs-string">"event_autosave"</span>
+      </span>},
+      {
+        "<span class="hljs-attribute">href</span>": <span class="hljs-value"><span class="hljs-string">"archive/&lt;original_id&gt;/resend"</span></span>,
+        "<span class="hljs-attribute">title</span>": <span class="hljs-value"><span class="hljs-string">"archive_resend"</span>
+      </span>},
+      {
+        "<span class="hljs-attribute">href</span>": <span class="hljs-value"><span class="hljs-string">"backend_meta"</span></span>,
+        "<span class="hljs-attribute">title</span>": <span class="hljs-value"><span class="hljs-string">"backend_meta"</span>
+      </span>},
+      {
+        "<span class="hljs-attribute">href</span>": <span class="hljs-value"><span class="hljs-string">"planning/post"</span></span>,
+        "<span class="hljs-attribute">title</span>": <span class="hljs-value"><span class="hljs-string">"planning_post"</span>
+      </span>},
+      {
+        "<span class="hljs-attribute">href</span>": <span class="hljs-value"><span class="hljs-string">"events_planning_filters"</span></span>,
+        "<span class="hljs-attribute">title</span>": <span class="hljs-value"><span class="hljs-string">"events_planning_filters"</span>
+      </span>},
+      {
+        "<span class="hljs-attribute">href</span>": <span class="hljs-value"><span class="hljs-string">"auth_db"</span></span>,
+        "<span class="hljs-attribute">title</span>": <span class="hljs-value"><span class="hljs-string">"auth_db"</span>
+      </span>},
+      {
+        "<span class="hljs-attribute">href</span>": <span class="hljs-value"><span class="hljs-string">"saved_activity_reports"</span></span>,
+        "<span class="hljs-attribute">title</span>": <span class="hljs-value"><span class="hljs-string">"saved_activity_reports"</span>
+      </span>},
+      {
+        "<span class="hljs-attribute">href</span>": <span class="hljs-value"><span class="hljs-string">"assignments/revert"</span></span>,
+        "<span class="hljs-attribute">title</span>": <span class="hljs-value"><span class="hljs-string">"assignments_revert"</span>
+      </span>},
+      {
+        "<span class="hljs-attribute">href</span>": <span class="hljs-value"><span class="hljs-string">"comments"</span></span>,
+        "<span class="hljs-attribute">title</span>": <span class="hljs-value"><span class="hljs-string">"comments"</span>
+      </span>},
+      {
+        "<span class="hljs-attribute">href</span>": <span class="hljs-value"><span class="hljs-string">"routing_schemes"</span></span>,
+        "<span class="hljs-attribute">title</span>": <span class="hljs-value"><span class="hljs-string">"routing_schemes"</span>
+      </span>},
+      {
+        "<span class="hljs-attribute">href</span>": <span class="hljs-value"><span class="hljs-string">"items"</span></span>,
+        "<span class="hljs-attribute">title</span>": <span class="hljs-value"><span class="hljs-string">"items"</span>
+      </span>},
+      {
+        "<span class="hljs-attribute">href</span>": <span class="hljs-value"><span class="hljs-string">"planning_download"</span></span>,
+        "<span class="hljs-attribute">title</span>": <span class="hljs-value"><span class="hljs-string">"planning_download"</span>
+      </span>},
+      {
+        "<span class="hljs-attribute">href</span>": <span class="hljs-value"><span class="hljs-string">"media_editor"</span></span>,
+        "<span class="hljs-attribute">title</span>": <span class="hljs-value"><span class="hljs-string">"media_editor"</span>
+      </span>},
+      {
+        "<span class="hljs-attribute">href</span>": <span class="hljs-value"><span class="hljs-string">"preferences"</span></span>,
+        "<span class="hljs-attribute">title</span>": <span class="hljs-value"><span class="hljs-string">"preferences"</span>
+      </span>},
+      {
+        "<span class="hljs-attribute">href</span>": <span class="hljs-value"><span class="hljs-string">"archive/&lt;guid&gt;/move"</span></span>,
+        "<span class="hljs-attribute">title</span>": <span class="hljs-value"><span class="hljs-string">"move"</span>
+      </span>},
+      {
+        "<span class="hljs-attribute">href</span>": <span class="hljs-value"><span class="hljs-string">"archive/publish"</span></span>,
+        "<span class="hljs-attribute">title</span>": <span class="hljs-value"><span class="hljs-string">"archive_publish"</span>
+      </span>},
+      {
+        "<span class="hljs-attribute">href</span>": <span class="hljs-value"><span class="hljs-string">"locations"</span></span>,
+        "<span class="hljs-attribute">title</span>": <span class="hljs-value"><span class="hljs-string">"locations"</span>
+      </span>},
+      {
+        "<span class="hljs-attribute">href</span>": <span class="hljs-value"><span class="hljs-string">"users/&lt;original_creator&gt;/content"</span></span>,
+        "<span class="hljs-attribute">title</span>": <span class="hljs-value"><span class="hljs-string">"user_content"</span>
+      </span>},
+      {
+        "<span class="hljs-attribute">href</span>": <span class="hljs-value"><span class="hljs-string">"archive_autosave"</span></span>,
+        "<span class="hljs-attribute">title</span>": <span class="hljs-value"><span class="hljs-string">"archive_autosave"</span>
+      </span>},
+      {
+        "<span class="hljs-attribute">href</span>": <span class="hljs-value"><span class="hljs-string">"archive/spike"</span></span>,
+        "<span class="hljs-attribute">title</span>": <span class="hljs-value"><span class="hljs-string">"archive_spike"</span>
+      </span>},
+      {
+        "<span class="hljs-attribute">href</span>": <span class="hljs-value"><span class="hljs-string">"published_planning"</span></span>,
+        "<span class="hljs-attribute">title</span>": <span class="hljs-value"><span class="hljs-string">"published_planning"</span>
+      </span>},
+      {
+        "<span class="hljs-attribute">href</span>": <span class="hljs-value"><span class="hljs-string">"planning_featured_lock"</span></span>,
+        "<span class="hljs-attribute">title</span>": <span class="hljs-value"><span class="hljs-string">"planning_featured_lock"</span>
+      </span>},
+      {
+        "<span class="hljs-attribute">href</span>": <span class="hljs-value"><span class="hljs-string">"export"</span></span>,
+        "<span class="hljs-attribute">title</span>": <span class="hljs-value"><span class="hljs-string">"export"</span>
+      </span>},
+      {
+        "<span class="hljs-attribute">href</span>": <span class="hljs-value"><span class="hljs-string">"ingest_providers"</span></span>,
+        "<span class="hljs-attribute">title</span>": <span class="hljs-value"><span class="hljs-string">"ingest_providers"</span>
+      </span>},
+      {
+        "<span class="hljs-attribute">href</span>": <span class="hljs-value"><span class="hljs-string">"audit"</span></span>,
+        "<span class="hljs-attribute">title</span>": <span class="hljs-value"><span class="hljs-string">"audit"</span>
+      </span>},
+      {
+        "<span class="hljs-attribute">href</span>": <span class="hljs-value"><span class="hljs-string">"marked_for_highlights"</span></span>,
+        "<span class="hljs-attribute">title</span>": <span class="hljs-value"><span class="hljs-string">"marked_for_highlights"</span>
+      </span>},
+      {
+        "<span class="hljs-attribute">href</span>": <span class="hljs-value"><span class="hljs-string">"users/&lt;user_id&gt;/sessions"</span></span>,
+        "<span class="hljs-attribute">title</span>": <span class="hljs-value"><span class="hljs-string">"clear_sessions"</span>
+      </span>},
+      {
+        "<span class="hljs-attribute">href</span>": <span class="hljs-value"><span class="hljs-string">"validate"</span></span>,
+        "<span class="hljs-attribute">title</span>": <span class="hljs-value"><span class="hljs-string">"validate"</span>
+      </span>},
+      {
+        "<span class="hljs-attribute">href</span>": <span class="hljs-value"><span class="hljs-string">"rule_sets"</span></span>,
+        "<span class="hljs-attribute">title</span>": <span class="hljs-value"><span class="hljs-string">"rule_sets"</span>
+      </span>},
+      {
+        "<span class="hljs-attribute">href</span>": <span class="hljs-value"><span class="hljs-string">"products"</span></span>,
+        "<span class="hljs-attribute">title</span>": <span class="hljs-value"><span class="hljs-string">"products"</span>
+      </span>},
+      {
+        "<span class="hljs-attribute">href</span>": <span class="hljs-value"><span class="hljs-string">"content_filters/test"</span></span>,
+        "<span class="hljs-attribute">title</span>": <span class="hljs-value"><span class="hljs-string">"content_filter_tests"</span>
+      </span>},
+      {
+        "<span class="hljs-attribute">href</span>": <span class="hljs-value"><span class="hljs-string">"config"</span></span>,
+        "<span class="hljs-attribute">title</span>": <span class="hljs-value"><span class="hljs-string">"config"</span>
+      </span>},
+      {
+        "<span class="hljs-attribute">href</span>": <span class="hljs-value"><span class="hljs-string">"tasks"</span></span>,
+        "<span class="hljs-attribute">title</span>": <span class="hljs-value"><span class="hljs-string">"tasks"</span>
+      </span>},
+      {
+        "<span class="hljs-attribute">href</span>": <span class="hljs-value"><span class="hljs-string">"webhook"</span></span>,
+        "<span class="hljs-attribute">title</span>": <span class="hljs-value"><span class="hljs-string">"webhook"</span>
+      </span>},
+      {
+        "<span class="hljs-attribute">href</span>": <span class="hljs-value"><span class="hljs-string">"archive/&lt;guid&gt;/copy"</span></span>,
+        "<span class="hljs-attribute">title</span>": <span class="hljs-value"><span class="hljs-string">"copy"</span>
+      </span>},
+      {
+        "<span class="hljs-attribute">href</span>": <span class="hljs-value"><span class="hljs-string">"track_activity_report"</span></span>,
+        "<span class="hljs-attribute">title</span>": <span class="hljs-value"><span class="hljs-string">"track_activity_report"</span>
+      </span>},
+      {
+        "<span class="hljs-attribute">href</span>": <span class="hljs-value"><span class="hljs-string">"concept_items"</span></span>,
+        "<span class="hljs-attribute">title</span>": <span class="hljs-value"><span class="hljs-string">"concept_items"</span>
+      </span>},
+      {
+        "<span class="hljs-attribute">href</span>": <span class="hljs-value"><span class="hljs-string">"publish_queue"</span></span>,
+        "<span class="hljs-attribute">title</span>": <span class="hljs-value"><span class="hljs-string">"publish_queue"</span>
+      </span>},
+      {
+        "<span class="hljs-attribute">href</span>": <span class="hljs-value"><span class="hljs-string">"spellcheck"</span></span>,
+        "<span class="hljs-attribute">title</span>": <span class="hljs-value"><span class="hljs-string">"spellcheck"</span>
+      </span>},
+      {
+        "<span class="hljs-attribute">href</span>": <span class="hljs-value"><span class="hljs-string">"planning_files"</span></span>,
+        "<span class="hljs-attribute">title</span>": <span class="hljs-value"><span class="hljs-string">"planning_files"</span>
+      </span>},
+      {
+        "<span class="hljs-attribute">href</span>": <span class="hljs-value"><span class="hljs-string">"assignments/link"</span></span>,
+        "<span class="hljs-attribute">title</span>": <span class="hljs-value"><span class="hljs-string">"assignments_link"</span>
+      </span>},
+      {
+        "<span class="hljs-attribute">href</span>": <span class="hljs-value"><span class="hljs-string">"formatters"</span></span>,
+        "<span class="hljs-attribute">title</span>": <span class="hljs-value"><span class="hljs-string">"formatters"</span>
+      </span>},
+      {
+        "<span class="hljs-attribute">href</span>": <span class="hljs-value"><span class="hljs-string">"planning/&lt;item_id&gt;/duplicate"</span></span>,
+        "<span class="hljs-attribute">title</span>": <span class="hljs-value"><span class="hljs-string">"planning_duplicate"</span>
+      </span>},
+      {
+        "<span class="hljs-attribute">href</span>": <span class="hljs-value"><span class="hljs-string">"sessions"</span></span>,
+        "<span class="hljs-attribute">title</span>": <span class="hljs-value"><span class="hljs-string">"sessions"</span>
+      </span>},
+      {
+        "<span class="hljs-attribute">href</span>": <span class="hljs-value"><span class="hljs-string">"auth_xmpp"</span></span>,
+        "<span class="hljs-attribute">title</span>": <span class="hljs-value"><span class="hljs-string">"auth_xmpp"</span>
+      </span>},
+      {
+        "<span class="hljs-attribute">href</span>": <span class="hljs-value"><span class="hljs-string">"events/spike"</span></span>,
+        "<span class="hljs-attribute">title</span>": <span class="hljs-value"><span class="hljs-string">"events_spike"</span>
+      </span>},
+      {
+        "<span class="hljs-attribute">href</span>": <span class="hljs-value"><span class="hljs-string">"content_api"</span></span>,
+        "<span class="hljs-attribute">title</span>": <span class="hljs-value"><span class="hljs-string">"content_api"</span>
+      </span>},
+      {
+        "<span class="hljs-attribute">href</span>": <span class="hljs-value"><span class="hljs-string">"planning_validator"</span></span>,
+        "<span class="hljs-attribute">title</span>": <span class="hljs-value"><span class="hljs-string">"planning_validator"</span>
+      </span>},
+      {
+        "<span class="hljs-attribute">href</span>": <span class="hljs-value"><span class="hljs-string">"assignments"</span></span>,
+        "<span class="hljs-attribute">title</span>": <span class="hljs-value"><span class="hljs-string">"assignments"</span>
+      </span>},
+      {
+        "<span class="hljs-attribute">href</span>": <span class="hljs-value"><span class="hljs-string">"search_providers_allowed"</span></span>,
+        "<span class="hljs-attribute">title</span>": <span class="hljs-value"><span class="hljs-string">"search_providers_allowed"</span>
+      </span>},
+      {
+        "<span class="hljs-attribute">href</span>": <span class="hljs-value"><span class="hljs-string">"macros"</span></span>,
+        "<span class="hljs-attribute">title</span>": <span class="hljs-value"><span class="hljs-string">"macros"</span>
+      </span>},
+      {
+        "<span class="hljs-attribute">href</span>": <span class="hljs-value"><span class="hljs-string">"assignments/&lt;item_id&gt;/unlock"</span></span>,
+        "<span class="hljs-attribute">title</span>": <span class="hljs-value"><span class="hljs-string">"assignments_unlock"</span>
+      </span>},
+      {
+        "<span class="hljs-attribute">href</span>": <span class="hljs-value"><span class="hljs-string">"archive/&lt;item_id&gt;/unlock"</span></span>,
+        "<span class="hljs-attribute">title</span>": <span class="hljs-value"><span class="hljs-string">"archive_unlock"</span>
+      </span>}
+    ]
+  </span>}
+</span>}</code></pre><div style="height: 1px;"></div></div></div></div></div></section></div></div></div><p style="text-align: center;" class="text-muted">Generated by&nbsp;<a href="https://github.com/danielgtaylor/aglio" class="aglio">aglio</a>&nbsp;on 25 Jun 2019</p><script>/* eslint-env browser */
+/* eslint quotes: [2, "single"] */
+'use strict';
+
+/*
+  Determine if a string ends with another string.
+*/
+function endsWith(str, suffix) {
+    return str.indexOf(suffix, str.length - suffix.length) !== -1;
+}
+
+/*
+  Get a list of direct child elements by class name.
+*/
+function childrenByClass(element, name) {
+  var filtered = [];
+
+  for (var i = 0; i < element.children.length; i++) {
+    var child = element.children[i];
+    var classNames = child.className.split(' ');
+    if (classNames.indexOf(name) !== -1) {
+      filtered.push(child);
+    }
+  }
+
+  return filtered;
+}
+
+/*
+  Get an array [width, height] of the window.
+*/
+function getWindowDimensions() {
+  var w = window,
+      d = document,
+      e = d.documentElement,
+      g = d.body,
+      x = w.innerWidth || e.clientWidth || g.clientWidth,
+      y = w.innerHeight || e.clientHeight || g.clientHeight;
+
+  return [x, y];
+}
+
+/*
+  Collapse or show a request/response example.
+*/
+function toggleCollapseButton(event) {
+    var button = event.target.parentNode;
+    var content = button.parentNode.nextSibling;
+    var inner = content.children[0];
+
+    if (button.className.indexOf('collapse-button') === -1) {
+      // Clicked without hitting the right element?
+      return;
+    }
+
+    if (content.style.maxHeight && content.style.maxHeight !== '0px') {
+        // Currently showing, so let's hide it
+        button.className = 'collapse-button';
+        content.style.maxHeight = '0px';
+    } else {
+        // Currently hidden, so let's show it
+        button.className = 'collapse-button show';
+        content.style.maxHeight = inner.offsetHeight + 12 + 'px';
+    }
+}
+
+function toggleTabButton(event) {
+    var i, index;
+    var button = event.target;
+
+    // Get index of the current button.
+    var buttons = childrenByClass(button.parentNode, 'tab-button');
+    for (i = 0; i < buttons.length; i++) {
+        if (buttons[i] === button) {
+            index = i;
+            button.className = 'tab-button active';
+        } else {
+            buttons[i].className = 'tab-button';
+        }
+    }
+
+    // Hide other tabs and show this one.
+    var tabs = childrenByClass(button.parentNode.parentNode, 'tab');
+    for (i = 0; i < tabs.length; i++) {
+        if (i === index) {
+            tabs[i].style.display = 'block';
+        } else {
+            tabs[i].style.display = 'none';
+        }
+    }
+}
+
+/*
+  Collapse or show a navigation menu. It will not be hidden unless it
+  is currently selected or `force` has been passed.
+*/
+function toggleCollapseNav(event, force) {
+    var heading = event.target.parentNode;
+    var content = heading.nextSibling;
+    var inner = content.children[0];
+
+    if (heading.className.indexOf('heading') === -1) {
+      // Clicked without hitting the right element?
+      return;
+    }
+
+    if (content.style.maxHeight && content.style.maxHeight !== '0px') {
+      // Currently showing, so let's hide it, but only if this nav item
+      // is already selected. This prevents newly selected items from
+      // collapsing in an annoying fashion.
+      if (force || window.location.hash && endsWith(event.target.href, window.location.hash)) {
+        content.style.maxHeight = '0px';
+      }
+    } else {
+      // Currently hidden, so let's show it
+      content.style.maxHeight = inner.offsetHeight + 12 + 'px';
+    }
+}
+
+/*
+  Refresh the page after a live update from the server. This only
+  works in live preview mode (using the `--server` parameter).
+*/
+function refresh(body) {
+    document.querySelector('body').className = 'preload';
+    document.body.innerHTML = body;
+
+    // Re-initialize the page
+    init();
+    autoCollapse();
+
+    document.querySelector('body').className = '';
+}
+
+/*
+  Determine which navigation items should be auto-collapsed to show as many
+  as possible on the screen, based on the current window height. This also
+  collapses them.
+*/
+function autoCollapse() {
+  var windowHeight = getWindowDimensions()[1];
+  var itemsHeight = 64; /* Account for some padding */
+  var itemsArray = Array.prototype.slice.call(
+    document.querySelectorAll('nav .resource-group .heading'));
+
+  // Get the total height of the navigation items
+  itemsArray.forEach(function (item) {
+    itemsHeight += item.parentNode.offsetHeight;
+  });
+
+  // Should we auto-collapse any nav items? Try to find the smallest item
+  // that can be collapsed to show all items on the screen. If not possible,
+  // then collapse the largest item and do it again. First, sort the items
+  // by height from smallest to largest.
+  var sortedItems = itemsArray.sort(function (a, b) {
+    return a.parentNode.offsetHeight - b.parentNode.offsetHeight;
+  });
+
+  while (sortedItems.length && itemsHeight > windowHeight) {
+    for (var i = 0; i < sortedItems.length; i++) {
+      // Will collapsing this item help?
+      var itemHeight = sortedItems[i].nextSibling.offsetHeight;
+      if ((itemsHeight - itemHeight <= windowHeight) || i === sortedItems.length - 1) {
+        // It will, so let's collapse it, remove its content height from
+        // our total and then remove it from our list of candidates
+        // that can be collapsed.
+        itemsHeight -= itemHeight;
+        toggleCollapseNav({target: sortedItems[i].children[0]}, true);
+        sortedItems.splice(i, 1);
+        break;
+      }
+    }
+  }
+}
+
+/*
+  Initialize the interactive functionality of the page.
+*/
+function init() {
+    var i, j;
+
+    // Make collapse buttons clickable
+    var buttons = document.querySelectorAll('.collapse-button');
+    for (i = 0; i < buttons.length; i++) {
+        buttons[i].onclick = toggleCollapseButton;
+
+        // Show by default? Then toggle now.
+        if (buttons[i].className.indexOf('show') !== -1) {
+            toggleCollapseButton({target: buttons[i].children[0]});
+        }
+    }
+
+    var responseCodes = document.querySelectorAll('.example-names');
+    for (i = 0; i < responseCodes.length; i++) {
+        var tabButtons = childrenByClass(responseCodes[i], 'tab-button');
+        for (j = 0; j < tabButtons.length; j++) {
+            tabButtons[j].onclick = toggleTabButton;
+
+            // Show by default?
+            if (j === 0) {
+                toggleTabButton({target: tabButtons[j]});
+            }
+        }
+    }
+
+    // Make nav items clickable to collapse/expand their content.
+    var navItems = document.querySelectorAll('nav .resource-group .heading');
+    for (i = 0; i < navItems.length; i++) {
+        navItems[i].onclick = toggleCollapseNav;
+
+        // Show all by default
+        toggleCollapseNav({target: navItems[i].children[0]});
+    }
+}
+
+// Initial call to set up buttons
+init();
+
+window.onload = function () {
+    autoCollapse();
+    // Remove the `preload` class to enable animations
+    document.querySelector('body').className = '';
+};
+</script></body></html>
