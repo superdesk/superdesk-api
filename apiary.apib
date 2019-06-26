@@ -20,6 +20,22 @@ To run the server locally please check [Superdesk](https://github.com/superdesk/
 
 ---
 
+## Features
+
+Below is a list of some of the main features that any Superdesk APIs can expose. 
+
+ - (Filtering)[https://docs.python-eve.org/en/stable/features.html#filtering]
+ - (Sorting)[https://docs.python-eve.org/en/stable/features.html#sorting]
+ - (Pagination)[https://docs.python-eve.org/en/stable/features.html#pagination]
+ - (HATEOAS)[https://docs.python-eve.org/en/stable/features.html#hateoas]
+
+---
+
+## PATCH and DELETE actions
+
+Patch and Delte actions will require a header `If-Match` with the _etag_ value of the resource
+
+
 # Group Authentication
 
 ## Basic Authentication [/auth_db]
@@ -74,7 +90,7 @@ process has started.
             "email": "a2@a.com"
         }
 
-+ Response (application/json)
++ Response 201 (application/json)
 
         {
             "email": "user@email.com",
@@ -759,3 +775,373 @@ List available resources.
             ]
         }
         }
+
+# Group Ingest
+
+List of resources related to ingest in the API.
+
+## Ingest Provider Collection [/ingest_providers]
+
+Ingest providers defines the model for an ingest 
+
+### List All Ingest Providers [GET]
+
++ Response 200 (application/json)
+
+        {
+            "_meta": {
+                "total": 5,
+                "page": 1,
+                "max_results": 25
+            },
+            "_links": {
+                "self": {
+                    "href": "ingest_providers",
+                    "title": "ingest_providers"
+                },
+                "parent": {
+                    "href": "/",
+                    "title": "home"
+                }
+            },
+            "_items": [
+                {
+                    "notifications": {
+                        "on_open": true,
+                        "on_close": true,
+                        "on_error": true,
+                        "on_update": true
+                    },
+                    "_links": {
+                        "self": {
+                            "href": "ingest_providers/566ea626b611406b0de30e74",
+                            "title": "Ingest_provider"
+                        }
+                    },
+                    "allow_remove_ingested": false,
+                    "content_types": [
+                        "text",
+                        "preformatted",
+                        "audio",
+                        "video",
+                        "picture",
+                        "graphic",
+                        "composite"
+                    ],
+                    "_etag": "d9e0d5f2fd3d2297820d1a55d65ff6c88064e4f8",
+                    "critical_errors": {
+                        "1001": false,
+                        "2000": true
+                    },
+                    "_created": "2016-08-21T12:20:38+0000",
+                    "idle_time": {
+                        "minutes": 0,
+                        "hours": 0
+                    },
+                    "last_item_update": "2017-05-01T12:39:21+0000",
+                    "_id": "566ea626b611406b0de30e74",
+                    "feeding_service": "rss",
+                    "last_updated": "2017-05-01T12:39:20+0000",
+                    "last_closed": {
+                        "closed_by": "57b99db91d41c844b98d6832",
+                        "closed_at": "2017-05-01T12:39:39+0000",
+                        "message": ""
+                    },
+                    "content_expiry": 2880,
+                    "config": {
+                        "username": "user",
+                        "password": "password",
+                        "field_aliases": [],
+                        "url": "http://www.forbes.com/"
+                    },
+                    "last_opened": {
+                        "opened_by": "57b99db91d41c844b98d6832",
+                        "opened_at": "2017-05-01T12:39:14+0000"
+                    },
+                    "name": "Forbes RSS feed",
+                    "_updated": "2017-05-01T12:39:39+0000",
+                    "update_schedule": {
+                        "minutes": 5,
+                        "seconds": 0
+                    },
+                    "is_closed": true,
+                    "source": "Forbes"
+                }
+            ]
+        }
+
+
+### Create a new Ingest Provider [POST]
+
+You can create an ingest provider by providing a JSON object
+containing a question and a collection of answers in the form of choices.
+
++ notifications (object) - Events that system will send notifications
++ critical_errors (object) - List of errors will cause to close the provider
++ feeding_service (string) - Type of the feeding feeding_service
++ config (object) - Connection settings to ingest source
++ update_schedule (object) - Interval between pull events
++ content_expiry (number) - ttl for ingested items in minutes
++ content_types (array[string]) - List of content types of items to ingest from provider
++ name (string) - provider name
++ source (string) - name of the source
++ is_closed (boolean) - 
+
+
++ Request (application/json)
+
+        {
+            "notifications": {
+                "on_open": true,
+                "on_close": true,
+                "on_error": true,
+                "on_update": true
+            },
+            "critical_errors": {
+                "1001": false,
+                "2000": true
+            },
+            "feeding_service": "rss",
+            "allow_remove_ingested": false,
+            "config": {
+                "username": "user",
+                "password": "password",
+                "field_aliases": [],
+                "url": "http://www.forbes.com/real-time/feed2/"
+            },
+            "update_schedule": {
+                "minutes": 5,
+                "seconds": 0
+            },
+            "content_expiry": 2880,
+            "content_types": [
+                "text",
+                "preformatted",
+                "audio",
+                "video",
+                "picture",
+                "graphic",
+                "composite"
+            ],
+            "name": "New feed",
+            "source": "Forbes",
+            "is_closed": true
+        }
+
+
++ Response 201 (application/json)
+
+    + Body
+
+            {
+                "notifications": {
+                    "on_open": true,
+                    "on_close": true,
+                    "on_error": true,
+                    "on_update": true
+                },
+                "_links": {
+                    "self": {
+                        "href": "ingest_providers/5d1345b71d41c8242e0c04bb",
+                        "title": "Ingest_provider"
+                    }
+                },
+                "content_types": [
+                    "text",
+                    "preformatted",
+                    "audio",
+                    "video",
+                    "picture",
+                    "graphic",
+                    "composite"
+                ],
+                "_etag": "a1aa592d2bb1d0577f8a0d92a046cf7fc7a5cd4c",
+                "critical_errors": {
+                    "1001": false,
+                    "2000": true
+                },
+                "_created": "2019-06-26T10:15:19+0000",
+                "idle_time": {
+                    "minutes": 0,
+                    "hours": 0
+                },
+                "last_item_update": "2017-05-01T12:39:21+0000",
+                "_status": "OK",
+                "_id": "5d1345b71d41c8242e0c04bb",
+                "feeding_service": "rss",
+                "last_updated": "2017-05-01T12:39:20+0000",
+                "content_expiry": 2880,
+                "allow_remove_ingested": false,
+                "name": "New feed",
+                "_updated": "2019-06-26T10:15:19+0000",
+                "update_schedule": {
+                    "minutes": 5,
+                    "seconds": 0
+                },
+                "config": {
+                    "password": "password",
+                    "username": "user",
+                    "url": "http://www.forbes.com/",
+                    "field_aliases": []
+                },
+                "is_closed": true,
+                "source": "Forbes"
+            }
+
+                
+## Ingest Provider [/ingest_providers/{ingest_provider_id}]
+
++ Parameters
+    + ingest_provider_id (string) - ID of the Question in the form of a string
+
+### View an Ingest Provider Detail [GET]    
+
++ Response 200 (application/json)
+
+        {
+            "notifications": {
+                "on_open": true,
+                "on_close": true,
+                "on_error": true,
+                "on_update": true
+            },
+            "_links": {
+                "self": {
+                    "href": "ingest_providers/566ea626b611406b0de30e74",
+                    "title": "Ingest_provider"
+                },
+                "collection": {
+                    "href": "ingest_providers",
+                    "title": "ingest_providers"
+                },
+                "parent": {
+                    "href": "/",
+                    "title": "home"
+                }
+            },
+            "_etag": "d9e0d5f2fd3d2297820d1a55d65ff6c88064e4f8",
+            "critical_errors": {
+                "1001": false,
+                "2000": true
+            },
+            "last_closed": {
+                "closed_by": "57b99db91d41c844b98d6832",
+                "closed_at": "2017-05-01T12:39:39+0000",
+                "message": ""
+            },
+            "last_item_update": "2017-05-01T12:39:21+0000",
+            "_id": "566ea626b611406b0de30e74",
+            "feeding_service": "rss",
+            "allow_remove_ingested": false,
+            "config": {
+                "username": "user",
+                "password": "password",
+                "field_aliases": [],
+                "url": "http://www.forbes.com/"
+            },
+            "update_schedule": {
+                "minutes": 5,
+                "seconds": 0
+            },
+            "_created": "2016-08-21T12:20:38+0000",
+            "idle_time": {
+                "minutes": 0,
+                "hours": 0
+            },
+            "_type": "ingest_providers",
+            "last_updated": "2017-05-01T12:39:20+0000",
+            "content_expiry": 2880,
+            "content_types": [
+                "text",
+                "preformatted",
+                "audio",
+                "video",
+                "picture",
+                "graphic",
+                "composite"
+            ],
+            "last_opened": {
+                "opened_by": "57b99db91d41c844b98d6832",
+                "opened_at": "2017-05-01T12:39:14+0000"
+            },
+            "name": "Forbes RSS feed",
+            "_updated": "2017-05-01T12:39:39+0000",
+            "source": "Forbes",
+            "is_closed": true
+        }
+
+## Update an Ingest Provider [PATCH]
+
+You can update an ingest provider by providing a JSON object
+for any of the field combinations
+
+
++ Request (application/json)
+
+        {
+            "is_closed": false
+        }
+
+
++ Response 201 (application/json)
+
+    + Body
+
+            {
+                "notifications": {
+                    "on_open": true,
+                    "on_close": true,
+                    "on_error": true,
+                    "on_update": true
+                },
+                "_links": {
+                    "self": {
+                        "href": "ingest_providers/5d1345b71d41c8242e0c04bb",
+                        "title": "Ingest_provider"
+                    }
+                },
+                "content_types": [
+                    "text",
+                    "preformatted",
+                    "audio",
+                    "video",
+                    "picture",
+                    "graphic",
+                    "composite"
+                ],
+                "_etag": "a1aa592d2bb1d0577f8a0d92a046cf7fc7a5cd4c",
+                "critical_errors": {
+                    "1001": false,
+                    "2000": true
+                },
+                "_created": "2019-06-26T10:15:19+0000",
+                "idle_time": {
+                    "minutes": 0,
+                    "hours": 0
+                },
+                "last_item_update": "2017-05-01T12:39:21+0000",
+                "_status": "OK",
+                "_id": "5d1345b71d41c8242e0c04bb",
+                "feeding_service": "rss",
+                "last_updated": "2017-05-01T12:39:20+0000",
+                "content_expiry": 2880,
+                "allow_remove_ingested": false,
+                "name": "New feed",
+                "_updated": "2019-06-26T10:15:19+0000",
+                "update_schedule": {
+                    "minutes": 5,
+                    "seconds": 0
+                },
+                "config": {
+                    "password": "password",
+                    "username": "user",
+                    "url": "http://www.forbes.com/",
+                    "field_aliases": []
+                },
+                "is_closed": false,
+                "source": "Forbes"
+            }
+
+## Delete an Ingest Provider [DELETE]      
+
++ Response 204
