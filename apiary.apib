@@ -1145,3 +1145,233 @@ for any of the field combinations
 ## Delete an Ingest Provider [DELETE]      
 
 + Response 204
+
+
+
+# Group User Management
+
+## User [/users/{_id}]
+
+A single User resource.
+
++ Parameters
+    + _id (string) - User id.
+
++ Model (application/json) 
+
+        {
+            "_links": {"self": {"href": "/users/123"}},
+            "_id": "123",
+            "username": "john",
+            "email": "john.doe@email.com",
+            "first_name": "John",
+            "last_name": "Doe",
+            "display_name": "John Doe",
+            "phone_number": "0123456789",
+            "_created": "2014-02-18T14:42:16Z",
+            "_updated": "2014-02-18T14:42:16Z",
+            "_etag": "xyz",
+            "picture_url": "http://www.gravatar.com/avatar/205e460b479e2e5b48aec07710c08d50?s=200",
+            "workspace": {
+                "widgets": [
+                    {
+                        "col": 1,
+                        "configuration": {
+                            "zones": ["Europe/London", "Asia/Tokyo", "Europe/Prague"]
+                        },
+                        "row": 1,
+                        "sizex": 1,
+                        "sizey": 1,
+                        "_id" : "world-clock"
+                    }
+                ]
+            },
+            "_readonly": ["username", "display_name", "password", "email", "phone", "first_name", "last_name"],
+            "privileges": {
+                "users": 1,
+                "ingest": 0
+            }
+        }
+
+### Retrieve a User [GET]
+
+"_readonly" attribute is included only if AD is enabled.
+
++ Request (application/json)
+
++ Response 200
+
+    [User][]
+
++ Response 404
+
+### Update User [PATCH]
+
++ Request (application/json)
+
+    + Headers
+    
+            If-Match: xyz
+    
+    + Body
+
+            {"last_name": "Baz"}
+
++ Response 200 (application/json)
+
+        {"_status": "OK"}
+
++ Response 403
+
+### Hard Delete a User [DELETE]
+
++ Request
+
+    + Headers
+    
+            If-Match: xyz
+
++ Response 204
+
+## User Search [/users{?page,max_results,where,sort}]
+
+### List all Users [GET]
+
+"_readonly" attribute is included only if AD is enabled.
+
++ Parameters
+    + page = `0`(optional, integer) ... Page number
+    + max_results = `25`(optional, integer) ... Number of users to be returned
+    + where (optional, object) ... Filtering
+    + sort (optional, object) ... Sorting
+
++ Response 200 (application/json)
+        
+        {
+            "_items": [
+                {
+                    "_links": {"self": {"href": "/users/2"}},
+                    "_id": "2",
+                    "email": "john.doe@email.com",
+                    "first_name": "John",
+                    "display_name": "John Doe",
+                    "last_name": "Doe",
+                    "username": "john",
+                    "phone_number": "0123456789",
+                    "_created": "2014-02-18T14:42:16Z",
+                    "_updated": "2014-02-18T14:42:16Z",
+                    "picture_url": "http://www.gravatar.com/avatar/205e460b479e2e5b48aec07710c08d50",
+                    "_etag": "xyz",
+                    "_readonly": ["username", "display_name", "password", "email", "phone", "first_name", "last_name"]
+                },
+                {
+                    "_links": {"self": {"href": "/users/3"}},
+                    "_id": "3",
+                    "email": "joe.hammer@email.com",
+                    "first_name": "Joe",
+                    "display_name": "Joe Hammer",
+                    "last_name": "Hammer",
+                    "username": "joe",
+                    "phone_number": "0223456789",
+                    "_created": "2014-02-18T14:43:27Z",
+                    "_updated": "2014-02-18T14:43:27Z",
+                    "picture_url": "http://www.gravatar.com/avatar/205e460b479e2e5b48aec07710c08d50",
+                    "_etag": "xyz",
+                    "_readonly": ["username", "display_name", "password", "email", "phone", "first_name", "last_name"]
+                }
+            ]
+        }
+
+## User collection [/users]
+
+### Create user [POST]
+
++ Request (application/json)
+
+        {
+            "first_name": "John",
+            "last_name": "Doe",
+            "username": "john",
+            "email": "john.doe@email.com",
+            "password": "a3r546465676bgyhyyehy",
+            "phone_number": "0223456789"
+        }
+
++ Response 201 (application/json)
+
+        {
+            "_links": {"self": {"href": "/users/5"}},
+            "_status": "OK",
+            "_etag": "xyz"
+        }
+
++ Response 400 (application/json)
+
+        {
+            "_status": "ERR",
+            "_issues": {
+                "username": {
+                    "unique": {
+                        "msg": "There is already an active user with this name"
+                    }
+                },
+                "email": {
+                    "unique": { "msg": "Unique constraint failed" }
+                },
+                "email": {
+                    "format": { "msg": "Invalid EMail" }
+                },
+                "phone": {
+                    "format": {
+                        "msg": "Invalid phone number format"
+                        "example": "+123123456789 or 0123456789 or 123456789"
+                    }
+                },
+                "password": {
+                    "required": { "msg": "Mandatory value is missing" }
+                }
+            }
+        }
+
+
+## Import Profile from AD [/import_profile]
+
+This will be exposed if AD is enabled.
+
+### Import User Profile from AD [POST]
+
++ Request (application/json)
+
+        {
+            "username": "admin",
+            "password": "admin",
+            "profile_to_import": "sduser"
+        }
+
++ Response 201 (application/json)
+
+        {
+           "_status": "OK",
+           "_id": "5449e53fc3747c105fa69f53",
+           "_etag": "5cc244e4acb76505127cd1555ee13d93e0f85e39",
+           "first_name": "User",
+           "last_name": "SD",
+           "display_name": "SD User",
+           "is_active": true,
+           "_created": "2014-10-24T05:35:54+0000",
+           "_updated": "2014-10-24T05:35:54+0000",
+           "user_type": "user",
+           "username": "sduser",
+           "phone": "+61 2 9322 8598",
+           "email": "sduser@sourcefabric.org",
+           "_links": {
+              "self": {
+                 "href": "/import_profile/5449e53fc3747c105fa69f53",
+                 "title": "Import_profile"
+               }
+           }
+        }
+
++ Response 404
+
+        {}
