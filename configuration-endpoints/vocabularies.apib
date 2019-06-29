@@ -1,0 +1,424 @@
+## List Vocabularies [/vocabularies] 
+
+### Retrieves a list of vocabularies [GET]
+
++ Response 200 (application/json)
+
+        {
+            "_items": [
+                {
+                "items": [
+                    {
+                        "formats": [
+                            {
+                                "qcode": "ninjs",
+                                "name": "NINJS"
+                            },
+                            {
+                                "qcode": "newsroom ninjs",
+                                "name": "Newsroom NINJS"
+                            },
+                            {
+                                "qcode": "newsmlg2",
+                                "name": "NewsML G2"
+                            },
+                            {
+                                "qcode": "email",
+                                "name": "Email"
+                            },
+                            {
+                                "qcode": "ntb_event",
+                                "name": "NTB Event"
+                            },
+                            {
+                                "qcode": "json_event",
+                                "name": "JSON Event"
+                            },
+                            {
+                                "qcode": "json_planning",
+                                "name": "JSON Planning"
+                            },
+                            {
+                                "qcode": "json_planning_featured",
+                                "name": "JSON Planning Featured"
+                            }
+                        ],
+                        "qcode": "all",
+                        "name": "All"
+                    },
+                    {
+                        "formats": [
+                            {
+                                "qcode": "ninjs",
+                                "name": "NINJS"
+                            },
+                            {
+                                "qcode": "newsroom ninjs",
+                                "name": "Newsroom NINJS"
+                            },
+                            {
+                                "qcode": "newsmlg2",
+                                "name": "NewsML G2"
+                            },
+                            {
+                                "qcode": "email",
+                                "name": "Email"
+                            },
+                            {
+                                "qcode": "ntb_event",
+                                "name": "NTB Event"
+                            },
+                            {
+                                "qcode": "json_event",
+                                "name": "JSON Event"
+                            },
+                            {
+                                "qcode": "json_planning",
+                                "name": "JSON Planning"
+                            },
+                            {
+                                "qcode": "json_planning_featured",
+                                "name": "JSON Planning Featured"
+                            }
+                        ],
+                        "qcode": "digital",
+                        "name": "Digital/Internet"
+                    },
+                    {
+                        "formats": [
+                            {
+                                "qcode": "nitf",
+                                "name": "NITF"
+                            },
+                            {
+                                "qcode": "newsroom ninjs",
+                                "name": "Newsroom NINJS"
+                            },
+                            {
+                                "qcode": "email",
+                                "name": "Email"
+                            },
+                            {
+                                "qcode": "ntb_event",
+                                "name": "NTB Event"
+                            },
+                            {
+                                "qcode": "json_event",
+                                "name": "JSON Event"
+                            },
+                            {
+                                "qcode": "json_planning",
+                                "name": "JSON Planning"
+                            },
+                            {
+                                "qcode": "json_planning_featured",
+                                "name": "JSON Planning Featured"
+                            }
+                        ],
+                        "qcode": "wire",
+                        "name": "Wire/Paper"
+                    }
+                ],
+                "_deleted": false,
+                "display_name": "Subscriber Types",
+                "_id": "subscriber_types",
+                "_links": {
+                    "self": {
+                        "title": "Vocabularie",
+                        "href": "vocabularies/subscriber_types"
+                    }
+                },
+                "_etag": "init",
+                "_updated": "2018-09-24T08:04:37+0000",
+                "type": "unmanageable",
+                "_created": "2018-03-21T00:43:37+0000"
+            },
+            {
+                "items": [
+                    {
+                        "width": 800,
+                        "name": "800x600",
+                        "height": 600
+                    },
+                    {
+                        "width": 600,
+                        "name": "600x600",
+                        "height": 600
+                    },
+                    {
+                        "width": 1080,
+                        "name": "1080x1080",
+                        "height": 1080
+                    },
+                    {
+                        "width": 1600,
+                        "name": "900x1600",
+                        "height": 900
+                    },
+                    {
+                        "width": 1280,
+                        "name": "720x1280",
+                        "height": 720
+                    },
+                    {
+                        "width": 1024,
+                        "name": "1024x768",
+                        "height": 768
+                    },
+                    {
+                        "width": 1280,
+                        "name": "1280x768",
+                        "height": 768
+                    },
+                    {
+                        "width": 1280,
+                        "name": "1280x1024",
+                        "height": 1024
+                    }
+                ],
+                "display_name": "Image Crop Sizes",
+                "selection_type": "do not show",
+                "type": "manageable",
+                "_id": "crop_sizes",
+                "unique_field": "name",
+                "_created": "2018-03-21T00:43:37+0000",
+                "_deleted": false,
+                "preffered_items": false,
+                "schema": {
+                    "width": {
+                        "type": "int"
+                    },
+                    "height": {
+                        "type": "int"
+                    },
+                    "name": {}
+                },
+                "_etag": "48f9ed2a34496bdb1cd847086bc7440b12ad02be",
+                "_links": {
+                    "self": {
+                        "title": "Vocabularie",
+                        "href": "vocabularies/crop_sizes"
+                    }
+                },
+                "_updated": "2018-12-06T14:57:46+0000"
+            },
+            {
+                "items": [
+                    {
+                        "qcode": "authoring",
+                        "name": "authoring"
+                    },
+                    {
+                        "qcode": "production",
+                        "name": "production"
+                    }
+                ],
+                "_deleted": false,
+                "display_name": "Desk Types",
+                "_id": "desk_types",
+                "_links": {
+                    "self": {
+                        "title": "Vocabularie",
+                        "href": "vocabularies/desk_types"
+                    }
+                },
+                "_etag": "init",
+                "_updated": "2018-09-24T08:02:40+0000",
+                "type": "unmanageable",
+                "_created": "2018-03-21T00:43:37+0000"
+            },
+            ]
+        }
+
+## Vocabularies Item [/vocabularies/{_id}]
+
++ Parameters
+    - _id (string) ... vocabulary id.
+
+### Retrieves a vocabulary [GET]
+
++ Response 200 (application/json)
+
+    + Body
+
+            {
+                "items": [
+                    {
+                        "qcode": "authoring",
+                        "name": "authoring"
+                    },
+                    {
+                        "qcode": "production",
+                        "name": "production"
+                    }
+                ],
+                "_deleted": false,
+                "display_name": "Desk Types",
+                "_id": "desk_types",
+                "_links": {
+                    "self": {
+                        "title": "Vocabularie",
+                        "href": "vocabularies/desk_types"
+                    }
+                },
+                "_etag": "init",
+                "_updated": "2018-09-24T08:02:40+0000",
+                "type": "unmanageable",
+                "_created": "2018-03-21T00:43:37+0000"
+            }
+
+    
+
+           
+
+### Create a new Vocabulary [POST]
+
+Vocabularies are allowed to have custom `_id` field. During the creation
+the uniqueness will be checked against existing vocabularies.
+
++ Request (application/json)
+
+    + Body
+        
+            {
+                "display_name": "test",
+                "items": [],
+                "type": "manageable",
+                "_id": "x1"
+            }
+
+    + Schema
+
+            {
+                "_id": {
+                    "type": "string",
+                    "required": True,
+                    "unique": True,
+                    "regex": "^[a-zA-Z0-9-_]+$"
+                },
+                "display_name": {
+                    "type": "string",
+                    "required": True
+                },
+                "description": {
+                    "type": "string",
+                    "required": False
+                },
+                "helper_text": {
+                    "type": "string",
+                    "maxlength": 120
+                },
+                "tags": {
+                    "type": "list",
+                    "required": False,
+                    "schema": {
+                        "type": "dict",
+                    }
+                },
+                "popup_width": {
+                    "type": "integer",
+                    "nullable": True
+                },
+                "type": {
+                    "type": "string",
+                    "required": True,
+                    "allowed": ["manageable", "unmanageable"],
+                },
+                "items": {
+                    "type": "list",
+                    "required": True,
+                    "schema": {
+                        "type": "dict",
+                        "allow_unknown": True,
+                        "schema": {
+                            "name": {"type": "string", "required": False, "nullable": True},
+                        }
+                    }
+                },
+                "selection_type": {
+                    "type": "string",
+                    "allowed": ["single selection", "multi selection", "do not show"],
+                    "nullable": True
+                },
+                "schema_field": {
+                    "type": "string",
+                    "required": False,
+                    "nullable": True
+                },
+                "dependent": {
+                    "type": "boolean",
+                },
+                "service": {
+                    "type": "dict",
+                },
+                "priority": {
+                    "type": "integer"
+                },
+                "unique_field": {
+                    "type": "string",
+                    "required": False,
+                    "nullable": True
+                },
+                "schema": {
+                    "type": "dict"
+                },
+                "field_type": {
+                    "type": "string",
+                    "nullable": True,
+                },
+                "field_options": {
+                    "type": "dict",
+                },
+                "init_version": {
+                    "type": "integer",
+                },
+                "preffered_items": {
+                    "type": "boolean",
+                },
+                "date_shortcuts": {
+                    "type": "list",
+                    "nullable": True,
+                    "schema": {
+                        "type": "dict",
+                        "schema": {
+                            "value": {"type": "integer", "required": True},
+                            "term": {"type": "string", "required": True},
+                            "label": {"type": "string", "required": True},
+                        }
+                    }
+                },
+            }
+
++ Response 201 (application/json)
+
+### Update a Vocabulary [PATCH]
+
++ Request (application/json)
+
+    + Headers
+    
+            If-Match: xyz
+    
+    + Body
+
+            {"type": "unmanageable"}
+
++ Response 200 (application/json)
+
+        {"_status": "OK"}
+
++ Response 403
+
+## Delete a vocabulary [DELETE]      
+
+Deletes the vocabulary by given id. A vocabulary will fail to delete if:
+
+ - It is a default vocabulary (i.e. field_type is null)
+
++ Request (application/json)
+
+        {}
+
++ Response 204
+
++ Response 412

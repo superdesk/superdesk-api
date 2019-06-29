@@ -1,0 +1,89 @@
+# Group Vocabularies
+
+## Vocabularies Collection [/vocabularies] 
+
+### List All Vocabularies [GET]
+
++ Response 200 (application/json)
+
+        {
+            "_items": []
+        }
+
+## A Vocabulary [/vocabularies/{vocabuary_id}]
+
++ Parameters
+
+    - vocabuary_id (string) ... vocabulary id
+
+### Details of A Vocabulary [GET]
+
++ Response 200 (application/json)
+
+    + Body
+
+            {
+                
+            }
+           
+
+### Create A New Vocabulary [POST]
+
+Vocabularies are allowed to have custom `_id` field. During the creation
+the uniqueness will be checked against existing vocabularies.
+
++ Request (application/json)
+
+     + Headers
+    
+            If-Match: {_etag}
+
+    + Body
+        
+            {
+                
+            }
+
+    + Schema
+
+            {
+                
+            }
+
++ Response 201 (application/json)
+
++ Response 400 (application/json)
+
++ Response 412 (application/json)
+
+### Update A Vocabulary [PATCH]
+
++ Request (application/json)
+
+    + Headers
+    
+            If-Match: {_etag}
+    
+    + Body
+
+            { 
+
+            }
+
++ Response 200 (application/json)
+
++ Response 403 (application/json)
+
+## Delete A Vocabulary [DELETE]      
+
+Deletes the vocabulary by given id. A vocabulary will fail to delete if:
+
+ - It is a default vocabulary (i.e. field_type is null)
+
++ Request (application/json)
+
+        {}
+
++ Response 204 (application/json)
+
++ Response 412 (application/json)
