@@ -1,0 +1,66 @@
+## Client Config Collection [/client_config] 
+
+### List All Client Configurations [GET]
+
++ Response 200 (application/json)
+
+        {
+            "config": {
+                "japanese_characters_per_minute": 600,
+                "planning_check_for_assignment_on_publish": false,
+                "planning_auto_assign_to_workflow": false,
+                "attachments_max_size": 8388608,
+                "planning_fulfil_on_publish_for_desks": [],
+                "editor": {},
+                "validator_media_metadata": {
+                    "usageterms": {
+                        "required": false
+                    },
+                    "description_text": {
+                        "textarea": true,
+                        "required": true
+                    },
+                    "copyrightholder": {
+                        "required": false
+                    },
+                    "copyrightnotice": {
+                        "required": false
+                    },
+                    "byline": {
+                        "required": false
+                    },
+                    "archive_description": {
+                        "required": false
+                    },
+                    "alt_text": {
+                        "required": true
+                    },
+                    "headline": {
+                        "required": true
+                    }
+                },
+                "ingest_expiry_minutes": 2880,
+                "attachments_max_files": 10,
+                "override_ednote_template": null,
+                "override_ednote_for_corrections": true,
+                "feedback_url": null,
+                "start_of_week": 0,
+                "publish_content_expiry_minutes": 0,
+                "max_multi_day_event_duration": 0,
+                "long_event_duration_threshold": -1,
+                "max_recurrent_events": 200,
+                "content_expiry_minutes": 0,
+                "xmpp_auth": false,
+                "street_map_url": "https://www.google.com.au/maps/?q=",
+                "default_genre": [
+                    {
+                        "qcode": "Article",
+                        "name": "Article (news)"
+                    }
+                ],
+                "schema": {}
+            },
+            "_items": []
+        }
+
+

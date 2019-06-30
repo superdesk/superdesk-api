@@ -1,0 +1,50 @@
+## Configurations Collection [/configurations] 
+
+### Create A New Vocabulary [POST]
+
+Configurations are allowed to have custom `_id` field. During the creation
+the uniqueness will be checked against existing Configurations.
+
++ Request (application/json)
+
+    + Body
+        
+            {
+                "_id": "phone",
+                "val": {"morning": "054847857"},
+            }
+
+    + Schema
+
+            {
+                "_id": {"type": "string", "required": true},
+                "val": {"type": "dict"},
+            }
+
++ Response 201 (application/json)
+
++ Response 400 (application/json)
+
++ Response 412 (application/json)
+
+
+## A Vocabulary [/Configurations/{config_name}]
+
++ Parameters
+
+    - config_name (string) ... configuration name
+
+### Details of A Configuration [GET]
+
++ Response 200 (application/json)
+
+    + Body
+
+            {
+                "_id": "mobile",
+                "val": {
+                    "morning": "054847857"
+                },
+                "_status": "OK",
+            }
+           
