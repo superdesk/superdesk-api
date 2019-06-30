@@ -1,0 +1,120 @@
+## Rule Sets Collection [/rule_sets] 
+
+### List All Rule Sets [GET]
+
++ Response 200 (application/json)
+
+        {
+            "_items": [
+                {
+                    "_id": "5c18aefcbfb76600e48c7f67",
+                    "name": "test",
+                    "rules": [
+                        {"old": "Briton", "new": "UK"}
+                    ]
+                }
+            ]
+        }
+
+
+### Create A New Rule Set [POST]
+
++ Request (application/json)
+
+
+    + Body
+        
+            {
+                "rules": [
+                    {
+                        "new": "kms",
+                        "old": "miles"
+                    }
+                ],
+                "name": "test rule set"
+            }
+
+    + Schema
+
+            {
+                "name": {
+                    "type": "string",
+                    "iunique": true,
+                    "required": true,
+                    "nullable": false,
+                    "empty": false,
+                    "minlength": 1
+                },
+                "rules": {
+                    "type": "list"
+                }
+            }
+
++ Response 201 (application/json)
+
++ Response 400 (application/json)
+
++ Response 412 (application/json)
+
+
+## A Rule Set [/Rule Sets/{rule_set_id}]
+
++ Parameters
+
+    - rule_set_id (string) ... Rule Set id
+
+
+### Details of A Rule Set [GET]
+
++ Response 200 (application/json)
+
+    + Body
+
+            {
+                "_id": "5c18aefcbfb76600e48c7f67",
+                "name": "test",
+                "rules": [
+                    {"old": "Briton", "new": "UK"}
+                ]
+            }
+           
+### Update A Rule Set [PATCH]
+
+Update of a rule set replaces the list of rules with the newly given one (if given)
+
++ Request (application/json)
+
+    + Headers
+    
+            If-Match: {_etag}
+    
+    + Body
+
+            {
+                "rules": [
+                    {
+                        "old": "miles",
+                        "new": "kms"
+                    }
+                ]
+            }
+
++ Response 200 (application/json)
+
++ Response 400 (application/json)
+
++ Response 403 (application/json)
+
+## Delete A Rule Set [DELETE]      
+
+Deletes the Rule Set by given id. A Rule Set will fail to delete if:
+
+ - It is used by an ingest provider
+
++ Request (application/json)
+
+        {}
+
++ Response 204 (application/json)
+
++ Response 403 (application/json)

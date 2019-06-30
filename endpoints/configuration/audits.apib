@@ -1,0 +1,118 @@
+## Audits Collection [/Audits] 
+
+### List All Audits [GET]
+
++ Response 200 (application/json)
+
+    + Body
+
+            {
+                "_items": [
+                        {
+                        "_updated": "2018-03-21T01:21:09+0000",
+                        "resource": "events",
+                        "action": "updated",
+                        "user": "5ab1aabdcdfe38019f0a875a",
+                        "_etag": "417d873e4073fa680bbd2c79947a838550f56a70",
+                        "_id": "5ab1b385cdfe38023cd29e40",
+                        "audit_id": "urn:newsml:sdp-master.test.superdesk.org:2018-03-21T01:20:32.518113:274f1055-7dd6-4a4b-b56a-6979fcd6ab39",
+                        "_links": {
+                            "self": {
+                                "title": "Audit",
+                                "href": "audit/5ab1b385cdfe38023cd29e40"
+                            }
+                        },
+                        "_created": "2018-03-21T01:21:09+0000",
+                        "extra": {
+                            "version_creator": "5ab1aabdcdfe38019f0a875a",
+                            "_planning_schedule": [
+                                {
+                                    "scheduled": "2018-03-20T13:00:21+0000"
+                                }
+                            ],
+                            "dates": {
+                                "recurring_rule": {
+                                    "endRepeatMode": "count",
+                                    "count": 5,
+                                    "until": null,
+                                    "frequency": "DAILY",
+                                    "interval": 1
+                                },
+                                "end": "2018-03-21T12:59:59+0000",
+                                "tz": "Australia/Sydney",
+                                "start": "2018-03-20T13:00:21+0000"
+                            },
+                            "lock_action": null,
+                            "_id": "urn:newsml:sdp-master.test.superdesk.org:2018-03-21T01:20:32.518113:274f1055-7dd6-4a4b-b56a-6979fcd6ab39",
+                            "lock_session": null,
+                            "lock_time": null,
+                            "_etag": "47170c26fc267d9c03298fe979cb376ee007fdf4",
+                            "recurrence_id": "urn:newsml:sdp-master.test.superdesk.org:2018-03-21T01:21:09.588414:204364a5-f6f2-4083-876e-be19c2ce228f",
+                            "lock_user": null,
+                            "_updated": "2018-03-21T01:21:09+0000",
+                            "location": null
+                        }
+                    },
+                    {
+                        "_updated": "2018-03-21T01:21:21+0000",
+                        "resource": "planning",
+                        "action": "created",
+                        "user": "5ab1aabdcdfe38019f0a875a",
+                        "_etag": "25b6d60634842b8778b81761fe0ced76d6d040aa",
+                        "_id": "5ab1b391cdfe38023cd29e42",
+                        "audit_id": "urn:newsml:sdp-master.test.superdesk.org:2018-03-21T01:21:21.386502:95bb918b-7db6-4945-926c-1dd096bf3dcf",
+                        "_links": {
+                            "self": {
+                                "title": "Audit",
+                                "href": "audit/5ab1b391cdfe38023cd29e42"
+                            }
+                        },
+                        "_created": "2018-03-21T01:21:21+0000",
+                        "extra": {
+                            "flags": {
+                                "marked_for_not_publication": false
+                            },
+                            "state": "draft",
+                            "_planning_schedule": [
+                                {
+                                    "scheduled": "2018-03-21T13:00:21+0000",
+                                    "coverage_id": null
+                                }
+                            ],
+                            "description_text": "new event 1",
+                            "type": "planning",
+                            "event_item": "urn:newsml:sdp-master.test.superdesk.org:2018-03-21T01:21:09.591564:f2304289-4f57-41c2-8434-922f971783b9",
+                            "item_class": "plinat:newscoverage",
+                            "_id": "urn:newsml:sdp-master.test.superdesk.org:2018-03-21T01:21:21.386502:95bb918b-7db6-4945-926c-1dd096bf3dcf",
+                            "_created": "2018-03-21T01:21:21+0000",
+                            "original_creator": "5ab1aabdcdfe38019f0a875a",
+                            "_etag": "4349a7825c8b6f9c81a71c496fd4b8152f42f724",
+                            "agendas": [],
+                            "guid": "urn:newsml:sdp-master.test.superdesk.org:2018-03-21T01:21:21.386502:95bb918b-7db6-4945-926c-1dd096bf3dcf",
+                            "slugline": "new event 1 duplicate",
+                            "recurrence_id": "urn:newsml:sdp-master.test.superdesk.org:2018-03-21T01:21:09.588414:204364a5-f6f2-4083-876e-be19c2ce228f",
+                            "planning_date": "2018-03-21T13:00:21+0000",
+                            "_links": {
+                                "self": {
+                                    "title": "Planning",
+                                    "href": "planning/urn:newsml:sdp-master.test.superdesk.org:2018-03-21T01:21:21.386502:95bb918b-7db6-4945-926c-1dd096bf3dcf"
+                                }
+                            },
+                            "_updated": "2018-03-21T01:21:21+0000",
+                            "coverages": [],
+                            "_status": "OK",
+                            "headline": "new event 1 duplicate"
+                        }
+                    }
+                ]
+            }
+
+    + Schema
+
+            {
+                "resource": {"type": "string"},
+                "action": {"type": "string"},
+                "audit_id": {"type": "string"},
+                "extra": {"type": "dict"},
+                "user": "{uer_id}"
+            }        

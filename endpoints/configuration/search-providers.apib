@@ -1,0 +1,180 @@
+## Search Providers Collection [/search_providers] 
+
+### List All Search Providers [GET]
+
++ Response 200 (application/json)
+
+        {
+            "_items": [
+                {
+                    "search_provider": "testsearch", 
+                    "source": "testsearch", 
+                    "is_closed": false, 
+                    "config": {"password":"", "username":""}, 
+                    "name": "test"
+                }
+            ]
+        }
+
+
+### Create A New Search Provider [POST]
+
+Creation of a Search providers will fail if:
+
+- Provided search provided is not part of allowed search providers. Allowed search
+providers defined in run time by checking prepopulated search providers registry
+
+
++ Request (application/json)
+
+    + Body
+        
+            {"search_provider": "Multimedia", "source": "aapmm", "config": {"password":"", "username":""}}
+
+    + Schema
+
+            {
+                "search_provider": {
+                    "type": "string",
+                    "required": true,
+                    "allowed": []
+                },
+                "source": required_string,
+                "name": {"type": "string"},
+                "is_closed": {
+                    "type": "boolean",
+                    "default": False
+                },
+                "is_default": {
+                    "type": "boolean",
+                    "default": false
+                },
+                "advanced_search": {
+                    "type": "boolean",
+                    "default": false,
+                },
+                "last_item_update": {"type": "datetime"},
+                "config": {
+                    "type": "dict"
+                }
+            }
+
++ Response 201 (application/json)
+
++ Response 400 (application/json)
+
++ Response 412 (application/json)
+
+
+## A Search Provider [/search_providers/{search_provider_id}]
+
++ Parameters
+
+    - search_provider_id (string) ... Search Provider id
+
+### Details of A Search Provider [GET]
+
++ Response 200 (application/json)
+
+    + Body
+
+            {
+                "search_provider": "testsearch", 
+                "source": "testsearch", 
+                "is_closed": false, 
+                "config": {"password":"", "username":""}, 
+                "name": "test"
+            }
+           
+
+### Update A Search Provider [PATCH]
+
+Update of a Search providers will fail if:
+
+- Provided search provided is not part of allowed search providers. Allowed search
+providers defined in run time by checking prepopulated search providers registry
+
++ Request (application/json)
+
+    + Headers
+    
+            If-Match: {_etag}
+    
+    + Body
+
+            {"search_provider": "Multimedia", "source": "AAP Multimedia"}
+
++ Response 200 (application/json)
+
++ Response 403 (application/json)
+
+## Delete A Search Provider [DELETE]      
+
+Deletes the Search Provider by given id. A Search Provider will fail to delete if:
+
+ - There are stories have been fetched from this search provider
+
++ Request (application/json)
+
+        {}
+
++ Response 204 (application/json)
+
++ Response 400 (application/json)
+
+
+## A Search Provider [/search_providers_proxy]
+
+### Details of A Search Provider Proxy [GET]
+
++ Response 200 (application/json)
+
+    + Body
+
+            {
+                "_items": 
+                    [{
+                        "_type": "archive",
+                        "guid": "foo",
+                        "pubstatus": "usable"
+                    }
+                ]
+            }
+
+    + Schema
+
+            {
+                "guid": {"type": "string", "required": True},
+                "desk": "{desk_id}",
+                "repo": "{search_provider_id}",
+                "stage": "{stage_id}"
+            }        
+           
+
+### Update A Search Provider Proxy [POST]
+
+
++ Request (application/json)
+
+    + Body
+
+            {"guid": "foo", "version": 1, "type": "text"}
+
++ Response 200 (application/json)
+
++ Response 403 (application/json)
+
+
+## Allowed Search Providers [/search_providers_allowed]
+
+### Details of Allowed Search Providers [GET]
+
++ Response 200 (application/json)
+
+    + Body
+
+            {
+                "_items": 
+                    [{"search_provider": "testsearch", "label": "Foo"}]
+            }     
+           

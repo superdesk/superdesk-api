@@ -1,0 +1,175 @@
+
+
+## Dictionaries Collection [/Dictionaries] 
+
+### List All Dictionaries [GET]
+
++ Response 200 (application/json)
+
+        {
+            "_items": [
+                {
+                    "language_id": "en",
+                    "type": "dictionary",
+                    "_file_id": "5ab38766cdfe3800e091fa23",
+                    "_links": {
+                        "self": {
+                            "title": "Dictionarie",
+                            "href": "dictionaries/5ab38766cdfe3800e091fa36"
+                        }
+                    },
+                    "_etag": "34ec2d34a8bbf03bb9cea17e0fbd293dd40f5bd7",
+                    "_id": "5ab38766cdfe3800e091fa36",
+                    "_updated": "2018-03-22T10:37:25+0000",
+                    "content": null,
+                    "_created": "2018-03-22T10:37:25+0000",
+                    "is_active": "true",
+                    "name": "Macquarie Australian-English wordlist 2014"
+                }
+            ]
+        }
+
+### Create A New Dictionary [POST]
+
+A new dictionary can be created by either providing the **content** field or 
+by providing a text **file** in the post message. If a file is provided, it will be
+parsed when a new dictionary is created and the content field will be populated.
+
+Creation of a new dictionary will fail if
+ 
+ - Both content is not provided but uploaded file could not be parsed
+ - If the name of the dictionary is not unique
+ - If the type of the dictioary is "Abbreviations" and user field is empty
+
+
++ Request  (multipart/form-data; boundary=---BOUNDARY)
+
+    + Body
+        
+            -----BOUNDARY
+            Content-Disposition: form-data; name="file"; filename="simple-dict.txt"
+            Content-Type: text/plain
+            Content-Disposition: form-data; name="type"; value="dictionary"
+            Content-Disposition: form-data; name="name"; value="test dict"
+            Content-Disposition: form-data; name="user"; value="54ed946e10245479ccc38382"
+            Content-Disposition: form-data; name="language_id"; value="en"
+            -----BOUNDARY
+
+    + Schema
+
+            {
+                "name": {
+                    "type": "string",
+                    "required": true
+                },
+                "language_id": {
+                    "type": "string",
+                    "required": true
+                },
+                "content": {
+                    "type": "dict",
+                },
+                "content_list": {
+                    "type": "string",
+                },
+                "file": {
+                    "type": "file",
+                },
+                "user": "{user_id}"
+                "is_active": {
+                    "type": "string",
+                    "default": "true",
+                },
+                "type": {
+                    "type": "string",
+                    "default": "dictionary",
+                    "allowed": ["dictionary", "abbreviations"]
+                },
+
+                "_file_id": {"type": "objectid", "nullable": true, "readonly": true},
+            }
+
++ Response 201 (application/json)
+
++ Response 400 (application/json)
+
++ Response 412 (application/json)
+
+
+## A Dictionary [/Dictionaries/{dictionary_id}]
+
++ Parameters
+
+    - dictionary_id (string) ... Dictionary id
+
+### Details of A Dictionary [GET]
+
++ Response 200 (application/json)
+
+    + Body
+
+            {
+                "content": {
+                    "MYABR": "this is my abbreviation",
+                    "USA": "Unated States of America",
+                    "WHO": "World Health Organization",
+                    "UN": "United Nations"
+                },
+                "type": "abbreviations",
+                "_id": "5ccb2223739a48801f753d9e",
+                "_created": "2019-05-02T17:00:19+0000",
+                "name": "5ab27997cdfe38023cd29e97:en",
+                "language_id": "en",
+                "_etag": "815ba73d64e5c590b28a074874ef7793ae3aca6a",
+                "user": "5ab27997cdfe38023cd29e97",
+                "_updated": "2019-05-02T17:00:19+0000",
+                "_file_id": null,
+                "_type": "dictionaries",
+                "is_active": "true"
+            }
+           
+
+### Update A Dictionary [PATCH]
+
+A dictionary can be updated by either providing the **content** field or 
+by providing a text **file** in the post message. If a file is provided, it will be
+parsed when the dictionary is updated. The existing content will be **merged** with the new one.
+
+Update of a new dictionary will fail if
+ 
+ - Both content is not provided but uploaded file could not be parsed
+ - If the name of the dictionary is not unique
+ - If dictionary type is different
+
++ Request (multipart/form-data; boundary=---BOUNDARY)
+
+    + Headers
+    
+            If-Match: {_etag}
+    
+    + Body
+
+            {
+                "content": {
+                    "omaga": 1,
+                    "teta": 1
+                }
+            }
+
++ Response 200 (application/json)
+
++ Response 403 (application/json)
+
++ Response 400 (application/json)
+
+## Delete A Dictionary [DELETE]      
+
+Deletes the Dictionary by given id.
+
++ Request (application/json)
+
+        {}
+
++ Response 204 (application/json)
+
++ Response 412 (application/json)

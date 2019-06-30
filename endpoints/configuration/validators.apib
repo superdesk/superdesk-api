@@ -1,0 +1,103 @@
+## Validators Collection [/Validators] 
+
+### Create A New Validator [POST]
+
+Validators are allowed to have custom `_id` field. During the creation
+the uniqueness will be checked against existing Validators.
+
++ Request (application/json)
+
+    + Body
+        
+            {
+                "_id": "publish_text",
+                "act": "publish",
+                "type": "text",
+                "schema": {
+                    "headline": {
+                        "type": "string",
+                        "required": true,
+                        "nullable": false,
+                        "empty": false,
+                        "maxlength": 42
+                    },
+                    "abstract": {
+                        "type": "string",
+                        "required": false,
+                        "maxlength": 160
+                    },
+                    "sms_message": {
+                        "type": "string",
+                        "required": false,
+                        "maxlength": 160
+                    },
+                    "type": {
+                        "type": "string",
+                        "required": "true",
+                        "allowed": ["text"]
+                    },
+                    "anpa_category": {
+                        "type": "list",
+                        "required": true,
+                        "minlength": 1
+                    },
+                    "pubstatus": {
+                        "type": "string",
+                        "required": true,
+                        "allowed": ["usable"]
+                    },
+                    "slugline": {
+                        "type": "string",
+                        "required": true,
+                        "nullable": false,
+                        "empty": false,
+                        "maxlength": 24
+                    },
+                    "body_html": {
+                        "type": "string",
+                        "required": true,
+                        "nullable": false,
+                        "empty": false
+                    },
+                    "subject": {
+                        "type": "list",
+                        "required": true,
+                        "minlength": 1
+                    },
+                    "urgency": {
+                        "type": "integer",
+                        "required": true,
+                        "allowed": [1, 2, 3, 4, 5]
+                    },
+                    "priority": {
+                        "type": "integer",
+                        "required": true,
+                        "allowed": [1, 2, 3, 4, 5, 6, 7, 8, 9]
+                    },
+                    "dateline": {
+                        "type": "dict",
+                        "required": true,
+                        "schema": {
+                            "located": {"type": "dict", "required": true},
+                            "text": {"type": "string", "required": true}
+                        }
+                    }
+                }
+            }
+
+    + Schema
+
+            {
+                "_id": {"type": "string", "required": true, "unique": true},
+                "act": {"type": "string", "required": true},
+                "type": {"type": "string", "required": true},
+                "embedded": {"type": "boolean", "required": false},
+                "schema": {
+                    "type": "dict",
+                    "required": false
+                }
+            }
+
++ Response 201 (application/json)
+
++ Response 400 (application/json)

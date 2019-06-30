@@ -1,0 +1,221 @@
+## Concept Items Collection [/Concept Items] 
+
+### List All Concept Items [GET]
+
++ Response 200 (application/json)
+
+        {
+            "_items": [
+                {
+                    "cpnat_type": "cpnat:abstract",
+                    "labels": [
+                        "book",
+                        "tolkien"
+                    ],
+                    "_links": {
+                        "self": {
+                            "href": "concept_items/5d183f651d41c860dce4019b",
+                            "title": "Concept_item"
+                        }
+                    },
+                    "_etag": "e79f6752bf2565dc0edae693941f3091ed670a7d",
+                    "definition_text": "The Hobbit is a children's fantasy novel by English author J. R. R. Tolkien.",
+                    "_updated": "2019-06-30T04:49:41+0000",
+                    "_created": "2019-06-30T04:49:41+0000",
+                    "created_by": "5c807d441d41c8a1d54209d2",
+                    "_id": "5d183f651d41c860dce4019b",
+                    "language": "en",
+                    "name": "Hobbit",
+                    "group_id": "c1eca28d-012d-4c13-b9ba-f77922906ffd",
+                    "definition_html": "The Hobbit is a children's fantasy novel by English author J. R. R. Tolkien."
+                }
+            ],
+        }
+
+
+### Create A New Concept Item [POST]
+
+Creation of concept items will fail if: 
+
+- 'languages' vocabulary is not set in the system
+- Labels are not unique
+- Wrong cpnat_type is provided
+
++ Request (application/json)
+
+    + Body
+        
+            {
+                "name": "Hobbit",
+                "cpnat_type": "cpnat:abstract",
+                "labels": ["book", "tolkien"],
+                "language": "en",
+                "definition_html": "The Hobbit is a children's fantasy novel by English author J. R. R. Tolkien."
+            }
+
+    + Schema
+
+            {
+                "name": {
+                    "type": "string",
+                    "required": true,
+                    "empty": false
+                },
+                "group_id": {
+                    "type": "string",
+                    "required": false,
+                    "empty": false,
+                    "readonly": false
+                },
+                "definition_text": {
+                    "type": "string",
+                    "required": false,
+                    "empty": false,
+                    "readonly": true
+                },
+                "definition_html": {
+                    "type": "string",
+                    "required": true,
+                    "empty": false
+                },
+                "language": {
+                    "type": "string",
+                    "required": true,
+                    "empty": false
+                },
+                "labels": {
+                    "type": "list",
+                    "schema": {
+                        "type": "string"
+                    },
+                    "unique_list": true
+                },
+                "cpnat_type": {
+                    "type": "string",
+                    "required": true,
+                    "allowed": [
+                        "cpnat:abstract",
+                        "cpnat:event",
+                        "cpnat:geoArea",
+                        "cpnat:object",
+                        "cpnat:organisation",
+                        "cpnat:person",
+                        "cpnat:poi"
+                    ],
+                    "$comment": "http://cv.iptc.org/newscodes/cpnature/"
+                },
+                "properties": {
+                    "type": "dict",
+                    "required": false,
+                    "$comment": "https://iptc.org/std/NewsML-G2/guidelines/#more-real-world-entities"
+                },
+                "created_by": {
+                    "type": "objectid",
+                    "readonly": true,
+                    "data_relation": {
+                        "resource": "users",
+                        "field": "_id",
+                        "embeddable": false
+                    }
+                },
+                "updated_by": {
+                    "type": "objectid",
+                    "readonly": true,
+                    "data_relation": {
+                        "resource": "users",
+                        "field": "_id",
+                        "embeddable": false
+                    }
+                }
+
++ Response 201 (application/json)
+
+        {
+            "cpnat_type": "cpnat:abstract",
+            "_status": "OK",
+            "labels": [
+                "book",
+                "tolkien"
+            ],
+            "_links": {
+                "self": {
+                    "href": "concept_items/5d183f651d41c860dce4019b",
+                    "title": "Concept_item"
+                }
+            },
+            "_updated": "2019-06-30T04:49:41+0000",
+            "definition_text": "The Hobbit is a children's fantasy novel by English author J. R. R. Tolkien.",
+            "_etag": "e79f6752bf2565dc0edae693941f3091ed670a7d",
+            "_created": "2019-06-30T04:49:41+0000",
+            "created_by": "5c807d441d41c8a1d54209d2",
+            "_id": "5d183f651d41c860dce4019b",
+            "language": "en",
+            "name": "Hobbit",
+            "group_id": "c1eca28d-012d-4c13-b9ba-f77922906ffd",
+            "definition_html": "The Hobbit is a children's fantasy novel by English author J. R. R. Tolkien."
+        }
+
++ Response 400 (application/json)
+
++ Response 412 (application/json)
+
+
+## A Concept Item [/Concept Items/{vocabuary_id}]
+
++ Parameters
+
+    - vocabuary_id (string) ... Concept Item id
+
+### Details of A Concept Item [GET]
+
++ Response 200 (application/json)
+
+    + Body
+
+            {
+                "cpnat_type": "cpnat:abstract",
+                "labels": [
+                    "book",
+                    "tolkien"
+                ],
+                "definition_text": "The Hobbit is a children's fantasy novel by English author J. R. R. Tolkien.",
+                "created_by": "5c807d441d41c8a1d54209d2",
+                "_id": "5d183f651d41c860dce4019b",
+                "language": "en",
+                "name": "Hobbit",
+                "group_id": "c1eca28d-012d-4c13-b9ba-f77922906ffd",
+                "definition_html": "The Hobbit is a children's fantasy novel by English author J. R. R. Tolkien."
+            }
+           
+
+### Update A Concept Item [PATCH]
+
++ Request (application/json)
+
+    + Headers
+    
+            If-Match: {_etag}
+    
+    + Body
+
+            {
+                "name": "Lord of the Rings"
+            }
+
++ Response 200 (application/json)
+
++ Response 403 (application/json)
+
+## Delete A Concept Item [DELETE]      
+
+Deletes the Concept Item by given id. A Concept Item will fail to delete if:
+
+ - It is a default Concept Item (i.e. field_type is null)
+
++ Request (application/json)
+
+        {}
+
++ Response 204 (application/json)
+
++ Response 412 (application/json)

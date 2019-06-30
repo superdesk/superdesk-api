@@ -10,22 +10,6 @@
             "_items": []
         }
 
-## A Vocabulary [/vocabularies/{vocabuary_id}]
-
-+ Parameters
-
-    - vocabuary_id (string) ... vocabulary id
-
-### Details of A Vocabulary [GET]
-
-+ Response 200 (application/json)
-
-    + Body
-
-            {
-                
-            }
-           
 
 ### Create A New Vocabulary [POST]
 
@@ -33,10 +17,6 @@ Vocabularies are allowed to have custom `_id` field. During the creation
 the uniqueness will be checked against existing vocabularies.
 
 + Request (application/json)
-
-     + Headers
-    
-            If-Match: {_etag}
 
     + Body
         
@@ -55,6 +35,24 @@ the uniqueness will be checked against existing vocabularies.
 + Response 400 (application/json)
 
 + Response 412 (application/json)
+
+
+## A Vocabulary [/vocabularies/{vocabuary_id}]
+
++ Parameters
+
+    - vocabuary_id (string) ... vocabulary id
+
+### Details of A Vocabulary [GET]
+
++ Response 200 (application/json)
+
+    + Body
+
+            {
+                
+            }
+           
 
 ### Update A Vocabulary [PATCH]
 

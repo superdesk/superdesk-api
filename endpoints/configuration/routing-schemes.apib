@@ -44,72 +44,6 @@
             ]
         }
 
-## A Routing Scheme [/routing_schemes/{routing_scheme_id}]
-
-+ Parameters
-
-    - routing_scheme_id (string) ... routing scheme id
-
-### Details of A Routing Scheme [GET]
-
-+ Response 200 (application/json)
-
-    + Body
-
-            {
-                "_id": "5bc08c26bfb76600e3158e98",
-                "_links": {
-                    "self": {
-                        "title": "Routing_scheme",
-                        "href": "routing_schemes/5bc08c26bfb76600e3158e98"
-                    },
-                    "parent": {
-                        "title": "home",
-                        "href": "/"
-                    },
-                    "collection": {
-                        "title": "routing_schemes",
-                        "href": "routing_schemes"
-                    }
-                },
-                "_etag": "c0caa7f13e2eb2eaf15a659e425d1fd5ba09c918",
-                "_updated": "2018-10-12T11:57:26+0000",
-                "_type": "routing_schemes",
-                "name": "To Karel's desk",
-                "_created": "2018-10-12T11:57:26+0000",
-                "rules": [
-                    {
-                        "actions": {
-                            "publish": [],
-                            "fetch": [
-                                {
-                                    "desk": "5bc0893ebfb76600e3158e6e",
-                                    "stage": "5bc0893ebfb76600e3158e6d"
-                                }
-                            ],
-                            "exit": true
-                        },
-                        "schedule": {
-                            "time_zone": "UTC",
-                            "hour_of_day_from": null,
-                            "hour_of_day_to": null,
-                            "day_of_week": [
-                                "MON",
-                                "TUE",
-                                "WED",
-                                "THU",
-                                "FRI",
-                                "SAT",
-                                "SUN"
-                            ]
-                        },
-                        "filter": null,
-                        "name": "Fetch to Karel's deks"
-                    }
-                ]
-            }
-           
-
 ### Create A New Routing Scheme [POST]
 
 Creates a new routing scheme. Creation of a routing scheme will fail if:
@@ -123,10 +57,6 @@ Creates a new routing scheme. Creation of a routing scheme will fail if:
  - If a schedule is given and if the date and time formats are not recognized
 
 + Request (application/json)
-
-     + Headers
-    
-            If-Match: {_etag}
 
     + Body
         
@@ -225,7 +155,73 @@ Creates a new routing scheme. Creation of a routing scheme will fail if:
 
 + Response 400 (application/json)
 
-+ Response 412 (application/json)
++ Response 412 (application/json)        
+
+## A Routing Scheme [/routing_schemes/{routing_scheme_id}]
+
++ Parameters
+
+    - routing_scheme_id (string) ... routing scheme id
+
+### Details of A Routing Scheme [GET]
+
++ Response 200 (application/json)
+
+    + Body
+
+            {
+                "_id": "5bc08c26bfb76600e3158e98",
+                "_links": {
+                    "self": {
+                        "title": "Routing_scheme",
+                        "href": "routing_schemes/5bc08c26bfb76600e3158e98"
+                    },
+                    "parent": {
+                        "title": "home",
+                        "href": "/"
+                    },
+                    "collection": {
+                        "title": "routing_schemes",
+                        "href": "routing_schemes"
+                    }
+                },
+                "_etag": "c0caa7f13e2eb2eaf15a659e425d1fd5ba09c918",
+                "_updated": "2018-10-12T11:57:26+0000",
+                "_type": "routing_schemes",
+                "name": "To Karel's desk",
+                "_created": "2018-10-12T11:57:26+0000",
+                "rules": [
+                    {
+                        "actions": {
+                            "publish": [],
+                            "fetch": [
+                                {
+                                    "desk": "5bc0893ebfb76600e3158e6e",
+                                    "stage": "5bc0893ebfb76600e3158e6d"
+                                }
+                            ],
+                            "exit": true
+                        },
+                        "schedule": {
+                            "time_zone": "UTC",
+                            "hour_of_day_from": null,
+                            "hour_of_day_to": null,
+                            "day_of_week": [
+                                "MON",
+                                "TUE",
+                                "WED",
+                                "THU",
+                                "FRI",
+                                "SAT",
+                                "SUN"
+                            ]
+                        },
+                        "filter": null,
+                        "name": "Fetch to Karel's deks"
+                    }
+                ]
+            }
+           
 
 ### Update A Routing Scheme [PATCH]
 

@@ -1,0 +1,268 @@
+## Workspaces Collection [/workspaces] 
+
+### List All Workspaces [GET]
+
++ Response 200 (application/json)
+
+        {
+            "_items": [
+                {
+                    "desk": "54fe43c210245412e8b8f526",
+                    "_id": "587f3ce11d41c81d6ba91428",
+                    "widgets": [
+                        {
+                            "multiple_id": 0,
+                            "sizey": 2,
+                            "configuration": {
+                                "groups": [],
+                                "label": ""
+                            },
+                            "sizex": 1,
+                            "active": true,
+                            "_id": "aggregate"
+                        },
+                        {
+                            "multiple_id": 0,
+                            "sizey": 2,
+                            "configuration": {
+                                "maxItems": 5
+                            },
+                            "sizex": 1,
+                            "active": true,
+                            "_id": "activity"
+                        },
+                        {
+                            "multiple_id": 1,
+                            "active": true,
+                            "sizey": 2,
+                            "_id": "aggregate",
+                            "sizex": 1
+                        }
+                    ]
+                },
+                {
+                    "desk": "54e691ca1024542de640fef1",
+                    "_id": "5883c4951d41c885556c7340",
+                    "widgets": [
+                        {
+                            "multiple_id": 0,
+                            "sizey": 1,
+                            "configuration": {
+                                "source": "provider",
+                                "colorScheme": "superdesk",
+                                "updateInterval": 5
+                            },
+                            "sizex": 1,
+                            "active": true,
+                            "_id": "ingest-stats"
+                        },
+                        {
+                            "multiple_id": 0,
+                            "sizey": 2,
+                            "configuration": {
+                                "groups": [
+                                    {
+                                        "type": "stage",
+                                        "_id": "54e691ca1024542de640fef0",
+                                        "max_items": 10
+                                    },
+                                    {
+                                        "type": "stage",
+                                        "_id": "54e6a3c31024542ddeb76b03",
+                                        "max_items": 10
+                                    },
+                                    {
+                                        "type": "stage",
+                                        "_id": "54e6a6c81024542de2649bfc",
+                                        "max_items": 10
+                                    },
+                                    {
+                                        "type": "deskOutput",
+                                        "_id": "54e691ca1024542de640fef1:output",
+                                        "max_items": 10
+                                    },
+                                    {
+                                        "type": "stage",
+                                        "_id": "54fe43c210245412e8b8f525",
+                                        "max_items": 10
+                                    },
+                                    {
+                                        "type": "stage",
+                                        "_id": "54fe446610245489e2d3b55b",
+                                        "max_items": 10
+                                    }
+                                ],
+                                "label": ""
+                            },
+                            "sizex": 1,
+                            "active": true,
+                            "_id": "aggregate"
+                        },
+                        {
+                            "multiple_id": 0,
+                            "sizey": 2,
+                            "configuration": {
+                                "maxItems": 5
+                            },
+                            "sizex": 1,
+                            "active": true,
+                            "_id": "activity"
+                        },
+                        {
+                            "multiple_id": 1,
+                            "sizey": 2,
+                            "_id": "aggregate",
+                            "sizex": 1,
+                            "active": true,
+                            "configuration": {
+                                "groups": [
+                                    {
+                                        "type": "stage",
+                                        "_id": "54fe451210245489e2d3b560",
+                                        "max_items": 10
+                                    },
+                                    {
+                                        "type": "deskOutput",
+                                        "_id": "54fe451210245489e2d3b561:output",
+                                        "max_items": 10
+                                    },
+                                    {
+                                        "type": "stage",
+                                        "_id": "54fe454b10245489ed5c3a92",
+                                        "max_items": 10
+                                    },
+                                    {
+                                        "type": "scheduledDeskOutput",
+                                        "_id": "54fe451210245489e2d3b561:scheduled",
+                                        "max_items": 10
+                                    },
+                                    {
+                                        "type": "search",
+                                        "_id": "57c8cac9eed7003d65c89e46",
+                                        "max_items": 10
+                                    },
+                                    {
+                                        "type": "search",
+                                        "_id": "57c8c839eed7003d65c89e14",
+                                        "max_items": 10
+                                    }
+                                ]
+                            }
+                        }
+                    ]
+                }
+            ]
+        }
+
+
+### Create A New Workspace [POST]
+
+Creation of the new workspace will fail if requesting user and the user id is provided and it is not the same as user of the request
+
++ Request (application/json)
+
+    + Body
+        
+            {
+                "desk": "54fe451210245489e2d3b561",
+                "_id": "57be6ed51d41c8030456cc0d",
+                "widgets": [
+                    {
+                        "multiple_id": 0,
+                        "sizey": 2,
+                        "configuration": {
+                            "maxItems": 5
+                        },
+                        "sizex": 1,
+                        "active": true,
+                        "_id": "activity"
+                    }
+                ]
+            }
+
+    + Schema
+
+            {
+                "name": {"type": "string", "unique_to_user": true},
+                "widgets": {"type": "list"},
+                "desk": "{desk_id}",
+                "user": "{user_id}",
+            }
+
++ Response 201 (application/json)
+
++ Response 400 (application/json)
+
++ Response 412 (application/json)
+
+
+## A Workspace [/workspaces/{workspace_id}]
+
++ Parameters
+
+    - workspace_id (string) ... Workspace id
+
+### Details of A Workspace [GET]
+
++ Response 200 (application/json)
+
+    + Body
+
+            {
+                "desk": "54fe451210245489e2d3b561",
+                "_id": "57be6ed51d41c8030456cc0d",
+                "widgets": [
+                    {
+                        "multiple_id": 0,
+                        "sizey": 2,
+                        "configuration": {
+                            "groups": []
+                        },
+                        "sizex": 1,
+                        "active": true,
+                        "_id": "aggregate"
+                    }
+                ]
+            }
+           
+
+### Update A Workspace [PATCH]
+
++ Request (application/json)
+
+    + Headers
+    
+            If-Match: {_etag}
+    
+    + Body
+
+            { 
+                "widgets": [
+                    {
+                        "multiple_id": 0,
+                        "sizey": 2,
+                        "configuration": {
+                            "groups": []
+                        },
+                        "sizex": 1,
+                        "active": true,
+                        "_id": "aggregate"
+                    }
+                ]
+            }
+
++ Response 200 (application/json)
+
++ Response 403 (application/json)
+
+## Delete A Workspace [DELETE]      
+
+Deletes the Workspace by given id. 
+
++ Request (application/json)
+
+        {}
+
++ Response 204 (application/json)
+
++ Response 412 (application/json)

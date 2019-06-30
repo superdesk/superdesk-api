@@ -1,0 +1,150 @@
+## Basic Authentication [/auth_db]
+
+### Authenticate [POST]
+
+Uses basic authentication with username and password to authenticate the user
+
+The rest of the endpoints requiring authorization will have to supply the following header: "Authorization": b"basic " + b64encode(token + b":")
+
++ Request (application/json;charset=UTF-8)
+
+        {
+            "username": {{uername}},
+            "password": {{password}}
+        }
+
++ Response 200 (application/json)
+
+        {
+            "_status": "OK",
+            "_links": {
+                "self": {
+                    "href": "auth_db/123",
+                    "title": "Auth_db"
+                }
+            },
+            "username": "user_name",
+            "_etag": "35186487751b000740635868c46ec1679f35acb0",
+            "_updated": "2019-06-23T04:42:52+0000",
+            "token": "07b2be11-5edc-4efd-b021-h34h34434",
+            "user": "5ab1a33434dfe38019f0a875a",
+            "_id": "123",
+            "_created": "2019-06-23T04:42:52+0000"
+        }
+
+## Reset User Password [/reset_user_password]
+
+### Initiate and Complete Reset User Password [POST]
+
+If email is provided starts reset password process and sends an email to users email address.
+If a token and password is provided, it resets the password for the user where reset password
+process has started. 
+    
++ email (string) - Email of user
++ token (string) - Token for reset password process
++ password (string) - New password of user
+
+This endpoint will not be exposed if AD is enabled.
+
++ Request
+
+    + Body
+        
+            {
+                "email": "a2@a.com"
+            }
+
+    + Schema
+
+            {
+                "email": {"type": "email"},
+                "token": {"type": "string"},
+                "password": {"type": "string"},
+                "expire_time": {"type": "datetime"},
+                "user": "{user_id}"
+            }  
+
++ Request (application/json)
+
+    + Body
+
+            {
+                "token": "emailed token"
+                "password": "new password"
+            }
+
+    + Schema
+
+            {
+                "email": {"type": "email"},
+                "token": {"type": "string"},
+                "password": {"type": "string"},
+                "expire_time": {"type": "datetime"},
+                "user": "{user_id}"
+            }  
+
++ Response 201 (application/json)
+
+        {
+            "email": "user@email.com",
+            "_status": "OK",
+            "_id": "5d0f6ea41d41c8f11e5a11bc",
+            "expire_time": "2019-06-24T12:20:52+0000",
+        }  
+
+
+## Change User Password [/change_user_password]
+
+### Change Reset User Password [POST]
+
+Changes the password if a given user to the new one
+    
++ username (string) - Username of user
++ old_password (string) - Old password of user
++ new_password (string) - New password of user
+
+This endpoint will not be exposed if AD is enabled.
+
+Update password will fail if:
+
+- User is not found
+- Old password is not validated
+
+If the user has **needs_activation** is set to **true**, password change will remove that flag.
+
++ Request
+
+    + Body
+        
+            {
+                "username": "a2@a.com",
+                "old_password": "pass1",
+                "new_password": "pass2"
+            }
+
+    + Schema
+
+            {
+                "username": {
+                    "type": "string",
+                    "required": true
+                },
+                "old_password": {
+                    "type": "string",
+                    "required": true
+                },
+                "new_password": {
+                    "type": "string",
+                    "required": true
+                }
+            }      
+
+
++ Response 201 (application/json)
+
+        {
+            ["12jerppwreorie033f2f"]
+        }    
+
++ Response 401    
+    

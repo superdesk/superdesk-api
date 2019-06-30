@@ -1,0 +1,31 @@
+
+
+
+## A Closed Desk [/Closed Desks/{desk_id}]
+
++ Parameters
+
+    - desk_id (string) ... desk id
+
+### Update A Closed Desk [PATCH]
+
++ Request (application/json)
+
+    
+    + Body
+
+            {
+                "is_closed": true,
+                "closed_destination": "234234hbh423h23",
+            }   
+
+    + Schema
+
+            {
+                "is_closed": {"type": "boolean"},
+                "closed_destination": "{desk_id}",
+            }        
+
++ Response 200 (application/json)
+
++ Response 403 (application/json)

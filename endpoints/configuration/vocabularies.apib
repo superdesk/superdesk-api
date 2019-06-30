@@ -230,47 +230,6 @@
             ]
         }
 
-## Vocabularies Item [/vocabularies/{_id}]
-
-+ Parameters
-    - _id (string) ... vocabulary id.
-
-### Retrieves a vocabulary [GET]
-
-+ Response 200 (application/json)
-
-    + Body
-
-            {
-                "items": [
-                    {
-                        "qcode": "authoring",
-                        "name": "authoring"
-                    },
-                    {
-                        "qcode": "production",
-                        "name": "production"
-                    }
-                ],
-                "_deleted": false,
-                "display_name": "Desk Types",
-                "_id": "desk_types",
-                "_links": {
-                    "self": {
-                        "title": "Vocabularie",
-                        "href": "vocabularies/desk_types"
-                    }
-                },
-                "_etag": "init",
-                "_updated": "2018-09-24T08:02:40+0000",
-                "type": "unmanageable",
-                "_created": "2018-03-21T00:43:37+0000"
-            }
-
-    
-
-           
-
 ### Create a new Vocabulary [POST]
 
 Vocabularies are allowed to have custom `_id` field. During the creation
@@ -389,7 +348,46 @@ the uniqueness will be checked against existing vocabularies.
                 },
             }
 
-+ Response 201 (application/json)
++ Response 201 (application/json)        
+
+## Vocabularies Item [/vocabularies/{_id}]
+
++ Parameters
+    - _id (string) ... vocabulary id.
+
+### Retrieves a vocabulary [GET]
+
++ Response 200 (application/json)
+
+    + Body
+
+            {
+                "items": [
+                    {
+                        "qcode": "authoring",
+                        "name": "authoring"
+                    },
+                    {
+                        "qcode": "production",
+                        "name": "production"
+                    }
+                ],
+                "_deleted": false,
+                "display_name": "Desk Types",
+                "_id": "desk_types",
+                "_links": {
+                    "self": {
+                        "title": "Vocabularie",
+                        "href": "vocabularies/desk_types"
+                    }
+                },
+                "_etag": "init",
+                "_updated": "2018-09-24T08:02:40+0000",
+                "type": "unmanageable",
+                "_created": "2018-03-21T00:43:37+0000"
+            }
+
+    
 
 ### Update a Vocabulary [PATCH]
 
