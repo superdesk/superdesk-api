@@ -1,0 +1,116 @@
+## Stage item [/stages/{id}]
+
+A single stage
+
++ Parameters
+    - id (string, `1`) ... stage identifier.
+
++ Model (application/json)
+
+        {    
+            "id": "54e68ec41024542de76d663f",
+            "local_readonly": false,
+            "desk": "54e68ec41024542de76d6640",
+            "description": "Description of the stage.",
+            "task_status": "todo",
+            "desk_order": 1,
+            "working_stage": true,
+            "default_incoming": true,
+            "name": "Producer",
+            "is_visible": true,
+            "content_expiry": 60000,
+            "incoming_macro": "macro_name",
+            "outgoing_macro": "macro_name",
+            "onstage_macro": "macro_name"
+
+        }    
+
+### Update stage [PATCH]
+
+Updates the stage by given id. A stage will fail to update if:
+
+ - If there's no working stage remaining after the update
+ - If there's no incoming stage remaining after the update 
+
++ Request (application/json)
+
+        {"name": "New name", "description": "new description"}
+
++ Response 200 (application/json)
+
+        {"_status": "OK"}
+
++ Response 403
+
+### Delete a stage [DELETE]
+
+Deletes the stage by given id. A stage will fail to delete if:
+
+ - It is a working stage
+ - Incoming stage
+ - There are stories referencing to the stage
+ - An ingest routing rule is referencing a stage 
+
++ Request (application/json)
+
+        {}
+
++ Response 412
+
+         {"_message": "Cannot delete a Working Stage."}
+
+       
+
+## All Stages [/stages{?page,max_results}]
+
+### Create a stage [POST]
+
++ Request (application/json)
+
+        {
+            "name": "test stage",
+            "description": "Shows all items for the current workflow stage",
+            "default_incoming": "false",
+            "desk": "53c79018ea8e15145ff9863f",
+        }
+
++ Response 201 (application/json)
+
+        {
+            "_links": {"self": {"href": "/stages/2"}},
+            "_status": "OK"
+        }
+
+### List stages [GET]
+
++ Parameters
+    + page = `1`(optional, integer) ... Page number
+    + max_results = `25`(optional, integer) ... Number of items to be returned
+
++ Response 200 (application/json)
+
+        {
+            "_items": [
+                {
+                    "_links": {"self": {"href": "/stages/1"}},
+                    "name": "test stage",
+                    "_updated": "2014-08-21T11:29:09+0000",
+                    "_id": "53f5d805ea8e1511bba1648e",
+                    "description": "Shows all items for the current workflow stage",
+                    "_created": "2014-08-21T11:29:09+0000",
+                    "default_incoming": "false",
+                    "desk": "53c79018ea8e15145ff9863f",
+                    
+                },
+                {
+                    "_links": {"self": {"href": "/stages/2"}},
+                    "name": "test stage 2",
+                    "_updated": "2014-08-21T11:29:09+0000",
+                    "_id": "53f5d805ea8e4511bba1648e",
+                    "_created": "2014-08-21T11:29:09+0000",
+                    "description": "Shows all items with no exception",
+                    "default_incoming": "false",
+                    "desk": "53c79018ea8e15145ff9863f",
+                }
+            ]
+        }

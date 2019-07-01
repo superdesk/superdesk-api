@@ -1,0 +1,429 @@
+## Preference [/preferences/{session_id}]
+
+Returns user and session level preferences by given session id
+
++ Parameters
+    + session_id (string) ... Session id.
+
++ Model (application/json)
+
+        {
+            "username": "user2",
+            "session_preferences": {
+                "desk:last_worked": "",
+                "stage:items": [],
+                "monitoring:view:session": null,
+                "scratchpad:items": [],
+                "pinned:items": [],
+                "desk:items": []
+            },
+            "is_enabled": true,
+            "user_preferences": {
+                "agg:view": {
+                    "active": {}
+                },
+                "templates:recent": {},
+                "dashboard:ingest": {
+                    "providers": []
+                },
+                "cvs:preferred_items": {
+                    "label": "Prefered CV items",
+                    "category": "cvs",
+                    "value": {}
+                },
+                "workqueue:items": {
+                    "items": []
+                },
+                "email:notification": {
+                    "enabled": true,
+                    "label": "Send notifications via email",
+                    "category": "notifications",
+                    "default": true,
+                    "type": "bool"
+                },
+                "desks:preferred": {
+                    "label": "Preferred Desks",
+                    "category": "desks",
+                    "selected": {},
+                    "type": "dict"
+                },
+                "dateline:located": {
+                    "label": "Located",
+                    "category": "article_defaults",
+                    "type": "dict"
+                },
+                "categories:preferred": {
+                    "label": "Preferred Categories",
+                    "category": "categories",
+                    "selected": {},
+                    "type": "dict"
+                },
+                "spellchecker:status": {
+                    "enabled": true,
+                    "default": true,
+                    "type": "bool"
+                },
+                "desktop:notification": {
+                    "enabled": true,
+                    "label": "Allow Desktop Notifications",
+                    "category": "notifications",
+                    "default": false,
+                    "type": "bool"
+                },
+                "editor:theme": {
+                    "theme": "",
+                    "type": "string"
+                },
+                "workspace:active": {
+                    "workspace": "",
+                    "type": "string"
+                },
+                "destination:active": {},
+                "singleline:view": {
+                    "enabled": null,
+                    "label": "Enable Single Line View",
+                    "category": "rows",
+                    "default": false,
+                    "type": "bool"
+                },
+                "feature:preview": {
+                    "enabled": false,
+                    "category": "feature",
+                    "type": "bool",
+                    "privileges": [
+                        "feature_preview"
+                    ],
+                    "label": "Enable Feature Preview",
+                    "default": false
+                },
+                "monitoring:view": {
+                    "category": "monitoring",
+                    "type": "string",
+                    "label": "Monitoring view",
+                    "view": "list",
+                    "allowed": [
+                        "list",
+                        "swimlane"
+                    ],
+                    "default": "list"
+                },
+                "archive:view": {
+                    "category": "archive",
+                    "type": "string",
+                    "label": "Users archive view format",
+                    "view": "mgrid",
+                    "allowed": [
+                        "mgrid",
+                        "compact"
+                    ],
+                    "default": "mgrid"
+                },
+                "contacts:view": {
+                    "category": "contacts",
+                    "type": "string",
+                    "label": "Users contacts view format",
+                    "view": "mgrid",
+                    "allowed": [
+                        "mgrid",
+                        "compact"
+                    ],
+                    "default": "mgrid"
+                },
+                "article:default:place": {
+                    "label": "Place",
+                    "place": [],
+                    "category": "article_defaults",
+                    "type": "list"
+                }
+            },
+            "allowed_actions": [
+                {
+                    "name": "save",
+                    "privileges": [
+                        "archive"
+                    ],
+                    "exclude_states": [],
+                    "include_states": [
+                        "draft",
+                        "fetched",
+                        "routed",
+                        "submitted",
+                        "scheduled"
+                    ]
+                },
+                {
+                    "name": "move",
+                    "privileges": [
+                        "archive"
+                    ],
+                    "exclude_states": [
+                        "ingested",
+                        "spiked",
+                        "on-hold",
+                        "published",
+                        "scheduled",
+                        "killed"
+                    ],
+                    "include_states": []
+                },
+                {
+                    "name": "spike",
+                    "privileges": [
+                        "spike"
+                    ],
+                    "exclude_states": [
+                        "spiked",
+                        "published",
+                        "scheduled",
+                        "corrected",
+                        "killed"
+                    ],
+                    "include_states": []
+                },
+                {
+                    "name": "unspike",
+                    "privileges": [
+                        "unspike"
+                    ],
+                    "exclude_states": [],
+                    "include_states": [
+                        "spiked"
+                    ]
+                },
+                {
+                    "name": "copy",
+                    "privileges": [
+                        "archive"
+                    ],
+                    "exclude_states": [],
+                    "include_states": [
+                        "draft"
+                    ]
+                },
+                {
+                    "name": "duplicate",
+                    "privileges": [
+                        "archive",
+                        "duplicate"
+                    ],
+                    "exclude_states": [
+                        "spiked",
+                        "killed",
+                        "recalled"
+                    ],
+                    "include_states": []
+                },
+                {
+                    "name": "fetch_from_ingest",
+                    "privileges": [
+                        "ingest",
+                        "archive",
+                        "fetch"
+                    ],
+                    "exclude_states": [],
+                    "include_states": [
+                        "ingested"
+                    ]
+                },
+                {
+                    "name": "submit_to_desk",
+                    "privileges": [
+                        "archive",
+                        "move"
+                    ],
+                    "exclude_states": [],
+                    "include_states": [
+                        "draft",
+                        "fetched",
+                        "routed",
+                        "submitted",
+                        "in_progress",
+                        "published",
+                        "scheduled"
+                    ]
+                },
+                {
+                    "name": "translate",
+                    "privileges": [
+                        "archive",
+                        "translate"
+                    ],
+                    "exclude_states": [
+                        "spiked",
+                        "killed",
+                        "recalled"
+                    ],
+                    "include_states": []
+                },
+                {
+                    "name": "publish",
+                    "privileges": [
+                        "publish"
+                    ],
+                    "exclude_states": [],
+                    "include_states": [
+                        "fetched",
+                        "routed",
+                        "submitted",
+                        "in_progress",
+                        "scheduled"
+                    ]
+                },
+                {
+                    "name": "kill",
+                    "privileges": [
+                        "kill"
+                    ],
+                    "exclude_states": [],
+                    "include_states": [
+                        "published",
+                        "scheduled",
+                        "corrected"
+                    ]
+                },
+                {
+                    "name": "correct",
+                    "privileges": [
+                        "correct"
+                    ],
+                    "exclude_states": [],
+                    "include_states": [
+                        "published",
+                        "corrected"
+                    ]
+                },
+                {
+                    "name": "rewrite",
+                    "privileges": [
+                        "rewrite"
+                    ],
+                    "exclude_states": [
+                        "killed",
+                        "spiked",
+                        "scheduled"
+                    ],
+                    "include_states": []
+                },
+                {
+                    "name": "recalled",
+                    "privileges": [
+                        "takedown"
+                    ],
+                    "exclude_states": [],
+                    "include_states": [
+                        "published",
+                        "scheduled",
+                        "corrected"
+                    ]
+                }
+            ],
+            "display_name": "first name2 last name2",
+            "sign_off": "fl",
+            "active_privileges": {
+                "routing_rules": 1,
+                "contacts": 1,
+                "archive_broadcast": 1,
+                "hold": 1,
+                "move": 1,
+                "view_contacts": 1,
+                "rule_sets": 1,
+                "internal_destinations": 1,
+                "global_saved_searches": 1,
+                "mark_for_highlights": 1,
+                "archive": 1,
+                "concept_items": 1,
+                "dictionaries": 1,
+                "saved_searches_subscriptions": 1,
+                "translate": 1,
+                "roles": 1,
+                "content_filters": 1,
+                "content_type": 1,
+                "publish": 1,
+                "archived": 1,
+                "feeding_services": 1,
+                "desks": 1,
+                "feed_parsers": 1,
+                "takedown": 1,
+                "embargo": 1,
+                "subscribers": 1,
+                "restore": 1,
+                "search_capi": 1,
+                "search_providers": 1,
+                "saved_reports": 1,
+                "publishing_performance_report": 1,
+                "rewrite": 1,
+                "ingest_providers": 1,
+                "products": 1,
+                "content_export": 1,
+                "users": 1,
+                "unspike": 1,
+                "scheduled_reports": 1,
+                "publish_queue": 1,
+                "ingest": 1,
+                "mark_for_desks": 1,
+                "saved_searches": 1,
+                "unlock": 1,
+                "desk_routing": 1,
+                "content_publishing_report": 1,
+                "tasks": 1,
+                "spike": 1,
+                "saved_searches_subscriptions_admin": 1,
+                "metadata_uniquename": 1,
+                "highlights": 1,
+                "global_saved_reports": 1,
+                "duplicate": 1,
+                "vocabularies": 1,
+                "correct": 1,
+                "resend": 1,
+                "kill": 1,
+                "feature_preview": 1,
+                "content_templates": 1,
+                "fetch": 1
+            },
+            "first_name": "first name2",
+            "role": "5981c6611d41c82dbab9862b",
+            "invisible_stages": [
+                "58c132ae1d41c864c216bc01",
+                "58c132ae1d41c864c216bc02"
+            ],
+            "user_type": "administrator",
+            "email": "a2@a.com",
+            "needs_activation": false,
+            "last_name": "last name2",
+            "is_active": true
+        }
+
+### Retrieve a preference [GET]
+
++ Request (application/json)
+
++ Response 200
+
+    [Preference][]
+
++ Response 404
+
+
+### Update preferences [PATCH]
+
++ Request (application/json)
+
+    + Headers
+
+            If-Match: xyz
+
+    + Body
+    
+            {
+                "user_preferences": {
+                    "email.notification": 1
+                }
+            }
+
++ Response 200 (application/json)
+
+        {
+            "_status": "OK"
+        }
+
++ Response 403

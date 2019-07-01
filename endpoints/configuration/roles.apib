@@ -1,0 +1,212 @@
+## Roles [/roles/{id}]
+
+A single Roles resource.
+
++ Parameters
+    + id (string) ... Roles id.
+
++ Model (application/json) 
+
+        {
+            "name": "Copy Taster",
+            "description": "Description of role",
+            "privileges": {
+                "ingest": 1,
+                "users": 0
+            }
+        }
+
+### Retrieve A Role [GET]
+
++ Response 200 (application/json)
+
+        {
+            "description": "Role description",
+            "_type": "roles",
+            "_updated": "2016-08-21T12:20:08+0000",
+            "_etag": "d30f5e2405589b0d4ebb637a88761405cea38cb3",
+            "privileges": {
+                "fetch": 1
+            },
+            "_created": "2016-08-21T12:20:08+0000",
+            "name": "Copytaker",
+            "_id": "54e686811024542de76d663a",
+            "_links": {
+                "self": {
+                    "href": "roles/54e686811024542de76d663a",
+                    "title": "Role"
+                },
+                "collection": {
+                    "href": "roles",
+                    "title": "roles"
+                },
+                "parent": {
+                    "href": "/",
+                    "title": "home"
+                }
+            }
+        }
+
++ Response 404
+
+### Update Role [PATCH]
+
++ Request (application/json)
+
+    + Headers
+    
+            If-Match: xyz
+    
+    + Body
+
+            {"name": "Copy Taster"}
+
++ Response 200 (application/json)
+
+        {
+            "privileges": {
+                "users": 1
+            },
+            "_links": {
+                "self": {
+                    "title": "Role",
+                    "href": "/roles/541061621d41c8ac80ff3b6e"
+                }
+            },
+            "_id": "541061621d41c8ac80ff3b6e",
+            "_created": "2014-09-10T14:34:10+0000",
+            "_status": "OK",
+            "name": "Copy Tester",
+            "description": "Role description",
+            "_updated": "2014-09-10T14:44:36+0000"
+        }
+
+
++ Response 403
+
+### Hard Delete a Role [DELETE]
+
++ Request
+
+    + Headers
+    
+            If-Match: xyz
+
++ Response 200
+
+## Roles Search [/roles{?page,max_results,where,sort}]
+
+### List All Roles [GET]
+
++ Parameters
+    + page = `0`(optional, integer) ... Page number
+    + max_results = `25`(optional, integer) ... Number of roles to be returned
+    + where (optional, object) ... Filtering
+    + sort (optional, object) ... Sorting
+
++ Response 200 (application/json)
+
+        {
+            "_meta": {
+                "max_results": 25,
+                "page": 1,
+                "total": 3
+            },
+            "_items": [
+                {
+                    "name": "Editor",
+                    "description": "Role description",
+                    "_links": {
+                        "self": {
+                            "title": "Role",
+                            "href": "/roles/5410641c1d41c8ac80ff3b73"
+                        }
+                    },
+                    "_updated": "2014-09-10T14:45:48+0000",
+                    "_id": "5410641c1d41c8ac80ff3b73",
+                    "_created": "2014-09-10T14:45:48+0000"
+                },
+                {
+                    "_created": "2014-09-10T14:34:10+0000",
+                    "_links": {
+                        "self": {
+                            "title": "Role",
+                            "href": "/roles/541061621d41c8ac80ff3b6e"
+                        }
+                    },
+                    "_id": "541061621d41c8ac80ff3b6e",
+                    "privileges": {
+                        "search": 1
+                    },
+                    "name": "Copy Tester",
+                    "description": "Role description",
+                    "_updated": "2014-09-10T14:44:36+0000"
+                },
+                {
+                    "name": "Sub Editor",
+                    "description": "Role description",
+                    "_links": {
+                        "self": {
+                            "title": "Role",
+                            "href": "/roles/541064241d41c8ac80ff3b75"
+                        }
+                    },
+                    "_updated": "2014-09-10T14:45:56+0000",
+                    "_id": "541064241d41c8ac80ff3b75",
+                    "_created": "2014-09-10T14:45:56+0000"
+                }
+            ],
+            "_links": {
+                "parent": {
+                    "title": "home",
+                    "href": "/"
+                },
+                "self": {
+                    "title": "roles",
+                    "href": "/roles"
+                }
+            }
+        }
+
+
+## Roles collection [/roles]
+
+### Create A Role [POST]
+
++ Request (application/json)
+
+        {
+            "name": "Sub Editor",
+            "description": "Role description",
+            "privileges": {"content": 1}
+        }
+
++ Response 201 (application/json)
+
+        {
+            "_links": {
+                "self": {
+                    "title": "Role",
+                    "href": "/roles/541061621d41c8ac80ff3b6e"
+                }
+            },
+            "_id": "541061621d41c8ac80ff3b6e",
+            "_created": "2014-09-10T14:34:10+0000",
+            "_status": "OK",
+            "name": "Copy Tester",
+            "description": "Role description",
+            "_updated": "2014-09-10T14:34:10+0000"
+        }
+
++ Response 400 (application/json)
+
+        {
+            "_status": "ERR",
+            "_issues": {
+                "name": {
+                    "unique": {
+                        "msg": "There is already a role with this name"
+                    }
+                }
+            }
+        }

@@ -1,0 +1,226 @@
+## Desks item [/desks/{desk_id}]
+
+A single Desks resource
+
++ Parameters
+    - desk_id (string, `1`) ... Desks item identifier.
+    
++ Model (application/json)
+
+        {
+            "incoming_stage": "54e691ca1024542de640fef0",
+            "content_profiles": {},
+            "source": "Reuters",
+            "desk_type": "production",
+            "desk_metadata": {},
+            "desk_language": "",
+            "description": "Content automatically routed to the desk",
+            "members": [
+                {
+                    "user": "54ed94da10245479ccc383f3"
+                },
+                {
+                    "user": "54ed955910245479d505d2a3"
+                }
+            ],
+            "name": "Finance",
+            "id": "54e691ca1024542de640fef1",
+            "working_stage": "54e691ca1024542de640fef0",
+            "content_expiry": 2,
+            "monitoring_settings": [
+                {
+                    "id": "54e691ca1024542de640fef0",
+                    "max_items": 10,
+                    "type": "stage"
+                },
+                {
+                    "id": "54e6a3c31024542ddeb76b03",
+                    "max_items": 10,
+                    "type": "stage"
+                },
+                {
+                    "id": "54e691ca1024542de640fef1:output",
+                    "max_items": 10,
+                    "type": "deskOutput"
+                },
+                {
+                    "id": "58bb64271d41c8ce98696fc5",
+                    "max_items": 10,
+                    "type": "search"
+                }
+            ],
+            "monitoring_default_view": {
+                "type": "string",
+                "allowed": ["", "list", "swimlane", "photogrid"],
+                "required": False
+            },
+            "default_content_profile": "32dewd32414d2e",
+            "default_content_template": "3423lkl234i324023493ss,
+            "slack_channel_name": "desk_channel",
+            "preferred_cv_items": {
+                "categories": [
+                    {
+                        "translations": null,
+                        "qcode": "d",
+                        "scheme": null,
+                        "subject": "finance",
+                        "name": "finance"
+                    }
+                ]
+            },
+            "preserve_published_content": false
+        },
+    
+### Retrieve a Desk [GET]
+
++ Response 200
+
+    [Desks item][]
+
++ Response 404
+
+### Update Desk [PATCH]
+
+Updates the desk by given id. A desk will fail to update if:
+
+ - If desk type is updated but there are items assigned to desk
+
++ Request (application/json)
+    
+        {"name": "Foo"}
+
++ Response 200 (application/json)
+
+        {"_status": "OK"}
+
++ Response 403
+
+### Delete a Desk [DELETE]
+
+Deletes the desk by given id. A desk will fail to delete if:
+
+ - It is assigned as default desk to a user
+ - There is a routing rule referencing to the desk
+ - There are items in the desk
+
++ Request (application/json)
+
+        {}
+
++ Response 412
+
+
+## Desks collection [/desks{?page,max_results}]
+
+### Create desk [POST]
+
++ Request (application/json)
+
+        {
+            "name": "Foo"
+        }
+
++ Response 201 (application/json)
+
+        {
+            "_links": {"self": {"href": "/desks/2"}},
+            "_status": "OK"
+        }
+
+### List all desks [GET]
+
++ Parameters
+    + page = `1`(optional, integer) ... Page number
+    + max_results = `25`(optional, integer) ... Number of items to be returned
+    
++ Response 200 (application/json)
+
+        {
+            "_items": [
+                {
+                    "_created": "2014-07-15T09:35:18+0000",
+                    "_id": "53c4f5d6ea8e15141784df1a",
+                    "_links": {"self": {"href": "/desks/1"}},
+                    "_updated": "2014-07-17T06:44:58+0000",
+                    "members": [{"user": "53c76e39ea8e150dc0fd8578"}],
+                    "name": "Admin desk",
+                    "spike_expiry": 60
+                },
+                {
+                    "_created": "2014-07-17T06:33:49+0000",
+                    "_id": "53c76e4dea8e150dc0fd8579",
+                    "_links": {"self": {"href": "/desks/2"}},
+                    "_updated": "2014-07-17T06:34:00+0000",
+                    "members": [{"user": "53c76e39ea8e150dc0fd8578"}, {"user": "53c4f366ea8e15141784de99"}],
+                    "name": "My desk",
+                    "spike_expiry": 360
+                }
+            ]
+        }
+
+## User desks [/users/{user_id}/desks]
+
++ Parameters
+    - user_id (string) ... User id.
+
+### List the desks for given users [GET]
+
++ Response 200 (application/json)
+
+        {
+            "_items": [
+                {
+                    "incoming_stage": "5c5138d4bfb76600df081b35",
+                    "default_content_profile": "5c513911bfb76600df081b3c",
+                    "monitoring_default_view": "list",
+                    "content_profiles": {},
+                    "desk_type": "production",
+                    "desk_metadata": {},
+                    "_id": "5c5138d4bfb76600df081b36",
+                    "members": [
+                        {
+                            "user": "5ab1aabdcdfe38019f0a875a"
+                        },
+                        {
+                            "user": "5ab3cb94cdfe3800e091fdc1"
+                        }
+                    ],
+                    "name": "AMNA",
+                    "working_stage": "5c5138d4bfb76600df081b35",
+                    "source": "AMNA",
+                    "content_expiry": null,
+                    "description": "News desk",
+                    "default_content_template": "5c513911bfb76600df081b3e"
+                }
+            ]
+        }
+
+## Desk Sluglines [/desks/{desk_id}/sluglines]
+
+Returns a summary of the sluglines and headlines published from the given
+desk in the last 24 hours.
+
++ Parameters
+    - desk_id (string) ... Desk id.
+
+### List the sluglines published from a desk [GET]
+
++ Response 200 (application/json)
+
+        {
+            "_items": [
+                {
+                    "place": "Domestic",
+                    "items": [
+                        {"headline": "one", "slugline": "slugline1", "name": "Domestic", "old_sluglines": []},
+                        {"headline": "two", "slugline": "slugline2", "name": "Domestic", "old_sluglines": []}
+                    ]
+                },
+                {
+                    "place": "EUR",
+                    "items": [
+                        {"headline": "three", "slugline": "slugline3", "name": "EUR", "old_sluglines": []}
+                    ]
+                }
+            ]
+        }

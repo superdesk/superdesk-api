@@ -1,0 +1,200 @@
+## All Sessions [/sessions{?page,max_results,where,sort}]
+
+### List all Sessions [GET]
+
++ Parameters
+    + page = `0`(optional, integer) ... Page number
+    + max_results = `25`(optional, integer) ... Number of sessions to be returned
+    + where (optional, object) ... Filtering
+    + sort (optional, object) ... Sorting
+
++ Response 200 (application/json)
+
+        {
+            "_items": [
+                {
+                    "user": {
+                        "first_name": "first name2",
+                        "display_name": "first name2 last name2",
+                        "role": "5981c6611d41c82dbab9862b",
+                        "username": "admin2",
+                        "session_preferences": {
+                            "5d16bd901d41c81b0df996ce": {
+                                "desk:last_worked": "",
+                                "stage:items": [],
+                                "scratchpad:items": [],
+                                "monitoring:view:session": null,
+                                "pinned:items": [],
+                                "desk:items": []
+                            },
+                            "5d16bdef1d41c81b0df996cf": {
+                                "desk:last_worked": "",
+                                "stage:items": [],
+                                "monitoring:view:session": null,
+                                "scratchpad:items": [],
+                                "pinned:items": [],
+                                "desk:items": []
+                            }
+                        },
+                        "_updated": "2019-06-29T01:25:03+0000",
+                        "is_enabled": true,
+                        "_etag": "cb24249236791f8cc4fec865a8dce09e66e0b9e0",
+                        "invisible_stages": [
+                            "58c132ae1d41c864c216bc01",
+                            "58c132ae1d41c864c216bc02"
+                        ],
+                        "user_preferences": {
+                            "spellchecker:status": {
+                                "enabled": true,
+                                "default": true,
+                                "type": "bool"
+                            }
+                        },
+                        "user_type": "administrator",
+                        "email": "a2@a.com",
+                        "_created": "2017-08-02T12:32:34+0000",
+                        "sign_off": "fl",
+                        "_id": "5981c6621d41c82dbab98633",
+                        "needs_activation": false,
+                        "last_name": "last name2",
+                        "is_active": true,
+                        "_type": "users"
+                    },
+                    "_created": "2019-06-29T01:25:02+0000",
+                    "_id": "5d16bdef1d41c81b0df996cf",
+                    "_updated": "2019-06-29T02:27:21+0000",
+                    "_etag": "f3a84d4301f348434489cdb7aefbbafeba67e2c9",
+                    "_links": {
+                        "self": {
+                            "title": "Session",
+                            "href": "sessions/5d16bdef1d41c81b0df996cf"
+                        }
+                    }
+                },
+                {
+                    "user": {
+                        "user_type": "administrator",
+                        "username": "tolga",
+                        "_created": "2014-09-02T12:10:45+0000",
+                        "email": "akint@aap.com.au",
+                        "_id": "5405b3c61d41c872aae70c5e",
+                        "_updated": "2014-10-09T02:57:39+0000",
+                        "workspace": {
+                            "widgets": [
+                                {
+                                    "configuration": {
+                                        "source": "provider",
+                                        "colorScheme": "superdesk",
+                                        "updateInterval": 5
+                                    },
+                                    "_id": "ingest-stats",
+                                    "sizey": 1,
+                                    "sizex": 1,
+                                    "row": 1,
+                                    "col": 1
+                                }
+                            ]
+                        },
+                        "preferences": {
+                            "archive:view": {
+                                "type": "string",
+                                "label": "Test label",
+                                "category": "archive",
+                                "default": "mgrid",
+                                "view": "mgrid"
+                            }
+                        }
+                    },
+                    "_etag": "29a9c8d10f5e2cadf8520c17518190832b63b2af",
+                    "_links": {
+                        "self": {
+                            "title": "Session",
+                            "href": "/sessions/543de3a41d41c8eea99ddfc7"
+                        }
+                    },
+                    "_created": "2014-10-15T03:01:55+0000",
+                    "_id": "543de3a41d41c8eea99ddfc7",
+                    "_updated": "2014-10-15T03:01:55+0000"
+                }
+            ]
+        }
+
++ Response 403
+
+## Session [/sessions/{_id}]
+
+A single Session resource.
+
++ Parameters
+    +   _id (string) ... Session id.
+
++ Model (application/json)
+
+        {
+            "user": {
+                "first_name": "first name2",
+                "display_name": "first name2 last name2",
+                "role": "5981c6611d41c82dbab9862b",
+                "username": "admin2",
+                "session_preferences": {
+                    "5d16bd901d41c81b0df996ce": {
+                        "desk:last_worked": "",
+                        "stage:items": [],
+                        "scratchpad:items": [],
+                        "monitoring:view:session": null,
+                        "pinned:items": [],
+                        "desk:items": []
+                    },
+                    "5d16bdef1d41c81b0df996cf": {
+                        "desk:last_worked": "",
+                        "stage:items": [],
+                        "monitoring:view:session": null,
+                        "scratchpad:items": [],
+                        "pinned:items": [],
+                        "desk:items": []
+                    }
+                },
+                "is_enabled": true,
+                "invisible_stages": [
+                    "58c132ae1d41c864c216bc01",
+                    "58c132ae1d41c864c216bc02"
+                ],
+                "user_preferences": {
+                    "spellchecker:status": {
+                        "enabled": true,
+                        "default": true,
+                        "type": "bool"
+                    }
+                },
+                "user_type": "administrator",
+                "email": "a2@a.com",
+                "sign_off": "fl",
+                "needs_activation": false,
+                "last_name": "last name2",
+                "is_active": true,
+            },
+        }
+
+### Retrieve a Session [GET]
+
++ Request (application/json)
+
++ Response 200
+
+    [Session][]
+
++ Response 404
+
++ Response 403
+
+### Delete a Session [DELETE]
+
++ Request
+
+    + Headers
+
+            If-Match: xyz
+
++ Response 204
+
++ Response 403

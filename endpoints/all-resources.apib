@@ -1,0 +1,662 @@
+## All Resources [/]
+
+List available resources.
+
+### List All Resources [GET]
+
++ Response 200 (application/json)
+
+        {
+        "_links": {
+            "child": [
+                {
+                    "href": "published",
+                    "title": "published"
+                },
+                {
+                    "href": "filter_conditions",
+                    "title": "filter_conditions"
+                },
+                {
+                    "href": "content_filters",
+                    "title": "content_filters"
+                },
+                {
+                    "href": "archive/<item_id>/broadcast",
+                    "title": "archive_broadcast"
+                },
+                {
+                    "href": "picture_crop",
+                    "title": "picture_crop"
+                },
+                {
+                    "href": "upload",
+                    "title": "upload"
+                },
+                {
+                    "href": "events",
+                    "title": "events"
+                },
+                {
+                    "href": "roles",
+                    "title": "roles"
+                },
+                {
+                    "href": "archive/<item>/comments",
+                    "title": "archive/<path:item>/comments"
+                },
+                {
+                    "href": "products/test",
+                    "title": "product_tests"
+                },
+                {
+                    "href": "planning/unspike",
+                    "title": "planning_unspike"
+                },
+                {
+                    "href": "archive/kill",
+                    "title": "archive_kill"
+                },
+                {
+                    "href": "desks",
+                    "title": "desks"
+                },
+                {
+                    "href": "assignments_history",
+                    "title": "assignments_history"
+                },
+                {
+                    "href": "events_history",
+                    "title": "events_history"
+                },
+                {
+                    "href": "vocabularies",
+                    "title": "vocabularies"
+                },
+                {
+                    "href": "archive/takedown",
+                    "title": "archive_takedown"
+                },
+                {
+                    "href": "feed_parsers_allowed",
+                    "title": "feed_parsers_allowed"
+                },
+                {
+                    "href": "feeding_services_allowed",
+                    "title": "feeding_services_allowed"
+                },
+                {
+                    "href": "planning_article_export",
+                    "title": "planning_article_export"
+                },
+                {
+                    "href": "planning_history",
+                    "title": "planning_history"
+                },
+                {
+                    "href": "privileges",
+                    "title": "privileges"
+                },
+                {
+                    "href": "events_template",
+                    "title": "events_template"
+                },
+                {
+                    "href": "dictionaries",
+                    "title": "dictionaries"
+                },
+                {
+                    "href": "archive/unspike",
+                    "title": "archive_unspike"
+                },
+                {
+                    "href": "planning/spike",
+                    "title": "planning_spike"
+                },
+                {
+                    "href": "events/post",
+                    "title": "events_post"
+                },
+                {
+                    "href": "search",
+                    "title": "search"
+                },
+                {
+                    "href": "events/cancel",
+                    "title": "events_cancel"
+                },
+                {
+                    "href": "saved_searches",
+                    "title": "saved_searches"
+                },
+                {
+                    "href": "users/<user_id>/desks",
+                    "title": "user_desks"
+                },
+                {
+                    "href": "planning/<item_id>/lock",
+                    "title": "planning_lock"
+                },
+                {
+                    "href": "attachments",
+                    "title": "attachments"
+                },
+                {
+                    "href": "change_user_password",
+                    "title": "change_user_password"
+                },
+                {
+                    "href": "users",
+                    "title": "users"
+                },
+                {
+                    "href": "assignments/<item_id>/lock",
+                    "title": "assignments_lock"
+                },
+                {
+                    "href": "planning_export_templates",
+                    "title": "planning_export_templates"
+                },
+                {
+                    "href": "contacts",
+                    "title": "contacts"
+                },
+                {
+                    "href": "archive_history",
+                    "title": "archive_history"
+                },
+                {
+                    "href": "archive/correct",
+                    "title": "archive_correct"
+                },
+                {
+                    "href": "events/unspike",
+                    "title": "events_unspike"
+                },
+                {
+                    "href": "search_capi",
+                    "title": "search_capi"
+                },
+                {
+                    "href": "all_saved_searches",
+                    "title": "all_saved_searches"
+                },
+                {
+                    "href": "search_providers",
+                    "title": "search_providers"
+                },
+                {
+                    "href": "events_files",
+                    "title": "events_files"
+                },
+                {
+                    "href": "assignments/unlink",
+                    "title": "assignments_unlink"
+                },
+                {
+                    "href": "client_config",
+                    "title": "client_config"
+                },
+                {
+                    "href": "spikes",
+                    "title": "spikes"
+                },
+                {
+                    "href": "validators",
+                    "title": "validators"
+                },
+                {
+                    "href": "archive/translate",
+                    "title": "translate"
+                },
+                {
+                    "href": "events/<item_id>/duplicate",
+                    "title": "events_duplicate"
+                },
+                {
+                    "href": "assignments/content",
+                    "title": "assignments_content"
+                },
+                {
+                    "href": "planning_search",
+                    "title": "planning_search"
+                },
+                {
+                    "href": "reset_user_password",
+                    "title": "reset_user_password"
+                },
+                {
+                    "href": "archive/<original_id>/rewrite",
+                    "title": "archive_rewrite"
+                },
+                {
+                    "href": "desks/<desk_id>/sluglines",
+                    "title": "desks/<regex(\"[a-f0-9]{24}\"):desk_id>/sluglines"
+                },
+                {
+                    "href": "planning_featured",
+                    "title": "planning_featured"
+                },
+                {
+                    "href": "planning_featured_unlock",
+                    "title": "planning_featured_unlock"
+                },
+                {
+                    "href": "assignments/complete",
+                    "title": "assignments_complete"
+                },
+                {
+                    "href": "content_templates",
+                    "title": "content_templates"
+                },
+                {
+                    "href": "archived",
+                    "title": "archived"
+                },
+                {
+                    "href": "workspaces",
+                    "title": "workspaces"
+                },
+                {
+                    "href": "marked_for_desks",
+                    "title": "marked_for_desks"
+                },
+                {
+                    "href": "filter_conditions/parameters",
+                    "title": "filter_conditions/parameters"
+                },
+                {
+                    "href": "content_types",
+                    "title": "content_types"
+                },
+                {
+                    "href": "events/<item_id>/unlock",
+                    "title": "events_unlock"
+                },
+                {
+                    "href": "recent_events_template",
+                    "title": "recent_events_template"
+                },
+                {
+                    "href": "ingest",
+                    "title": "ingest"
+                },
+                {
+                    "href": "planning/cancel",
+                    "title": "planning_cancel"
+                },
+                {
+                    "href": "agenda",
+                    "title": "agenda"
+                },
+                {
+                    "href": "item_comments",
+                    "title": "item_comments"
+                },
+                {
+                    "href": "closed_desks",
+                    "title": "closed_desks"
+                },
+                {
+                    "href": "processed_items_report",
+                    "title": "processed_items_report"
+                },
+                {
+                    "href": "workqueue",
+                    "title": "workqueue"
+                },
+                {
+                    "href": "highlights",
+                    "title": "highlights"
+                },
+                {
+                    "href": "internal_destinations",
+                    "title": "internal_destinations"
+                },
+                {
+                    "href": "planning_types",
+                    "title": "planning_types"
+                },
+                {
+                    "href": "contacts/organisations",
+                    "title": "contacts_organisations"
+                },
+                {
+                    "href": "picture_renditions",
+                    "title": "picture_renditions"
+                },
+                {
+                    "href": "content_quota_report",
+                    "title": "content_quota_report"
+                },
+                {
+                    "href": "events/postpone",
+                    "title": "events_postpone"
+                },
+                {
+                    "href": "events/update_time",
+                    "title": "events_update_time"
+                },
+                {
+                    "href": "planning/<item_id>/unlock",
+                    "title": "planning_unlock"
+                },
+                {
+                    "href": "allowed_values",
+                    "title": "allowed_values"
+                },
+                {
+                    "href": "events/update_repetitions",
+                    "title": "events_update_repetitions"
+                },
+                {
+                    "href": "subscriber_token",
+                    "title": "subscriber_token"
+                },
+                {
+                    "href": "stages",
+                    "title": "stages"
+                },
+                {
+                    "href": "planning_autosave",
+                    "title": "planning_autosave"
+                },
+                {
+                    "href": "planning",
+                    "title": "planning"
+                },
+                {
+                    "href": "media_references",
+                    "title": "media_references"
+                },
+                {
+                    "href": "io_errors",
+                    "title": "io_errors"
+                },
+                {
+                    "href": "subscribers",
+                    "title": "subscribers"
+                },
+                {
+                    "href": "activity_report",
+                    "title": "activity_report"
+                },
+                {
+                    "href": "archive",
+                    "title": "archive"
+                },
+                {
+                    "href": "archive/<guid>/duplicate",
+                    "title": "duplicate"
+                },
+                {
+                    "href": "ingest/<id>/fetch",
+                    "title": "fetch"
+                },
+                {
+                    "href": "content_templates_apply",
+                    "title": "content_templates_apply"
+                },
+                {
+                    "href": "events/reschedule",
+                    "title": "events_reschedule"
+                },
+                {
+                    "href": "download",
+                    "title": "download"
+                },
+                {
+                    "href": "saved_searches/<saved_search_id>/items",
+                    "title": "saved_search_items"
+                },
+                {
+                    "href": "suggestions/<item_id>",
+                    "title": "suggestions/<regex(\"[\\w,.:_-]+\"):item_id>"
+                },
+                {
+                    "href": "auth",
+                    "title": "auth"
+                },
+                {
+                    "href": "activity",
+                    "title": "activity"
+                },
+                {
+                    "href": "generate_highlights",
+                    "title": "generate_highlights"
+                },
+                {
+                    "href": "events_planning_search",
+                    "title": "events_planning_search"
+                },
+                {
+                    "href": "search_providers_proxy",
+                    "title": "search_providers_proxy"
+                },
+                {
+                    "href": "published_package_items",
+                    "title": "published_package_items"
+                },
+                {
+                    "href": "events/<item_id>/lock",
+                    "title": "events_lock"
+                },
+                {
+                    "href": "archive/<item_id>/lock",
+                    "title": "archive_lock"
+                },
+                {
+                    "href": "event_autosave",
+                    "title": "event_autosave"
+                },
+                {
+                    "href": "archive/<original_id>/resend",
+                    "title": "archive_resend"
+                },
+                {
+                    "href": "backend_meta",
+                    "title": "backend_meta"
+                },
+                {
+                    "href": "planning/post",
+                    "title": "planning_post"
+                },
+                {
+                    "href": "events_planning_filters",
+                    "title": "events_planning_filters"
+                },
+                {
+                    "href": "auth_db",
+                    "title": "auth_db"
+                },
+                {
+                    "href": "saved_activity_reports",
+                    "title": "saved_activity_reports"
+                },
+                {
+                    "href": "assignments/revert",
+                    "title": "assignments_revert"
+                },
+                {
+                    "href": "comments",
+                    "title": "comments"
+                },
+                {
+                    "href": "routing_schemes",
+                    "title": "routing_schemes"
+                },
+                {
+                    "href": "items",
+                    "title": "items"
+                },
+                {
+                    "href": "planning_download",
+                    "title": "planning_download"
+                },
+                {
+                    "href": "media_editor",
+                    "title": "media_editor"
+                },
+                {
+                    "href": "preferences",
+                    "title": "preferences"
+                },
+                {
+                    "href": "archive/<guid>/move",
+                    "title": "move"
+                },
+                {
+                    "href": "archive/publish",
+                    "title": "archive_publish"
+                },
+                {
+                    "href": "locations",
+                    "title": "locations"
+                },
+                {
+                    "href": "users/<original_creator>/content",
+                    "title": "user_content"
+                },
+                {
+                    "href": "archive_autosave",
+                    "title": "archive_autosave"
+                },
+                {
+                    "href": "archive/spike",
+                    "title": "archive_spike"
+                },
+                {
+                    "href": "published_planning",
+                    "title": "published_planning"
+                },
+                {
+                    "href": "planning_featured_lock",
+                    "title": "planning_featured_lock"
+                },
+                {
+                    "href": "export",
+                    "title": "export"
+                },
+                {
+                    "href": "ingest_providers",
+                    "title": "ingest_providers"
+                },
+                {
+                    "href": "audit",
+                    "title": "audit"
+                },
+                {
+                    "href": "marked_for_highlights",
+                    "title": "marked_for_highlights"
+                },
+                {
+                    "href": "users/<user_id>/sessions",
+                    "title": "clear_sessions"
+                },
+                {
+                    "href": "validate",
+                    "title": "validate"
+                },
+                {
+                    "href": "rule_sets",
+                    "title": "rule_sets"
+                },
+                {
+                    "href": "products",
+                    "title": "products"
+                },
+                {
+                    "href": "content_filters/test",
+                    "title": "content_filter_tests"
+                },
+                {
+                    "href": "config",
+                    "title": "config"
+                },
+                {
+                    "href": "tasks",
+                    "title": "tasks"
+                },
+                {
+                    "href": "webhook",
+                    "title": "webhook"
+                },
+                {
+                    "href": "archive/<guid>/copy",
+                    "title": "copy"
+                },
+                {
+                    "href": "track_activity_report",
+                    "title": "track_activity_report"
+                },
+                {
+                    "href": "concept_items",
+                    "title": "concept_items"
+                },
+                {
+                    "href": "publish_queue",
+                    "title": "publish_queue"
+                },
+                {
+                    "href": "spellcheck",
+                    "title": "spellcheck"
+                },
+                {
+                    "href": "planning_files",
+                    "title": "planning_files"
+                },
+                {
+                    "href": "assignments/link",
+                    "title": "assignments_link"
+                },
+                {
+                    "href": "formatters",
+                    "title": "formatters"
+                },
+                {
+                    "href": "planning/<item_id>/duplicate",
+                    "title": "planning_duplicate"
+                },
+                {
+                    "href": "sessions",
+                    "title": "sessions"
+                },
+                {
+                    "href": "auth_xmpp",
+                    "title": "auth_xmpp"
+                },
+                {
+                    "href": "events/spike",
+                    "title": "events_spike"
+                },
+                {
+                    "href": "content_api",
+                    "title": "content_api"
+                },
+                {
+                    "href": "planning_validator",
+                    "title": "planning_validator"
+                },
+                {
+                    "href": "assignments",
+                    "title": "assignments"
+                },
+                {
+                    "href": "search_providers_allowed",
+                    "title": "search_providers_allowed"
+                },
+                {
+                    "href": "macros",
+                    "title": "macros"
+                },
+                {
+                    "href": "assignments/<item_id>/unlock",
+                    "title": "assignments_unlock"
+                },
+                {
+                    "href": "archive/<item_id>/unlock",
+                    "title": "archive_unlock"
+                }
+            ]
+        }
+        }

@@ -1,0 +1,297 @@
+## User [/users/{id}]
+
+A single User resource.
+
++ Parameters
+    + id (string) - User id.
+
++ Model (application/json) 
+
+        {
+            "user_preferences": {
+                "feature:preview": {
+                    "category": "feature",
+                    "type": "bool",
+                    "default": false,
+                    "privileges": [
+                        "feature_preview"
+                    ],
+                    "enabled": false,
+                    "label": "Enable Feature Preview"
+                },
+                "email:notification": {
+                    "category": "notifications",
+                    "enabled": true,
+                    "type": "bool",
+                    "label": "Send notifications via email",
+                    "default": true
+                },
+                "destination:active": {},
+                "article:default:place": {
+                    "category": "article_defaults",
+                    "type": "list",
+                    "place": [],
+                    "label": "Place"
+                },
+                "workqueue:items": {
+                    "items": []
+                },
+                "categories:preferred": {
+                    "category": "categories",
+                    "type": "dict",
+                    "label": "Preferred Categories",
+                    "selected": {}
+                },
+                "spellchecker:status": {
+                    "enabled": true,
+                    "type": "bool",
+                    "default": true
+                },
+                "workspace:active": {
+                    "type": "string",
+                    "workspace": ""
+                },
+                "agg:view": {
+                    "active": {}
+                },
+                "dashboard:ingest": {
+                    "providers": []
+                },
+                "templates:recent": {},
+                "dateline:located": {
+                    "category": "article_defaults",
+                    "type": "dict",
+                    "label": "Located"
+                },
+                "archive:view": {
+                    "category": "archive",
+                    "type": "string",
+                    "view": "mgrid",
+                    "default": "mgrid",
+                    "allowed": [
+                        "mgrid",
+                        "compact"
+                    ],
+                    "label": "Users archive view format"
+                },
+                "editor:theme": {
+                    "type": "string",
+                    "theme": ""
+                }
+            },
+            "username": "tbarras",
+            "dateline_source": "Short name for your organisation",
+            "user_type": "user",
+            "sign_off": "TB",
+            "email": "user+7@superdesk.org",
+            "role": "54e655e31024542de76d6636",
+            "needs_activation": false,
+            "display_name": "Tiera Barras",
+            "invisible_stages": [
+                "58c132ae1d41c864c216bc01",
+                "58c132ae1d41c864c216bc02"
+            ],
+            "last_name": "Barras",
+            "is_enabled": true,
+            "is_active": true
+        }
+
+### Retrieve a User [GET]
+
+"readonly" attribute is included only if AD is enabled.
+
++ Request (application/json)
+
++ Response 200
+
+    [User][]
+
++ Response 404
+
+### Update User [PATCH]
+
++ Request (application/json)
+
+    + Headers
+    
+            If-Match: xyz
+    
+    + Body
+
+            {"last_name": "Baz"}
+
++ Response 200 (application/json)
+
+        {"_status": "OK"}
+
++ Response 403
+
+### Hard Delete a User [DELETE]
+
++ Request
+
+    + Headers
+    
+            If-Match: xyz
+
++ Response 204
+
+## User Search [/users{?page,max_results,where,sort}]
+
+### List all Users [GET]
+
+"readonly" attribute is included only if AD is enabled.
+
++ Parameters
+    + page = `0`(optional, integer) ... Page number
+    + max_results = `25`(optional, integer) ... Number of users to be returned
+    + where (optional, object) ... Filtering
+    + sort (optional, object) ... Sorting
+
++ Response 200 (application/json)
+        
+        {
+            "_items": [
+                {
+                    "_links": {"self": {"href": "/users/2"}},
+                    "_id": "2",
+                    "email": "john.doe@email.com",
+                    "first_name": "John",
+                    "display_name": "John Doe",
+                    "last_name": "Doe",
+                    "username": "john",
+                    "phone_number": "0123456789",
+                    "_created": "2014-02-18T14:42:16Z",
+                    "_updated": "2014-02-18T14:42:16Z",
+                    "picture_url": "http://www.gravatar.com/avatar/205e460b479e2e5b48aec07710c08d50",
+                    "_etag": "xyz",
+                    "_readonly": ["username", "display_name", "password", "email", "phone", "first_name", "last_name"]
+                },
+                {
+                    "_links": {"self": {"href": "/users/3"}},
+                    "_id": "3",
+                    "email": "joe.hammer@email.com",
+                    "first_name": "Joe",
+                    "display_name": "Joe Hammer",
+                    "last_name": "Hammer",
+                    "username": "joe",
+                    "phone_number": "0223456789",
+                    "_created": "2014-02-18T14:43:27Z",
+                    "_updated": "2014-02-18T14:43:27Z",
+                    "picture_url": "http://www.gravatar.com/avatar/205e460b479e2e5b48aec07710c08d50",
+                    "_etag": "xyz",
+                    "_readonly": ["username", "display_name", "password", "email", "phone", "first_name", "last_name"]
+                }
+            ]
+        }
+
+## User collection [/users]
+
+### Create user [POST]
+
++ Request (application/json)
+
+        {
+            "first_name": "John",
+            "last_name": "Doe",
+            "username": "john",
+            "email": "john.doe@email.com",
+            "password": "a3r546465676bgyhyyehy",
+            "phone_number": "0223456789"
+        }
+
++ Response 201 (application/json)
+
+        {
+            "_links": {"self": {"href": "/users/5"}},
+            "_status": "OK",
+            "_etag": "xyz"
+        }
+
++ Response 400 (application/json)
+
+        {
+            "_status": "ERR",
+            "_issues": {
+                "username": {
+                    "unique": {
+                        "msg": "There is already an active user with this name"
+                    }
+                },
+                "email": {
+                    "unique": { "msg": "Unique constraint failed" }
+                },
+                "email": {
+                    "format": { "msg": "Invalid EMail" }
+                },
+                "phone": {
+                    "format": {
+                        "msg": "Invalid phone number format"
+                        "example": "+123123456789 or 0123456789 or 123456789"
+                    }
+                },
+                "password": {
+                    "required": { "msg": "Mandatory value is missing" }
+                }
+            }
+        }
+
+
+## Import Profile from Active Directory [/import_profile]
+
+This will be exposed if Active Directory is enabled.
+
+### Import User Profile from Active Directory [POST]
+
++ Request (application/json)
+
+        {
+            "username": "admin",
+            "password": "admin",
+            "profile_to_import": "sduser"
+        }
+
++ Response 201 (application/json)
+
+        {
+           "_status": "OK",
+           "_id": "5449e53fc3747c105fa69f53",
+           "_etag": "5cc244e4acb76505127cd1555ee13d93e0f85e39",
+           "first_name": "User",
+           "last_name": "SD",
+           "display_name": "SD User",
+           "is_active": true,
+           "_created": "2014-10-24T05:35:54+0000",
+           "_updated": "2014-10-24T05:35:54+0000",
+           "user_type": "user",
+           "username": "sduser",
+           "phone": "+61 2 9322 8598",
+           "email": "sduser@sourcefabric.org",
+           "_links": {
+              "self": {
+                 "href": "/import_profile/5449e53fc3747c105fa69f53",
+                 "title": "Import_profile"
+               }
+           }
+        }
+
++ Response 404
+
+        {}
+
+## Privileges Collection [/privileges]
+
++ Model (application/json)
+
+        {
+            "items": [
+                {"name": "ingest", "label": "Ingest", "description": "Fetch content from ingest."},
+                {"name": "users", "label": "Users", "description": "Manage users and user roles."}
+            ]
+        }
+
+### List available privileges in the system [GET]
+
++ Response 200
+
+    [Privileges Collection][]
