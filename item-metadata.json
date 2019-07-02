@@ -1,453 +1,1001 @@
 {
-    "target_regions": {
-        "type": "list",
+    "_id": {
+        "type": "string",
+        "unique": true
+    },
+    "abstract": {
+        "nullable": true,
+        "type": "string"
+    },
+    "alt_text": {
+        "nullable": true,
+        "type": "string"
+    },
+    "annotations": {
+        "mapping": {
+            "enabled": false,
+            "type": "object"
+        },
         "schema": {
-            "type": "dict",
             "schema": {
-                "name": {
+                "body": {
                     "type": "string"
                 },
-                "allow": {
-                    "type": "boolean"
+                "id": {
+                    "type": "integer"
                 },
-                "qcode": {
+                "type": {
                     "type": "string"
                 }
-            }
+            },
+            "type": "dict"
         },
-        "nullable": true
+        "type": "list"
     },
-    "body_text": {
-        "type": "string",
-        "nullable": true
-    },
-    "target_subscribers": {
-        "type": "list",
-        "nullable": true
-    },
-    "lock_action": {
-        "type": "string",
+    "anpa_category": {
         "mapping": {
-            "type": "string",
-            "index": "not_analyzed"
+            "properties": {
+                "name": {
+                    "index": "not_analyzed",
+                    "type": "string"
+                },
+                "qcode": {
+                    "index": "not_analyzed",
+                    "type": "string"
+                }
+            },
+            "type": "object"
         },
-        "nullable": true
+        "nullable": true,
+        "type": "list"
+    },
+    "anpa_take_key": {
+        "nullable": true,
+        "type": "string"
+    },
+    "archive_description": {
+        "nullable": true,
+        "type": "string"
+    },
+    "assignment_id": {
+        "mapping": {
+            "index": "not_analyzed",
+            "type": "string"
+        },
+        "type": "string"
+    },
+    "associated_take_sequence": {
+        "type": "integer"
+    },
+    "associations": {
+        "mapping": {
+            "dynamic": false,
+            "properties": {
+                "featuremedia": {
+                    "dynamic": false,
+                    "properties": {
+                        "_id": {
+                            "index": "not_analyzed",
+                            "type": "string"
+                        },
+                        "guid": {
+                            "index": "not_analyzed",
+                            "type": "string"
+                        },
+                        "unique_id": {
+                            "type": "integer"
+                        }
+                    },
+                    "type": "object"
+                }
+            },
+            "type": "object"
+        },
+        "type": "dict"
     },
     "attachments": {
-        "type": "list",
+        "nullable": true,
         "schema": {
-            "type": "dict",
             "schema": {
                 "attachment": {
-                    "required": false,
-                    "type": "objectid",
                     "data_relation": {
                         "embeddable": true,
                         "field": "_id",
                         "resource": "attachments"
                     },
-                    "nullable": false
+                    "nullable": false,
+                    "required": false,
+                    "type": "objectid"
                 }
-            }
-        },
-        "nullable": true
-    },
-    "task_id": {
-        "type": "string",
-        "versioned": false,
-        "mapping": {
-            "type": "string",
-            "index": "not_analyzed"
-        }
-    },
-    "version_creator": {
-        "required": false,
-        "type": "objectid",
-        "data_relation": {
-            "embeddable": true,
-            "field": "_id",
-            "resource": "users"
-        },
-        "nullable": false
-    },
-    "ingest_provider": {
-        "required": false,
-        "type": "objectid",
-        "data_relation": {
-            "embeddable": true,
-            "field": "_id",
-            "resource": "ingest_providers"
-        },
-        "nullable": false
-    },
-    "flags": {
-        "type": "dict",
-        "schema": {
-            "marked_for_not_publication": {
-                "type": "boolean",
-                "default": false
             },
-            "marked_archived_only": {
-                "type": "boolean",
-                "default": false
+            "type": "dict"
+        },
+        "type": "list"
+    },
+    "authors": {
+        "mapping": {
+            "dynamic": false,
+            "properties": {
+                "jobtitle": {
+                    "enabled": false,
+                    "type": "object"
+                },
+                "name": {
+                    "index": "not_analyzed",
+                    "type": "string"
+                },
+                "parent": {
+                    "index": "not_analyzed",
+                    "type": "string"
+                },
+                "role": {
+                    "index": "not_analyzed",
+                    "type": "string"
+                },
+                "uri": {
+                    "index": "not_analyzed",
+                    "type": "string"
+                }
             },
-            "marked_for_legal": {
-                "type": "boolean",
-                "default": false
-            },
-            "marked_for_sms": {
-                "type": "boolean",
-                "default": false
-            }
-        }
+            "type": "object"
+        },
+        "nullable": true,
+        "type": "list"
     },
-    "anpa_take_key": {
-        "type": "string",
-        "nullable": true
+    "auto_publish": {
+        "type": "boolean"
     },
-    "alt_text": {
-        "type": "string",
-        "nullable": true
-    },
-    "embargoed_text": {
-        "type": "string",
+    "body_footer": {
         "mapping": {
-            "type": "string",
-            "index": "no"
-        }
-    },
-    "translation_id": {
-        "type": "string",
-        "mapping": {
-            "type": "string",
-            "index": "not_analyzed"
-        }
-    },
-    "lock_time": {
-        "type": "datetime",
-        "versioned": false
-    },
-    "ingest_version": {
-        "type": "string",
-        "mapping": {
-            "type": "string",
-            "index": "not_analyzed"
-        }
-    },
-    "keywords": {
-        "type": "list",
-        "mapping": {
+            "index": "no",
             "type": "string"
-        }
-    },
-    "urgency": {
-        "type": "integer",
-        "nullable": true
-    },
-    "priority": {
-        "type": "integer",
-        "nullable": true
-    },
-    "processed_from": {
-        "type": "string",
-        "mapping": {
-            "type": "string",
-            "index": "not_analyzed"
-        }
-    },
-    "highlight": {
-        "required": false,
-        "type": "objectid",
-        "data_relation": {
-            "embeddable": true,
-            "field": "_id",
-            "resource": "highlights"
         },
-        "nullable": false
-    },
-    "media_file": {
+        "nullable": true,
         "type": "string"
+    },
+    "body_html": {
+        "nullable": true,
+        "type": "string"
+    },
+    "body_text": {
+        "nullable": true,
+        "type": "string"
+    },
+    "broadcast": {
+        "nullable": true,
+        "schema": {
+            "master_id": {
+                "mapping": {
+                    "index": "not_analyzed",
+                    "type": "string"
+                },
+                "type": "string"
+            },
+            "rewrite_id": {
+                "mapping": {
+                    "index": "not_analyzed",
+                    "type": "string"
+                },
+                "type": "string"
+            },
+            "status": {
+                "type": "string"
+            }
+        },
+        "type": "dict"
+    },
+    "byline": {
+        "nullable": true,
+        "type": "string"
+    },
+    "company_codes": {
+        "mapping": {
+            "properties": {
+                "name": {
+                    "index": "not_analyzed",
+                    "type": "string"
+                },
+                "qcode": {
+                    "index": "not_analyzed",
+                    "type": "string"
+                },
+                "security_exchange": {
+                    "index": "not_analyzed",
+                    "type": "string"
+                }
+            },
+            "type": "object"
+        },
+        "type": "list"
     },
     "contents": {
         "type": "list"
     },
-    "firstcreated": {
-        "type": "datetime"
+    "copyrightholder": {
+        "nullable": true,
+        "type": "string"
     },
-    "expiry": {
-        "type": "datetime"
+    "copyrightnotice": {
+        "mapping": {
+            "index": "no",
+            "type": "string"
+        },
+        "nullable": true,
+        "type": "string"
     },
-    "poi": {
-        "type": "dict",
-        "schema": {
-            "x": {
-                "type": "float",
-                "nullable": false
-            },
-            "y": {
-                "type": "float",
-                "nullable": false
-            }
-        }
+    "correction_sequence": {
+        "mapping": {
+            "index": "not_analyzed",
+            "type": "string"
+        },
+        "type": "integer"
     },
     "creditline": {
         "type": "string"
     },
     "dateline": {
-        "type": "dict",
+        "nullable": true,
         "schema": {
-            "text": {
-                "type": "string",
-                "nullable": true
+            "date": {
+                "nullable": true,
+                "type": "datetime"
             },
             "located": {
-                "type": "dict",
-                "nullable": true
-            },
-            "date": {
-                "type": "datetime",
-                "nullable": true
+                "nullable": true,
+                "type": "dict"
             },
             "source": {
                 "type": "string"
+            },
+            "text": {
+                "nullable": true,
+                "type": "string"
             }
         },
-        "nullable": true
-    },
-    "_id": {
-        "type": "string",
-        "unique": true
-    },
-    "place": {
-        "type": "list",
-        "mapping": {
-            "properties": {
-                "name": {
-                    "type": "string",
-                    "index": "not_analyzed"
-                },
-                "locality_code": {
-                    "type": "string",
-                    "index": "not_analyzed"
-                },
-                "world_region": {
-                    "type": "string",
-                    "index": "not_analyzed"
-                },
-                "state_code": {
-                    "type": "string",
-                    "index": "not_analyzed"
-                },
-                "world_region_code": {
-                    "type": "string",
-                    "index": "not_analyzed"
-                },
-                "country_code": {
-                    "type": "string",
-                    "index": "not_analyzed"
-                },
-                "location": {
-                    "type": "geo_point"
-                },
-                "rel": {
-                    "type": "string",
-                    "index": "not_analyzed"
-                },
-                "scheme": {
-                    "type": "string",
-                    "index": "not_analyzed"
-                },
-                "qcode": {
-                    "type": "string",
-                    "index": "not_analyzed"
-                },
-                "state": {
-                    "type": "string",
-                    "index": "not_analyzed"
-                },
-                "locality": {
-                    "type": "string",
-                    "index": "not_analyzed"
-                },
-                "country": {
-                    "type": "string",
-                    "index": "not_analyzed"
-                },
-                "code": {
-                    "type": "string",
-                    "index": "not_analyzed"
-                },
-                "feature_class": {
-                    "type": "string",
-                    "index": "not_analyzed"
-                }
-            },
-            "type": "object",
-            "dynamic": false
-        },
-        "nullable": true
-    },
-    "byline": {
-        "type": "string",
-        "nullable": true
-    },
-    "media": {
-        "type": "file"
-    },
-    "renditions": {
         "type": "dict"
     },
+    "deleted_groups": {
+        "minlength": 1,
+        "nullable": true,
+        "type": "list"
+    },
+    "description_text": {
+        "nullable": true,
+        "type": "string"
+    },
     "ednote": {
-        "type": "string",
-        "nullable": true
+        "nullable": true,
+        "type": "string"
     },
-    "marked_desks": {
-        "type": "list",
-        "schema": {
-            "type": "dict",
-            "schema": {
-                "date_acknowledged": {
-                    "type": "datetime",
-                    "nullable": true
-                },
-                "date_marked": {
-                    "type": "datetime",
-                    "nullable": true
-                },
-                "user_acknowledged": {
-                    "required": false,
-                    "type": "objectid",
-                    "data_relation": {
-                        "embeddable": true,
-                        "field": "_id",
-                        "resource": "users"
-                    },
-                    "nullable": true
-                },
-                "desk_id": {
-                    "required": false,
-                    "type": "objectid",
-                    "data_relation": {
-                        "embeddable": true,
-                        "field": "_id",
-                        "resource": "desks"
-                    },
-                    "nullable": false
-                },
-                "user_marked": {
-                    "required": false,
-                    "type": "objectid",
-                    "data_relation": {
-                        "embeddable": true,
-                        "field": "_id",
-                        "resource": "users"
-                    },
-                    "nullable": true
-                }
-            }
+    "embargo": {
+        "nullable": true,
+        "type": "datetime"
+    },
+    "embargoed": {
+        "type": "datetime"
+    },
+    "embargoed_text": {
+        "mapping": {
+            "index": "no",
+            "type": "string"
         },
-        "nullable": true
+        "type": "string"
     },
-    "word_count": {
-        "type": "integer"
+    "event_id": {
+        "mapping": {
+            "index": "not_analyzed",
+            "type": "string"
+        },
+        "type": "string"
+    },
+    "expiry": {
+        "type": "datetime"
+    },
+    "expiry_status": {
+        "mapping": {
+            "index": "not_analyzed",
+            "type": "string"
+        },
+        "nullable": true,
+        "type": "string"
+    },
+    "extra": {
+        "mapping": {
+            "type": "object"
+        },
+        "type": "dict"
     },
     "family_id": {
-        "type": "string",
         "mapping": {
-            "type": "string",
-            "index": "not_analyzed"
-        }
+            "index": "not_analyzed",
+            "type": "string"
+        },
+        "type": "string"
+    },
+    "fields_meta": {
+        "mapping": {
+            "enabled": false,
+            "type": "object"
+        },
+        "nullable": true,
+        "type": "dict"
+    },
+    "filemeta": {
+        "type": "dict"
     },
     "filemeta_json": {
         "type": "string"
     },
-    "ingest_provider_sequence": {
-        "type": "string",
+    "firstcreated": {
+        "type": "datetime"
+    },
+    "firstpublished": {
+        "nullable": true,
+        "required": false,
+        "type": "datetime"
+    },
+    "flags": {
+        "schema": {
+            "marked_archived_only": {
+                "default": false,
+                "type": "boolean"
+            },
+            "marked_for_legal": {
+                "default": false,
+                "type": "boolean"
+            },
+            "marked_for_not_publication": {
+                "default": false,
+                "type": "boolean"
+            },
+            "marked_for_sms": {
+                "default": false,
+                "type": "boolean"
+            }
+        },
+        "type": "dict"
+    },
+    "format": {
+        "default": "HTML",
         "mapping": {
-            "type": "string",
-            "index": "not_analyzed"
-        }
+            "index": "not_analyzed",
+            "type": "string"
+        },
+        "type": "string"
     },
-    "package_type": {
-        "type": "string",
-        "allowed": [
-            "takes"
-        ]
-    },
-    "source": {
-        "type": "string",
+    "genre": {
         "mapping": {
-            "type": "string",
-            "index": "not_analyzed"
-        }
-    },
-    "usageterms": {
-        "type": "string",
-        "nullable": true
-    },
-    "version": {
-        "type": "integer"
-    },
-    "abstract": {
-        "type": "string",
-        "nullable": true
-    },
-    "original_source": {
-        "type": "string",
-        "mapping": {
-            "type": "string",
-            "index": "not_analyzed"
-        }
+            "properties": {
+                "name": {
+                    "index": "not_analyzed",
+                    "type": "string"
+                },
+                "qcode": {
+                    "index": "not_analyzed",
+                    "type": "string"
+                }
+            },
+            "type": "object"
+        },
+        "nullable": true,
+        "type": "list"
     },
     "groups": {
         "minlength": 1,
-        "type": "list",
-        "nullable": true
+        "nullable": true,
+        "type": "list"
     },
-    "translated_from": {
-        "type": "string",
+    "guid": {
         "mapping": {
-            "type": "string",
-            "index": "not_analyzed"
-        }
+            "index": "not_analyzed",
+            "type": "string"
+        },
+        "type": "string",
+        "unique": true
     },
     "headline": {
         "type": "string"
     },
-    "fields_meta": {
-        "type": "dict",
-        "mapping": {
-            "type": "object",
-            "enabled": false
+    "highlight": {
+        "data_relation": {
+            "embeddable": true,
+            "field": "_id",
+            "resource": "highlights"
         },
-        "nullable": true
+        "nullable": false,
+        "required": false,
+        "type": "objectid"
     },
     "highlights": {
-        "type": "list",
         "schema": {
-            "required": false,
-            "type": "objectid",
             "data_relation": {
                 "embeddable": true,
                 "field": "_id",
                 "resource": "highlights"
             },
-            "nullable": false
-        }
+            "nullable": false,
+            "required": false,
+            "type": "objectid"
+        },
+        "type": "list"
+    },
+    "ingest_id": {
+        "mapping": {
+            "index": "not_analyzed",
+            "type": "string"
+        },
+        "type": "string"
+    },
+    "ingest_provider": {
+        "data_relation": {
+            "embeddable": true,
+            "field": "_id",
+            "resource": "ingest_providers"
+        },
+        "nullable": false,
+        "required": false,
+        "type": "objectid"
+    },
+    "ingest_provider_sequence": {
+        "mapping": {
+            "index": "not_analyzed",
+            "type": "string"
+        },
+        "type": "string"
+    },
+    "ingest_version": {
+        "mapping": {
+            "index": "not_analyzed",
+            "type": "string"
+        },
+        "type": "string"
+    },
+    "keywords": {
+        "mapping": {
+            "type": "string"
+        },
+        "type": "list"
     },
     "language": {
-        "type": "string",
         "mapping": {
-            "type": "string",
-            "index": "not_analyzed"
+            "index": "not_analyzed",
+            "type": "string"
         },
-        "nullable": true
+        "nullable": true,
+        "type": "string"
+    },
+    "last_version": {
+        "type": "number"
+    },
+    "linked_in_packages": {
+        "readonly": true,
+        "schema": {
+            "schema": {
+                "package": {
+                    "data_relation": {
+                        "embeddable": true,
+                        "field": "_id",
+                        "resource": "archive"
+                    },
+                    "nullable": false,
+                    "required": false,
+                    "type": "objectid"
+                },
+                "package_type": {
+                    "type": "string"
+                }
+            },
+            "type": "dict"
+        },
+        "type": "list"
+    },
+    "lock_action": {
+        "mapping": {
+            "index": "not_analyzed",
+            "type": "string"
+        },
+        "nullable": true,
+        "type": "string"
+    },
+    "lock_session": {
+        "data_relation": {
+            "embeddable": true,
+            "field": "_id",
+            "resource": "auth"
+        },
+        "nullable": false,
+        "required": false,
+        "type": "objectid",
+        "versioned": false
+    },
+    "lock_time": {
+        "type": "datetime",
+        "versioned": false
+    },
+    "lock_user": {
+        "data_relation": {
+            "embeddable": true,
+            "field": "_id",
+            "resource": "users"
+        },
+        "nullable": false,
+        "required": false,
+        "type": "objectid",
+        "versioned": false
+    },
+    "marked_desks": {
+        "nullable": true,
+        "schema": {
+            "schema": {
+                "date_acknowledged": {
+                    "nullable": true,
+                    "type": "datetime"
+                },
+                "date_marked": {
+                    "nullable": true,
+                    "type": "datetime"
+                },
+                "desk_id": {
+                    "data_relation": {
+                        "embeddable": true,
+                        "field": "_id",
+                        "resource": "desks"
+                    },
+                    "nullable": false,
+                    "required": false,
+                    "type": "objectid"
+                },
+                "user_acknowledged": {
+                    "data_relation": {
+                        "embeddable": true,
+                        "field": "_id",
+                        "resource": "users"
+                    },
+                    "nullable": true,
+                    "required": false,
+                    "type": "objectid"
+                },
+                "user_marked": {
+                    "data_relation": {
+                        "embeddable": true,
+                        "field": "_id",
+                        "resource": "users"
+                    },
+                    "nullable": true,
+                    "required": false,
+                    "type": "objectid"
+                }
+            },
+            "type": "dict"
+        },
+        "type": "list"
+    },
+    "media": {
+        "type": "file"
+    },
+    "media_file": {
+        "type": "string"
+    },
+    "mimetype": {
+        "mapping": {
+            "index": "not_analyzed",
+            "type": "string"
+        },
+        "type": "string"
     },
     "more_coming": {
         "type": "boolean"
     },
-    "type": {
+    "old_version": {
+        "type": "number"
+    },
+    "operation": {
+        "allowed": [
+            "create",
+            "fetch",
+            "update",
+            "restore",
+            "duplicate",
+            "duplicated_from",
+            "deschedule",
+            "rewrite",
+            "link",
+            "unlink",
+            "mark",
+            "unmark",
+            "resend",
+            "export_highlight",
+            "create_highlight",
+            "send"
+        ],
+        "index": "not_analyzed",
+        "type": "string"
+    },
+    "original_creator": {
+        "data_relation": {
+            "embeddable": true,
+            "field": "_id",
+            "resource": "users"
+        },
+        "nullable": false,
+        "required": false,
+        "type": "objectid"
+    },
+    "original_id": {
+        "mapping": {
+            "index": "not_analyzed",
+            "type": "string"
+        },
+        "type": "string"
+    },
+    "original_source": {
+        "mapping": {
+            "index": "not_analyzed",
+            "type": "string"
+        },
+        "type": "string"
+    },
+    "package_type": {
+        "allowed": [
+            "takes"
+        ],
+        "type": "string"
+    },
+    "place": {
+        "mapping": {
+            "dynamic": false,
+            "properties": {
+                "code": {
+                    "index": "not_analyzed",
+                    "type": "string"
+                },
+                "country": {
+                    "index": "not_analyzed",
+                    "type": "string"
+                },
+                "country_code": {
+                    "index": "not_analyzed",
+                    "type": "string"
+                },
+                "feature_class": {
+                    "index": "not_analyzed",
+                    "type": "string"
+                },
+                "locality": {
+                    "index": "not_analyzed",
+                    "type": "string"
+                },
+                "locality_code": {
+                    "index": "not_analyzed",
+                    "type": "string"
+                },
+                "location": {
+                    "type": "geo_point"
+                },
+                "name": {
+                    "index": "not_analyzed",
+                    "type": "string"
+                },
+                "qcode": {
+                    "index": "not_analyzed",
+                    "type": "string"
+                },
+                "rel": {
+                    "index": "not_analyzed",
+                    "type": "string"
+                },
+                "scheme": {
+                    "index": "not_analyzed",
+                    "type": "string"
+                },
+                "state": {
+                    "index": "not_analyzed",
+                    "type": "string"
+                },
+                "state_code": {
+                    "index": "not_analyzed",
+                    "type": "string"
+                },
+                "world_region": {
+                    "index": "not_analyzed",
+                    "type": "string"
+                },
+                "world_region_code": {
+                    "index": "not_analyzed",
+                    "type": "string"
+                }
+            },
+            "type": "object"
+        },
+        "nullable": true,
+        "type": "list"
+    },
+    "poi": {
+        "schema": {
+            "x": {
+                "nullable": false,
+                "type": "float"
+            },
+            "y": {
+                "nullable": false,
+                "type": "float"
+            }
+        },
+        "type": "dict"
+    },
+    "priority": {
+        "nullable": true,
+        "type": "integer"
+    },
+    "processed_from": {
+        "mapping": {
+            "index": "not_analyzed",
+            "type": "string"
+        },
+        "type": "string"
+    },
+    "profile": {
+        "nullable": true,
+        "type": "string"
+    },
+    "publish_schedule": {
+        "nullable": true,
+        "type": "datetime"
+    },
+    "pubstatus": {
+        "allowed": [
+            "usable",
+            "withheld",
+            "canceled"
+        ],
+        "default": "usable",
+        "mapping": {
+            "index": "not_analyzed",
+            "type": "string"
+        },
+        "nullable": true,
+        "type": "string"
+    },
+    "related_to": {
+        "mapping": {
+            "index": "not_analyzed",
+            "type": "string"
+        },
+        "type": "string"
+    },
+    "renditions": {
+        "type": "dict"
+    },
+    "revert_state": {
+        "allowed": [
+            "draft",
+            "ingested",
+            "routed",
+            "fetched",
+            "submitted",
+            "in_progress",
+            "spiked",
+            "published",
+            "killed",
+            "corrected",
+            "scheduled",
+            "recalled"
+        ],
+        "mapping": {
+            "index": "not_analyzed",
+            "type": "string"
+        },
+        "type": "string"
+    },
+    "rewrite_of": {
+        "mapping": {
+            "index": "not_analyzed",
+            "type": "string"
+        },
+        "nullable": true,
+        "type": "string"
+    },
+    "rewrite_sequence": {
+        "mapping": {
+            "index": "not_analyzed",
+            "type": "string"
+        },
+        "type": "integer"
+    },
+    "rewritten_by": {
+        "mapping": {
+            "index": "not_analyzed",
+            "type": "string"
+        },
+        "nullable": true,
+        "type": "string"
+    },
+    "schedule_settings": {
+        "nullable": true,
+        "schema": {
+            "time_zone": {
+                "nullable": true,
+                "type": "string"
+            },
+            "utc_embargo": {
+                "nullable": true,
+                "type": "datetime"
+            },
+            "utc_publish_schedule": {
+                "nullable": true,
+                "type": "datetime"
+            }
+        },
+        "type": "dict"
+    },
+    "sequence": {
+        "type": "integer"
+    },
+    "sign_off": {
+        "nullable": true,
+        "type": "string"
+    },
+    "signal": {
+        "mapping": {
+            "properties": {
+                "name": {
+                    "index": "not_analyzed",
+                    "type": "string"
+                },
+                "qcode": {
+                    "index": "not_analyzed",
+                    "type": "string"
+                },
+                "scheme": {
+                    "index": "not_analyzed",
+                    "type": "string"
+                }
+            },
+            "type": "object"
+        },
+        "type": "list"
+    },
+    "slugline": {
+        "mapping": {
+            "fields": {
+                "phrase": {
+                    "analyzer": "phrase_prefix_analyzer",
+                    "search_analyzer": "phrase_prefix_analyzer",
+                    "type": "string"
+                }
+            },
+            "type": "string"
+        },
+        "type": "string"
+    },
+    "sms_message": {
+        "mapping": {
+            "index": "not_analyzed",
+            "type": "string"
+        },
+        "nullable": true,
+        "type": "string"
+    },
+    "source": {
+        "mapping": {
+            "index": "not_analyzed",
+            "type": "string"
+        },
+        "type": "string"
+    },
+    "state": {
+        "allowed": [
+            "draft",
+            "ingested",
+            "routed",
+            "fetched",
+            "submitted",
+            "in_progress",
+            "spiked",
+            "published",
+            "killed",
+            "corrected",
+            "scheduled",
+            "recalled"
+        ],
+        "mapping": {
+            "index": "not_analyzed",
+            "type": "string"
+        },
+        "type": "string"
+    },
+    "subject": {
+        "mapping": {
+            "properties": {
+                "name": {
+                    "index": "not_analyzed",
+                    "type": "string"
+                },
+                "qcode": {
+                    "index": "not_analyzed",
+                    "type": "string"
+                }
+            },
+            "type": "object"
+        },
+        "type": "list"
+    },
+    "target_regions": {
+        "nullable": true,
+        "schema": {
+            "schema": {
+                "allow": {
+                    "type": "boolean"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "qcode": {
+                    "type": "string"
+                }
+            },
+            "type": "dict"
+        },
+        "type": "list"
+    },
+    "target_subscribers": {
+        "nullable": true,
+        "type": "list"
+    },
+    "target_types": {
+        "nullable": true,
+        "schema": {
+            "schema": {
+                "allow": {
+                    "type": "boolean"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "qcode": {
+                    "type": "string"
+                }
+            },
+            "type": "dict"
+        },
+        "type": "list"
+    },
+    "task": {
+        "type": "dict"
+    },
+    "task_id": {
+        "mapping": {
+            "index": "not_analyzed",
+            "type": "string"
+        },
         "type": "string",
+        "versioned": false
+    },
+    "template": {
+        "data_relation": {
+            "embeddable": true,
+            "field": "_id",
+            "resource": "content_templates"
+        },
+        "nullable": false,
+        "required": false,
+        "type": "objectid"
+    },
+    "translated_from": {
+        "mapping": {
+            "index": "not_analyzed",
+            "type": "string"
+        },
+        "type": "string"
+    },
+    "translation_id": {
+        "mapping": {
+            "index": "not_analyzed",
+            "type": "string"
+        },
+        "type": "string"
+    },
+    "type": {
         "allowed": [
             "text",
             "preformatted",
@@ -458,477 +1006,50 @@
             "composite",
             "event"
         ],
+        "default": "text",
         "mapping": {
-            "type": "string",
-            "index": "not_analyzed"
+            "index": "not_analyzed",
+            "type": "string"
         },
-        "default": "text"
-    },
-    "task": {
-        "type": "dict"
-    },
-    "archive_description": {
-        "type": "string",
-        "nullable": true
-    },
-    "signal": {
-        "type": "list",
-        "mapping": {
-            "properties": {
-                "name": {
-                    "type": "string",
-                    "index": "not_analyzed"
-                },
-                "qcode": {
-                    "type": "string",
-                    "index": "not_analyzed"
-                },
-                "scheme": {
-                    "type": "string",
-                    "index": "not_analyzed"
-                }
-            },
-            "type": "object"
-        }
-    },
-    "authors": {
-        "type": "list",
-        "mapping": {
-            "properties": {
-                "name": {
-                    "type": "string",
-                    "index": "not_analyzed"
-                },
-                "jobtitle": {
-                    "type": "object",
-                    "enabled": false
-                },
-                "parent": {
-                    "type": "string",
-                    "index": "not_analyzed"
-                },
-                "role": {
-                    "type": "string",
-                    "index": "not_analyzed"
-                },
-                "uri": {
-                    "type": "string",
-                    "index": "not_analyzed"
-                }
-            },
-            "type": "object",
-            "dynamic": false
-        },
-        "nullable": true
-    },
-    "pubstatus": {
-        "type": "string",
-        "default": "usable",
-        "allowed": [
-            "usable",
-            "withheld",
-            "canceled"
-        ],
-        "mapping": {
-            "type": "string",
-            "index": "not_analyzed"
-        },
-        "nullable": true
-    },
-    "template": {
-        "required": false,
-        "type": "objectid",
-        "data_relation": {
-            "embeddable": true,
-            "field": "_id",
-            "resource": "content_templates"
-        },
-        "nullable": false
-    },
-    "linked_in_packages": {
-        "type": "list",
-        "readonly": true,
-        "schema": {
-            "type": "dict",
-            "schema": {
-                "package": {
-                    "required": false,
-                    "type": "objectid",
-                    "data_relation": {
-                        "embeddable": true,
-                        "field": "_id",
-                        "resource": "archive"
-                    },
-                    "nullable": false
-                },
-                "package_type": {
-                    "type": "string"
-                }
-            }
-        }
-    },
-    "lock_session": {
-        "required": false,
-        "type": "objectid",
-        "versioned": false,
-        "data_relation": {
-            "embeddable": true,
-            "field": "_id",
-            "resource": "auth"
-        },
-        "nullable": false
-    },
-    "slugline": {
-        "type": "string",
-        "mapping": {
-            "type": "string",
-            "fields": {
-                "phrase": {
-                    "type": "string",
-                    "analyzer": "phrase_prefix_analyzer",
-                    "search_analyzer": "phrase_prefix_analyzer"
-                }
-            }
-        }
-    },
-    "rewrite_sequence": {
-        "type": "integer",
-        "mapping": {
-            "type": "string",
-            "index": "not_analyzed"
-        }
-    },
-    "sms_message": {
-        "type": "string",
-        "mapping": {
-            "type": "string",
-            "index": "not_analyzed"
-        },
-        "nullable": true
-    },
-    "lock_user": {
-        "required": false,
-        "type": "objectid",
-        "versioned": false,
-        "data_relation": {
-            "embeddable": true,
-            "field": "_id",
-            "resource": "users"
-        },
-        "nullable": false
-    },
-    "deleted_groups": {
-        "minlength": 1,
-        "type": "list",
-        "nullable": true
-    },
-    "assignment_id": {
-        "type": "string",
-        "mapping": {
-            "type": "string",
-            "index": "not_analyzed"
-        }
-    },
-    "ingest_id": {
-        "type": "string",
-        "mapping": {
-            "type": "string",
-            "index": "not_analyzed"
-        }
-    },
-    "versioncreated": {
-        "type": "datetime"
-    },
-    "state": {
-        "type": "string",
-        "allowed": [
-            "draft",
-            "ingested",
-            "routed",
-            "fetched",
-            "submitted",
-            "in_progress",
-            "spiked",
-            "published",
-            "killed",
-            "corrected",
-            "scheduled",
-            "recalled"
-        ],
-        "mapping": {
-            "type": "string",
-            "index": "not_analyzed"
-        }
-    },
-    "correction_sequence": {
-        "type": "integer",
-        "mapping": {
-            "type": "string",
-            "index": "not_analyzed"
-        }
-    },
-    "anpa_category": {
-        "type": "list",
-        "mapping": {
-            "properties": {
-                "name": {
-                    "type": "string",
-                    "index": "not_analyzed"
-                },
-                "qcode": {
-                    "type": "string",
-                    "index": "not_analyzed"
-                }
-            },
-            "type": "object"
-        },
-        "nullable": true
-    },
-    "related_to": {
-        "type": "string",
-        "mapping": {
-            "type": "string",
-            "index": "not_analyzed"
-        }
-    },
-    "subject": {
-        "type": "list",
-        "mapping": {
-            "properties": {
-                "name": {
-                    "type": "string",
-                    "index": "not_analyzed"
-                },
-                "qcode": {
-                    "type": "string",
-                    "index": "not_analyzed"
-                }
-            },
-            "type": "object"
-        }
-    },
-    "unique_name": {
-        "type": "string",
-        "mapping": {
-            "type": "string",
-            "index": "not_analyzed"
-        },
-        "unique": true
-    },
-    "guid": {
-        "type": "string",
-        "mapping": {
-            "type": "string",
-            "index": "not_analyzed"
-        },
-        "unique": true
-    },
-    "associations": {
-        "type": "dict",
-        "mapping": {
-            "properties": {
-                "featuremedia": {
-                    "properties": {
-                        "_id": {
-                            "type": "string",
-                            "index": "not_analyzed"
-                        },
-                        "guid": {
-                            "type": "string",
-                            "index": "not_analyzed"
-                        },
-                        "unique_id": {
-                            "type": "integer"
-                        }
-                    },
-                    "type": "object",
-                    "dynamic": false
-                }
-            },
-            "type": "object",
-            "dynamic": false
-        }
-    },
-    "firstpublished": {
-        "required": false,
-        "type": "datetime",
-        "nullable": true
-    },
-    "genre": {
-        "type": "list",
-        "mapping": {
-            "properties": {
-                "name": {
-                    "type": "string",
-                    "index": "not_analyzed"
-                },
-                "qcode": {
-                    "type": "string",
-                    "index": "not_analyzed"
-                }
-            },
-            "type": "object"
-        },
-        "nullable": true
+        "type": "string"
     },
     "unique_id": {
         "type": "integer",
         "unique": true
     },
-    "mimetype": {
-        "type": "string",
+    "unique_name": {
         "mapping": {
-            "type": "string",
-            "index": "not_analyzed"
-        }
-    },
-    "sign_off": {
-        "type": "string",
-        "nullable": true
-    },
-    "body_html": {
-        "type": "string",
-        "nullable": true
-    },
-    "extra": {
-        "type": "dict",
-        "mapping": {
-            "type": "object"
-        }
-    },
-    "copyrightnotice": {
-        "type": "string",
-        "mapping": {
-            "type": "string",
-            "index": "no"
+            "index": "not_analyzed",
+            "type": "string"
         },
-        "nullable": true
-    },
-    "profile": {
         "type": "string",
-        "nullable": true
+        "unique": true
     },
-    "target_types": {
-        "type": "list",
-        "schema": {
-            "type": "dict",
-            "schema": {
-                "name": {
-                    "type": "string"
-                },
-                "allow": {
-                    "type": "boolean"
-                },
-                "qcode": {
-                    "type": "string"
-                }
-            }
-        },
-        "nullable": true
+    "urgency": {
+        "nullable": true,
+        "type": "integer"
     },
-    "embargoed": {
-        "type": "datetime"
+    "usageterms": {
+        "nullable": true,
+        "type": "string"
     },
-    "filemeta": {
-        "type": "dict"
+    "version": {
+        "type": "integer"
     },
-    "auto_publish": {
-        "type": "boolean"
-    },
-    "copyrightholder": {
-        "type": "string",
-        "nullable": true
-    },
-    "format": {
-        "type": "string",
-        "mapping": {
-            "type": "string",
-            "index": "not_analyzed"
-        },
-        "default": "HTML"
-    },
-    "body_footer": {
-        "type": "string",
-        "mapping": {
-            "type": "string",
-            "index": "no"
-        },
-        "nullable": true
-    },
-    "description_text": {
-        "type": "string",
-        "nullable": true
-    },
-    "annotations": {
-        "type": "list",
-        "mapping": {
-            "type": "object",
-            "enabled": false
-        },
-        "schema": {
-            "type": "dict",
-            "schema": {
-                "type": {
-                    "type": "string"
-                },
-                "body": {
-                    "type": "string"
-                },
-                "id": {
-                    "type": "integer"
-                }
-            }
-        }
-    },
-    "original_creator": {
-        "required": false,
-        "type": "objectid",
+    "version_creator": {
         "data_relation": {
             "embeddable": true,
             "field": "_id",
             "resource": "users"
         },
-        "nullable": false
+        "nullable": false,
+        "required": false,
+        "type": "objectid"
     },
-    "company_codes": {
-        "type": "list",
-        "mapping": {
-            "properties": {
-                "name": {
-                    "type": "string",
-                    "index": "not_analyzed"
-                },
-                "security_exchange": {
-                    "type": "string",
-                    "index": "not_analyzed"
-                },
-                "qcode": {
-                    "type": "string",
-                    "index": "not_analyzed"
-                }
-            },
-            "type": "object"
-        }
+    "versioncreated": {
+        "type": "datetime"
     },
-    "revert_state": {
-        "type": "string",
-        "allowed": [
-            "draft",
-            "ingested",
-            "routed",
-            "fetched",
-            "submitted",
-            "in_progress",
-            "spiked",
-            "published",
-            "killed",
-            "corrected",
-            "scheduled",
-            "recalled"
-        ],
-        "mapping": {
-            "type": "string",
-            "index": "not_analyzed"
-        }
+    "word_count": {
+        "type": "integer"
     }
 }

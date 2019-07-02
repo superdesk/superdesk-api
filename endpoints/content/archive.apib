@@ -1,0 +1,1654 @@
+
+
+## Archive Collection [/archive] 
+
+Archive collection contains stories under production.
+
+### List All Archive [GET]
+
++ Response 200 (application/json)
+
+        {
+            "_aggregations": {
+                "category": {
+                    "sum_other_doc_count": 0,
+                    "doc_count_error_upper_bound": 0,
+                    "buckets": [
+                        {
+                            "key": "sport",
+                            "doc_count": 120
+                        },
+                        {
+                            "key": "world",
+                            "doc_count": 119
+                        },
+                        {
+                            "key": "Sport",
+                            "doc_count": 7
+                        },
+                        {
+                            "key": "Entertainment",
+                            "doc_count": 5
+                        },
+                        {
+                            "key": "features",
+                            "doc_count": 4
+                        },
+                        {
+                            "key": "Domestic news",
+                            "doc_count": 3
+                        },
+                        {
+                            "key": "Politics",
+                            "doc_count": 1
+                        },
+                        {
+                            "key": "finance",
+                            "doc_count": 1
+                        },
+                        {
+                            "key": "national",
+                            "doc_count": 1
+                        }
+                    ]
+                },
+                "desk": {
+                    "sum_other_doc_count": 0,
+                    "doc_count_error_upper_bound": 0,
+                    "buckets": [
+                        {
+                            "key": "5bc0893ebfb76600e3158e6e",
+                            "doc_count": 9017
+                        },
+                        {
+                            "key": "5ab27ab6cdfe38023cd29eac",
+                            "doc_count": 163
+                        },
+                        {
+                            "key": "5b3204bbcdfe3800e56e9613",
+                            "doc_count": 134
+                        },
+                        {
+                            "key": "5ab39795cdfe3800e091fb38",
+                            "doc_count": 56
+                        },
+                        {
+                            "key": "5ab37905cdfe3800e091f9e8",
+                            "doc_count": 43
+                        },
+                        {
+                            "key": "5ab386c9cdfe3800e091fa1b",
+                            "doc_count": 37
+                        },
+                        {
+                            "key": "5b62a55dbfb76600e060d122",
+                            "doc_count": 28
+                        },
+                        {
+                            "key": "5b98fdb5bfb766031d17086a",
+                            "doc_count": 12
+                        },
+                        {
+                            "key": "5ba0eab7bfb76600df7fd6ad",
+                            "doc_count": 5
+                        },
+                        {
+                            "key": "5baa0addbfb76600e5e1b26d",
+                            "doc_count": 4
+                        },
+                        {
+                            "key": "5c5138d4bfb76600df081b36",
+                            "doc_count": 4
+                        },
+                        {
+                            "key": "5c2fb954bfb76600ddfe327a",
+                            "doc_count": 3
+                        },
+                        {
+                            "key": "5beafb9bbfb76600e64ff5ef",
+                            "doc_count": 2
+                        },
+                        {
+                            "key": "5ba0ccd5bfb76600e3a6af84",
+                            "doc_count": 1
+                        },
+                        {
+                            "key": "5bd1900fbfb76600e000b22b",
+                            "doc_count": 1
+                        }
+                    ]
+                },
+                "legal": {
+                    "sum_other_doc_count": 0,
+                    "doc_count_error_upper_bound": 0,
+                    "buckets": [
+                        {
+                            "doc_count": 9513,
+                            "key": 0,
+                            "key_as_string": "false"
+                        }
+                    ]
+                },
+                "source": {
+                    "sum_other_doc_count": 0,
+                    "doc_count_error_upper_bound": 0,
+                    "buckets": [
+                        {
+                            "key": "Toronto Star",
+                            "doc_count": 9011
+                        },
+                        {
+                            "key": "Superdesk",
+                            "doc_count": 157
+                        },
+                        {
+                            "key": "NaregsYarde",
+                            "doc_count": 142
+                        },
+                        {
+                            "key": "Belga",
+                            "doc_count": 86
+                        },
+                        {
+                            "key": "SD World",
+                            "doc_count": 35
+                        },
+                        {
+                            "key": "SD Lucre",
+                            "doc_count": 31
+                        },
+                        {
+                            "key": "Image files from FTP",
+                            "doc_count": 15
+                        },
+                        {
+                            "key": "NaregAug",
+                            "doc_count": 8
+                        },
+                        {
+                            "key": "Reuters",
+                            "doc_count": 7
+                        },
+                        {
+                            "key": "test",
+                            "doc_count": 4
+                        },
+                        {
+                            "key": "AMNA",
+                            "doc_count": 3
+                        },
+                        {
+                            "key": "SD snappers",
+                            "doc_count": 3
+                        },
+                        {
+                            "key": "AAP",
+                            "doc_count": 2
+                        },
+                        {
+                            "key": "KP",
+                            "doc_count": 2
+                        }
+                    ]
+                },
+                "sms": {
+                    "sum_other_doc_count": 0,
+                    "doc_count_error_upper_bound": 0,
+                    "buckets": [
+                        {
+                            "doc_count": 9512,
+                            "key": 0,
+                            "key_as_string": "false"
+                        },
+                        {
+                            "doc_count": 1,
+                            "key": 1,
+                            "key_as_string": "true"
+                        }
+                    ]
+                },
+                "genre": {
+                    "sum_other_doc_count": 0,
+                    "doc_count_error_upper_bound": 0,
+                    "buckets": [
+                        {
+                            "key": "Article (news)",
+                            "doc_count": 9510
+                        },
+                        {
+                            "key": "Fixture",
+                            "doc_count": 1
+                        },
+                        {
+                            "key": "Insight",
+                            "doc_count": 1
+                        },
+                        {
+                            "key": "Interview",
+                            "doc_count": 1
+                        }
+                    ]
+                },
+                "type": {
+                    "sum_other_doc_count": 0,
+                    "doc_count_error_upper_bound": 0,
+                    "buckets": [
+                        {
+                            "key": "text",
+                            "doc_count": 9340
+                        },
+                        {
+                            "key": "picture",
+                            "doc_count": 161
+                        },
+                        {
+                            "key": "video",
+                            "doc_count": 7
+                        },
+                        {
+                            "key": "composite",
+                            "doc_count": 4
+                        },
+                        {
+                            "key": "audio",
+                            "doc_count": 1
+                        }
+                    ]
+                },
+                "urgency": {
+                    "sum_other_doc_count": 0,
+                    "doc_count_error_upper_bound": 0,
+                    "buckets": [
+                        {
+                            "key": 3,
+                            "doc_count": 9507
+                        },
+                        {
+                            "key": 2,
+                            "doc_count": 5
+                        },
+                        {
+                            "key": 4,
+                            "doc_count": 1
+                        }
+                    ]
+                },
+                "priority": {
+                    "sum_other_doc_count": 0,
+                    "doc_count_error_upper_bound": 0,
+                    "buckets": [
+                        {
+                            "key": 6,
+                            "doc_count": 9512
+                        },
+                        {
+                            "key": 1,
+                            "doc_count": 1
+                        }
+                    ]
+                }
+            },
+            "_items": [
+                {
+                    "flags": {
+                        "marked_for_not_publication": false,
+                        "marked_for_legal": false,
+                        "marked_archived_only": false,
+                        "marked_for_sms": false
+                    },
+                    "ingest_version": null,
+                    "family_id": "urn:newsml:sdp-master.test.superdesk.org:2019-07-01T10:57:41.314552:5073bc18-d908-4e8b-b19e-91685df4c4a3",
+                    "_latest_version": 1,
+                    "unique_name": "#135262",
+                    "abstract": "<img src=\"https://www.thestar.com/content/dam/thestar/wsj/static/business.jpg\"/><br/>",
+                    "body_html": "<p><a href=\"https://www.thestar.com/wsj/business/2019/07/01/performance-food-to-buy-reinhart-in-2-billion-deal.html\" target=\"_blank\">Toronto Star</a></p>",
+                    "version_creator": "",
+                    "type": "text",
+                    "pubstatus": "usable",
+                    "firstcreated": "2019-07-01T10:02:00+0000",
+                    "ingest_id": "tag:www.thestar.com:SB12805530939054743790104585398062168981890",
+                    "dateline": {
+                        "source": "Toronto Star",
+                        "date": "2019-07-01T10:02:00+0000"
+                    },
+                    "versioncreated": "2019-07-01T10:57:41+0000",
+                    "priority": 6,
+                    "schedule_settings": {
+                        "utc_embargo": null,
+                        "time_zone": null
+                    },
+                    "state": "routed",
+                    "_updated": "2019-07-01T10:57:41+0000",
+                    "_id": "tag:sdp-master.test.superdesk.org:2019:7280f6f7-51e2-42d4-be92-8eceba5e3f7b",
+                    "urgency": 3,
+                    "headline": "Performance Food to Buy Reinhart in $2 Billion Deal",
+                    "format": "HTML",
+                    "word_count": 2,
+                    "ingest_provider_sequence": "4217",
+                    "original_creator": "",
+                    "genre": [
+                        {
+                            "qcode": "Article",
+                            "name": "Article (news)"
+                        }
+                    ],
+                    "byline": "<a href=\"mailto:micah.maidenberg@wsj.com\">Micah Maidenberg</a> - WSJ",
+                    "language": "en",
+                    "_created": "2019-07-01T10:57:41+0000",
+                    "event_id": "tag:sdp-master.test.superdesk.org:2019:b9d865c4-3d98-4079-b03c-aeef70a6a9e7",
+                    "source": "Toronto Star",
+                    "unique_id": 135262,
+                    "profile": "5bc0b93cbfb76600e315913b",
+                    "operation": "fetch",
+                    "task": {
+                        "user": null,
+                        "desk": "5bc0893ebfb76600e3158e6e",
+                        "stage": "5bc0893ebfb76600e3158e6d"
+                    },
+                    "_etag": "392f6aa91729a3c50065241f3cb7c8232b6be2bf",
+                    "ingest_provider": "5beaf858bfb76600e64ff5d5",
+                    "expiry": "2019-07-21T10:57:41+0000",
+                    "_current_version": 1,
+                    "guid": "tag:sdp-master.test.superdesk.org:2019:7280f6f7-51e2-42d4-be92-8eceba5e3f7b"
+                }
+            ]
+        }
+
+
+### Create A New Item [POST]
+
+When a new item is posted some of the fields in the schema is autogenerated on the server
+
+- A new **guid** and **_id** fields are assigned to a new value (their values will be the same)
+- A **unique_id** is assigned to story that is unique in archive collection
+- A **family_id** is copied from guid. For cloned stories family_id is preserved across clones.
+- An **event_id** is assigned 
+- **state** is set to Draft
+- **source** is assigned the value of the ingest provide if the item is fetched. Otherwise if there is a
+default source for the desk the item is created then that source is assigned. Otherwise the source in the global
+settings will be assigned.
+- If the item has a **profile** field or if there's a global profile is assigned, then story will copy the metadata
+from all the fields defined in the content type of the profile.
+- If there are default values assigned for fields **priority**, **genre**, **urgency** then they will be populated
+- If there are default preferences defined for the user for fields **dateline**, **byline**, **place** then they will be populated
+- **signoff** field is updated:
+    1. sign_off = sign_off of original + sign_off of the user performing operation.
+    2. If the last modified user and the user performing operation are same then sign_off shouldn't change
+    3. If sign_off is received on updates, this value will be preserved
+    4. If a users sign_off is already in the list then it will be removed and appended to the end
+- **word_count** will be calculated
+- **expiry** is set according to expiry values on stage, or desk, or global settings
+- If there are metada defined in the desk then desk metada will be reflected on the item
+
+
+Creation of a new item will fail if:
+
+- Stage is a readonly stage
+- If there's a schedule provided but the date is in the past or date is not recognized
+
+
+Media Sources
+
+- If there's a url in the **media** field of the item then the media will be fetched as a file
+- If there's a file reference to the item in **media** field, that file will be user_marked
+- Renditions will be generated for **picture** files. Renditions are defined in vocabularies.
+
+
++ Request (application/json)
+
+    + Body
+        
+            {
+                "task": {
+                    "user": "5981c6621d41c82dbab98631",
+                    "desk": "5981c6621d41c82dbab98639",
+                    "stage": "5981c6621d41c82dbab98637"
+                },
+                "language": "en",
+                "event_id": "tag:localhost:5000:2019:837b6edc-37a1-42f7-876c-894bbc7baafb",
+                "type": "text",
+                "place": [],
+                "lock_action": "edit",
+                "genre": [
+                    {
+                        "name": "Article (news)",
+                        "qcode": "Article"
+                    }
+                ],
+                "pubstatus": "usable",
+                "sign_off": "fl",
+                "flags": {
+                    "marked_for_not_publication": false,
+                    "marked_archived_only": false,
+                    "marked_for_legal": false,
+                    "marked_for_sms": false
+                },
+                "family_id": "urn:newsml:localhost:5000:2019-05-22T20:50:49.059813:1a5e18f9-d324-43f1-a059-26040ecc58cb",
+                "operation": "update",
+                "source": "Superdesk",
+                "urgency": 3,
+                "version": 1,
+                "format": "HTML",
+                "priority": 6,
+                "dateline": {
+                    "text": "KHABAROVSK VTOROY, May 22 Superdesk -",
+                    "located": {
+                        "tz": "Asia/Vladivostok",
+                        "city": "Khabarovsk Vtoroy",
+                        "alt_name": "",
+                        "city_code": "Khabarovsk Vtoroy",
+                        "state": "Khabarovsk Krai",
+                        "dateline": "city",
+                        "country": "Russia",
+                        "country_code": "RU",
+                        "state_code": "RU.30"
+                    },
+                    "date": "2019-05-22T10:50:56+0000",
+                    "source": "Superdesk"
+                },
+                "versioncreated": "2019-05-22T10:52:20+0000",
+                "version_creator": "5981c6621d41c82dbab98631",
+                "state": "in_progress",
+                "firstcreated": "2019-05-22T10:50:49+0000",
+                "original_creator": "5981c6621d41c82dbab98631",
+                "lock_session": "5ce51db81d41c816a789cb1c",
+                "schedule_settings": {
+                    "utc_embargo": null,
+                    "time_zone": null
+                }
+            }
+
+    + Schema
+
+            {
+                "_id": {
+                    "type": "string",
+                    "unique": true
+                },
+                "abstract": {
+                    "nullable": true,
+                    "type": "string"
+                },
+                "alt_text": {
+                    "nullable": true,
+                    "type": "string"
+                },
+                "annotations": {
+                    "mapping": {
+                        "enabled": false,
+                        "type": "object"
+                    },
+                    "schema": {
+                        "schema": {
+                            "body": {
+                                "type": "string"
+                            },
+                            "id": {
+                                "type": "integer"
+                            },
+                            "type": {
+                                "type": "string"
+                            }
+                        },
+                        "type": "dict"
+                    },
+                    "type": "list"
+                },
+                "anpa_category": {
+                    "mapping": {
+                        "properties": {
+                            "name": {
+                                "index": "not_analyzed",
+                                "type": "string"
+                            },
+                            "qcode": {
+                                "index": "not_analyzed",
+                                "type": "string"
+                            }
+                        },
+                        "type": "object"
+                    },
+                    "nullable": true,
+                    "type": "list"
+                },
+                "anpa_take_key": {
+                    "nullable": true,
+                    "type": "string"
+                },
+                "archive_description": {
+                    "nullable": true,
+                    "type": "string"
+                },
+                "assignment_id": {
+                    "mapping": {
+                        "index": "not_analyzed",
+                        "type": "string"
+                    },
+                    "type": "string"
+                },
+                "associated_take_sequence": {
+                    "type": "integer"
+                },
+                "associations": {
+                    "mapping": {
+                        "dynamic": false,
+                        "properties": {
+                            "featuremedia": {
+                                "dynamic": false,
+                                "properties": {
+                                    "_id": {
+                                        "index": "not_analyzed",
+                                        "type": "string"
+                                    },
+                                    "guid": {
+                                        "index": "not_analyzed",
+                                        "type": "string"
+                                    },
+                                    "unique_id": {
+                                        "type": "integer"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        },
+                        "type": "object"
+                    },
+                    "type": "dict"
+                },
+                "attachments": {
+                    "nullable": true,
+                    "schema": {
+                        "schema": {
+                            "attachment": {
+                                "data_relation": {
+                                    "embeddable": true,
+                                    "field": "_id",
+                                    "resource": "attachments"
+                                },
+                                "nullable": false,
+                                "required": false,
+                                "type": "objectid"
+                            }
+                        },
+                        "type": "dict"
+                    },
+                    "type": "list"
+                },
+                "authors": {
+                    "mapping": {
+                        "dynamic": false,
+                        "properties": {
+                            "jobtitle": {
+                                "enabled": false,
+                                "type": "object"
+                            },
+                            "name": {
+                                "index": "not_analyzed",
+                                "type": "string"
+                            },
+                            "parent": {
+                                "index": "not_analyzed",
+                                "type": "string"
+                            },
+                            "role": {
+                                "index": "not_analyzed",
+                                "type": "string"
+                            },
+                            "uri": {
+                                "index": "not_analyzed",
+                                "type": "string"
+                            }
+                        },
+                        "type": "object"
+                    },
+                    "nullable": true,
+                    "type": "list"
+                },
+                "auto_publish": {
+                    "type": "boolean"
+                },
+                "body_footer": {
+                    "mapping": {
+                        "index": "no",
+                        "type": "string"
+                    },
+                    "nullable": true,
+                    "type": "string"
+                },
+                "body_html": {
+                    "nullable": true,
+                    "type": "string"
+                },
+                "body_text": {
+                    "nullable": true,
+                    "type": "string"
+                },
+                "broadcast": {
+                    "nullable": true,
+                    "schema": {
+                        "master_id": {
+                            "mapping": {
+                                "index": "not_analyzed",
+                                "type": "string"
+                            },
+                            "type": "string"
+                        },
+                        "rewrite_id": {
+                            "mapping": {
+                                "index": "not_analyzed",
+                                "type": "string"
+                            },
+                            "type": "string"
+                        },
+                        "status": {
+                            "type": "string"
+                        }
+                    },
+                    "type": "dict"
+                },
+                "byline": {
+                    "nullable": true,
+                    "type": "string"
+                },
+                "company_codes": {
+                    "mapping": {
+                        "properties": {
+                            "name": {
+                                "index": "not_analyzed",
+                                "type": "string"
+                            },
+                            "qcode": {
+                                "index": "not_analyzed",
+                                "type": "string"
+                            },
+                            "security_exchange": {
+                                "index": "not_analyzed",
+                                "type": "string"
+                            }
+                        },
+                        "type": "object"
+                    },
+                    "type": "list"
+                },
+                "contents": {
+                    "type": "list"
+                },
+                "copyrightholder": {
+                    "nullable": true,
+                    "type": "string"
+                },
+                "copyrightnotice": {
+                    "mapping": {
+                        "index": "no",
+                        "type": "string"
+                    },
+                    "nullable": true,
+                    "type": "string"
+                },
+                "correction_sequence": {
+                    "mapping": {
+                        "index": "not_analyzed",
+                        "type": "string"
+                    },
+                    "type": "integer"
+                },
+                "creditline": {
+                    "type": "string"
+                },
+                "dateline": {
+                    "nullable": true,
+                    "schema": {
+                        "date": {
+                            "nullable": true,
+                            "type": "datetime"
+                        },
+                        "located": {
+                            "nullable": true,
+                            "type": "dict"
+                        },
+                        "source": {
+                            "type": "string"
+                        },
+                        "text": {
+                            "nullable": true,
+                            "type": "string"
+                        }
+                    },
+                    "type": "dict"
+                },
+                "deleted_groups": {
+                    "minlength": 1,
+                    "nullable": true,
+                    "type": "list"
+                },
+                "description_text": {
+                    "nullable": true,
+                    "type": "string"
+                },
+                "ednote": {
+                    "nullable": true,
+                    "type": "string"
+                },
+                "embargo": {
+                    "nullable": true,
+                    "type": "datetime"
+                },
+                "embargoed": {
+                    "type": "datetime"
+                },
+                "embargoed_text": {
+                    "mapping": {
+                        "index": "no",
+                        "type": "string"
+                    },
+                    "type": "string"
+                },
+                "event_id": {
+                    "mapping": {
+                        "index": "not_analyzed",
+                        "type": "string"
+                    },
+                    "type": "string"
+                },
+                "expiry": {
+                    "type": "datetime"
+                },
+                "expiry_status": {
+                    "mapping": {
+                        "index": "not_analyzed",
+                        "type": "string"
+                    },
+                    "nullable": true,
+                    "type": "string"
+                },
+                "extra": {
+                    "mapping": {
+                        "type": "object"
+                    },
+                    "type": "dict"
+                },
+                "family_id": {
+                    "mapping": {
+                        "index": "not_analyzed",
+                        "type": "string"
+                    },
+                    "type": "string"
+                },
+                "fields_meta": {
+                    "mapping": {
+                        "enabled": false,
+                        "type": "object"
+                    },
+                    "nullable": true,
+                    "type": "dict"
+                },
+                "filemeta": {
+                    "type": "dict"
+                },
+                "filemeta_json": {
+                    "type": "string"
+                },
+                "firstcreated": {
+                    "type": "datetime"
+                },
+                "firstpublished": {
+                    "nullable": true,
+                    "required": false,
+                    "type": "datetime"
+                },
+                "flags": {
+                    "schema": {
+                        "marked_archived_only": {
+                            "default": false,
+                            "type": "boolean"
+                        },
+                        "marked_for_legal": {
+                            "default": false,
+                            "type": "boolean"
+                        },
+                        "marked_for_not_publication": {
+                            "default": false,
+                            "type": "boolean"
+                        },
+                        "marked_for_sms": {
+                            "default": false,
+                            "type": "boolean"
+                        }
+                    },
+                    "type": "dict"
+                },
+                "format": {
+                    "default": "HTML",
+                    "mapping": {
+                        "index": "not_analyzed",
+                        "type": "string"
+                    },
+                    "type": "string"
+                },
+                "genre": {
+                    "mapping": {
+                        "properties": {
+                            "name": {
+                                "index": "not_analyzed",
+                                "type": "string"
+                            },
+                            "qcode": {
+                                "index": "not_analyzed",
+                                "type": "string"
+                            }
+                        },
+                        "type": "object"
+                    },
+                    "nullable": true,
+                    "type": "list"
+                },
+                "groups": {
+                    "minlength": 1,
+                    "nullable": true,
+                    "type": "list"
+                },
+                "guid": {
+                    "mapping": {
+                        "index": "not_analyzed",
+                        "type": "string"
+                    },
+                    "type": "string",
+                    "unique": true
+                },
+                "headline": {
+                    "type": "string"
+                },
+                "highlight": {
+                    "data_relation": {
+                        "embeddable": true,
+                        "field": "_id",
+                        "resource": "highlights"
+                    },
+                    "nullable": false,
+                    "required": false,
+                    "type": "objectid"
+                },
+                "highlights": {
+                    "schema": {
+                        "data_relation": {
+                            "embeddable": true,
+                            "field": "_id",
+                            "resource": "highlights"
+                        },
+                        "nullable": false,
+                        "required": false,
+                        "type": "objectid"
+                    },
+                    "type": "list"
+                },
+                "ingest_id": {
+                    "mapping": {
+                        "index": "not_analyzed",
+                        "type": "string"
+                    },
+                    "type": "string"
+                },
+                "ingest_provider": {
+                    "data_relation": {
+                        "embeddable": true,
+                        "field": "_id",
+                        "resource": "ingest_providers"
+                    },
+                    "nullable": false,
+                    "required": false,
+                    "type": "objectid"
+                },
+                "ingest_provider_sequence": {
+                    "mapping": {
+                        "index": "not_analyzed",
+                        "type": "string"
+                    },
+                    "type": "string"
+                },
+                "ingest_version": {
+                    "mapping": {
+                        "index": "not_analyzed",
+                        "type": "string"
+                    },
+                    "type": "string"
+                },
+                "keywords": {
+                    "mapping": {
+                        "type": "string"
+                    },
+                    "type": "list"
+                },
+                "language": {
+                    "mapping": {
+                        "index": "not_analyzed",
+                        "type": "string"
+                    },
+                    "nullable": true,
+                    "type": "string"
+                },
+                "last_version": {
+                    "type": "number"
+                },
+                "linked_in_packages": {
+                    "readonly": true,
+                    "schema": {
+                        "schema": {
+                            "package": {
+                                "data_relation": {
+                                    "embeddable": true,
+                                    "field": "_id",
+                                    "resource": "archive"
+                                },
+                                "nullable": false,
+                                "required": false,
+                                "type": "objectid"
+                            },
+                            "package_type": {
+                                "type": "string"
+                            }
+                        },
+                        "type": "dict"
+                    },
+                    "type": "list"
+                },
+                "lock_action": {
+                    "mapping": {
+                        "index": "not_analyzed",
+                        "type": "string"
+                    },
+                    "nullable": true,
+                    "type": "string"
+                },
+                "lock_session": {
+                    "data_relation": {
+                        "embeddable": true,
+                        "field": "_id",
+                        "resource": "auth"
+                    },
+                    "nullable": false,
+                    "required": false,
+                    "type": "objectid",
+                    "versioned": false
+                },
+                "lock_time": {
+                    "type": "datetime",
+                    "versioned": false
+                },
+                "lock_user": {
+                    "data_relation": {
+                        "embeddable": true,
+                        "field": "_id",
+                        "resource": "users"
+                    },
+                    "nullable": false,
+                    "required": false,
+                    "type": "objectid",
+                    "versioned": false
+                },
+                "marked_desks": {
+                    "nullable": true,
+                    "schema": {
+                        "schema": {
+                            "date_acknowledged": {
+                                "nullable": true,
+                                "type": "datetime"
+                            },
+                            "date_marked": {
+                                "nullable": true,
+                                "type": "datetime"
+                            },
+                            "desk_id": {
+                                "data_relation": {
+                                    "embeddable": true,
+                                    "field": "_id",
+                                    "resource": "desks"
+                                },
+                                "nullable": false,
+                                "required": false,
+                                "type": "objectid"
+                            },
+                            "user_acknowledged": {
+                                "data_relation": {
+                                    "embeddable": true,
+                                    "field": "_id",
+                                    "resource": "users"
+                                },
+                                "nullable": true,
+                                "required": false,
+                                "type": "objectid"
+                            },
+                            "user_marked": {
+                                "data_relation": {
+                                    "embeddable": true,
+                                    "field": "_id",
+                                    "resource": "users"
+                                },
+                                "nullable": true,
+                                "required": false,
+                                "type": "objectid"
+                            }
+                        },
+                        "type": "dict"
+                    },
+                    "type": "list"
+                },
+                "media": {
+                    "type": "file"
+                },
+                "media_file": {
+                    "type": "string"
+                },
+                "mimetype": {
+                    "mapping": {
+                        "index": "not_analyzed",
+                        "type": "string"
+                    },
+                    "type": "string"
+                },
+                "more_coming": {
+                    "type": "boolean"
+                },
+                "old_version": {
+                    "type": "number"
+                },
+                "operation": {
+                    "allowed": [
+                        "create",
+                        "fetch",
+                        "update",
+                        "restore",
+                        "duplicate",
+                        "duplicated_from",
+                        "deschedule",
+                        "rewrite",
+                        "link",
+                        "unlink",
+                        "mark",
+                        "unmark",
+                        "resend",
+                        "export_highlight",
+                        "create_highlight",
+                        "send"
+                    ],
+                    "index": "not_analyzed",
+                    "type": "string"
+                },
+                "original_creator": {
+                    "data_relation": {
+                        "embeddable": true,
+                        "field": "_id",
+                        "resource": "users"
+                    },
+                    "nullable": false,
+                    "required": false,
+                    "type": "objectid"
+                },
+                "original_id": {
+                    "mapping": {
+                        "index": "not_analyzed",
+                        "type": "string"
+                    },
+                    "type": "string"
+                },
+                "original_source": {
+                    "mapping": {
+                        "index": "not_analyzed",
+                        "type": "string"
+                    },
+                    "type": "string"
+                },
+                "package_type": {
+                    "allowed": [
+                        "takes"
+                    ],
+                    "type": "string"
+                },
+                "place": {
+                    "mapping": {
+                        "dynamic": false,
+                        "properties": {
+                            "code": {
+                                "index": "not_analyzed",
+                                "type": "string"
+                            },
+                            "country": {
+                                "index": "not_analyzed",
+                                "type": "string"
+                            },
+                            "country_code": {
+                                "index": "not_analyzed",
+                                "type": "string"
+                            },
+                            "feature_class": {
+                                "index": "not_analyzed",
+                                "type": "string"
+                            },
+                            "locality": {
+                                "index": "not_analyzed",
+                                "type": "string"
+                            },
+                            "locality_code": {
+                                "index": "not_analyzed",
+                                "type": "string"
+                            },
+                            "location": {
+                                "type": "geo_point"
+                            },
+                            "name": {
+                                "index": "not_analyzed",
+                                "type": "string"
+                            },
+                            "qcode": {
+                                "index": "not_analyzed",
+                                "type": "string"
+                            },
+                            "rel": {
+                                "index": "not_analyzed",
+                                "type": "string"
+                            },
+                            "scheme": {
+                                "index": "not_analyzed",
+                                "type": "string"
+                            },
+                            "state": {
+                                "index": "not_analyzed",
+                                "type": "string"
+                            },
+                            "state_code": {
+                                "index": "not_analyzed",
+                                "type": "string"
+                            },
+                            "world_region": {
+                                "index": "not_analyzed",
+                                "type": "string"
+                            },
+                            "world_region_code": {
+                                "index": "not_analyzed",
+                                "type": "string"
+                            }
+                        },
+                        "type": "object"
+                    },
+                    "nullable": true,
+                    "type": "list"
+                },
+                "poi": {
+                    "schema": {
+                        "x": {
+                            "nullable": false,
+                            "type": "float"
+                        },
+                        "y": {
+                            "nullable": false,
+                            "type": "float"
+                        }
+                    },
+                    "type": "dict"
+                },
+                "priority": {
+                    "nullable": true,
+                    "type": "integer"
+                },
+                "processed_from": {
+                    "mapping": {
+                        "index": "not_analyzed",
+                        "type": "string"
+                    },
+                    "type": "string"
+                },
+                "profile": {
+                    "nullable": true,
+                    "type": "string"
+                },
+                "publish_schedule": {
+                    "nullable": true,
+                    "type": "datetime"
+                },
+                "pubstatus": {
+                    "allowed": [
+                        "usable",
+                        "withheld",
+                        "canceled"
+                    ],
+                    "default": "usable",
+                    "mapping": {
+                        "index": "not_analyzed",
+                        "type": "string"
+                    },
+                    "nullable": true,
+                    "type": "string"
+                },
+                "related_to": {
+                    "mapping": {
+                        "index": "not_analyzed",
+                        "type": "string"
+                    },
+                    "type": "string"
+                },
+                "renditions": {
+                    "type": "dict"
+                },
+                "revert_state": {
+                    "allowed": [
+                        "draft",
+                        "ingested",
+                        "routed",
+                        "fetched",
+                        "submitted",
+                        "in_progress",
+                        "spiked",
+                        "published",
+                        "killed",
+                        "corrected",
+                        "scheduled",
+                        "recalled"
+                    ],
+                    "mapping": {
+                        "index": "not_analyzed",
+                        "type": "string"
+                    },
+                    "type": "string"
+                },
+                "rewrite_of": {
+                    "mapping": {
+                        "index": "not_analyzed",
+                        "type": "string"
+                    },
+                    "nullable": true,
+                    "type": "string"
+                },
+                "rewrite_sequence": {
+                    "mapping": {
+                        "index": "not_analyzed",
+                        "type": "string"
+                    },
+                    "type": "integer"
+                },
+                "rewritten_by": {
+                    "mapping": {
+                        "index": "not_analyzed",
+                        "type": "string"
+                    },
+                    "nullable": true,
+                    "type": "string"
+                },
+                "schedule_settings": {
+                    "nullable": true,
+                    "schema": {
+                        "time_zone": {
+                            "nullable": true,
+                            "type": "string"
+                        },
+                        "utc_embargo": {
+                            "nullable": true,
+                            "type": "datetime"
+                        },
+                        "utc_publish_schedule": {
+                            "nullable": true,
+                            "type": "datetime"
+                        }
+                    },
+                    "type": "dict"
+                },
+                "sequence": {
+                    "type": "integer"
+                },
+                "sign_off": {
+                    "nullable": true,
+                    "type": "string"
+                },
+                "signal": {
+                    "mapping": {
+                        "properties": {
+                            "name": {
+                                "index": "not_analyzed",
+                                "type": "string"
+                            },
+                            "qcode": {
+                                "index": "not_analyzed",
+                                "type": "string"
+                            },
+                            "scheme": {
+                                "index": "not_analyzed",
+                                "type": "string"
+                            }
+                        },
+                        "type": "object"
+                    },
+                    "type": "list"
+                },
+                "slugline": {
+                    "mapping": {
+                        "fields": {
+                            "phrase": {
+                                "analyzer": "phrase_prefix_analyzer",
+                                "search_analyzer": "phrase_prefix_analyzer",
+                                "type": "string"
+                            }
+                        },
+                        "type": "string"
+                    },
+                    "type": "string"
+                },
+                "sms_message": {
+                    "mapping": {
+                        "index": "not_analyzed",
+                        "type": "string"
+                    },
+                    "nullable": true,
+                    "type": "string"
+                },
+                "source": {
+                    "mapping": {
+                        "index": "not_analyzed",
+                        "type": "string"
+                    },
+                    "type": "string"
+                },
+                "state": {
+                    "allowed": [
+                        "draft",
+                        "ingested",
+                        "routed",
+                        "fetched",
+                        "submitted",
+                        "in_progress",
+                        "spiked",
+                        "published",
+                        "killed",
+                        "corrected",
+                        "scheduled",
+                        "recalled"
+                    ],
+                    "mapping": {
+                        "index": "not_analyzed",
+                        "type": "string"
+                    },
+                    "type": "string"
+                },
+                "subject": {
+                    "mapping": {
+                        "properties": {
+                            "name": {
+                                "index": "not_analyzed",
+                                "type": "string"
+                            },
+                            "qcode": {
+                                "index": "not_analyzed",
+                                "type": "string"
+                            }
+                        },
+                        "type": "object"
+                    },
+                    "type": "list"
+                },
+                "target_regions": {
+                    "nullable": true,
+                    "schema": {
+                        "schema": {
+                            "allow": {
+                                "type": "boolean"
+                            },
+                            "name": {
+                                "type": "string"
+                            },
+                            "qcode": {
+                                "type": "string"
+                            }
+                        },
+                        "type": "dict"
+                    },
+                    "type": "list"
+                },
+                "target_subscribers": {
+                    "nullable": true,
+                    "type": "list"
+                },
+                "target_types": {
+                    "nullable": true,
+                    "schema": {
+                        "schema": {
+                            "allow": {
+                                "type": "boolean"
+                            },
+                            "name": {
+                                "type": "string"
+                            },
+                            "qcode": {
+                                "type": "string"
+                            }
+                        },
+                        "type": "dict"
+                    },
+                    "type": "list"
+                },
+                "task": {
+                    "type": "dict"
+                },
+                "task_id": {
+                    "mapping": {
+                        "index": "not_analyzed",
+                        "type": "string"
+                    },
+                    "type": "string",
+                    "versioned": false
+                },
+                "template": {
+                    "data_relation": {
+                        "embeddable": true,
+                        "field": "_id",
+                        "resource": "content_templates"
+                    },
+                    "nullable": false,
+                    "required": false,
+                    "type": "objectid"
+                },
+                "translated_from": {
+                    "mapping": {
+                        "index": "not_analyzed",
+                        "type": "string"
+                    },
+                    "type": "string"
+                },
+                "translation_id": {
+                    "mapping": {
+                        "index": "not_analyzed",
+                        "type": "string"
+                    },
+                    "type": "string"
+                },
+                "type": {
+                    "allowed": [
+                        "text",
+                        "preformatted",
+                        "audio",
+                        "video",
+                        "picture",
+                        "graphic",
+                        "composite",
+                        "event"
+                    ],
+                    "default": "text",
+                    "mapping": {
+                        "index": "not_analyzed",
+                        "type": "string"
+                    },
+                    "type": "string"
+                },
+                "unique_id": {
+                    "type": "integer",
+                    "unique": true
+                },
+                "unique_name": {
+                    "mapping": {
+                        "index": "not_analyzed",
+                        "type": "string"
+                    },
+                    "type": "string",
+                    "unique": true
+                },
+                "urgency": {
+                    "nullable": true,
+                    "type": "integer"
+                },
+                "usageterms": {
+                    "nullable": true,
+                    "type": "string"
+                },
+                "version": {
+                    "type": "integer"
+                },
+                "version_creator": {
+                    "data_relation": {
+                        "embeddable": true,
+                        "field": "_id",
+                        "resource": "users"
+                    },
+                    "nullable": false,
+                    "required": false,
+                    "type": "objectid"
+                },
+                "versioncreated": {
+                    "type": "datetime"
+                },
+                "word_count": {
+                    "type": "integer"
+                }
+            }
+
++ Response 201 (application/json)
+
++ Response 400 (application/json)
+
++ Response 412 (application/json)
+
+
+## An Item [/archive/{item_id}]
+
+This endpoint will return the details of an item in archive collection. It will fail to return if:
+
+- Item is in an invisible stage
+
++ Parameters
+
+    - item_id (string) ... item id
+
+### Details of An Item [GET]
+
++ Response 200 (application/json)
+
+    + Body
+
+            {
+                "unique_id": 1081,
+                "version": 1,
+                "guid": "urn:newsml:localhost:5000:2019-05-22T20:50:49.059813:1a5e18f9-d324-43f1-a059-26040ecc58cb",
+                "task": {
+                    "user": "5981c6621d41c82dbab98631",
+                    "stage": "5981c6621d41c82dbab98637",
+                    "desk": "5981c6621d41c82dbab98639"
+                },
+                "firstcreated": "2019-05-22T10:50:49+0000",
+                "_created": "2019-05-22T10:50:49+0000",
+                "lock_time": "2019-05-22T10:52:23+0000",
+                "_current_version": 3,
+                "urgency": 3,
+                "lock_user": "5981c6621d41c82dbab98631",
+                "priority": 6,
+                "dateline": {
+                    "located": {
+                        "country_code": "RU",
+                        "state_code": "RU.30",
+                        "state": "Khabarovsk Krai",
+                        "country": "Russia",
+                        "tz": "Asia/Vladivostok",
+                        "city_code": "Khabarovsk Vtoroy",
+                        "dateline": "city",
+                        "city": "Khabarovsk Vtoroy",
+                        "alt_name": ""
+                    },
+                    "text": "KHABAROVSK VTOROY, May 22 Superdesk -",
+                    "date": "2019-05-22T10:50:56+0000",
+                    "source": "Superdesk"
+                },
+                "_id": "urn:newsml:localhost:5000:2019-05-22T20:50:49.059813:1a5e18f9-d324-43f1-a059-26040ecc58cb",
+                "place": [],
+                "original_creator": "5981c6621d41c82dbab98631",
+                "sign_off": "fl",
+                "event_id": "tag:localhost:5000:2019:837b6edc-37a1-42f7-876c-894bbc7baafb",
+                "pubstatus": "usable",
+                "genre": [
+                    {
+                        "qcode": "Article",
+                        "name": "Article (news)"
+                    }
+                ],
+                "_updated": "2019-05-22T10:52:23+0000",
+                "_etag": "08c83487e7862328961d8bce876fac3c71f568c6",
+                "operation": "update",
+                "_latest_version": 3,
+                "unique_name": "#1081",
+                "versioncreated": "2019-05-22T10:52:20+0000",
+                "force_unlock": true,
+                "flags": {
+                    "marked_for_not_publication": false,
+                    "marked_for_sms": false,
+                    "marked_archived_only": false,
+                    "marked_for_legal": false
+                },
+                "expiry": null,
+                "type": "text",
+                "state": "in_progress",
+                "version_creator": "5981c6621d41c82dbab98631",
+                "language": "en",
+                "format": "HTML",
+                "family_id": "urn:newsml:localhost:5000:2019-05-22T20:50:49.059813:1a5e18f9-d324-43f1-a059-26040ecc58cb",
+                "lock_session": "5ce51db81d41c816a789cb1c",
+                "schedule_settings": {
+                    "utc_embargo": null,
+                    "time_zone": null
+                },
+                "lock_action": "edit",
+                "source": "Superdesk"
+            }
+           
+
+### Update A Story [PATCH]
+
+When an archive item is updated the following actions take place in the system:
+
+- Update of an archive item saves the current version of the item and saves the changes as a new **version**. 
+- If there is a picture in the updates then renditions will be created
+- **versioncreated** field is assigned the current date value
+- **version_creator** field is assigned the user id
+- **word_count** field is updated
+
+Update of an archive item will fail if:
+- item is locked by another user
+- state of the article is Killed or Recalled
+- user is trying to update the package with Public Service Announcements
+- user is authorized to update unique name of the article
+- user is trying to update the genre of a broadcast article
+- article being scheduled and is in a package
+- article being scheduled and schedule timestamp is invalid
+- article has valid crops if the article type is a picture
+- article is a valid package if the article type is a package
+- article has a valid Embargo
+- item is on readonly stage.
+
++ Request (application/json)
+
+    + Headers
+    
+            If-Match: {_etag}
+    
+    + Body
+
+            { 
+                "headline": "test headline"
+            }
+
++ Response 200 (application/json)
+
++ Response 403 (application/json)
+
