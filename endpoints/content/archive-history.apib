@@ -1,0 +1,126 @@
+## Archive History Collection [/archive_history] 
+
+### List All Archive History Items [GET]
+
++ Response 200 (application/json)
+
+        {
+            "_items": [
+                {
+                    "_created": "2017-11-09T09:58:54+0000",
+                    "_etag": "087983b98c85471f973dd15d7ef39c3cfe5d7d66",
+                    "version": 10,
+                    "operation": "duplicate",
+                    "update": {
+                        "duplicate_id": "urn:newsml:localhost:2017-11-09T20:58:54.911205:24390a6d-a042-458d-9e9d-01a9b6c6da4d"
+                    },
+                    "item_id": "urn:newsml:localhost:2018-02-10T08:58:31.870286:4a342995-527b-4a24-bd15-a76c1360128f",
+                    "_links": {
+                        "self": {
+                            "title": "Archive_history",
+                            "href": "archive_history/5a7e19881d41c80d4c10878b"
+                        }
+                    },
+                    "original_item_id": "urn:newsml:localhost:5000:2017-11-17T09:10:56.517394:77090ad9-ce88-4fe1-933d-9b54525be19c",
+                    "user_id": "57b99db91d41c844b98d6832",
+                    "_id": "5a7e19881d41c80d4c10878b",
+                    "_updated": "2017-11-09T09:58:54+0000"
+                },
+                {
+                    "_created": "2018-02-09T21:58:32+0000",
+                    "_etag": "07d5e7f8cb1685dc6b039597338ecd8efd2074b2",
+                    "version": 14,
+                    "operation": "duplicated_from",
+                    "update": {
+                        "duplicate_id": "urn:newsml:localhost:5000:2017-11-17T09:10:56.517394:77090ad9-ce88-4fe1-933d-9b54525be19c"
+                    },
+                    "item_id": "urn:newsml:localhost:2018-02-10T08:58:31.870286:4a342995-527b-4a24-bd15-a76c1360128f",
+                    "_links": {
+                        "self": {
+                            "title": "Archive_history",
+                            "href": "archive_history/5a7e19881d41c80d4c10879e"
+                        }
+                    },
+                    "user_id": "57b99db91d41c844b98d6832",
+                    "_id": "5a7e19881d41c80d4c10879e",
+                    "_updated": "2018-02-09T21:58:32+0000"
+                },
+                {
+                    "_created": "2019-03-21T11:31:16+0000",
+                    "_etag": "806c66d1e6b15d84e3b83f185b2ef7da97967d0f",
+                    "version": 0,
+                    "operation": "item_lock",
+                    "update": {
+                        "lock_session": "5c8c71471d41c8490a133c8a",
+                        "lock_user": "5981c6621d41c82dbab98631",
+                        "lock_action": "edit",
+                        "lock_time": "2019-03-21T11:31:16+0000"
+                    },
+                    "_id": "5c937c701d41c8a5f96eece8",
+                    "_links": {
+                        "self": {
+                            "title": "Archive_history",
+                            "href": "archive_history/5c937c701d41c8a5f96eece8"
+                        }
+                    },
+                    "original_item_id": "urn:newsml:localhost:5000:2019-03-21T22:31:16.176188:51e664f2-1918-441b-ae0e-e4054f401d4c",
+                    "user_id": "5981c6621d41c82dbab98631",
+                    "item_id": "urn:newsml:localhost:5000:2019-03-21T22:58:40.550428:154fcbe9-a82d-42b6-be0c-a9bc9865ef35",
+                    "_updated": "2019-03-21T11:31:16+0000"
+                },
+                {
+                    "_created": "2019-03-21T12:03:06+0000",
+                    "_etag": "6b300e1af88124ef4c8fae76b1ce058ade3e8c49",
+                    "version": 6,
+                    "operation": "item_unlock",
+                    "update": {
+                        "lock_session": null,
+                        "lock_user": null,
+                        "lock_action": null,
+                        "lock_time": null
+                    },
+                    "_id": "5c937d7a1d41c8a5f96eed1f",
+                    "_links": {
+                        "self": {
+                            "title": "Archive_history",
+                            "href": "archive_history/5c937d7a1d41c8a5f96eed1f"
+                        }
+                    },
+                    "user_id": "5981c6621d41c82dbab98631",
+                    "item_id": "urn:newsml:localhost:5000:2019-03-21T22:58:40.550428:154fcbe9-a82d-42b6-be0c-a9bc9865ef35",
+                    "_updated": "2019-03-21T12:03:06+0000"
+                }
+            ]
+        }
+
+
+## An Archive History Item [/archive_history/{id}]
+
++ Parameters
+
+    - id (string) ... archive history item id
+
+### Details of An History Item [GET]
+
++ Response 200 (application/json)
+
+    + Body
+
+            {
+                "_created": "2019-03-21T12:03:06+0000",
+                "_etag": "6b300e1af88124ef4c8fae76b1ce058ade3e8c49",
+                "version": 6,
+                "operation": "item_unlock",
+                "update": {
+                    "lock_session": null,
+                    "lock_user": null,
+                    "lock_action": null,
+                    "lock_time": null
+                },
+                "_id": "5c937d7a1d41c8a5f96eed1f",
+                "user_id": "5981c6621d41c82dbab98631",
+                "_type": "archive_history",
+                "item_id": "urn:newsml:localhost:5000:2019-03-21T22:58:40.550428:154fcbe9-a82d-42b6-be0c-a9bc9865ef35",
+                "_updated": "2019-03-21T12:03:06+0000"
+            }
+           

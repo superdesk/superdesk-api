@@ -1,461 +1,51 @@
+## Archive Autosave Resource [/archive_autosave] 
 
+### Autosave an Archive Item [POST]
 
-## Archive Collection [/archive] 
-
-Archive collection contains stories under production.
-
-### List All Archive [GET]
-
-+ Response 200 (application/json)
-
-        {
-            "_aggregations": {
-                "category": {
-                    "sum_other_doc_count": 0,
-                    "doc_count_error_upper_bound": 0,
-                    "buckets": [
-                        {
-                            "key": "sport",
-                            "doc_count": 120
-                        },
-                        {
-                            "key": "world",
-                            "doc_count": 119
-                        },
-                        {
-                            "key": "Sport",
-                            "doc_count": 7
-                        },
-                        {
-                            "key": "Entertainment",
-                            "doc_count": 5
-                        },
-                        {
-                            "key": "features",
-                            "doc_count": 4
-                        },
-                        {
-                            "key": "Domestic news",
-                            "doc_count": 3
-                        },
-                        {
-                            "key": "Politics",
-                            "doc_count": 1
-                        },
-                        {
-                            "key": "finance",
-                            "doc_count": 1
-                        },
-                        {
-                            "key": "national",
-                            "doc_count": 1
-                        }
-                    ]
-                },
-                "desk": {
-                    "sum_other_doc_count": 0,
-                    "doc_count_error_upper_bound": 0,
-                    "buckets": [
-                        {
-                            "key": "5bc0893ebfb76600e3158e6e",
-                            "doc_count": 9017
-                        },
-                        {
-                            "key": "5ab27ab6cdfe38023cd29eac",
-                            "doc_count": 163
-                        },
-                        {
-                            "key": "5b3204bbcdfe3800e56e9613",
-                            "doc_count": 134
-                        },
-                        {
-                            "key": "5ab39795cdfe3800e091fb38",
-                            "doc_count": 56
-                        },
-                        {
-                            "key": "5ab37905cdfe3800e091f9e8",
-                            "doc_count": 43
-                        },
-                        {
-                            "key": "5ab386c9cdfe3800e091fa1b",
-                            "doc_count": 37
-                        },
-                        {
-                            "key": "5b62a55dbfb76600e060d122",
-                            "doc_count": 28
-                        },
-                        {
-                            "key": "5b98fdb5bfb766031d17086a",
-                            "doc_count": 12
-                        },
-                        {
-                            "key": "5ba0eab7bfb76600df7fd6ad",
-                            "doc_count": 5
-                        },
-                        {
-                            "key": "5baa0addbfb76600e5e1b26d",
-                            "doc_count": 4
-                        },
-                        {
-                            "key": "5c5138d4bfb76600df081b36",
-                            "doc_count": 4
-                        },
-                        {
-                            "key": "5c2fb954bfb76600ddfe327a",
-                            "doc_count": 3
-                        },
-                        {
-                            "key": "5beafb9bbfb76600e64ff5ef",
-                            "doc_count": 2
-                        },
-                        {
-                            "key": "5ba0ccd5bfb76600e3a6af84",
-                            "doc_count": 1
-                        },
-                        {
-                            "key": "5bd1900fbfb76600e000b22b",
-                            "doc_count": 1
-                        }
-                    ]
-                },
-                "legal": {
-                    "sum_other_doc_count": 0,
-                    "doc_count_error_upper_bound": 0,
-                    "buckets": [
-                        {
-                            "doc_count": 9513,
-                            "key": 0,
-                            "key_as_string": "false"
-                        }
-                    ]
-                },
-                "source": {
-                    "sum_other_doc_count": 0,
-                    "doc_count_error_upper_bound": 0,
-                    "buckets": [
-                        {
-                            "key": "Toronto Star",
-                            "doc_count": 9011
-                        },
-                        {
-                            "key": "Superdesk",
-                            "doc_count": 157
-                        },
-                        {
-                            "key": "NaregsYarde",
-                            "doc_count": 142
-                        },
-                        {
-                            "key": "Belga",
-                            "doc_count": 86
-                        },
-                        {
-                            "key": "SD World",
-                            "doc_count": 35
-                        },
-                        {
-                            "key": "SD Lucre",
-                            "doc_count": 31
-                        },
-                        {
-                            "key": "Image files from FTP",
-                            "doc_count": 15
-                        },
-                        {
-                            "key": "NaregAug",
-                            "doc_count": 8
-                        },
-                        {
-                            "key": "Reuters",
-                            "doc_count": 7
-                        },
-                        {
-                            "key": "test",
-                            "doc_count": 4
-                        },
-                        {
-                            "key": "AMNA",
-                            "doc_count": 3
-                        },
-                        {
-                            "key": "SD snappers",
-                            "doc_count": 3
-                        },
-                        {
-                            "key": "AAP",
-                            "doc_count": 2
-                        },
-                        {
-                            "key": "KP",
-                            "doc_count": 2
-                        }
-                    ]
-                },
-                "sms": {
-                    "sum_other_doc_count": 0,
-                    "doc_count_error_upper_bound": 0,
-                    "buckets": [
-                        {
-                            "doc_count": 9512,
-                            "key": 0,
-                            "key_as_string": "false"
-                        },
-                        {
-                            "doc_count": 1,
-                            "key": 1,
-                            "key_as_string": "true"
-                        }
-                    ]
-                },
-                "genre": {
-                    "sum_other_doc_count": 0,
-                    "doc_count_error_upper_bound": 0,
-                    "buckets": [
-                        {
-                            "key": "Article (news)",
-                            "doc_count": 9510
-                        },
-                        {
-                            "key": "Fixture",
-                            "doc_count": 1
-                        },
-                        {
-                            "key": "Insight",
-                            "doc_count": 1
-                        },
-                        {
-                            "key": "Interview",
-                            "doc_count": 1
-                        }
-                    ]
-                },
-                "type": {
-                    "sum_other_doc_count": 0,
-                    "doc_count_error_upper_bound": 0,
-                    "buckets": [
-                        {
-                            "key": "text",
-                            "doc_count": 9340
-                        },
-                        {
-                            "key": "picture",
-                            "doc_count": 161
-                        },
-                        {
-                            "key": "video",
-                            "doc_count": 7
-                        },
-                        {
-                            "key": "composite",
-                            "doc_count": 4
-                        },
-                        {
-                            "key": "audio",
-                            "doc_count": 1
-                        }
-                    ]
-                },
-                "urgency": {
-                    "sum_other_doc_count": 0,
-                    "doc_count_error_upper_bound": 0,
-                    "buckets": [
-                        {
-                            "key": 3,
-                            "doc_count": 9507
-                        },
-                        {
-                            "key": 2,
-                            "doc_count": 5
-                        },
-                        {
-                            "key": 4,
-                            "doc_count": 1
-                        }
-                    ]
-                },
-                "priority": {
-                    "sum_other_doc_count": 0,
-                    "doc_count_error_upper_bound": 0,
-                    "buckets": [
-                        {
-                            "key": 6,
-                            "doc_count": 9512
-                        },
-                        {
-                            "key": 1,
-                            "doc_count": 1
-                        }
-                    ]
-                }
-            },
-            "_items": [
-                {
-                    "flags": {
-                        "marked_for_not_publication": false,
-                        "marked_for_legal": false,
-                        "marked_archived_only": false,
-                        "marked_for_sms": false
-                    },
-                    "ingest_version": null,
-                    "family_id": "urn:newsml:sdp-master.test.superdesk.org:2019-07-01T10:57:41.314552:5073bc18-d908-4e8b-b19e-91685df4c4a3",
-                    "_latest_version": 1,
-                    "unique_name": "#135262",
-                    "abstract": "<img src=\"https://www.thestar.com/content/dam/thestar/wsj/static/business.jpg\"/><br/>",
-                    "body_html": "<p><a href=\"https://www.thestar.com/wsj/business/2019/07/01/performance-food-to-buy-reinhart-in-2-billion-deal.html\" target=\"_blank\">Toronto Star</a></p>",
-                    "version_creator": "",
-                    "type": "text",
-                    "pubstatus": "usable",
-                    "firstcreated": "2019-07-01T10:02:00+0000",
-                    "ingest_id": "tag:www.thestar.com:SB12805530939054743790104585398062168981890",
-                    "dateline": {
-                        "source": "Toronto Star",
-                        "date": "2019-07-01T10:02:00+0000"
-                    },
-                    "versioncreated": "2019-07-01T10:57:41+0000",
-                    "priority": 6,
-                    "schedule_settings": {
-                        "utc_embargo": null,
-                        "time_zone": null
-                    },
-                    "state": "routed",
-                    "_updated": "2019-07-01T10:57:41+0000",
-                    "_id": "tag:sdp-master.test.superdesk.org:2019:7280f6f7-51e2-42d4-be92-8eceba5e3f7b",
-                    "urgency": 3,
-                    "headline": "Performance Food to Buy Reinhart in $2 Billion Deal",
-                    "format": "HTML",
-                    "word_count": 2,
-                    "ingest_provider_sequence": "4217",
-                    "original_creator": "",
-                    "genre": [
-                        {
-                            "qcode": "Article",
-                            "name": "Article (news)"
-                        }
-                    ],
-                    "byline": "<a href=\"mailto:micah.maidenberg@wsj.com\">Micah Maidenberg</a> - WSJ",
-                    "language": "en",
-                    "_created": "2019-07-01T10:57:41+0000",
-                    "event_id": "tag:sdp-master.test.superdesk.org:2019:b9d865c4-3d98-4079-b03c-aeef70a6a9e7",
-                    "source": "Toronto Star",
-                    "unique_id": 135262,
-                    "profile": "5bc0b93cbfb76600e315913b",
-                    "operation": "fetch",
-                    "task": {
-                        "user": null,
-                        "desk": "5bc0893ebfb76600e3158e6e",
-                        "stage": "5bc0893ebfb76600e3158e6d"
-                    },
-                    "_etag": "392f6aa91729a3c50065241f3cb7c8232b6be2bf",
-                    "ingest_provider": "5beaf858bfb76600e64ff5d5",
-                    "expiry": "2019-07-21T10:57:41+0000",
-                    "_current_version": 1,
-                    "guid": "tag:sdp-master.test.superdesk.org:2019:7280f6f7-51e2-42d4-be92-8eceba5e3f7b"
-                }
-            ]
-        }
-
-
-### Create A New Item [POST]
-
-When a new item is posted some of the fields in the schema is autogenerated on the server
-
-- A new **guid** and **_id** fields are assigned to a new value (their values will be the same)
-- A **unique_id** is assigned to story that is unique in archive collection
-- A **family_id** is copied from guid. For cloned stories family_id is preserved across clones.
-- An **event_id** is assigned 
-- **state** is set to Draft
-- **source** is assigned the value of the ingest provide if the item is fetched. Otherwise if there is a
-default source for the desk the item is created then that source is assigned. Otherwise the source in the global
-settings will be assigned.
-- If the item has a **profile** field or if there"s a global profile is assigned, then story will copy the metadata
-from all the fields defined in the content type of the profile.
-- If there are default values assigned for fields **priority**, **genre**, **urgency** then they will be populated
-- If there are default preferences defined for the user for fields **dateline**, **byline**, **place** then they will be populated
-- **signoff** field is updated:
-    1. sign_off = sign_off of original + sign_off of the user performing operation.
-    2. If the last modified user and the user performing operation are same then sign_off shouldn"t change
-    3. If sign_off is received on updates, this value will be preserved
-    4. If a users sign_off is already in the list then it will be removed and appended to the end
-- **word_count** will be calculated
-- **expiry** is set according to expiry values on stage, or desk, or global settings
-- If there are metada defined in the desk then desk metada will be reflected on the item
-
-
-Creation of a new item will fail if:
-
-- Stage is a readonly stage
-- If there"s a schedule provided but the date is in the past or date is not recognized
-
-
-Media Sources
-
-- If there"s a url in the **media** field of the item then the media will be fetched as a file
-- If there"s a file reference to the item in **media** field, that file will be user_marked
-- Renditions will be generated for **picture** files. Renditions are defined in vocabularies.
-
+Autosave is used to save the ongoing edits on an archive item. The snapshot of the item can be saved
+by posting to this endpoint. Autosave will fail if there is not story found with the given id.
 
 + Request (application/json)
 
     + Body
         
             {
-                "task": {
-                    "user": "5981c6621d41c82dbab98631",
-                    "desk": "5981c6621d41c82dbab98639",
-                    "stage": "5981c6621d41c82dbab98637"
-                },
-                "language": "en",
-                "event_id": "tag:localhost:5000:2019:837b6edc-37a1-42f7-876c-894bbc7baafb",
-                "type": "text",
-                "place": [],
-                "lock_action": "edit",
+                "_id": "urn:newsml:localhost:2019-07-02T11:19:22.852887:641186c9-6392-48df-b880-ad27561eab9c",
+                "headline": "headline",
+                "slugline": "test",
+                "body_html": "<p>this is the body</p>",
+                "abstract": "<p>abstract</p>",
+                "byline": "Dr Admin Adminis",
+                "urgency": 3,
+                "priority": 6,
                 "genre": [
                     {
-                        "name": "Article (news)",
-                        "qcode": "Article"
+                        "qcode": "Article",
+                        "name": "Article (news)"
                     }
                 ],
-                "pubstatus": "usable",
-                "sign_off": "fl",
+                "place": [
+                    {
+                        "qcode": "australia",
+                        "name": "Australia"
+                    }
+                ],
+                "language": "en",
+                "unique_name": "#135775",
+                "sign_off": "ADM",
                 "flags": {
                     "marked_for_not_publication": false,
-                    "marked_archived_only": false,
                     "marked_for_legal": false,
-                    "marked_for_sms": false
+                    "marked_for_sms": false,
+                    "marked_archived_only": false
                 },
-                "family_id": "urn:newsml:localhost:5000:2019-05-22T20:50:49.059813:1a5e18f9-d324-43f1-a059-26040ecc58cb",
-                "operation": "update",
-                "source": "Superdesk",
-                "urgency": 3,
-                "version": 1,
-                "format": "HTML",
-                "priority": 6,
-                "dateline": {
-                    "text": "KHABAROVSK VTOROY, May 22 Superdesk -",
-                    "located": {
-                        "tz": "Asia/Vladivostok",
-                        "city": "Khabarovsk Vtoroy",
-                        "alt_name": "",
-                        "city_code": "Khabarovsk Vtoroy",
-                        "state": "Khabarovsk Krai",
-                        "dateline": "city",
-                        "country": "Russia",
-                        "country_code": "RU",
-                        "state_code": "RU.30"
-                    },
-                    "date": "2019-05-22T10:50:56+0000",
-                    "source": "Superdesk"
-                },
-                "versioncreated": "2019-05-22T10:52:20+0000",
-                "version_creator": "5981c6621d41c82dbab98631",
-                "state": "in_progress",
-                "firstcreated": "2019-05-22T10:50:49+0000",
-                "original_creator": "5981c6621d41c82dbab98631",
-                "lock_session": "5ce51db81d41c816a789cb1c",
+                "pubstatus": "usable",
                 "schedule_settings": {
                     "utc_embargo": null,
                     "time_zone": null
-                }
+                },
+                "profile": "5bc0938bbfb76600e3158f17",
+                "format": "HTML"
             }
 
     + Schema
@@ -1523,118 +1113,116 @@ Media Sources
 + Response 412 (application/json)
 
 
-## An Item [/archive/{item_id}]
-
-This endpoint will return the details of an item in archive collection. It will fail to return if:
-
-- Item is in an invisible stage
+## An autosaved item [/archive_autosave/{item_id}]
 
 + Parameters
 
     - item_id (string) ... item id
 
-### Details of An Item [GET]
+### Details of A Vocabulary [GET]
 
 + Response 200 (application/json)
 
     + Body
 
             {
-                "unique_id": 1081,
+                "unique_id": 1019,
+                "sms_message": "",
                 "version": 1,
-                "guid": "urn:newsml:localhost:5000:2019-05-22T20:50:49.059813:1a5e18f9-d324-43f1-a059-26040ecc58cb",
+                "guid": "urn:newsml:localhost:2017-11-09T20:42:29.363951:2a4b78b8-a225-4594-8307-6b43bcaf28af",
+                "lock_action": null,
                 "task": {
-                    "user": "5981c6621d41c82dbab98631",
-                    "stage": "5981c6621d41c82dbab98637",
-                    "desk": "5981c6621d41c82dbab98639"
+                    "user": "57b99db91d41c844b98d6832",
+                    "stage": "54e691ca1024542de640fef0",
+                    "desk": "54e691ca1024542de640fef1"
                 },
-                "firstcreated": "2019-05-22T10:50:49+0000",
-                "_created": "2019-05-22T10:50:49+0000",
-                "lock_time": "2019-05-22T10:52:23+0000",
-                "_current_version": 3,
+                "firstcreated": "2017-11-09T09:42:29+0000",
+                "_created": "2017-11-09T09:44:45+0000",
+                "slugline": "Financial Markets C",
+                "lock_time": null,
                 "urgency": 3,
-                "lock_user": "5981c6621d41c82dbab98631",
-                "priority": 6,
+                "lock_user": null,
+                "anpa_category": [
+                    {
+                        "subject": "04000000",
+                        "qcode": "f",
+                        "scheme": null,
+                        "name": "Finance"
+                    }
+                ],
                 "dateline": {
+                    "date": "2017-11-09T09:42:56+0000",
+                    "source": "AAP",
                     "located": {
-                        "country_code": "RU",
-                        "state_code": "RU.30",
-                        "state": "Khabarovsk Krai",
-                        "country": "Russia",
-                        "tz": "Asia/Vladivostok",
-                        "city_code": "Khabarovsk Vtoroy",
+                        "state_code": "NSW",
+                        "country_code": "AU",
+                        "alt_name": "",
+                        "state": "New South Wales",
+                        "country": "Australia",
+                        "tz": "Australia/Sydney",
+                        "city_code": "Sydney",
                         "dateline": "city",
-                        "city": "Khabarovsk Vtoroy",
-                        "alt_name": ""
+                        "city": "Sydney"
                     },
-                    "text": "KHABAROVSK VTOROY, May 22 Superdesk -",
-                    "date": "2019-05-22T10:50:56+0000",
-                    "source": "Superdesk"
+                    "text": "SYDNEY, Nov 9 AAP -"
                 },
-                "_id": "urn:newsml:localhost:5000:2019-05-22T20:50:49.059813:1a5e18f9-d324-43f1-a059-26040ecc58cb",
+                "word_count": 1,
                 "place": [],
-                "original_creator": "5981c6621d41c82dbab98631",
-                "sign_off": "fl",
-                "event_id": "tag:localhost:5000:2019:837b6edc-37a1-42f7-876c-894bbc7baafb",
-                "pubstatus": "usable",
+                "original_creator": "57b99db91d41c844b98d6832",
+                "sign_off": "ADM",
+                "event_id": "tag:localhost:2017:ccb18deb-f7bf-46bb-8529-df6e2b6a683f",
+                "_etag": "1bba2e8771a36ef4bcccc866ac096456149476ff",
+                "priority": 6,
                 "genre": [
                     {
                         "qcode": "Article",
                         "name": "Article (news)"
                     }
                 ],
-                "_updated": "2019-05-22T10:52:23+0000",
-                "_etag": "08c83487e7862328961d8bce876fac3c71f568c6",
-                "operation": "update",
-                "_latest_version": 3,
-                "unique_name": "#1081",
-                "versioncreated": "2019-05-22T10:52:20+0000",
-                "force_unlock": true,
+                "_updated": "2017-11-09T09:44:45+0000",
+                "publish_schedule": null,
+                "operation": "correct",
+                "_id": "urn:newsml:localhost:2017-11-09T20:42:29.363951:2a4b78b8-a225-4594-8307-6b43bcaf28af",
+                "unique_name": "#1019",
+                "versioncreated": "2017-11-09T09:44:43+0000",
                 "flags": {
-                    "marked_for_not_publication": false,
                     "marked_for_sms": false,
                     "marked_archived_only": false,
+                    "marked_for_not_publication": false,
                     "marked_for_legal": false
                 },
-                "expiry": null,
-                "type": "text",
-                "state": "in_progress",
-                "version_creator": "5981c6621d41c82dbab98631",
-                "language": "en",
+                "correction_sequence": 2,
+                "expiry": "2017-11-12T09:44:43+0000",
                 "format": "HTML",
-                "family_id": "urn:newsml:localhost:5000:2019-05-22T20:50:49.059813:1a5e18f9-d324-43f1-a059-26040ecc58cb",
-                "lock_session": "5ce51db81d41c816a789cb1c",
+                "type": "text",
+                "state": "corrected",
+                "version_creator": "57b99db91d41c844b98d6832",
+                "body_html": "<p>123123213</p>",
+                "language": "en",
+                "_type": "archive_autosave",
+                "ednote": "In the story \"Financial Markets\" sent at: 09/11/2017 20:43\r\n\r\nThis is a corrected repeat.",
+                "family_id": "urn:newsml:localhost:2017-11-09T20:42:29.363951:2a4b78b8-a225-4594-8307-6b43bcaf28af",
+                "lock_session": null,
+                "pubstatus": "usable",
                 "schedule_settings": {
                     "utc_embargo": null,
+                    "utc_publish_schedule": null,
                     "time_zone": null
                 },
-                "lock_action": "edit",
-                "source": "Superdesk"
+                "headline": "Fin Corr",
+                "source": "AAP",
+                "subject": [
+                    {
+                        "parent": "05000000",
+                        "qcode": "05001000",
+                        "scheme": null,
+                        "name": "adult education"
+                    }
+                ]
             }
            
 
-### Update A Story [PATCH]
-
-When an archive item is updated the following actions take place in the system:
-
-- Update of an archive item saves the current version of the item and saves the changes as a new **version**. 
-- If there is a picture in the updates then renditions will be created
-- **versioncreated** field is assigned the current date value
-- **version_creator** field is assigned the user id
-- **word_count** field is updated
-
-Update of an archive item will fail if:
-- item is locked by another user
-- state of the article is Killed or Recalled
-- user is trying to update the package with Public Service Announcements
-- user is authorized to update unique name of the article
-- user is trying to update the genre of a broadcast article
-- article being scheduled and is in a package
-- article being scheduled and schedule timestamp is invalid
-- article has valid crops if the article type is a picture
-- article is a valid package if the article type is a package
-- article has a valid Embargo
-- item is on readonly stage.
+### Update A Vocabulary [PATCH]
 
 + Request (application/json)
 
@@ -1645,68 +1233,122 @@ Update of an archive item will fail if:
     + Body
 
             { 
-                "headline": "test headline"
+                "headline": "Fin Corr"
             }
 
 + Response 200 (application/json)
 
 + Response 403 (application/json)
 
-## Archive Copy Resource [/archive/{item_id}/copy] 
-
-This endpoint will copy a **draft** item in users private workspace.Copy function fail is the item is on a desk.
-
-- Item is in an invisible stage
-
-+ Parameters
-
-    - item_id (string) ... item id
-
-### Copy An Item [POST]
+### Replace an autosaved item [PUT]
 
 + Response 200 (application/json)
 
     + Body
 
             {
-                
-            }
-
-## Archive Duplicate Resource [/archive/{item_id}/duplicate] 
-
-This endpoint will duplicate an item and move it to given desk and stage.
-Duplication will fail if there is no desk and stage provided.
-**sign_off** field of the duplicated item will be updated by duplicator id.
-Duplicated item will have a new **event_id**
-
-- Item is in an invisible stage
-
-+ Parameters
-
-    - item_id (string) ... item id
-
-### Duplicate An Item [POST]
-
-+ Response 200 (application/json)
-
-    + Body
-
-            {
-                
-            }
-
-    + Schema
-
-            {
-                "desk": "{desk_id}",
-                "stage": "{stage_id}",
-                "type": {
-                    "type": "string",
-                    "required": true
+                "unique_id": 1019,
+                "sms_message": "",
+                "version": 1,
+                "guid": "urn:newsml:localhost:2017-11-09T20:42:29.363951:2a4b78b8-a225-4594-8307-6b43bcaf28af",
+                "lock_action": null,
+                "task": {
+                    "user": "57b99db91d41c844b98d6832",
+                    "stage": "54e691ca1024542de640fef0",
+                    "desk": "54e691ca1024542de640fef1"
                 },
-                "item_id": {
-                    "type": "string",
-                    "required": false
-                }
-            }            
-                      
+                "firstcreated": "2017-11-09T09:42:29+0000",
+                "_created": "2017-11-09T09:44:45+0000",
+                "slugline": "Financial Markets C",
+                "lock_time": null,
+                "urgency": 3,
+                "lock_user": null,
+                "anpa_category": [
+                    {
+                        "subject": "04000000",
+                        "qcode": "f",
+                        "scheme": null,
+                        "name": "Finance"
+                    }
+                ],
+                "dateline": {
+                    "date": "2017-11-09T09:42:56+0000",
+                    "source": "AAP",
+                    "located": {
+                        "state_code": "NSW",
+                        "country_code": "AU",
+                        "alt_name": "",
+                        "state": "New South Wales",
+                        "country": "Australia",
+                        "tz": "Australia/Sydney",
+                        "city_code": "Sydney",
+                        "dateline": "city",
+                        "city": "Sydney"
+                    },
+                    "text": "SYDNEY, Nov 9 AAP -"
+                },
+                "word_count": 1,
+                "place": [],
+                "original_creator": "57b99db91d41c844b98d6832",
+                "sign_off": "ADM",
+                "event_id": "tag:localhost:2017:ccb18deb-f7bf-46bb-8529-df6e2b6a683f",
+                "_etag": "1bba2e8771a36ef4bcccc866ac096456149476ff",
+                "priority": 6,
+                "genre": [
+                    {
+                        "qcode": "Article",
+                        "name": "Article (news)"
+                    }
+                ],
+                "_updated": "2017-11-09T09:44:45+0000",
+                "publish_schedule": null,
+                "operation": "correct",
+                "_id": "urn:newsml:localhost:2017-11-09T20:42:29.363951:2a4b78b8-a225-4594-8307-6b43bcaf28af",
+                "unique_name": "#1019",
+                "versioncreated": "2017-11-09T09:44:43+0000",
+                "flags": {
+                    "marked_for_sms": false,
+                    "marked_archived_only": false,
+                    "marked_for_not_publication": false,
+                    "marked_for_legal": false
+                },
+                "correction_sequence": 2,
+                "expiry": "2017-11-12T09:44:43+0000",
+                "format": "HTML",
+                "type": "text",
+                "state": "corrected",
+                "version_creator": "57b99db91d41c844b98d6832",
+                "body_html": "<p>123123213</p>",
+                "language": "en",
+                "_type": "archive_autosave",
+                "ednote": "In the story \"Financial Markets\" sent at: 09/11/2017 20:43\r\n\r\nThis is a corrected repeat.",
+                "family_id": "urn:newsml:localhost:2017-11-09T20:42:29.363951:2a4b78b8-a225-4594-8307-6b43bcaf28af",
+                "lock_session": null,
+                "pubstatus": "usable",
+                "schedule_settings": {
+                    "utc_embargo": null,
+                    "utc_publish_schedule": null,
+                    "time_zone": null
+                },
+                "headline": "Fin Corr",
+                "source": "AAP",
+                "subject": [
+                    {
+                        "parent": "05000000",
+                        "qcode": "05001000",
+                        "scheme": null,
+                        "name": "adult education"
+                    }
+                ]
+            }
+           
+
+## Delete A Vocabulary [DELETE]      
+
++ Request (application/json)
+
+        {}
+
++ Response 204 (application/json)
+
++ Response 412 (application/json)
