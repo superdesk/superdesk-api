@@ -1,0 +1,107 @@
+## Comments Collection [/item_comments] 
+
+### List All Comments [GET]
+
++ Response 200 (application/json)
+
+        {
+            "_items": [
+                {
+                    "text": "test comment", 
+                    "item": "tag:localhost:5000:2019:837b6edc-37a1-42f7-876c-894bbc7baafb"
+                }
+            ]
+        }
+
+
+### Create A New Comment [POST]
+
+Creation of the comment will fail if the user of the request is not the same as the user
+in the payload 
+
++ Request (application/json)
+
+    + Body
+        
+            {   
+                "text": "test comment", 
+                "item": "tag:localhost:5000:2019:837b6edc-37a1-42f7-876c-894bbc7baafb"
+            }
+
+    + Schema
+
+            {
+                "text": {
+                    "type": "string",
+                    "minlength": 1,
+                    "maxlength": 500,
+                    "required": true,
+                },
+                "item": {"type": "string"},
+                "user": {"type": "string", "required": true),
+                "mentioned_users": {
+                    "type": "dict"
+                },
+                "mentioned_desks": {
+                    "type": "dict"
+                }
+            }     
+
++ Response 201 (application/json)
+
++ Response 400 (application/json)
+
++ Response 412 (application/json)
+
+
+## A Comment [/Comments/{comment_id}]
+
++ Parameters
+
+    - comment_id (string) ... Comment id
+
+### Details of A Comment [GET]
+
++ Response 200 (application/json)
+
+    + Body
+
+            {
+                "user": "57b99db91d41c844b98d6832",
+                "_id": "5883ca231d41c885556c7357",
+                "mentioned_desks": {},
+                "mentioned_users": {},
+                "text": "Test",
+                "item": "urn:newsml:localhost:2017-01-21T12:36:12.977630:eb147d72-351b-4187-83f0-0fc36c19712c",
+            }
+           
+
+### Update A Comment [PATCH]
+
++ Request (application/json)
+
+    + Headers
+    
+            If-Match: {_etag}
+    
+    + Body
+
+            { 
+
+            }
+
++ Response 200 (application/json)
+
++ Response 403 (application/json)
+
+## Delete A Comment [DELETE]      
+
+Deletes the Comment by given id. 
+
++ Request (application/json)
+
+        {}
+
++ Response 204 (application/json)
+
++ Response 412 (application/json)

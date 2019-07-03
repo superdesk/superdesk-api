@@ -1709,4 +1709,180 @@ Duplicated item will have a new **event_id**
                     "required": false
                 }
             }            
-                      
+
+
+## Archive Move Resource [/archive/{item_id}/move] 
+
+This endpoint will move an item to a given desk and stage.
+Duplication will fail if: 
+- Item is locked by another user
+- If the stage is the same as current stage
+- If the item is a published item
+
+**last_production_desk** and **last_authoring_desk** fields of the moved item 
+will be updated.
+
+When item moves from one stage to another there are three macros can runs against the item
+if they defined for the original and destination stages:
+- Outgoing Macro of original stage
+- Incoming Macro of destination stage
+- OnStage Macro of destination stage
+
+
+
++ Parameters
+
+    - item_id (string) ... item id
+
+### Move An Item [POST]
+
++ Response 200 (application/json)
+
+    + Body
+
+            {
+                "task": {
+                    "desk": "d4354sa8d7sdsaod", 
+                    "stage": "asd3o32423asdu00a99as9"
+                }
+            }
+
+    + Schema
+
+            {
+                "task": {
+                    "type": "dict",
+                    "required": true,
+                    "schema": {
+                        "desk": {"type": "string", "required": true},
+                        "stage": {"type": "string", "required": true}
+                    }
+                },
+                "allPackageItems": {"type": "boolean", "required": false, "nullable": true},
+            }                   
+
+
+## Archive Broadcast Resource [/archive/{item_id}/broadcast] 
+
+Broadcast item can only be created for Text or Pre-formatted item. 
+Item state needs to be Published or Corrected. The **genre** of the created
+broadcast item will be "Broadcast Script"
+
+
+
++ Parameters
+
+    - item_id (string) ... item id
+
+### Move An Item [POST]
+
++ Response 200 (application/json)
+
+    + Body
+
+            {
+                "desk": "d4354sa8d7sdsaod"
+            }
+
+    + Schema
+
+            {
+                "desk": {"type": "string", "required": false, "nullable": true}
+            }                            
+
+
+## Archive Lock Resource [/archive/{item_id}/lock] 
+
+Locks the story for a given user. This will prevent other users editing or moving the item.
+Once the item is locked, it will we added to users "workspace" collection. Lock action will fail
+if the item is already locked by another user or by same user in another session.
+
+
+
++ Parameters
+
+    - item_id (string) ... item id
+
+### Lock An Item [POST]
+
++ Response 200 (application/json)
+
+    + Body
+
+            {
+                "lock_action": "edit"
+            }
+
+    + Schema
+
+            {"lock_action": {"type": "string"}}                   
+
+
+
+## Archive Unlock Resource [/archive/{item_id}/unlock] 
+
+Unlocks the story for a given user. This will prevent other users editing or moving the item.
+Once the item is locked, it will we added to users "workspace" collection
+
+
++ Parameters
+
+    - item_id (string) ... item id
+
+### Unlock An Item [POST]
+
++ Response 200 (application/json)
+
+    + Body
+
+            {
+                
+            }
+
+    + Schema
+
+            {
+
+            }                   
+
+
+
+## Archive Comments Resource [/archive/{item_id}/comments] 
+
+Returns the list of comments for an item
+
+
++ Parameters
+
+    - item_id (string) ... item id
+
+### Comments of An Item [GET]
+
++ Response 200 (application/json)
+
+    + Body
+
+            {
+                "_items": [
+                    {"text": "test comment", "item": "tag:localhost:5000:2019:837b6edc-37a1-42f7-876c-894bbc7baafb"}
+                ]
+            }
+
+    + Schema
+
+            {
+                "text": {
+                    "type": "string",
+                    "minlength": 1,
+                    "maxlength": 500,
+                    "required": true,
+                },
+                "item": {"type": "string"},
+                "user": {"type": "string", "required": true),
+                "mentioned_users": {
+                    "type": "dict"
+                },
+                "mentioned_desks": {
+                    "type": "dict"
+                }
+            }                              
