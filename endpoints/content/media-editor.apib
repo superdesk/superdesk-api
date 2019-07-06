@@ -1,0 +1,55 @@
+## Media Editor Collection [/media_editor] 
+
+### Perform Media Editing [POST]
+
+Performs a media edit action on a whole `item` or an `item_id` from **archive** collection.
+It uses `renditions` of the item to locate the media.
+It is also possible to upload `edit` object with edition instructions.
+
+Edition instructions keys are operations names, and values are
+operations parameters.
+
+So far, the following operations are available:
+
+- rotate (value are counter clockwise degrees)
+- flip (value can be "vertical", "horizontal" or "both")
+- brightness (value is a float)
+- contrast (value is a float)
+- saturation (value is a float)
+- grayscale (value not used)
+
++ Request (application/json)
+
+    + Body
+        
+            {
+                "item_id": "5ba3e2a5bfb76600e0c0fd5f",
+                "edit": {
+                    "rotate": 90
+                }
+            }
+
+    + Schema
+
+            {
+                "item_id": {
+                    "type": "string",
+                    "mapping": not_analyzed
+                },
+                "item": {
+                    "type": "dict",
+                    "mapping": not_analyzed
+                },
+                "edit": {
+                    "type": "dict",
+                    "required": True,
+                    "mapping": not_analyzed
+                }
+            }
+
++ Response 201 (application/json)
+
++ Response 400 (application/json)
+
++ Response 412 (application/json)
+

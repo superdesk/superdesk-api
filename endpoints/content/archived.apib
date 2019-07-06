@@ -1,230 +1,150 @@
+## Archived Collection [/archived] 
+
+Archived collection contains the items that has been published in the system. Every item that has been 
+published, corrected, killed, rewritten will be copied to this collection once they expire in **archive** collection.
+Field **last_published_version** is set to true for last published version of the item in the published collection and 
+for the older version is set to false. This field is used to display the last version of the digital copy in the published view.
 
 
-## Archive Collection [/archive] 
-
-Archive collection contains stories under production.
-
-### List All Archive [GET]
+### List All Archived [GET]
 
 + Response 200 (application/json)
 
         {
+            "_items": [
+            {
+                "headline": "First test",
+                "version_creator": "57b99db91d41c844b98d6832",
+                "abstract": "<p>123123</p>",
+                "body_html": "<p>12323</p>",
+                "word_count": 1,
+                "flags": {
+                    "marked_for_not_publication": false,
+                    "marked_for_legal": false,
+                    "marked_for_sms": false,
+                    "marked_archived_only": false
+                },
+                "last_queue_event": "2017-11-09T09:16:18+0000",
+                "original_creator": "57b99db91d41c844b98d6832",
+                "moved_to_legal": true,
+                "schedule_settings": {
+                    "time_zone": null,
+                    "utc_publish_schedule": null,
+                    "utc_embargo": null
+                },
+                "firstcreated": "2017-11-09T09:15:40+0000",
+                "guid": "urn:newsml:localhost:2017-11-09T20:15:40.425699:f878c9eb-e1a3-4610-81b0-51f933a6b2b4",
+                "is_take_item": false,
+                "last_published_version": true,
+                "_links": {
+                    "self": {
+                        "href": "archived/5a041ce21d41c860c7c7c566",
+                        "title": "Archived"
+                    }
+                },
+                "unique_name": "#1013",
+                "type": "text",
+                "operation": "publish",
+                "family_id": "urn:newsml:localhost:2017-11-09T20:15:40.425699:f878c9eb-e1a3-4610-81b0-51f933a6b2b4",
+                "urgency": 3,
+                "publish_sequence_no": 170,
+                "language": "en",
+                "slugline": "First Test",
+                "dateline": {
+                    "located": {
+                        "tz": "Australia/Sydney",
+                        "country": "Australia",
+                        "city_code": "Sydney",
+                        "dateline": "city",
+                        "state": "New South Wales",
+                        "country_code": "AU",
+                        "city": "Sydney",
+                        "state_code": "NSW",
+                        "alt_name": ""
+                    },
+                    "date": "2017-11-09T09:16:09+0000",
+                    "source": "AAP",
+                    "text": "SYDNEY, Nov 9 AAP -"
+                },
+                "format": "HTML",
+                "version": 1,
+                "sign_off": "ADM",
+                "sms_message": "",
+                "priority": 6,
+                "unique_id": 1013,
+                "_etag": "063ebb868000cb7d8a788ab5bb551f21a1c84450",
+                "_updated": "2017-11-09T09:16:22+0000",
+                "event_id": "tag:localhost:2017:3cca10f0-db3e-49b7-8da0-b7fc9cd0ae99",
+                "_type": "archived",
+                "pubstatus": "usable",
+                "source": "AAP",
+                "queue_state": "queued",
+                "_id": "5a041ce21d41c860c7c7c566",
+                "versioncreated": "2017-11-09T09:16:18+0000",
+                "publish_schedule": null,
+                "genre": [
+                    {
+                        "qcode": "Article",
+                        "name": "Article (news)"
+                    }
+                ],
+                "_created": "2017-11-09T09:16:18+0000",
+                "expiry": "2017-11-12T09:16:18+0000",
+                "place": [],
+                "subject": [
+                    {
+                        "parent": "02001000",
+                        "scheme": null,
+                        "qcode": "02001001",
+                        "name": "homicide"
+                    }
+                ],
+                "task": {
+                    "user": "57b99db91d41c844b98d6832",
+                    "stage": "54e691ca1024542de640fef0",
+                    "desk": "54e691ca1024542de640fef1"
+                },
+                "_current_version": 2,
+                "state": "published",
+                "anpa_category": [
+                    {
+                        "scheme": null,
+                        "qcode": "v",
+                        "name": "Advisories"
+                    }
+                ],
+                "item_id": "urn:newsml:localhost:2017-11-09T20:15:40.425699:f878c9eb-e1a3-4610-81b0-51f933a6b2b4",
+                "archived_id": "urn:newsml:localhost:2017-11-09T20:15:40.425699:f878c9eb-e1a3-4610-81b0-51f933a6b2b4:2"
+            }],
             "_aggregations": {
+                "priority": {
+                    "sum_other_doc_count": 0,
+                    "doc_count_error_upper_bound": 0,
+                    "buckets": [
+                        {
+                            "key": 6,
+                            "doc_count": 22
+                        }
+                    ]
+                },
                 "category": {
                     "sum_other_doc_count": 0,
                     "doc_count_error_upper_bound": 0,
                     "buckets": [
                         {
-                            "key": "sport",
-                            "doc_count": 120
+                            "key": "Advisories",
+                            "doc_count": 17
                         },
                         {
-                            "key": "world",
-                            "doc_count": 119
-                        },
-                        {
-                            "key": "Sport",
-                            "doc_count": 7
-                        },
-                        {
-                            "key": "Entertainment",
-                            "doc_count": 5
-                        },
-                        {
-                            "key": "features",
-                            "doc_count": 4
-                        },
-                        {
-                            "key": "Domestic news",
-                            "doc_count": 3
-                        },
-                        {
-                            "key": "Politics",
-                            "doc_count": 1
-                        },
-                        {
-                            "key": "finance",
-                            "doc_count": 1
-                        },
-                        {
-                            "key": "national",
-                            "doc_count": 1
-                        }
-                    ]
-                },
-                "desk": {
-                    "sum_other_doc_count": 0,
-                    "doc_count_error_upper_bound": 0,
-                    "buckets": [
-                        {
-                            "key": "5bc0893ebfb76600e3158e6e",
-                            "doc_count": 9017
-                        },
-                        {
-                            "key": "5ab27ab6cdfe38023cd29eac",
-                            "doc_count": 163
-                        },
-                        {
-                            "key": "5b3204bbcdfe3800e56e9613",
-                            "doc_count": 134
-                        },
-                        {
-                            "key": "5ab39795cdfe3800e091fb38",
-                            "doc_count": 56
-                        },
-                        {
-                            "key": "5ab37905cdfe3800e091f9e8",
-                            "doc_count": 43
-                        },
-                        {
-                            "key": "5ab386c9cdfe3800e091fa1b",
-                            "doc_count": 37
-                        },
-                        {
-                            "key": "5b62a55dbfb76600e060d122",
-                            "doc_count": 28
-                        },
-                        {
-                            "key": "5b98fdb5bfb766031d17086a",
-                            "doc_count": 12
-                        },
-                        {
-                            "key": "5ba0eab7bfb76600df7fd6ad",
-                            "doc_count": 5
-                        },
-                        {
-                            "key": "5baa0addbfb76600e5e1b26d",
-                            "doc_count": 4
-                        },
-                        {
-                            "key": "5c5138d4bfb76600df081b36",
-                            "doc_count": 4
-                        },
-                        {
-                            "key": "5c2fb954bfb76600ddfe327a",
-                            "doc_count": 3
-                        },
-                        {
-                            "key": "5beafb9bbfb76600e64ff5ef",
+                            "key": "Australian General News",
                             "doc_count": 2
                         },
                         {
-                            "key": "5ba0ccd5bfb76600e3a6af84",
-                            "doc_count": 1
-                        },
-                        {
-                            "key": "5bd1900fbfb76600e000b22b",
-                            "doc_count": 1
-                        }
-                    ]
-                },
-                "legal": {
-                    "sum_other_doc_count": 0,
-                    "doc_count_error_upper_bound": 0,
-                    "buckets": [
-                        {
-                            "doc_count": 9513,
-                            "key": 0,
-                            "key_as_string": "false"
-                        }
-                    ]
-                },
-                "source": {
-                    "sum_other_doc_count": 0,
-                    "doc_count_error_upper_bound": 0,
-                    "buckets": [
-                        {
-                            "key": "Toronto Star",
-                            "doc_count": 9011
-                        },
-                        {
-                            "key": "Superdesk",
-                            "doc_count": 157
-                        },
-                        {
-                            "key": "NaregsYarde",
-                            "doc_count": 142
-                        },
-                        {
-                            "key": "Belga",
-                            "doc_count": 86
-                        },
-                        {
-                            "key": "SD World",
-                            "doc_count": 35
-                        },
-                        {
-                            "key": "SD Lucre",
-                            "doc_count": 31
-                        },
-                        {
-                            "key": "Image files from FTP",
-                            "doc_count": 15
-                        },
-                        {
-                            "key": "NaregAug",
-                            "doc_count": 8
-                        },
-                        {
-                            "key": "Reuters",
-                            "doc_count": 7
-                        },
-                        {
-                            "key": "test",
-                            "doc_count": 4
-                        },
-                        {
-                            "key": "AMNA",
-                            "doc_count": 3
-                        },
-                        {
-                            "key": "SD snappers",
-                            "doc_count": 3
-                        },
-                        {
-                            "key": "AAP",
+                            "key": "Domestic Sport",
                             "doc_count": 2
                         },
                         {
-                            "key": "KP",
-                            "doc_count": 2
-                        }
-                    ]
-                },
-                "sms": {
-                    "sum_other_doc_count": 0,
-                    "doc_count_error_upper_bound": 0,
-                    "buckets": [
-                        {
-                            "doc_count": 9512,
-                            "key": 0,
-                            "key_as_string": "false"
-                        },
-                        {
-                            "doc_count": 1,
-                            "key": 1,
-                            "key_as_string": "true"
-                        }
-                    ]
-                },
-                "genre": {
-                    "sum_other_doc_count": 0,
-                    "doc_count_error_upper_bound": 0,
-                    "buckets": [
-                        {
-                            "key": "Article (news)",
-                            "doc_count": 9510
-                        },
-                        {
-                            "key": "Fixture",
-                            "doc_count": 1
-                        },
-                        {
-                            "key": "Insight",
-                            "doc_count": 1
-                        },
-                        {
-                            "key": "Interview",
+                            "key": "Australian Weather",
                             "doc_count": 1
                         }
                     ]
@@ -235,23 +155,11 @@ Archive collection contains stories under production.
                     "buckets": [
                         {
                             "key": "text",
-                            "doc_count": 9340
-                        },
-                        {
-                            "key": "picture",
-                            "doc_count": 161
-                        },
-                        {
-                            "key": "video",
-                            "doc_count": 7
+                            "doc_count": 15
                         },
                         {
                             "key": "composite",
-                            "doc_count": 4
-                        },
-                        {
-                            "key": "audio",
-                            "doc_count": 1
+                            "doc_count": 10
                         }
                     ]
                 },
@@ -261,201 +169,234 @@ Archive collection contains stories under production.
                     "buckets": [
                         {
                             "key": 3,
-                            "doc_count": 9507
-                        },
-                        {
-                            "key": 2,
-                            "doc_count": 5
-                        },
-                        {
-                            "key": 4,
-                            "doc_count": 1
+                            "doc_count": 22
                         }
                     ]
                 },
-                "priority": {
+                "sms": {
                     "sum_other_doc_count": 0,
                     "doc_count_error_upper_bound": 0,
                     "buckets": [
                         {
-                            "key": 6,
-                            "doc_count": 9512
+                            "key_as_string": "false",
+                            "key": 0,
+                            "doc_count": 25
+                        }
+                    ]
+                },
+                "desk": {
+                    "sum_other_doc_count": 0,
+                    "doc_count_error_upper_bound": 0,
+                    "buckets": [
+                        {
+                            "key": "54fe43c210245412e8b8f526",
+                            "doc_count": 18
                         },
                         {
-                            "key": 1,
-                            "doc_count": 1
+                            "key": "54e691ca1024542de640fef1",
+                            "doc_count": 4
+                        },
+                        {
+                            "key": "desk",
+                            "doc_count": 3
+                        },
+                        {
+                            "key": "sports",
+                            "doc_count": 3
+                        }
+                    ]
+                },
+                "source": {
+                    "sum_other_doc_count": 0,
+                    "doc_count_error_upper_bound": 0,
+                    "buckets": [
+                        {
+                            "key": "asdxad1234",
+                            "doc_count": 18
+                        },
+                        {
+                            "key": "AAP",
+                            "doc_count": 4
+                        }
+                    ]
+                },
+                "genre": {
+                    "sum_other_doc_count": 0,
+                    "doc_count_error_upper_bound": 0,
+                    "buckets": [
+                        {
+                            "key": "Article (news)",
+                            "doc_count": 22
+                        }
+                    ]
+                },
+                "legal": {
+                    "sum_other_doc_count": 0,
+                    "doc_count_error_upper_bound": 0,
+                    "buckets": [
+                        {
+                            "key_as_string": "false",
+                            "key": 0,
+                            "doc_count": 25
+                        }
+                    ]
+                },
+                "language": {
+                    "sum_other_doc_count": 0,
+                    "doc_count_error_upper_bound": 0,
+                    "buckets": [
+                        {
+                            "key": "en",
+                            "doc_count": 22
                         }
                     ]
                 }
-            },
-            "_items": [
-                {
-                    "flags": {
-                        "marked_for_not_publication": false,
-                        "marked_for_legal": false,
-                        "marked_archived_only": false,
-                        "marked_for_sms": false
-                    },
-                    "ingest_version": null,
-                    "family_id": "urn:newsml:sdp-master.test.superdesk.org:2019-07-01T10:57:41.314552:5073bc18-d908-4e8b-b19e-91685df4c4a3",
-                    "_latest_version": 1,
-                    "unique_name": "#135262",
-                    "abstract": "<img src=\"https://www.thestar.com/content/dam/thestar/wsj/static/business.jpg\"/><br/>",
-                    "body_html": "<p><a href=\"https://www.thestar.com/wsj/business/2019/07/01/performance-food-to-buy-reinhart-in-2-billion-deal.html\" target=\"_blank\">Toronto Star</a></p>",
-                    "version_creator": "",
-                    "type": "text",
-                    "pubstatus": "usable",
-                    "firstcreated": "2019-07-01T10:02:00+0000",
-                    "ingest_id": "tag:www.thestar.com:SB12805530939054743790104585398062168981890",
-                    "dateline": {
-                        "source": "Toronto Star",
-                        "date": "2019-07-01T10:02:00+0000"
-                    },
-                    "versioncreated": "2019-07-01T10:57:41+0000",
-                    "priority": 6,
-                    "schedule_settings": {
-                        "utc_embargo": null,
-                        "time_zone": null
-                    },
-                    "state": "routed",
-                    "_updated": "2019-07-01T10:57:41+0000",
-                    "_id": "tag:sdp-master.test.superdesk.org:2019:7280f6f7-51e2-42d4-be92-8eceba5e3f7b",
-                    "urgency": 3,
-                    "headline": "Performance Food to Buy Reinhart in $2 Billion Deal",
-                    "format": "HTML",
-                    "word_count": 2,
-                    "ingest_provider_sequence": "4217",
-                    "original_creator": "",
-                    "genre": [
-                        {
-                            "qcode": "Article",
-                            "name": "Article (news)"
-                        }
-                    ],
-                    "byline": "<a href=\"mailto:micah.maidenberg@wsj.com\">Micah Maidenberg</a> - WSJ",
-                    "language": "en",
-                    "_created": "2019-07-01T10:57:41+0000",
-                    "event_id": "tag:sdp-master.test.superdesk.org:2019:b9d865c4-3d98-4079-b03c-aeef70a6a9e7",
-                    "source": "Toronto Star",
-                    "unique_id": 135262,
-                    "profile": "5bc0b93cbfb76600e315913b",
-                    "operation": "fetch",
-                    "task": {
-                        "user": null,
-                        "desk": "5bc0893ebfb76600e3158e6e",
-                        "stage": "5bc0893ebfb76600e3158e6d"
-                    },
-                    "_etag": "392f6aa91729a3c50065241f3cb7c8232b6be2bf",
-                    "ingest_provider": "5beaf858bfb76600e64ff5d5",
-                    "expiry": "2019-07-21T10:57:41+0000",
-                    "_current_version": 1,
-                    "guid": "tag:sdp-master.test.superdesk.org:2019:7280f6f7-51e2-42d4-be92-8eceba5e3f7b"
-                }
-            ]
+            }
         }
+   
 
 
-### Create A New Item [POST]
+## A Archived Item [/archived/{item_id}]
 
-When a new item is posted some of the fields in the schema is autogenerated on the server
++ Parameters
 
-- A new **guid** and **_id** fields are assigned to a new value (their values will be the same)
-- A **unique_id** is assigned to story that is unique in archive collection
-- A **family_id** is copied from guid. For cloned stories family_id is preserved across clones.
-- An **event_id** is assigned 
-- **state** is set to Draft
-- **source** is assigned the value of the ingest provide if the item is fetched. Otherwise if there is a
-default source for the desk the item is created then that source is assigned. Otherwise the source in the global
-settings will be assigned.
-- If the item has a **profile** field or if there"s a global profile is assigned, then story will copy the metadata
-from all the fields defined in the content type of the profile.
-- If there are default values assigned for fields **priority**, **genre**, **urgency** then they will be populated
-- If there are default preferences defined for the user for fields **dateline**, **byline**, **place** then they will be populated
-- **signoff** field is updated:
-    1. sign_off = sign_off of original + sign_off of the user performing operation.
-    2. If the last modified user and the user performing operation are same then sign_off shouldn"t change
-    3. If sign_off is received on updates, this value will be preserved
-    4. If a users sign_off is already in the list then it will be removed and appended to the end
-- **word_count** will be calculated
-- **expiry** is set according to expiry values on stage, or desk, or global settings
-- If there are metada defined in the desk then desk metada will be reflected on the item
+    - item_id (string) ... item id
 
+### Details of A Archived Item [GET]
 
-Creation of a new item will fail if:
++ Response 200 (application/json)
 
-- Stage is a readonly stage
-- If there"s a schedule provided but the date is in the past or date is not recognized
+    + Body
 
+            {
+                "headline": "First test",
+                "version_creator": "57b99db91d41c844b98d6832",
+                "abstract": "<p>123123</p>",
+                "body_html": "<p>12323</p>",
+                "word_count": 1,
+                "flags": {
+                    "marked_for_not_publication": false,
+                    "marked_for_legal": false,
+                    "marked_for_sms": false,
+                    "marked_archived_only": false
+                },
+                "last_queue_event": "2017-11-09T09:16:18+0000",
+                "original_creator": "57b99db91d41c844b98d6832",
+                "moved_to_legal": true,
+                "schedule_settings": {
+                    "time_zone": null,
+                    "utc_publish_schedule": null,
+                    "utc_embargo": null
+                },
+                "firstcreated": "2017-11-09T09:15:40+0000",
+                "guid": "urn:newsml:localhost:2017-11-09T20:15:40.425699:f878c9eb-e1a3-4610-81b0-51f933a6b2b4",
+                "is_take_item": false,
+                "last_published_version": true,
+                "_links": {
+                    "parent": {
+                        "href": "/",
+                        "title": "home"
+                    },
+                    "collection": {
+                        "href": "archived",
+                        "title": "archived"
+                    },
+                    "self": {
+                        "href": "archived/5a041ce21d41c860c7c7c566",
+                        "title": "Archived"
+                    }
+                },
+                "unique_name": "#1013",
+                "type": "text",
+                "operation": "publish",
+                "family_id": "urn:newsml:localhost:2017-11-09T20:15:40.425699:f878c9eb-e1a3-4610-81b0-51f933a6b2b4",
+                "urgency": 3,
+                "publish_sequence_no": 170,
+                "language": "en",
+                "slugline": "First Test",
+                "dateline": {
+                    "located": {
+                        "tz": "Australia/Sydney",
+                        "country": "Australia",
+                        "city_code": "Sydney",
+                        "dateline": "city",
+                        "state": "New South Wales",
+                        "country_code": "AU",
+                        "city": "Sydney",
+                        "state_code": "NSW",
+                        "alt_name": ""
+                    },
+                    "date": "2017-11-09T09:16:09+0000",
+                    "source": "AAP",
+                    "text": "SYDNEY, Nov 9 AAP -"
+                },
+                "format": "HTML",
+                "version": 1,
+                "sign_off": "ADM",
+                "sms_message": "",
+                "priority": 6,
+                "unique_id": 1013,
+                "_etag": "063ebb868000cb7d8a788ab5bb551f21a1c84450",
+                "_updated": "2017-11-09T09:16:22+0000",
+                "event_id": "tag:localhost:2017:3cca10f0-db3e-49b7-8da0-b7fc9cd0ae99",
+                "_type": "archived",
+                "pubstatus": "usable",
+                "source": "AAP",
+                "queue_state": "queued",
+                "_id": "5a041ce21d41c860c7c7c566",
+                "versioncreated": "2017-11-09T09:16:18+0000",
+                "publish_schedule": null,
+                "genre": [
+                    {
+                        "qcode": "Article",
+                        "name": "Article (news)"
+                    }
+                ],
+                "_created": "2017-11-09T09:16:18+0000",
+                "expiry": "2017-11-12T09:16:18+0000",
+                "place": [],
+                "subject": [
+                    {
+                        "parent": "02001000",
+                        "scheme": null,
+                        "qcode": "02001001",
+                        "name": "homicide"
+                    }
+                ],
+                "task": {
+                    "user": "57b99db91d41c844b98d6832",
+                    "stage": "54e691ca1024542de640fef0",
+                    "desk": "54e691ca1024542de640fef1"
+                },
+                "_current_version": 2,
+                "state": "published",
+                "anpa_category": [
+                    {
+                        "scheme": null,
+                        "qcode": "v",
+                        "name": "Advisories"
+                    }
+                ],
+                "item_id": "urn:newsml:localhost:2017-11-09T20:15:40.425699:f878c9eb-e1a3-4610-81b0-51f933a6b2b4",
+                "archived_id": "urn:newsml:localhost:2017-11-09T20:15:40.425699:f878c9eb-e1a3-4610-81b0-51f933a6b2b4:2"
+            }
+           
 
-Media Sources
+### Update An Archived Item [PATCH]
 
-- If there"s a url in the **media** field of the item then the media will be fetched as a file
-- If there"s a file reference to the item in **media** field, that file will be user_marked
-- Renditions will be generated for **picture** files. Renditions are defined in vocabularies.
-
+Updaating an archived item is used for **kill** action. 
 
 + Request (application/json)
 
+    + Headers
+    
+            If-Match: {_etag}
+    
     + Body
         
             {
-                "task": {
-                    "user": "5981c6621d41c82dbab98631",
-                    "desk": "5981c6621d41c82dbab98639",
-                    "stage": "5981c6621d41c82dbab98637"
-                },
-                "language": "en",
-                "event_id": "tag:localhost:5000:2019:837b6edc-37a1-42f7-876c-894bbc7baafb",
-                "type": "text",
-                "place": [],
-                "lock_action": "edit",
-                "genre": [
-                    {
-                        "name": "Article (news)",
-                        "qcode": "Article"
-                    }
-                ],
-                "pubstatus": "usable",
-                "sign_off": "fl",
-                "flags": {
-                    "marked_for_not_publication": false,
-                    "marked_archived_only": false,
-                    "marked_for_legal": false,
-                    "marked_for_sms": false
-                },
-                "family_id": "urn:newsml:localhost:5000:2019-05-22T20:50:49.059813:1a5e18f9-d324-43f1-a059-26040ecc58cb",
-                "operation": "update",
-                "source": "Superdesk",
-                "urgency": 3,
-                "version": 1,
-                "format": "HTML",
-                "priority": 6,
-                "dateline": {
-                    "text": "KHABAROVSK VTOROY, May 22 Superdesk -",
-                    "located": {
-                        "tz": "Asia/Vladivostok",
-                        "city": "Khabarovsk Vtoroy",
-                        "alt_name": "",
-                        "city_code": "Khabarovsk Vtoroy",
-                        "state": "Khabarovsk Krai",
-                        "dateline": "city",
-                        "country": "Russia",
-                        "country_code": "RU",
-                        "state_code": "RU.30"
-                    },
-                    "date": "2019-05-22T10:50:56+0000",
-                    "source": "Superdesk"
-                },
-                "versioncreated": "2019-05-22T10:52:20+0000",
-                "version_creator": "5981c6621d41c82dbab98631",
-                "state": "in_progress",
-                "firstcreated": "2019-05-22T10:50:49+0000",
-                "original_creator": "5981c6621d41c82dbab98631",
-                "lock_session": "5ce51db81d41c816a789cb1c",
-                "schedule_settings": {
-                    "utc_embargo": null,
-                    "time_zone": null
-                }
+                "body_html": "Killed body.", 
+                "operation": "kill"
             }
 
     + Schema
@@ -464,6 +405,38 @@ Media Sources
                 "_id": {
                     "type": "string",
                     "unique": true
+                },
+                "item_id": {
+                    "type": "string"
+                },
+                "publish_state": {
+                    "type": "string"
+                },
+                "last_published_version": {
+                    "type": "boolean",
+                    "default": true
+                },
+                "queue_state": {
+                    "type": "string",
+                    "default": "pending",
+                    "allowed": ["pending", "in_progress", "queued", "queued_not_transmitted", "error"],
+                },
+                "error_message": {
+                    "type": "string"
+                },
+                "publish_sequence_no": {
+                    "type": "integer",
+                    "readonly": true
+                },
+                "last_queue_event": {
+                    "type": "datetime"
+                },
+                "moved_to_legal": {
+                    "type": "boolean",
+                    "default": false
+                },
+                "published_in_package": {
+                    "type": "string"
                 },
                 "abstract": {
                     "nullable": true,
@@ -1516,558 +1489,22 @@ Media Sources
                 }
             }
 
-+ Response 201 (application/json)
++ Response 200 (application/json)
 
-+ Response 400 (application/json)
++ Response 403 (application/json)
+
+## Delete A Archived Item [DELETE]      
+
+Deletes the archived item by given id. Delete action is used for **kill** action.
+Delete will fail if:
+- item type is not **text**
+- item exists in **published** collection as well
+- item exists in a package
+
++ Request (application/json)
+
+        {}
+
++ Response 204 (application/json)
 
 + Response 412 (application/json)
-
-
-## An Item [/archive/{item_id}]
-
-This endpoint will return the details of an item in archive collection. It will fail to return if:
-
-- Item is in an invisible stage
-
-+ Parameters
-
-    - item_id (string) ... item id
-
-### Details of An Item [GET]
-
-+ Response 200 (application/json)
-
-    + Body
-
-            {
-                "unique_id": 1081,
-                "version": 1,
-                "guid": "urn:newsml:localhost:5000:2019-05-22T20:50:49.059813:1a5e18f9-d324-43f1-a059-26040ecc58cb",
-                "task": {
-                    "user": "5981c6621d41c82dbab98631",
-                    "stage": "5981c6621d41c82dbab98637",
-                    "desk": "5981c6621d41c82dbab98639"
-                },
-                "firstcreated": "2019-05-22T10:50:49+0000",
-                "_created": "2019-05-22T10:50:49+0000",
-                "lock_time": "2019-05-22T10:52:23+0000",
-                "_current_version": 3,
-                "urgency": 3,
-                "lock_user": "5981c6621d41c82dbab98631",
-                "priority": 6,
-                "dateline": {
-                    "located": {
-                        "country_code": "RU",
-                        "state_code": "RU.30",
-                        "state": "Khabarovsk Krai",
-                        "country": "Russia",
-                        "tz": "Asia/Vladivostok",
-                        "city_code": "Khabarovsk Vtoroy",
-                        "dateline": "city",
-                        "city": "Khabarovsk Vtoroy",
-                        "alt_name": ""
-                    },
-                    "text": "KHABAROVSK VTOROY, May 22 Superdesk -",
-                    "date": "2019-05-22T10:50:56+0000",
-                    "source": "Superdesk"
-                },
-                "_id": "urn:newsml:localhost:5000:2019-05-22T20:50:49.059813:1a5e18f9-d324-43f1-a059-26040ecc58cb",
-                "place": [],
-                "original_creator": "5981c6621d41c82dbab98631",
-                "sign_off": "fl",
-                "event_id": "tag:localhost:5000:2019:837b6edc-37a1-42f7-876c-894bbc7baafb",
-                "pubstatus": "usable",
-                "genre": [
-                    {
-                        "qcode": "Article",
-                        "name": "Article (news)"
-                    }
-                ],
-                "_updated": "2019-05-22T10:52:23+0000",
-                "_etag": "08c83487e7862328961d8bce876fac3c71f568c6",
-                "operation": "update",
-                "_latest_version": 3,
-                "unique_name": "#1081",
-                "versioncreated": "2019-05-22T10:52:20+0000",
-                "force_unlock": true,
-                "flags": {
-                    "marked_for_not_publication": false,
-                    "marked_for_sms": false,
-                    "marked_archived_only": false,
-                    "marked_for_legal": false
-                },
-                "expiry": null,
-                "type": "text",
-                "state": "in_progress",
-                "version_creator": "5981c6621d41c82dbab98631",
-                "language": "en",
-                "format": "HTML",
-                "family_id": "urn:newsml:localhost:5000:2019-05-22T20:50:49.059813:1a5e18f9-d324-43f1-a059-26040ecc58cb",
-                "lock_session": "5ce51db81d41c816a789cb1c",
-                "schedule_settings": {
-                    "utc_embargo": null,
-                    "time_zone": null
-                },
-                "lock_action": "edit",
-                "source": "Superdesk"
-            }
-           
-
-### Update A Story [PATCH]
-
-When an archive item is updated the following actions take place in the system:
-
-- Update of an archive item saves the current version of the item and saves the changes as a new **version**. 
-- If there is a picture in the updates then renditions will be created
-- **versioncreated** field is assigned the current date value
-- **version_creator** field is assigned the user id
-- **word_count** field is updated
-
-Update of an archive item will fail if:
-- item is locked by another user
-- state of the article is Killed or Recalled
-- user is trying to update the package with Public Service Announcements
-- user is authorized to update unique name of the article
-- user is trying to update the genre of a broadcast article
-- article being scheduled and is in a package
-- article being scheduled and schedule timestamp is invalid
-- article has valid crops if the article type is a picture
-- article is a valid package if the article type is a package
-- article has a valid Embargo
-- item is on readonly stage.
-
-+ Request (application/json)
-
-    + Headers
-    
-            If-Match: {_etag}
-    
-    + Body
-
-            { 
-                "headline": "test headline"
-            }
-
-+ Response 200 (application/json)
-
-+ Response 403 (application/json)
-
-## Archive Copy Resource [/archive/{item_id}/copy] 
-
-This endpoint will copy a **draft** item in users private workspace.Copy function fail is the item is on a desk.
-
-- Item is in an invisible stage
-
-+ Parameters
-
-    - item_id (string) ... item id
-
-### Copy An Item [POST]
-
-+ Response 200 (application/json)
-
-    + Body
-
-            {
-                
-            }
-
-## Archive Duplicate Resource [/archive/{item_id}/duplicate] 
-
-This endpoint will duplicate an item and move it to given desk and stage.
-Duplication will fail if there is no desk and stage provided.
-**sign_off** field of the duplicated item will be updated by duplicator id.
-Duplicated item will have a new **event_id**
-
-- Item is in an invisible stage
-
-+ Parameters
-
-    - item_id (string) ... item id
-
-### Duplicate An Item [POST]
-
-+ Response 200 (application/json)
-
-    + Body
-
-            {
-                
-            }
-
-    + Schema
-
-            {
-                "desk": "{desk_id}",
-                "stage": "{stage_id}",
-                "type": {
-                    "type": "string",
-                    "required": true
-                },
-                "item_id": {
-                    "type": "string",
-                    "required": false
-                }
-            }            
-
-
-## Archive Move Resource [/archive/{item_id}/move] 
-
-This endpoint will move an item to a given desk and stage.
-Duplication will fail if: 
-- Item is locked by another user
-- If the stage is the same as current stage
-- If the item is a published item
-
-**last_production_desk** and **last_authoring_desk** fields of the moved item 
-will be updated.
-
-When item moves from one stage to another there are three macros can runs against the item
-if they defined for the original and destination stages:
-- Outgoing Macro of original stage
-- Incoming Macro of destination stage
-- OnStage Macro of destination stage
-
-
-
-+ Parameters
-
-    - item_id (string) ... item id
-
-### Move An Item [POST]
-
-+ Response 200 (application/json)
-
-    + Body
-
-            {
-                "task": {
-                    "desk": "d4354sa8d7sdsaod", 
-                    "stage": "asd3o32423asdu00a99as9"
-                }
-            }
-
-    + Schema
-
-            {
-                "task": {
-                    "type": "dict",
-                    "required": true,
-                    "schema": {
-                        "desk": {"type": "string", "required": true},
-                        "stage": {"type": "string", "required": true}
-                    }
-                },
-                "allPackageItems": {"type": "boolean", "required": false, "nullable": true},
-            }                   
-
-
-## Archive Broadcast Resource [/archive/{item_id}/broadcast] 
-
-Broadcast item can only be created for Text or Pre-formatted item. 
-Item state needs to be Published or Corrected. The **genre** of the created
-broadcast item will be "Broadcast Script"
-
-
-
-+ Parameters
-
-    - item_id (string) ... item id
-
-### Broadcast An Item [POST]
-
-+ Response 200 (application/json)
-
-    + Body
-
-            {
-                "desk": "d4354sa8d7sdsaod"
-            }
-
-    + Schema
-
-            {
-                "desk": {"type": "string", "required": false, "nullable": true}
-            }                            
-
-
-## Archive Lock Resource [/archive/{item_id}/lock] 
-
-Locks the story for a given user. This will prevent other users editing or moving the item.
-Once the item is locked, it will we added to users "workspace" collection. Lock action will fail
-if the item is already locked by another user or by same user in another session.
-
-
-
-+ Parameters
-
-    - item_id (string) ... item id
-
-### Lock An Item [POST]
-
-+ Response 200 (application/json)
-
-    + Body
-
-            {
-                "lock_action": "edit"
-            }
-
-    + Schema
-
-            {"lock_action": {"type": "string"}}                   
-
-
-
-## Archive Unlock Resource [/archive/{item_id}/unlock] 
-
-Unlocks the story for a given user. This will prevent other users editing or moving the item.
-Once the item is locked, it will we added to users "workspace" collection
-
-
-+ Parameters
-
-    - item_id (string) ... item id
-
-### Unlock An Item [POST]
-
-+ Response 200 (application/json)
-
-    + Body
-
-            {
-                
-            }
-
-    + Schema
-
-            {
-
-            }                   
-
-
-
-## Archive Comments Resource [/archive/{item_id}/comments] 
-
-Returns the list of comments for an item
-
-
-+ Parameters
-
-    - item_id (string) ... item id
-
-### Comments of An Item [GET]
-
-+ Response 200 (application/json)
-
-    + Body
-
-            {
-                "_items": [
-                    {"text": "test comment", "item": "tag:localhost:5000:2019:837b6edc-37a1-42f7-876c-894bbc7baafb"}
-                ]
-            }
-
-    + Schema
-
-            {
-                "text": {
-                    "type": "string",
-                    "minlength": 1,
-                    "maxlength": 500,
-                    "required": true,
-                },
-                "item": {"type": "string"},
-                "user": {"type": "string", "required": true),
-                "mentioned_users": {
-                    "type": "dict"
-                },
-                "mentioned_desks": {
-                    "type": "dict"
-                }
-            }                              
-
-
-## Archive Resend Resource [/archive/{item_id}/resend] 
-
-Resends a published item to distribution channels. Resend will fail if
-- If the item is not a **published**, **corrected** of **killed** ite
-- If there is a newer version of the item
-- It the item is rewritten (another rewrite story exists)
-- If it is not a **text** item
-- If the item has not been sent to at least one subscriber
-
-
-+ Parameters
-
-    - item_id (string) ... item id
-
-### Resend An Item [POST]
-
-+ Response 200 (application/json)
-
-    + Body
-
-            {
-                "subscribers": ["54fe438b10245412e5608d41"],
-                "version": 2
-            }
-
-    + Schema
-
-            {
-                "subscribers": {"type": "list"},
-                "version": {"type": "integer"}
-            }                  
-
-
-## Archive Rewrite Resource [/archive/{item_id}/rewrite] 
-
-Replaces an item by creating a new item. A new item can be created automatically 
-by providing the **desk_id** in the payload. An existing item can be linked as the rewrite
-of an item by providing its id in **update** field in the payload
-
-Rewrite will fail if:
-- the original item is rewritten before
-- original item has an **embargo** defined
-- original item is a rewrite and is not published yet
-- original item does not have an **event_id**
-- content profile of the original item is not the same as content profile of the rewrite
-- rewrite is not a  **text** or **broadcast** item
-
-
-
-+ Parameters
-
-    - item_id (string) ... item id
-
-### Rewrite An Item [POST]
-
-+ Response 200 (application/json)
-
-    + Body
-
-            {
-                "desk_id": "54fe438b10245412e5608d41"
-            }
-
-    + Schema
-
-            {
-                "desk_id": {"type": "string", "nullable": true},
-                "update": {"type": "dict", "nullable": true}
-            }                  
-
-## Spike [/archive/spike/{item_id}]
-
-Spikes an item. Spiked item has the references to the other items (such as rewrites) removed.
-A spiked item can have a new expiry value depending on the global setting **SPIKE_EXPIRY_MINUTES**
-defined in the system
-
-
-+ Parameters
-
-    - item_id (string) ... item id
-
-### Spike An Item [PATCH]
-
-Spikes an item. 
-
-+ Request (application/json)
-
-    + Headers
-    
-            If-Match: {_etag}
-    
-    + Body
-
-            { 
-                "state": "spiked"
-            }
-
-+ Response 200 (application/json)
-
-+ Response 403 (application/json)
-
-
-## Unspike [/archive/unspike/{item_id}]
-
-Unspikes an item. When an item is unspiked it restores to the previous desk and stage.
-It won"t recover lost links to other items. It will have the expiry of the desk/stage it is on.
-
-
-+ Parameters
-
-    - item_id (string) ... item id
-
-### Unspike An Item [PATCH]
-
-Unspikes an item. 
-
-+ Request (application/json)
-
-    + Headers
-    
-            If-Match: {_etag}
-    
-    + Body
-
-            { 
-                "state": "spiked"
-            }
-
-+ Response 200 (application/json)
-
-+ Response 403 (application/json)
-
-
-## Translate [/archive/translate/{item_id}]
-
-Translates a given story from the language defined in the item to a language given by using the translation macro defined in the system.
-Translation will create a new item with the translated content and will return the new id. If the item is a **package** then the contents of the
-package will be translated and the new items will be copied into the same package.
-
-
-Tranlation will fail if:
-- Item with id not found
-
-
-
-+ Parameters
-
-    - item_id (string) ... item id
-
-### Translate An Item [POST]
-
-Unspikes an item. 
-
-+ Request (application/json)
- 
-    + Body
-
-            { 
-                "guid": "123", 
-                "language": "de"
-            }
-
-    + Schema
-
-            {
-                "guid": {
-                    "type": "string",
-                    "required": true
-                },
-                "language": {
-                    "type": "string",
-                    "required": true
-                },
-                "desk": {
-                    "type": "string",
-                    "required": false,
-                    "nullable": true
-                },
-            }       
-
-+ Response 200 (application/json)
-
-+ Response 403 (application/json)

@@ -1,0 +1,32 @@
+## Validate Collection [/validate] 
+
+### Validate An Item [POST]
+
+Vaidates the given item. In case there is profile defined for item with respective content type it will
+use its schema for validations, otherwise it will fall back to action/item_type filter defined in the system.
+
++ Request (application/json)
+
+    + Body
+        
+            {"act": "publish", "type": "text", "validate": {"headline": "<p></p>"}}
+
+    + Schema
+
+            {
+                "act": {"type": "string", "required": true},
+                "type": {"type": "string", "required": true},
+                "embedded": {"type": "boolean", "required": false},
+                "validate": {
+                    "type": "dict",
+                    "required": true
+                }
+            }
+
++ Response 201 (application/json)
+
+            {"errors": ["HEADLINE is too short"]}
+
++ Response 400 (application/json)
+
++ Response 412 (application/json)

@@ -1,0 +1,143 @@
+## Attachments Collection [/attachments] 
+
+### List All Attachments [GET]
+
++ Response 200 (application/json)
+
+        {
+            "_items": [
+                {
+                    "_id": "5b320af0cdfe3800e56e9672",
+                    "description": "pdf",
+                    "media": {
+                        "file": null,
+                        "name": "pdf-export_cfbu-informacni-deska-kalendar-akci-detail.pdf",
+                        "content_type": "application/pdf",
+                        "length": 21919,
+                        "_id": "5b320af0cdfe3800e56e9670"
+                    },
+                    "user": "5ab1aabdcdfe38019f0a875a",
+                    "_created": "2018-06-26T09:44:16+0000",
+                    "title": "test pdf",
+                    "filename": "pdf-export_cfbu-informacni-deska-kalendar-akci-detail.pdf",
+                    "_etag": "62fa50831fe3e000c6790215ddb2f3923cc67173",
+                    "length": 21919,
+                    "_updated": "2018-06-26T09:44:16+0000",
+                    "mimetype": "application/pdf",
+                    "_links": {
+                        "self": {
+                            "title": "Attachment",
+                            "href": "attachments/5b320af0cdfe3800e56e9672"
+                        }
+                    }
+                }
+            ]    
+        }
+
+
+### Create A New Attachment [POST]
+
+
++ Request (multipart/form-data)
+
+    
+    + Body
+        
+            -F media=@/home/superdesk/Documents/simple-dict.txt
+            -F user=5ab1aabdcdfe38019f0a875a
+
+    + Schema
+
+            {
+                "media": {"type": "media"},
+                "mimetype": {"type": "string"},
+                "filename": {"type": "string"},
+                "length": {"type": "integer"},
+                "title": {"type": "string"},
+                "description": {"type": "string"},
+                "user": {"type": "string"}
+            }
+
++ Response 201 (application/json)
+
++ Response 400 (application/json)
+
++ Response 412 (application/json)
+
+
+## A Attachment [/attachments/{attachment_id}]
+
++ Parameters
+
+    - attachment_id (string) ... attachment id
+
+### Details of A Attachment [GET]
+
++ Response 200 (application/json)
+
+    + Body
+
+            {
+                "_id": "5d2007bad1b52ef4ec39f62e",
+                "user": "5ab1aabdcdfe38019f0a875a",
+                "_etag": "67ca70e2408d9003800aee85a160091b0fc99205",
+                "length": 438,
+                "media": {
+                    "file": null,
+                    "name": "simple-dict.txt",
+                    "content_type": "text/plain",
+                    "length": 438,
+                    "_id": "5d2007bad1b52ef4ec39f62c"
+                },
+                "filename": "simple-dict.txt",
+                "_updated": "2019-07-06T02:30:18+0000",
+                "_created": "2019-07-06T02:30:18+0000",
+                "_status": "OK",
+                "mimetype": "text/plain",
+                "_links": {
+                    "self": {
+                        "title": "Attachment",
+                        "href": "attachments/5d2007bad1b52ef4ec39f62e"
+                    }
+                }
+            }
+           
+
+## Delete A Attachment [DELETE]      
+
+Deletes the attachment by given id.
+
++ Request (application/json)
+
+        {}
+
++ Response 204 (application/json)
+
++ Response 412 (application/json)
+
+
+
+## Download [/download/{file_id}]
+
+Downloads a file by given id
+
+
++ Parameters
+
+    - file_id (string) ... file id
+
+### Download A File [GET]
+
+Downloads an item. 
+
++ Request (application/json)
+    
+    + Body
+
+            { 
+                
+            }
+
++ Response 200 (application/json)
+
++ Response 403 (application/json)

@@ -1,0 +1,252 @@
+## Highlights Collection [/highlights] 
+
+### List All Highlights [GET]
+
++ Response 200 (application/json)
+
+        {
+            "_items": [
+                {
+                    "desks": [
+                        "54fe43c210245412e8b8f526",
+                        "54fe451210245489e2d3b561",
+                        "54fe70e310245489e9c69bb5",
+                        "54fe44ac10245489df75a266",
+                        "54fe438b10245412e5608d41",
+                        "54e6930f1024542ddeb76afb",
+                        "54e691ca1024542de640fef1",
+                        "54fe44df10245489ed5c3a8f",
+                        "54fe45a910245489df75a26e",
+                        "54e68ec41024542de76d6640",
+                        "54e6928d1024542de640fef5",
+                        "54fe457210245489e2d3b564"
+                    ],
+                    "_id": "57bcd8a11d41c84db0b18ccf",
+                    "_links": {
+                        "self": {
+                            "href": "highlights/57bcd8a11d41c84db0b18ccf",
+                            "title": "Highlight"
+                        }
+                    },
+                    "name": "Test-LastDay",
+                    "groups": [
+                        "main"
+                    ],
+                    "auto_insert": "now/d",
+                    "_etag": "addbbcd886b269b3f8a8e06277f5a0268ddc297d",
+                    "_created": "2016-08-23T23:13:37+0000",
+                    "_updated": "2016-12-05T22:37:32+0000"
+                },
+                {
+                    "desks": [
+                        "5981c6621d41c82dbab98639"
+                    ],
+                    "_id": "5981c6701d41c82dbab9864a",
+                    "_links": {
+                        "self": {
+                            "href": "highlights/5981c6701d41c82dbab9864a",
+                            "title": "Highlight"
+                        }
+                    },
+                    "name": "Highlight one",
+                    "groups": [
+                        "main"
+                    ],
+                    "_created": "2017-08-02T12:32:48+0000",
+                    "_etag": "b1a49e9d404561331f20f0c16f8c2a1aac9960fc",
+                    "auto_insert": "now/d",
+                    "template": "5981c6701d41c82dbab98649",
+                    "_updated": "2017-08-02T12:32:48+0000"
+                },
+        }
+
+
+### Create A New Highlight [POST]
+
+Creates a new highlight definition. Create action will fail if:
+- Highlight name is not unique
+
++ Request (application/json)
+
+    + Body
+        
+            {
+                "desks": [
+                    "5981c6621d41c82dbab98639"
+                ],
+                "name": "Highlight ten",
+                "groups": [
+                    "main"
+                ],
+                "auto_insert": "now/w",
+                "template": "5981c6701d41c82dbab98649"
+            }
+
+    + Schema
+
+            {
+                "name": {
+                    "type": "string",
+                    "iunique": true,
+                    "required": true
+                },
+                "template": {
+                    "type": "string",
+                    "required": false
+                },
+                "desks": {
+                    "type": "string",
+                    "required": true
+                },
+                "auto_insert": {
+                    "type": "string",
+                    "allowed": ["now-1h", ..,  "now-24h"],
+                    "default": "now/d",
+                },
+                "groups": {
+                    "type": "list",
+                    "schema": {
+                        "type": "string"
+                    }
+                }
+            }
+
++ Response 201 (application/json)
+
++ Response 400 (application/json)
+
++ Response 412 (application/json)
+
+
+## A Highlight [/highlights/{highlight_id}]
+
++ Parameters
+
+    - highlight_id (string) ... highlight id
+
+### Details of A Highlight [GET]
+
++ Response 200 (application/json)
+
+    + Body
+
+            {
+                "desks": [
+                    "5981c6621d41c82dbab98639"
+                ],
+                "_id": "5d1fea1f1d41c81c3a15df67",
+                "name": "Highlight ten",
+                "groups": [
+                    "main"
+                ],
+                "auto_insert": "now/w",
+                "template": "5981c6701d41c82dbab98649",
+            }
+           
+
+### Update A Highight [PATCH]
+
++ Request (application/json)
+
+    + Headers
+    
+            If-Match: {_etag}
+    
+    + Body
+
+            { 
+                "name": "Highlight eleven"
+            }
+
++ Response 200 (application/json)
+
++ Response 403 (application/json)
+
+## Delete A Highlight [DELETE]      
+
+Deletes the highlight by given id. A highlight will update the items marked for highlight and remove the mark.
+
++ Request (application/json)
+
+        {}
+
++ Response 204 (application/json)
+
++ Response 412 (application/json)
+
+
+## Mark for Highlights [/marked_for_highlights]
+
+Marks an item to be included in highlights.
+
+
+### Mark An Item [POST]
+
+
++ Request (application/json)
+   
+    + Body
+
+            {"highlights": "57bcd8a11d41c84db0b18ccf", "marked_item": "urn:newsml:localhost:5000:2017-10-01T12:00:45.929411:4d212c20-febf-41e7-9097-6aaa42b2cd31"}
+
+    + Schema
+
+            {
+                "highlights": {
+                    "type": "string",
+                    "required": true
+                },
+                "marked_item": {
+                    "type": "string",
+                    "required": true
+                }
+            }        
+
++ Response 201 (application/json)
+
++ Response 403 (application/json)
+
+
+## Generate Highlights [/generate_highlights]
+
+Creates a new itemt using the highlight package. A highlight package is to container for all items marked for highlights. A highligh package
+will have **type** field as composite and **highight_id** field populated with id of the highlight definition.
+The new item will use the template defined in the highlight to produce the text item. 
+
+If **preview** option is provided in the payload then new item will be returned but not saved in the system as a new item.
+
+Highlight generation will fail if:
+- Any of the items marked as highlight is either locked or in published states
+
+
+
+### Generate a highlights item [POST]
+
+
++ Request (application/json)
+
+    
+    + Body
+
+            {"package": "urn:newsml:localhost:5000:2017-10-01T12:00:45.929411:4d212c20-febf-41e7-9097-6aaa42b2cd31"}
+
+    + Schema
+
+            {
+                "package": {
+                    "type": "string",
+                    "required": true,
+                },
+                "preview": {
+                    "type": "boolean",
+                    "default": false,
+                },
+                "export": {
+                    "type": "boolean",
+                    "default": false,
+                }
+            }        
+
++ Response 201 (application/json)
+
++ Response 403 (application/json)

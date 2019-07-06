@@ -1,0 +1,35 @@
+
+
+## Mark For Desks Collection [/mark_for_desks] 
+
+### Mark Items For Desks [POST]
+
+Marks an item by adding **marked_desk** field with the value **desk_id**.
+
++ Request (application/json)
+
+    + Body
+        
+            {   
+                "marked_desk": "58d112651d41c876b5c79d18", 
+                "marked_item": "tag:localhost:5000:2019:837b6edc-37a1-42f7-876c-894bbc7baafb"
+            }
+
+    + Schema
+
+            {
+                "marked_desk": {
+                    "type": "string",
+                    "required": true
+                },
+                "marked_item": {
+                    "type": "string",
+                    "required": true
+                }
+            }
+
++ Response 201 (application/json)
+
++ Response 400 (application/json)
+
+

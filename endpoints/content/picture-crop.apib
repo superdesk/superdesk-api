@@ -1,0 +1,55 @@
+## Picture Crop Collection [/picture_crop] 
+
+### Perform a Picture Crop [POST]
+
+Performs the crop on the provided item and saves the crop as a new media item. Response will
+have the id of the cropped media. 
+
+
++ Request (application/json)
+
+    + Body
+        
+            {
+                "item": {
+                    "renditions": {
+                        "original": {
+                            "mimetype": "image/jpeg", 
+                            "href": "https://sdp-master.test.superdesk.org/api/upload-raw/5ab28adccdfe38023cd29f2d.png", 
+                            "media": "5ab28adccdfe38023cd29f2d"
+                        }
+                    }
+                },
+                "crop": {"CropLeft": 0, "CropRight": 10, "CropTop": 0, "CropBottom": 10, "width": 5, "height": 10}}
+
+    + Schema
+
+            {
+                "item": {"type": "dict", "required": true, "empty": false},
+                "crop": {"type": "dict", "required": true, "empty": false}
+            }
+
++ Response 201 (application/json)
+
+            {
+                "_id": "5d202bb0d1b52ef4ec39f631",
+                "width": 5,
+                "height": 10,
+                "_etag": "c0367aad179e96a445ff78a4dc0ce73c02853316",
+                "_status": "OK",
+                "href": "https://sdp-master.test.superdesk.org/api/upload-raw/5d202bb0d1b52ef4ec39f631.jpg",
+                "_updated": "2019-07-06T05:03:44+0000",
+                "_created": "2019-07-06T05:03:44+0000",
+                "_links": {
+                    "self": {
+                        "title": "Picture_crop",
+                        "href": "picture_crop/5d202bb0d1b52ef4ec39f631"
+                    }
+                }
+            }
+
++ Response 400 (application/json)
+
++ Response 412 (application/json)
+
+

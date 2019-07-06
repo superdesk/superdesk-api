@@ -1,0 +1,27 @@
+## Spellcheck Collection [/spellcheck] 
+
+### Perform Specll Check [POST]
+
+Performs a spellcheck for the provided word and language. System checks if there's a dictionary defined for the
+given language and uses thet to make a suggestion
+
++ Request (application/json)
+
+    + Body
+        
+            {"word": "foe", "language_id": "en"}
+
+    + Schema
+
+            {
+                "word": {"type": "string", "required": true},
+                "language_id": {"type": "string", "required": true},
+            }
+
++ Response 201 (application/json)
+
+            {"word": "baz", "corrections": ["bar"]}
+
++ Response 400 (application/json)
+
++ Response 412 (application/json)

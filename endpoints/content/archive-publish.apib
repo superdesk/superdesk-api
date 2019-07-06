@@ -1,0 +1,136 @@
+
+## Publish [/archive/publish/{item_id}]
+
+Publishing an item updates the state to **published**. Item is then moved to **published** repo from **archive** when item expires.
+Item will also be copied to **legal_archive** collection with the complete versions when it is published.
+Published item becomes a read-only item but it is possible to create post publish actions like corrections and rewrites.
+Those actions usually create a new item and keeps the original item intact.
+
+When an item is published, system will generate entries in **publish_queue** which then will be processed to send the item
+to matching subscribers. All the new entries in publish_queue will also be coped to **legal_publish_queue** collection as well.
+
+When an item is published, it will need to compy with publish validation rules. They are defined in system settings, validations.
+
+If the item has **publish_schedule** field defined, then when it is published, it will have the state **scheduled** but it won't be
+sent to matching subscribers until the schedule date and time.
+
+Publish of an item will fail if:
+- item is marked as **not_for_publication**
+- item state is in **draft**
+
++ Parameters
+
+    - item_id (string) ... item id
+
+### Publish An Item [PATCH]
+
+Publishes an item. 
+
++ Request (application/json)
+
+    + Headers
+    
+            If-Match: {_etag}
+    
+    + Body
+
+            { 
+                "state": "published"
+            }
+
++ Response 200 (application/json)
+
++ Response 403 (application/json)
+
+
+
+## Correct [/archive/correct/{item_id}]
+
+Published item can be locked and corrected. When an item published as **correction**, it will go through
+the same steps in publish action. Corrections will be sent to the same list of subscribers where the original
+item is published to. Corrections cannot be scheduled.
+
++ Parameters
+
+    - item_id (string) ... item id
+
+### Correct An Item [PATCH]
+
+Corrects an item. 
+
++ Request (application/json)
+
+    + Headers
+    
+            If-Match: {_etag}
+    
+    + Body
+
+            { 
+                "state": "corrected"
+            }
+
++ Response 200 (application/json)
+
++ Response 403 (application/json)
+
+
+## Kill [/archive/kill/{item_id}]
+
+Published or corrected items can be killed. When an item is killed, the **kill template** in the system gets
+applied to the item to update the contents to fit the kill message. When an item killed, it will go through
+the same steps in publish action.Killed item will be sent to same set of subscribers. If a broadcast item is 
+killed, it will kill the master item as well. An item within a packed can be killed once it is removed from the package.
+
++ Parameters
+
+    - item_id (string) ... item id
+
+### Kill An Item [PATCH]
+
+Kills an item. 
+
++ Request (application/json)
+
+    + Headers
+    
+            If-Match: {_etag}
+    
+    + Body
+
+            { 
+                "state": "killed"
+            }
+
++ Response 200 (application/json)
+
++ Response 403 (application/json)
+
+
+## Takedown [/archive/takedown/{item_id}]
+
+Takedown is used to remove a published from **published** collection
+
++ Parameters
+
+    - item_id (string) ... item id
+
+### Takedown An Item [PATCH]
+
+Takes down an item. 
+
++ Request (application/json)
+
+    + Headers
+    
+            If-Match: {_etag}
+    
+    + Body
+
+            { 
+                "state": "takedown"
+            }
+
++ Response 200 (application/json)
+
++ Response 403 (application/json)

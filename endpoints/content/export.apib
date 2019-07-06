@@ -1,0 +1,40 @@
+## Export Collection [/exports] 
+
+### Export An Item [POST]
+
+Exports the items by using the the given formatter and returns a file containing output. If **validate** field is false
+then it by passes publish validation rules.
+
++ Request (application/json)
+
+    + Body
+        
+            {
+                "item_ids": ["urn:newsml:localhost:2019-07-02T11:19:22.852887:641186c9-6392-48df-b880-ad27561eab9c"], 
+                "format_type": "NINJSFormatter", 
+                "validate": false
+            }
+
+    + Schema
+
+            {
+                "item_ids": {
+                    "type": "list",
+                    "required": true
+                },
+                "format_type": {
+                    "type": "string",
+                    "required": true
+                },
+                "validate": {
+                    "type": "boolean",
+                    "required": false
+                }
+            }
+
++ Response 201 (application/json)
+
++ Response 400 (application/json)
+
++ Response 412 (application/json)
+

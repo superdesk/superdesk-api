@@ -1,0 +1,126 @@
+## Macros Collection [/macros] 
+
+### List All Macros [GET]
+
+Returns the list of all macros in the system. It is also possible get the list of macros per desk 
+by providing query string **?desk=<desk_id>**
+
++ Response 200 (application/json)
+
+        {
+            "_items": [
+                {
+                    "name": "Validate for Publish",
+                    "description": null,
+                    "label": "Validate for Publish",
+                    "_etag": "42148f44b52447e56d833feba130e57215669da1",
+                    "replace_type": "no-replace",
+                    "_updated": "1970-01-01T00:00:00+0000",
+                    "action_type": "direct",
+                    "access_type": "frontend",
+                    "_created": "1970-01-01T00:00:00+0000"
+                },
+                {
+                    "name": "usd_to_cad",
+                    "description": "Convert USD to CAD.",
+                    "_created": "1970-01-01T00:00:00+0000",
+                    "from_languages": [
+                        "en-CA"
+                    ],
+                    "shortcut": "d",
+                    "label": "Currency USD to CAD",
+                    "_etag": "3f2d0443f30bb952d129b4bfad035cbbc0aac697",
+                    "replace_type": "no-replace",
+                    "_updated": "1970-01-01T00:00:00+0000",
+                    "action_type": "interactive",
+                    "access_type": "frontend",
+                    "to_languages": [
+                        "en-AU"
+                    ]
+                },
+                {
+                    "name": "Extract Html Macro",
+                    "description": "Delete from body_html all html tags except links",
+                    "label": "Extract Html Macro",
+                    "_etag": "084a68e32b630f4397f81f34687636eccbe52965",
+                    "replace_type": "no-replace",
+                    "_updated": "1970-01-01T00:00:00+0000",
+                    "action_type": "direct",
+                    "access_type": "frontend",
+                    "_created": "1970-01-01T00:00:00+0000"
+                },
+                {
+                    "name": "populate_abstract",
+                    "shortcut": "a",
+                    "label": "Populate Abstract",
+                    "order": 3,
+                    "replace_type": "keep-style-replace",
+                    "_created": "1970-01-01T00:00:00+0000",
+                    "_updated": "1970-01-01T00:00:00+0000",
+                    "action_type": "direct",
+                    "access_type": "frontend",
+                    "_etag": "9bfa604bb6412e9aa7d69fe67e7efa479f994c48",
+                    "description": "Populate the abstract field with the first sentence of the body"
+                }
+            ]
+        }
+
+
+### Run A Macro [POST]
+
+Runs a given macro for provided item. If **commit** is true then item will be saved with the changes.
+
+
++ Request (application/json)
+
+    + Body
+        
+            {
+                "macro": "usd_to_cad",
+                "item": {"body_html": "$10 bar", "headline": "foo $5"}}
+            }
+
+    + Schema
+
+            {
+                "macro": {
+                    "type": "string",
+                    "required": true,
+                    "allowed": macros
+                },
+                "item": {
+                    "type": "dict",
+                },
+                "commit": {
+                    "type": "boolean",
+                    "default": false,
+                },
+                "diff": {
+                    "type": "dict",
+                    "readonly": true,
+                },
+            }
+
++ Response 201 (application/json)
+
+        {
+            "diff": {
+                "$5": "$5 (CAD 7)",
+                "$10": "$10 (CAD 13)"
+            },
+            "item": {
+                "headline": "foo $5 (CAD 7)",
+                "body_html": "$10 (CAD 13) bar"
+            },
+            "_etag": "44245256938b9fede55e27998aa3aaae0171632e",
+            "_status": "OK",
+            "macro": "usd_to_cad",
+            "commit": false,
+            "_id": "usd_to_cad",
+        }
+
++ Response 400 (application/json)
+
++ Response 412 (application/json)
+
+

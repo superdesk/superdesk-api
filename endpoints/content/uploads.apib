@@ -1,0 +1,165 @@
+
+## Uploads Collection [/uploads] 
+
+### List All Uploads [GET]
+
++ Response 200 (application/json)
+
+        {
+            "_meta": {
+                "page": 1,
+                "total": 4,
+                "max_results": 25
+            },
+            "_items": [
+                {
+                    "_id": "5ab28adccdfe38023cd29f33",
+                    "renditions": {
+                        "original": {
+                            "height": 288,
+                            "width": 288,
+                            "media": "5ab28adccdfe38023cd29f2d",
+                            "mimetype": "image/png",
+                            "href": "https://sdp-master.test.superdesk.org/api/upload-raw/5ab28adccdfe38023cd29f2d.png"
+                        },
+                        "viewImage": {
+                            "height": 200,
+                            "width": 200,
+                            "media": "5ab28adccdfe38023cd29f31",
+                            "mimetype": "image/png",
+                            "href": "https://sdp-master.test.superdesk.org/api/upload-raw/5ab28adccdfe38023cd29f31.png"
+                        },
+                        "thumbnail": {
+                            "height": 60,
+                            "width": 60,
+                            "media": "5ab28adccdfe38023cd29f2f",
+                            "mimetype": "image/png",
+                            "href": "https://sdp-master.test.superdesk.org/api/upload-raw/5ab28adccdfe38023cd29f2f.png"
+                        }
+                    },
+                    "media": "5ab28adccdfe38023cd29f2d",
+                    "mimetype": "image/png"
+                },
+                {
+                    "_id": "5ab28aeecdfe38023cd29f3b",
+                    "renditions": {
+                        "original": {
+                            "height": 288,
+                            "width": 288,
+                            "media": "5ab28aeecdfe38023cd29f35",
+                            "mimetype": "image/png",
+                            "href": "https://sdp-master.test.superdesk.org/api/upload-raw/5ab28aeecdfe38023cd29f35.png"
+                        },
+                        "viewImage": {
+                            "height": 200,
+                            "width": 200,
+                            "media": "5ab28aeecdfe38023cd29f39",
+                            "mimetype": "image/png",
+                            "href": "https://sdp-master.test.superdesk.org/api/upload-raw/5ab28aeecdfe38023cd29f39.png"
+                        },
+                        "thumbnail": {
+                            "height": 60,
+                            "width": 60,
+                            "media": "5ab28aeecdfe38023cd29f37",
+                            "mimetype": "image/png",
+                            "href": "https://sdp-master.test.superdesk.org/api/upload-raw/5ab28aeecdfe38023cd29f37.png"
+                        }
+                    },
+                    "media": "5ab28aeecdfe38023cd29f35",
+                    "mimetype": "image/png",
+                    
+                }
+            ]
+        }
+
+
+### Create A New Upload [POST]
+
+Uploads a new media item by posting the file or by providing the URL. Item then gets cropped
+for the values given. Renditions of the media item is also created by the renditions defined in the system.
+
++ Request (multipart/form-data)
+
+    + Body
+        
+            -F media=@/home/superdesk/Documents/simple.png
+            -F CropLeft=10
+            -F CropRight=10
+            -F CropTop=10
+            -F CropBottom=10
+            -F mimetype="image/png"
+
+    + Schema
+
+            {
+                "media": {"type": "file"},
+                "CropLeft": {"type": "integer"},
+                "CropRight": {"type": "integer"},
+                "CropTop": {"type": "integer"},
+                "CropBottom": {"type": "integer"},
+                "URL": {"type": "string"},
+                "mimetype": {"type": "string"},
+                "filemeta": {"type": "dict"}
+            }
+
++ Response 201 (application/json)
+
++ Response 400 (application/json)
+
++ Response 412 (application/json)
+
+
+## A Upload [/uploads/{upload_id}]
+
++ Parameters
+
+    - upload_id (string) ... upload id
+
+### Details of A Upload [GET]
+
++ Response 200 (application/json)
+
+    + Body
+
+            {
+                
+                "_id": "5ab28aeecdfe38023cd29f3b",
+                "renditions": {
+                    "original": {
+                        "height": 288,
+                        "width": 288,
+                        "media": "5ab28aeecdfe38023cd29f35",
+                        "mimetype": "image/png",
+                        "href": "https://sdp-master.test.superdesk.org/api/upload-raw/5ab28aeecdfe38023cd29f35.png"
+                    },
+                    "viewImage": {
+                        "height": 200,
+                        "width": 200,
+                        "media": "5ab28aeecdfe38023cd29f39",
+                        "mimetype": "image/png",
+                        "href": "https://sdp-master.test.superdesk.org/api/upload-raw/5ab28aeecdfe38023cd29f39.png"
+                    },
+                    "thumbnail": {
+                        "height": 60,
+                        "width": 60,
+                        "media": "5ab28aeecdfe38023cd29f37",
+                        "mimetype": "image/png",
+                        "href": "https://sdp-master.test.superdesk.org/api/upload-raw/5ab28aeecdfe38023cd29f37.png"
+                    }
+                }
+            }
+           
+
+## Delete A Upload [DELETE]      
+
+Deletes the uploaded itm by id.
+
+ - It is a default vocabulary (i.e. field_type is null)
+
++ Request (application/json)
+
+        {}
+
++ Response 204 (application/json)
+
++ Response 412 (application/json)
