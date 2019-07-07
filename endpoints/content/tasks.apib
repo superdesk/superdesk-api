@@ -1,0 +1,85 @@
+## Tasks Collection [/tasks] 
+
+### List All Tasks [GET]
+
++ Response 200 (application/json)
+
+        {
+            "_items": []
+        }
+
+
+### Create A New Task [POST]
+
+Tasks are allowed to have custom `_id` field. During the creation
+the uniqueness will be checked against existing tasks.
+
++ Request (application/json)
+
+    + Body
+        
+            {
+                
+            }
+
+    + Schema
+
+            {
+                
+            }
+
++ Response 201 (application/json)
+
++ Response 400 (application/json)
+
++ Response 412 (application/json)
+
+
+## A Task [/tasks/{task_id}]
+
++ Parameters
+
+    - task_id (string) ... task id
+
+### Details of A Task [GET]
+
++ Response 200 (application/json)
+
+    + Body
+
+            {
+                
+            }
+           
+
+### Update A Task [PATCH]
+
++ Request (application/json)
+
+    + Headers
+    
+            If-Match: {_etag}
+    
+    + Body
+
+            { 
+
+            }
+
++ Response 200 (application/json)
+
++ Response 403 (application/json)
+
+## Delete A Task [DELETE]      
+
+Deletes the vocabulary by given id. A vocabulary will fail to delete if:
+
+ - It is a default vocabulary (i.e. field_type is null)
+
++ Request (application/json)
+
+        {}
+
++ Response 204 (application/json)
+
++ Response 412 (application/json)

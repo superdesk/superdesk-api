@@ -1,0 +1,81 @@
+## Picture Renditions Collection [/picture_renditions] 
+
+### Perform Renditions [POST]
+
+Creates the renditions of a given media item. It uses superdesk defual rendition definitions defined in config.
+if **no_custom_crops** false then it will also use the rendition specs defined in **vocabularies**
+
++ Request (application/json)
+
+    + Body
+        
+            {
+                "item": {
+                    "_id": 123,
+                    "renditions": {
+                        "original": {
+                            "media":"1237123vg213vxzds",
+                            "mimetype": "image/jpeg"
+                        }
+                    }
+                }
+            }
+
+    + Schema
+
+            {
+                "item": {"type": "dict", "required": true},
+                "no_custom_crops": {"type": "boolean"}
+            }
+
++ Response 201 (application/json)
+
+        {
+            "renditions": {
+                "thumbnail": {
+                    "media": "5d21959f1d41c83450375960",
+                    "mimetype": "image/jpeg",
+                    "height": 120,
+                    "href": "http://localhost:5000/api/upload-raw/5d21959f1d41c83450375960.jpg",
+                    "width": 73
+                },
+                "viewImage": {
+                    "media": "5d21959f1d41c83450375962",
+                    "mimetype": "image/jpeg",
+                    "height": 640,
+                    "href": "http://localhost:5000/api/upload-raw/5d21959f1d41c83450375962.jpg",
+                    "width": 391
+                },
+                "original": {
+                    "media": "58d112651d41c876b5c79d1a",
+                    "mimetype": "image/jpeg",
+                    "height": 640,
+                    "href": "http://localhost:5000/api/upload-raw/58d112651d41c876b5c79d1a.jpg",
+                    "width": 392
+                },
+                "baseImage": {
+                    "media": "5d21959f1d41c8345037595e",
+                    "mimetype": "image/jpeg",
+                    "height": 1400,
+                    "href": "http://localhost:5000/api/upload-raw/5d21959f1d41c8345037595e.jpg",
+                    "width": 857
+                }
+            },
+            "_status": "OK",
+            "_updated": "2019-07-07T06:47:59+0000",
+            "_created": "2019-07-07T06:47:59+0000",
+            "_etag": "e84582a89def899e65a49a035bd226cc116a3c4a",
+            "_links": {
+                "self": {
+                    "title": "Picture_rendition",
+                    "href": "picture_renditions/123"
+                }
+            },
+            "_id": 123
+        }
+
++ Response 400 (application/json)
+
++ Response 412 (application/json)
+
+

@@ -1,0 +1,1902 @@
+
+
+## Published Items Collection [/published] 
+
+Published Items collection contains all the published items in the system. When an item is published, corrected, killed or rewritten
+there will be a new item in published collection. Every publish action will create  new entry so even if the same item is publihed then
+corrected, all published versions will be preserved as separate entries in this collection.
+
+### List All Published Items [GET]
+
++ Response 200 (application/json)
+
+            {
+                "_aggregations": {
+                    "legal": {
+                        "doc_count_error_upper_bound": 0,
+                        "sum_other_doc_count": 0,
+                        "buckets": [
+                            {
+                                "key_as_string": "false",
+                                "key": 0,
+                                "doc_count": 124
+                            }
+                        ]
+                    },
+                    "category": {
+                        "doc_count_error_upper_bound": 0,
+                        "sum_other_doc_count": 0,
+                        "buckets": [
+                            {
+                                "doc_count": 25,
+                                "key": "FIXME1"
+                            },
+                            {
+                                "doc_count": 13,
+                                "key": "Sport"
+                            },
+                            {
+                                "doc_count": 12,
+                                "key": "Domestic news"
+                            },
+                            {
+                                "doc_count": 12,
+                                "key": "Politics"
+                            },
+                            {
+                                "doc_count": 7,
+                                "key": "sport"
+                            },
+                            {
+                                "doc_count": 5,
+                                "key": "world"
+                            },
+                            {
+                                "doc_count": 4,
+                                "key": "Entertainment"
+                            },
+                            {
+                                "doc_count": 1,
+                                "key": "FIXME2"
+                            },
+                            {
+                                "doc_count": 1,
+                                "key": "national"
+                            }
+                        ]
+                    },
+                    "type": {
+                        "doc_count_error_upper_bound": 0,
+                        "sum_other_doc_count": 0,
+                        "buckets": [
+                            {
+                                "doc_count": 121,
+                                "key": "text"
+                            },
+                            {
+                                "doc_count": 2,
+                                "key": "picture"
+                            },
+                            {
+                                "doc_count": 1,
+                                "key": "video"
+                            }
+                        ]
+                    },
+                    "source": {
+                        "doc_count_error_upper_bound": 0,
+                        "sum_other_doc_count": 0,
+                        "buckets": [
+                            {
+                                "doc_count": 26,
+                                "key": "NaregAug"
+                            },
+                            {
+                                "doc_count": 24,
+                                "key": "KP"
+                            },
+                            {
+                                "doc_count": 20,
+                                "key": "Sport"
+                            },
+                            {
+                                "doc_count": 13,
+                                "key": "Belga"
+                            },
+                            {
+                                "doc_count": 12,
+                                "key": "SD Lucre"
+                            },
+                            {
+                                "doc_count": 9,
+                                "key": "NaregsYarde"
+                            },
+                            {
+                                "doc_count": 7,
+                                "key": "AMNA"
+                            },
+                            {
+                                "doc_count": 6,
+                                "key": "SD World"
+                            },
+                            {
+                                "doc_count": 2,
+                                "key": "BBC"
+                            },
+                            {
+                                "doc_count": 2,
+                                "key": "SD snappers"
+                            },
+                            {
+                                "doc_count": 1,
+                                "key": "LUSA"
+                            },
+                            {
+                                "doc_count": 1,
+                                "key": "desk_jan4_v1"
+                            },
+                            {
+                                "doc_count": 1,
+                                "key": "test"
+                            }
+                        ]
+                    },
+                    "desk": {
+                        "doc_count_error_upper_bound": 0,
+                        "sum_other_doc_count": 0,
+                        "buckets": [
+                            {
+                                "doc_count": 26,
+                                "key": "5b62a55dbfb76600e060d122"
+                            },
+                            {
+                                "doc_count": 26,
+                                "key": "5bc0893ebfb76600e3158e6e"
+                            },
+                            {
+                                "doc_count": 20,
+                                "key": "5ab1b3ebcdfe38023cd29e55"
+                            },
+                            {
+                                "doc_count": 12,
+                                "key": "5ab386c9cdfe3800e091fa1b"
+                            },
+                            {
+                                "doc_count": 9,
+                                "key": "5ab27ab6cdfe38023cd29eac"
+                            },
+                            {
+                                "doc_count": 8,
+                                "key": "5b3204bbcdfe3800e56e9613"
+                            },
+                            {
+                                "doc_count": 7,
+                                "key": "5c5138d4bfb76600df081b36"
+                            },
+                            {
+                                "doc_count": 6,
+                                "key": "5ab37905cdfe3800e091f9e8"
+                            },
+                            {
+                                "doc_count": 5,
+                                "key": "5b98fdb5bfb766031d17086a"
+                            },
+                            {
+                                "doc_count": 2,
+                                "key": "5ab39795cdfe3800e091fb38"
+                            },
+                            {
+                                "doc_count": 1,
+                                "key": "5ba0eab7bfb76600df7fd6ad"
+                            },
+                            {
+                                "doc_count": 1,
+                                "key": "5baa1868bfb76600e5e1b313"
+                            },
+                            {
+                                "doc_count": 1,
+                                "key": "5c2fb954bfb76600ddfe327a"
+                            }
+                        ]
+                    },
+                    "urgency": {
+                        "doc_count_error_upper_bound": 0,
+                        "sum_other_doc_count": 0,
+                        "buckets": [
+                            {
+                                "doc_count": 100,
+                                "key": 3
+                            },
+                            {
+                                "doc_count": 13,
+                                "key": 1
+                            },
+                            {
+                                "doc_count": 11,
+                                "key": 2
+                            }
+                        ]
+                    },
+                    "sms": {
+                        "doc_count_error_upper_bound": 0,
+                        "sum_other_doc_count": 0,
+                        "buckets": [
+                            {
+                                "key_as_string": "false",
+                                "key": 0,
+                                "doc_count": 124
+                            }
+                        ]
+                    },
+                    "priority": {
+                        "doc_count_error_upper_bound": 0,
+                        "sum_other_doc_count": 0,
+                        "buckets": [
+                            {
+                                "doc_count": 121,
+                                "key": 6
+                            },
+                            {
+                                "doc_count": 2,
+                                "key": 1
+                            },
+                            {
+                                "doc_count": 1,
+                                "key": 2
+                            }
+                        ]
+                    },
+                    "genre": {
+                        "doc_count_error_upper_bound": 0,
+                        "sum_other_doc_count": 0,
+                        "buckets": [
+                            {
+                                "doc_count": 118,
+                                "key": "Article (news)"
+                            },
+                            {
+                                "doc_count": 3,
+                                "key": "Obituary"
+                            },
+                            {
+                                "doc_count": 1,
+                                "key": "Analysis"
+                            },
+                            {
+                                "doc_count": 1,
+                                "key": "Opinion"
+                            },
+                            {
+                                "doc_count": 1,
+                                "key": "Review"
+                            }
+                        ]
+                    }
+                },
+                "_items": [
+                    {
+                        "_id": "urn:newsml:sdp-master.test.superdesk.org:2019-07-03T13:37:26.700784:f13fda6a-c0df-4d4d-9369-b1f4ceeecf14",
+                        "profile": "5b9b5e07bfb76600e322b2f9",
+                        "version_creator": "5ab1aabdcdfe38019f0a875a",
+                        "flags": {
+                            "marked_for_sms": false,
+                            "marked_for_not_publication": false,
+                            "marked_archived_only": false,
+                            "marked_for_legal": false
+                        },
+                        "_created": "2019-07-03T13:38:21+0000",
+                        "sign_off": "ADM",
+                        "template": "5b9b5e07bfb76600e322b2fb",
+                        "expiry": null,
+                        "_current_version": 3,
+                        "archive_item": {
+                            "_id": "urn:newsml:sdp-master.test.superdesk.org:2019-07-03T13:37:26.700784:f13fda6a-c0df-4d4d-9369-b1f4ceeecf14",
+                            "profile": "5b9b5e07bfb76600e322b2f9",
+                            "version_creator": "5ab1aabdcdfe38019f0a875a",
+                            "flags": {
+                                "marked_for_sms": false,
+                                "marked_for_not_publication": false,
+                                "marked_archived_only": false,
+                                "marked_for_legal": false
+                            },
+                            "_created": "2019-07-03T13:37:26+0000",
+                            "sign_off": "ADM",
+                            "force_unlock": true,
+                            "template": "5b9b5e07bfb76600e322b2fb",
+                            "expiry": null,
+                            "_current_version": 3,
+                            "anpa_category": [
+                                {
+                                    "subject": "sport",
+                                    "translations": {
+                                        "name": {
+                                            "fr": "FIXME1-fr",
+                                            "es": "FIXME1-es"
+                                        }
+                                    },
+                                    "qcode": "sport",
+                                    "name": "Sport"
+                                }
+                            ],
+                            "slugline": "July 4th coverage",
+                            "subject": [
+                                {
+                                    "name": "famine",
+                                    "parent": "03000000",
+                                    "qcode": "03003000"
+                                }
+                            ],
+                            "publish_schedule": null,
+                            "guid": "urn:newsml:sdp-master.test.superdesk.org:2019-07-03T13:37:26.700784:f13fda6a-c0df-4d4d-9369-b1f4ceeecf14",
+                            "fields_meta": {
+                                "headline": {
+                                    "draftjsState": [
+                                        {
+                                            "blocks": [
+                                                {
+                                                    "data": {
+                                                        "MULTIPLE_HIGHLIGHTS": {}
+                                                    },
+                                                    "text": "Karel test",
+                                                    "depth": 0,
+                                                    "inlineStyleRanges": [],
+                                                    "key": "259rd",
+                                                    "entityRanges": [],
+                                                    "type": "unstyled"
+                                                }
+                                            ],
+                                            "entityMap": {}
+                                        }
+                                    ]
+                                }
+                            },
+                            "place": [
+                                {
+                                    "name": "Australia",
+                                    "qcode": "australia"
+                                }
+                            ],
+                            "priority": 6,
+                            "state": "published",
+                            "type": "text",
+                            "firstcreated": "2019-07-03T13:37:26+0000",
+                            "task": {
+                                "desk": "5ab386c9cdfe3800e091fa1b",
+                                "user": "5ab1aabdcdfe38019f0a875a",
+                                "stage": "5ab386c9cdfe3800e091fa19"
+                            },
+                            "pubstatus": "usable",
+                            "firstpublished": "2019-07-03T13:38:21+0000",
+                            "unique_name": "#136307",
+                            "headline": "Karel test",
+                            "lock_session": null,
+                            "unique_id": 136307,
+                            "versioncreated": "2019-07-03T13:38:14+0000",
+                            "assignment_id": "5d1caed3cc6f610305366284",
+                            "family_id": "urn:newsml:sdp-master.test.superdesk.org:2019-07-03T13:37:26.700784:f13fda6a-c0df-4d4d-9369-b1f4ceeecf14",
+                            "_etag": "48d891a156833c4e8c0e9e8cdfcc16aaf79957dc",
+                            "schedule_settings": {
+                                "time_zone": null,
+                                "utc_publish_schedule": null,
+                                "utc_embargo": null
+                            },
+                            "operation": "publish",
+                            "lock_time": null,
+                            "genre": [
+                                {
+                                    "name": "Article (news)",
+                                    "qcode": "Article"
+                                }
+                            ],
+                            "byline": "Dr Admin Adminis",
+                            "format": "HTML",
+                            "lock_action": null,
+                            "original_creator": "5ab1aabdcdfe38019f0a875a",
+                            "source": "SD Lucre",
+                            "lock_user": null,
+                            "language": "en",
+                            "event_id": "tag:sdp-master.test.superdesk.org:2019:7de1ed12-3ba0-422f-9936-581b8c7ca1c7",
+                            "_updated": "2019-07-03T13:38:21+0000",
+                            "urgency": 1,
+                            "abstract": "<p>some description</p>",
+                            "version": 2
+                        },
+                        "anpa_category": [
+                            {
+                                "subject": "sport",
+                                "translations": {
+                                    "name": {
+                                        "fr": "FIXME1-fr",
+                                        "es": "FIXME1-es"
+                                    }
+                                },
+                                "qcode": "sport",
+                                "name": "Sport"
+                            }
+                        ],
+                        "queue_state": "queued",
+                        "slugline": "July 4th coverage",
+                        "subject": [
+                            {
+                                "name": "famine",
+                                "parent": "03000000",
+                                "qcode": "03003000"
+                            }
+                        ],
+                        "publish_schedule": null,
+                        "guid": "urn:newsml:sdp-master.test.superdesk.org:2019-07-03T13:37:26.700784:f13fda6a-c0df-4d4d-9369-b1f4ceeecf14",
+                        "_updated": "2019-07-03T13:38:21+0000",
+                        "fields_meta": {
+                            "headline": {
+                                "draftjsState": [
+                                    {
+                                        "blocks": [
+                                            {
+                                                "data": {
+                                                    "MULTIPLE_HIGHLIGHTS": {}
+                                                },
+                                                "text": "Karel test",
+                                                "depth": 0,
+                                                "inlineStyleRanges": [],
+                                                "key": "259rd",
+                                                "entityRanges": [],
+                                                "type": "unstyled"
+                                            }
+                                        ],
+                                        "entityMap": {}
+                                    }
+                                ]
+                            }
+                        },
+                        "place": [
+                            {
+                                "name": "Australia",
+                                "qcode": "australia"
+                            }
+                        ],
+                        "item_id": "5d1cafcdcc6f6103053662c1",
+                        "priority": 6,
+                        "state": "published",
+                        "type": "text",
+                        "firstcreated": "2019-07-03T13:37:26+0000",
+                        "task": {
+                            "desk": "5ab386c9cdfe3800e091fa1b",
+                            "user": "5ab1aabdcdfe38019f0a875a",
+                            "stage": "5ab386c9cdfe3800e091fa19"
+                        },
+                        "pubstatus": "usable",
+                        "firstpublished": "2019-07-03T13:38:21+0000",
+                        "unique_name": "#136307",
+                        "headline": "Karel test",
+                        "lock_session": null,
+                        "_type": "published",
+                        "unique_id": 136307,
+                        "versioncreated": "2019-07-03T13:38:21+0000",
+                        "assignment_id": "5d1caed3cc6f610305366284",
+                        "family_id": "urn:newsml:sdp-master.test.superdesk.org:2019-07-03T13:37:26.700784:f13fda6a-c0df-4d4d-9369-b1f4ceeecf14",
+                        "_etag": "98cf11cd7ae774c08534f80b325d42d393a31c8c",
+                        "schedule_settings": {
+                            "time_zone": null,
+                            "utc_publish_schedule": null,
+                            "utc_embargo": null
+                        },
+                        "operation": "publish",
+                        "last_queue_event": "2019-07-03T13:38:21+0000",
+                        "lock_time": null,
+                        "genre": [
+                            {
+                                "name": "Article (news)",
+                                "qcode": "Article"
+                            }
+                        ],
+                        "byline": "Dr Admin Adminis",
+                        "format": "HTML",
+                        "moved_to_legal": false,
+                        "original_creator": "5ab1aabdcdfe38019f0a875a",
+                        "lock_action": null,
+                        "source": "SD Lucre",
+                        "lock_user": null,
+                        "assignment": {
+                            "assignor_user": "5ab1aabdcdfe38019f0a875a",
+                            "assignor_desk": "5ab1aabdcdfe38019f0a875a",
+                            "assignment_id": "5d1caed3cc6f610305366284",
+                            "user": "5ab1aabdcdfe38019f0a875a",
+                            "coverage_provider": null,
+                            "desk": "5ab386c9cdfe3800e091fa1b",
+                            "assigned_date_desk": "2019-07-03T13:34:11+0000",
+                            "state": "completed",
+                            "assigned_date_user": "2019-07-03T13:37:26+0000"
+                        },
+                        "language": "en",
+                        "last_published_version": true,
+                        "publish_sequence_no": 128,
+                        "is_take_item": false,
+                        "urgency": 1,
+                        "event_id": "tag:sdp-master.test.superdesk.org:2019:7de1ed12-3ba0-422f-9936-581b8c7ca1c7",
+                        "_links": {
+                            "self": {
+                                "title": "Published",
+                                "href": "published/5d1cafcdcc6f6103053662c1"
+                            }
+                        },
+                        "abstract": "<p>some description</p>",
+                        "version": 2
+                    }
+                ]
+            }    
+
+
+
+## A Published Item [/published/{item_id}]
+
+**last_published_version** field is set to true for last published version of the item in the published collection
+and for the older version is set to false. This field is used to display the last version of the copy
+in the published view.
+
+**moved_to_legal** field tells if item is moved to legal. True if moved else false.
+
+
++ Parameters
+
+    - item_id (string) ... published item id
+
+### Details of A Published Item [GET]
+
++ Response 200 (application/json)
+
+    + Body
+
+            {
+                "_id": "urn:newsml:sdp-master.test.superdesk.org:2019-07-03T13:37:26.700784:f13fda6a-c0df-4d4d-9369-b1f4ceeecf14",
+                "profile": "5b9b5e07bfb76600e322b2f9",
+                "version_creator": "5ab1aabdcdfe38019f0a875a",
+                "flags": {
+                    "marked_for_sms": false,
+                    "marked_for_not_publication": false,
+                    "marked_archived_only": false,
+                    "marked_for_legal": false
+                },
+                "_created": "2019-07-03T13:38:21+0000",
+                "sign_off": "ADM",
+                "template": "5b9b5e07bfb76600e322b2fb",
+                "expiry": null,
+                "_current_version": 3,
+                "archive_item": {
+                    "_id": "urn:newsml:sdp-master.test.superdesk.org:2019-07-03T13:37:26.700784:f13fda6a-c0df-4d4d-9369-b1f4ceeecf14",
+                    "profile": "5b9b5e07bfb76600e322b2f9",
+                    "version_creator": "5ab1aabdcdfe38019f0a875a",
+                    "flags": {
+                        "marked_for_sms": false,
+                        "marked_for_not_publication": false,
+                        "marked_archived_only": false,
+                        "marked_for_legal": false
+                    },
+                    "_created": "2019-07-03T13:37:26+0000",
+                    "sign_off": "ADM",
+                    "force_unlock": true,
+                    "template": "5b9b5e07bfb76600e322b2fb",
+                    "expiry": null,
+                    "_current_version": 3,
+                    "anpa_category": [
+                        {
+                            "subject": "sport",
+                            "translations": {
+                                "name": {
+                                    "fr": "FIXME1-fr",
+                                    "es": "FIXME1-es"
+                                }
+                            },
+                            "qcode": "sport",
+                            "name": "Sport"
+                        }
+                    ],
+                    "slugline": "July 4th coverage",
+                    "subject": [
+                        {
+                            "name": "famine",
+                            "parent": "03000000",
+                            "qcode": "03003000"
+                        }
+                    ],
+                    "publish_schedule": null,
+                    "guid": "urn:newsml:sdp-master.test.superdesk.org:2019-07-03T13:37:26.700784:f13fda6a-c0df-4d4d-9369-b1f4ceeecf14",
+                    "fields_meta": {
+                        "headline": {
+                            "draftjsState": [
+                                {
+                                    "blocks": [
+                                        {
+                                            "data": {
+                                                "MULTIPLE_HIGHLIGHTS": {}
+                                            },
+                                            "text": "Karel test",
+                                            "depth": 0,
+                                            "inlineStyleRanges": [],
+                                            "key": "259rd",
+                                            "entityRanges": [],
+                                            "type": "unstyled"
+                                        }
+                                    ],
+                                    "entityMap": {}
+                                }
+                            ]
+                        }
+                    },
+                    "place": [
+                        {
+                            "name": "Australia",
+                            "qcode": "australia"
+                        }
+                    ],
+                    "priority": 6,
+                    "state": "published",
+                    "type": "text",
+                    "firstcreated": "2019-07-03T13:37:26+0000",
+                    "task": {
+                        "desk": "5ab386c9cdfe3800e091fa1b",
+                        "user": "5ab1aabdcdfe38019f0a875a",
+                        "stage": "5ab386c9cdfe3800e091fa19"
+                    },
+                    "pubstatus": "usable",
+                    "firstpublished": "2019-07-03T13:38:21+0000",
+                    "unique_name": "#136307",
+                    "headline": "Karel test",
+                    "lock_session": null,
+                    "unique_id": 136307,
+                    "versioncreated": "2019-07-03T13:38:14+0000",
+                    "assignment_id": "5d1caed3cc6f610305366284",
+                    "family_id": "urn:newsml:sdp-master.test.superdesk.org:2019-07-03T13:37:26.700784:f13fda6a-c0df-4d4d-9369-b1f4ceeecf14",
+                    "_etag": "48d891a156833c4e8c0e9e8cdfcc16aaf79957dc",
+                    "schedule_settings": {
+                        "time_zone": null,
+                        "utc_publish_schedule": null,
+                        "utc_embargo": null
+                    },
+                    "operation": "publish",
+                    "lock_time": null,
+                    "genre": [
+                        {
+                            "name": "Article (news)",
+                            "qcode": "Article"
+                        }
+                    ],
+                    "byline": "Dr Admin Adminis",
+                    "format": "HTML",
+                    "lock_action": null,
+                    "original_creator": "5ab1aabdcdfe38019f0a875a",
+                    "source": "SD Lucre",
+                    "lock_user": null,
+                    "language": "en",
+                    "event_id": "tag:sdp-master.test.superdesk.org:2019:7de1ed12-3ba0-422f-9936-581b8c7ca1c7",
+                    "_updated": "2019-07-03T13:38:21+0000",
+                    "urgency": 1,
+                    "abstract": "<p>some description</p>",
+                    "version": 2
+                },
+                "anpa_category": [
+                    {
+                        "subject": "sport",
+                        "translations": {
+                            "name": {
+                                "fr": "FIXME1-fr",
+                                "es": "FIXME1-es"
+                            }
+                        },
+                        "qcode": "sport",
+                        "name": "Sport"
+                    }
+                ],
+                "queue_state": "queued",
+                "slugline": "July 4th coverage",
+                "subject": [
+                    {
+                        "name": "famine",
+                        "parent": "03000000",
+                        "qcode": "03003000"
+                    }
+                ],
+                "publish_schedule": null,
+                "guid": "urn:newsml:sdp-master.test.superdesk.org:2019-07-03T13:37:26.700784:f13fda6a-c0df-4d4d-9369-b1f4ceeecf14",
+                "_updated": "2019-07-03T13:38:21+0000",
+                "fields_meta": {
+                    "headline": {
+                        "draftjsState": [
+                            {
+                                "blocks": [
+                                    {
+                                        "data": {
+                                            "MULTIPLE_HIGHLIGHTS": {}
+                                        },
+                                        "text": "Karel test",
+                                        "depth": 0,
+                                        "inlineStyleRanges": [],
+                                        "key": "259rd",
+                                        "entityRanges": [],
+                                        "type": "unstyled"
+                                    }
+                                ],
+                                "entityMap": {}
+                            }
+                        ]
+                    }
+                },
+                "place": [
+                    {
+                        "name": "Australia",
+                        "qcode": "australia"
+                    }
+                ],
+                "item_id": "5d1cafcdcc6f6103053662c1",
+                "priority": 6,
+                "state": "published",
+                "type": "text",
+                "firstcreated": "2019-07-03T13:37:26+0000",
+                "task": {
+                    "desk": "5ab386c9cdfe3800e091fa1b",
+                    "user": "5ab1aabdcdfe38019f0a875a",
+                    "stage": "5ab386c9cdfe3800e091fa19"
+                },
+                "pubstatus": "usable",
+                "firstpublished": "2019-07-03T13:38:21+0000",
+                "unique_name": "#136307",
+                "headline": "Karel test",
+                "lock_session": null,
+                "_type": "published",
+                "unique_id": 136307,
+                "versioncreated": "2019-07-03T13:38:21+0000",
+                "assignment_id": "5d1caed3cc6f610305366284",
+                "family_id": "urn:newsml:sdp-master.test.superdesk.org:2019-07-03T13:37:26.700784:f13fda6a-c0df-4d4d-9369-b1f4ceeecf14",
+                "_etag": "98cf11cd7ae774c08534f80b325d42d393a31c8c",
+                "schedule_settings": {
+                    "time_zone": null,
+                    "utc_publish_schedule": null,
+                    "utc_embargo": null
+                },
+                "operation": "publish",
+                "last_queue_event": "2019-07-03T13:38:21+0000",
+                "lock_time": null,
+                "genre": [
+                    {
+                        "name": "Article (news)",
+                        "qcode": "Article"
+                    }
+                ],
+                "byline": "Dr Admin Adminis",
+                "format": "HTML",
+                "moved_to_legal": false,
+                "original_creator": "5ab1aabdcdfe38019f0a875a",
+                "lock_action": null,
+                "source": "SD Lucre",
+                "lock_user": null,
+                "language": "en",
+                "last_published_version": true,
+                "publish_sequence_no": 128,
+                "is_take_item": false,
+                "urgency": 1,
+                "event_id": "tag:sdp-master.test.superdesk.org:2019:7de1ed12-3ba0-422f-9936-581b8c7ca1c7",
+                "_links": {
+                    "parent": {
+                        "title": "home",
+                        "href": "/"
+                    },
+                    "self": {
+                        "title": "Published",
+                        "href": "published/5d1cafcdcc6f6103053662c1"
+                    },
+                    "collection": {
+                        "title": "published",
+                        "href": "published"
+                    }
+                },
+                "abstract": "<p>some description</p>",
+                "version": 2
+            }
+
+    + Schema
+
+            {
+                "_id": {
+                    "type": "string",
+                    "unique": true
+                },
+                "abstract": {
+                    "nullable": true,
+                    "type": "string"
+                },
+                "alt_text": {
+                    "nullable": true,
+                    "type": "string"
+                },
+                "annotations": {
+                    "mapping": {
+                        "enabled": false,
+                        "type": "object"
+                    },
+                    "schema": {
+                        "schema": {
+                            "body": {
+                                "type": "string"
+                            },
+                            "id": {
+                                "type": "integer"
+                            },
+                            "type": {
+                                "type": "string"
+                            }
+                        },
+                        "type": "dict"
+                    },
+                    "type": "list"
+                },
+                "anpa_category": {
+                    "mapping": {
+                        "properties": {
+                            "name": {
+                                "index": "not_analyzed",
+                                "type": "string"
+                            },
+                            "qcode": {
+                                "index": "not_analyzed",
+                                "type": "string"
+                            }
+                        },
+                        "type": "object"
+                    },
+                    "nullable": true,
+                    "type": "list"
+                },
+                "anpa_take_key": {
+                    "nullable": true,
+                    "type": "string"
+                },
+                "archive_description": {
+                    "nullable": true,
+                    "type": "string"
+                },
+                "assignment_id": {
+                    "mapping": {
+                        "index": "not_analyzed",
+                        "type": "string"
+                    },
+                    "type": "string"
+                },
+                "associated_take_sequence": {
+                    "type": "integer"
+                },
+                "associations": {
+                    "mapping": {
+                        "dynamic": false,
+                        "properties": {
+                            "featuremedia": {
+                                "dynamic": false,
+                                "properties": {
+                                    "_id": {
+                                        "index": "not_analyzed",
+                                        "type": "string"
+                                    },
+                                    "guid": {
+                                        "index": "not_analyzed",
+                                        "type": "string"
+                                    },
+                                    "unique_id": {
+                                        "type": "integer"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        },
+                        "type": "object"
+                    },
+                    "type": "dict"
+                },
+                "attachments": {
+                    "nullable": true,
+                    "schema": {
+                        "schema": {
+                            "attachment": {
+                                "data_relation": {
+                                    "embeddable": true,
+                                    "field": "_id",
+                                    "resource": "attachments"
+                                },
+                                "nullable": false,
+                                "required": false,
+                                "type": "objectid"
+                            }
+                        },
+                        "type": "dict"
+                    },
+                    "type": "list"
+                },
+                "authors": {
+                    "mapping": {
+                        "dynamic": false,
+                        "properties": {
+                            "jobtitle": {
+                                "enabled": false,
+                                "type": "object"
+                            },
+                            "name": {
+                                "index": "not_analyzed",
+                                "type": "string"
+                            },
+                            "parent": {
+                                "index": "not_analyzed",
+                                "type": "string"
+                            },
+                            "role": {
+                                "index": "not_analyzed",
+                                "type": "string"
+                            },
+                            "uri": {
+                                "index": "not_analyzed",
+                                "type": "string"
+                            }
+                        },
+                        "type": "object"
+                    },
+                    "nullable": true,
+                    "type": "list"
+                },
+                "auto_publish": {
+                    "type": "boolean"
+                },
+                "body_footer": {
+                    "mapping": {
+                        "index": "no",
+                        "type": "string"
+                    },
+                    "nullable": true,
+                    "type": "string"
+                },
+                "body_html": {
+                    "nullable": true,
+                    "type": "string"
+                },
+                "body_text": {
+                    "nullable": true,
+                    "type": "string"
+                },
+                "broadcast": {
+                    "nullable": true,
+                    "schema": {
+                        "master_id": {
+                            "mapping": {
+                                "index": "not_analyzed",
+                                "type": "string"
+                            },
+                            "type": "string"
+                        },
+                        "rewrite_id": {
+                            "mapping": {
+                                "index": "not_analyzed",
+                                "type": "string"
+                            },
+                            "type": "string"
+                        },
+                        "status": {
+                            "type": "string"
+                        }
+                    },
+                    "type": "dict"
+                },
+                "byline": {
+                    "nullable": true,
+                    "type": "string"
+                },
+                "company_codes": {
+                    "mapping": {
+                        "properties": {
+                            "name": {
+                                "index": "not_analyzed",
+                                "type": "string"
+                            },
+                            "qcode": {
+                                "index": "not_analyzed",
+                                "type": "string"
+                            },
+                            "security_exchange": {
+                                "index": "not_analyzed",
+                                "type": "string"
+                            }
+                        },
+                        "type": "object"
+                    },
+                    "type": "list"
+                },
+                "contents": {
+                    "type": "list"
+                },
+                "copyrightholder": {
+                    "nullable": true,
+                    "type": "string"
+                },
+                "copyrightnotice": {
+                    "mapping": {
+                        "index": "no",
+                        "type": "string"
+                    },
+                    "nullable": true,
+                    "type": "string"
+                },
+                "correction_sequence": {
+                    "mapping": {
+                        "index": "not_analyzed",
+                        "type": "string"
+                    },
+                    "type": "integer"
+                },
+                "creditline": {
+                    "type": "string"
+                },
+                "dateline": {
+                    "nullable": true,
+                    "schema": {
+                        "date": {
+                            "nullable": true,
+                            "type": "datetime"
+                        },
+                        "located": {
+                            "nullable": true,
+                            "type": "dict"
+                        },
+                        "source": {
+                            "type": "string"
+                        },
+                        "text": {
+                            "nullable": true,
+                            "type": "string"
+                        }
+                    },
+                    "type": "dict"
+                },
+                "deleted_groups": {
+                    "minlength": 1,
+                    "nullable": true,
+                    "type": "list"
+                },
+                "description_text": {
+                    "nullable": true,
+                    "type": "string"
+                },
+                "ednote": {
+                    "nullable": true,
+                    "type": "string"
+                },
+                "embargo": {
+                    "nullable": true,
+                    "type": "datetime"
+                },
+                "embargoed": {
+                    "type": "datetime"
+                },
+                "embargoed_text": {
+                    "mapping": {
+                        "index": "no",
+                        "type": "string"
+                    },
+                    "type": "string"
+                },
+                "event_id": {
+                    "mapping": {
+                        "index": "not_analyzed",
+                        "type": "string"
+                    },
+                    "type": "string"
+                },
+                "expiry": {
+                    "type": "datetime"
+                },
+                "expiry_status": {
+                    "mapping": {
+                        "index": "not_analyzed",
+                        "type": "string"
+                    },
+                    "nullable": true,
+                    "type": "string"
+                },
+                "extra": {
+                    "mapping": {
+                        "type": "object"
+                    },
+                    "type": "dict"
+                },
+                "family_id": {
+                    "mapping": {
+                        "index": "not_analyzed",
+                        "type": "string"
+                    },
+                    "type": "string"
+                },
+                "fields_meta": {
+                    "mapping": {
+                        "enabled": false,
+                        "type": "object"
+                    },
+                    "nullable": true,
+                    "type": "dict"
+                },
+                "filemeta": {
+                    "type": "dict"
+                },
+                "filemeta_json": {
+                    "type": "string"
+                },
+                "firstcreated": {
+                    "type": "datetime"
+                },
+                "firstpublished": {
+                    "nullable": true,
+                    "required": false,
+                    "type": "datetime"
+                },
+                "flags": {
+                    "schema": {
+                        "marked_archived_only": {
+                            "default": false,
+                            "type": "boolean"
+                        },
+                        "marked_for_legal": {
+                            "default": false,
+                            "type": "boolean"
+                        },
+                        "marked_for_not_publication": {
+                            "default": false,
+                            "type": "boolean"
+                        },
+                        "marked_for_sms": {
+                            "default": false,
+                            "type": "boolean"
+                        }
+                    },
+                    "type": "dict"
+                },
+                "format": {
+                    "default": "HTML",
+                    "mapping": {
+                        "index": "not_analyzed",
+                        "type": "string"
+                    },
+                    "type": "string"
+                },
+                "genre": {
+                    "mapping": {
+                        "properties": {
+                            "name": {
+                                "index": "not_analyzed",
+                                "type": "string"
+                            },
+                            "qcode": {
+                                "index": "not_analyzed",
+                                "type": "string"
+                            }
+                        },
+                        "type": "object"
+                    },
+                    "nullable": true,
+                    "type": "list"
+                },
+                "groups": {
+                    "minlength": 1,
+                    "nullable": true,
+                    "type": "list"
+                },
+                "guid": {
+                    "mapping": {
+                        "index": "not_analyzed",
+                        "type": "string"
+                    },
+                    "type": "string",
+                    "unique": true
+                },
+                "headline": {
+                    "type": "string"
+                },
+                "highlight": {
+                    "data_relation": {
+                        "embeddable": true,
+                        "field": "_id",
+                        "resource": "highlights"
+                    },
+                    "nullable": false,
+                    "required": false,
+                    "type": "objectid"
+                },
+                "highlights": {
+                    "schema": {
+                        "data_relation": {
+                            "embeddable": true,
+                            "field": "_id",
+                            "resource": "highlights"
+                        },
+                        "nullable": false,
+                        "required": false,
+                        "type": "objectid"
+                    },
+                    "type": "list"
+                },
+                "ingest_id": {
+                    "mapping": {
+                        "index": "not_analyzed",
+                        "type": "string"
+                    },
+                    "type": "string"
+                },
+                "ingest_provider": {
+                    "data_relation": {
+                        "embeddable": true,
+                        "field": "_id",
+                        "resource": "ingest_providers"
+                    },
+                    "nullable": false,
+                    "required": false,
+                    "type": "objectid"
+                },
+                "ingest_provider_sequence": {
+                    "mapping": {
+                        "index": "not_analyzed",
+                        "type": "string"
+                    },
+                    "type": "string"
+                },
+                "ingest_version": {
+                    "mapping": {
+                        "index": "not_analyzed",
+                        "type": "string"
+                    },
+                    "type": "string"
+                },
+                "keywords": {
+                    "mapping": {
+                        "type": "string"
+                    },
+                    "type": "list"
+                },
+                "language": {
+                    "mapping": {
+                        "index": "not_analyzed",
+                        "type": "string"
+                    },
+                    "nullable": true,
+                    "type": "string"
+                },
+                "last_version": {
+                    "type": "number"
+                },
+                "linked_in_packages": {
+                    "readonly": true,
+                    "schema": {
+                        "schema": {
+                            "package": {
+                                "data_relation": {
+                                    "embeddable": true,
+                                    "field": "_id",
+                                    "resource": "archive"
+                                },
+                                "nullable": false,
+                                "required": false,
+                                "type": "objectid"
+                            },
+                            "package_type": {
+                                "type": "string"
+                            }
+                        },
+                        "type": "dict"
+                    },
+                    "type": "list"
+                },
+                "lock_action": {
+                    "mapping": {
+                        "index": "not_analyzed",
+                        "type": "string"
+                    },
+                    "nullable": true,
+                    "type": "string"
+                },
+                "lock_session": {
+                    "data_relation": {
+                        "embeddable": true,
+                        "field": "_id",
+                        "resource": "auth"
+                    },
+                    "nullable": false,
+                    "required": false,
+                    "type": "objectid",
+                    "versioned": false
+                },
+                "lock_time": {
+                    "type": "datetime",
+                    "versioned": false
+                },
+                "lock_user": {
+                    "data_relation": {
+                        "embeddable": true,
+                        "field": "_id",
+                        "resource": "users"
+                    },
+                    "nullable": false,
+                    "required": false,
+                    "type": "objectid",
+                    "versioned": false
+                },
+                "marked_desks": {
+                    "nullable": true,
+                    "schema": {
+                        "schema": {
+                            "date_acknowledged": {
+                                "nullable": true,
+                                "type": "datetime"
+                            },
+                            "date_marked": {
+                                "nullable": true,
+                                "type": "datetime"
+                            },
+                            "desk_id": {
+                                "data_relation": {
+                                    "embeddable": true,
+                                    "field": "_id",
+                                    "resource": "desks"
+                                },
+                                "nullable": false,
+                                "required": false,
+                                "type": "objectid"
+                            },
+                            "user_acknowledged": {
+                                "data_relation": {
+                                    "embeddable": true,
+                                    "field": "_id",
+                                    "resource": "users"
+                                },
+                                "nullable": true,
+                                "required": false,
+                                "type": "objectid"
+                            },
+                            "user_marked": {
+                                "data_relation": {
+                                    "embeddable": true,
+                                    "field": "_id",
+                                    "resource": "users"
+                                },
+                                "nullable": true,
+                                "required": false,
+                                "type": "objectid"
+                            }
+                        },
+                        "type": "dict"
+                    },
+                    "type": "list"
+                },
+                "media": {
+                    "type": "file"
+                },
+                "media_file": {
+                    "type": "string"
+                },
+                "mimetype": {
+                    "mapping": {
+                        "index": "not_analyzed",
+                        "type": "string"
+                    },
+                    "type": "string"
+                },
+                "more_coming": {
+                    "type": "boolean"
+                },
+                "old_version": {
+                    "type": "number"
+                },
+                "operation": {
+                    "allowed": [
+                        "create",
+                        "fetch",
+                        "update",
+                        "restore",
+                        "duplicate",
+                        "duplicated_from",
+                        "deschedule",
+                        "rewrite",
+                        "link",
+                        "unlink",
+                        "mark",
+                        "unmark",
+                        "resend",
+                        "export_highlight",
+                        "create_highlight",
+                        "send"
+                    ],
+                    "index": "not_analyzed",
+                    "type": "string"
+                },
+                "original_creator": {
+                    "data_relation": {
+                        "embeddable": true,
+                        "field": "_id",
+                        "resource": "users"
+                    },
+                    "nullable": false,
+                    "required": false,
+                    "type": "objectid"
+                },
+                "original_id": {
+                    "mapping": {
+                        "index": "not_analyzed",
+                        "type": "string"
+                    },
+                    "type": "string"
+                },
+                "original_source": {
+                    "mapping": {
+                        "index": "not_analyzed",
+                        "type": "string"
+                    },
+                    "type": "string"
+                },
+                "package_type": {
+                    "allowed": [
+                        "takes"
+                    ],
+                    "type": "string"
+                },
+                "place": {
+                    "mapping": {
+                        "dynamic": false,
+                        "properties": {
+                            "code": {
+                                "index": "not_analyzed",
+                                "type": "string"
+                            },
+                            "country": {
+                                "index": "not_analyzed",
+                                "type": "string"
+                            },
+                            "country_code": {
+                                "index": "not_analyzed",
+                                "type": "string"
+                            },
+                            "feature_class": {
+                                "index": "not_analyzed",
+                                "type": "string"
+                            },
+                            "locality": {
+                                "index": "not_analyzed",
+                                "type": "string"
+                            },
+                            "locality_code": {
+                                "index": "not_analyzed",
+                                "type": "string"
+                            },
+                            "location": {
+                                "type": "geo_point"
+                            },
+                            "name": {
+                                "index": "not_analyzed",
+                                "type": "string"
+                            },
+                            "qcode": {
+                                "index": "not_analyzed",
+                                "type": "string"
+                            },
+                            "rel": {
+                                "index": "not_analyzed",
+                                "type": "string"
+                            },
+                            "scheme": {
+                                "index": "not_analyzed",
+                                "type": "string"
+                            },
+                            "state": {
+                                "index": "not_analyzed",
+                                "type": "string"
+                            },
+                            "state_code": {
+                                "index": "not_analyzed",
+                                "type": "string"
+                            },
+                            "world_region": {
+                                "index": "not_analyzed",
+                                "type": "string"
+                            },
+                            "world_region_code": {
+                                "index": "not_analyzed",
+                                "type": "string"
+                            }
+                        },
+                        "type": "object"
+                    },
+                    "nullable": true,
+                    "type": "list"
+                },
+                "poi": {
+                    "schema": {
+                        "x": {
+                            "nullable": false,
+                            "type": "float"
+                        },
+                        "y": {
+                            "nullable": false,
+                            "type": "float"
+                        }
+                    },
+                    "type": "dict"
+                },
+                "priority": {
+                    "nullable": true,
+                    "type": "integer"
+                },
+                "processed_from": {
+                    "mapping": {
+                        "index": "not_analyzed",
+                        "type": "string"
+                    },
+                    "type": "string"
+                },
+                "profile": {
+                    "nullable": true,
+                    "type": "string"
+                },
+                "publish_schedule": {
+                    "nullable": true,
+                    "type": "datetime"
+                },
+                "pubstatus": {
+                    "allowed": [
+                        "usable",
+                        "withheld",
+                        "canceled"
+                    ],
+                    "default": "usable",
+                    "mapping": {
+                        "index": "not_analyzed",
+                        "type": "string"
+                    },
+                    "nullable": true,
+                    "type": "string"
+                },
+                "related_to": {
+                    "mapping": {
+                        "index": "not_analyzed",
+                        "type": "string"
+                    },
+                    "type": "string"
+                },
+                "renditions": {
+                    "type": "dict"
+                },
+                "revert_state": {
+                    "allowed": [
+                        "draft",
+                        "ingested",
+                        "routed",
+                        "fetched",
+                        "submitted",
+                        "in_progress",
+                        "spiked",
+                        "published",
+                        "killed",
+                        "corrected",
+                        "scheduled",
+                        "recalled"
+                    ],
+                    "mapping": {
+                        "index": "not_analyzed",
+                        "type": "string"
+                    },
+                    "type": "string"
+                },
+                "rewrite_of": {
+                    "mapping": {
+                        "index": "not_analyzed",
+                        "type": "string"
+                    },
+                    "nullable": true,
+                    "type": "string"
+                },
+                "rewrite_sequence": {
+                    "mapping": {
+                        "index": "not_analyzed",
+                        "type": "string"
+                    },
+                    "type": "integer"
+                },
+                "rewritten_by": {
+                    "mapping": {
+                        "index": "not_analyzed",
+                        "type": "string"
+                    },
+                    "nullable": true,
+                    "type": "string"
+                },
+                "schedule_settings": {
+                    "nullable": true,
+                    "schema": {
+                        "time_zone": {
+                            "nullable": true,
+                            "type": "string"
+                        },
+                        "utc_embargo": {
+                            "nullable": true,
+                            "type": "datetime"
+                        },
+                        "utc_publish_schedule": {
+                            "nullable": true,
+                            "type": "datetime"
+                        }
+                    },
+                    "type": "dict"
+                },
+                "sequence": {
+                    "type": "integer"
+                },
+                "sign_off": {
+                    "nullable": true,
+                    "type": "string"
+                },
+                "signal": {
+                    "mapping": {
+                        "properties": {
+                            "name": {
+                                "index": "not_analyzed",
+                                "type": "string"
+                            },
+                            "qcode": {
+                                "index": "not_analyzed",
+                                "type": "string"
+                            },
+                            "scheme": {
+                                "index": "not_analyzed",
+                                "type": "string"
+                            }
+                        },
+                        "type": "object"
+                    },
+                    "type": "list"
+                },
+                "slugline": {
+                    "mapping": {
+                        "fields": {
+                            "phrase": {
+                                "analyzer": "phrase_prefix_analyzer",
+                                "search_analyzer": "phrase_prefix_analyzer",
+                                "type": "string"
+                            }
+                        },
+                        "type": "string"
+                    },
+                    "type": "string"
+                },
+                "sms_message": {
+                    "mapping": {
+                        "index": "not_analyzed",
+                        "type": "string"
+                    },
+                    "nullable": true,
+                    "type": "string"
+                },
+                "source": {
+                    "mapping": {
+                        "index": "not_analyzed",
+                        "type": "string"
+                    },
+                    "type": "string"
+                },
+                "state": {
+                    "allowed": [
+                        "draft",
+                        "ingested",
+                        "routed",
+                        "fetched",
+                        "submitted",
+                        "in_progress",
+                        "spiked",
+                        "published",
+                        "killed",
+                        "corrected",
+                        "scheduled",
+                        "recalled"
+                    ],
+                    "mapping": {
+                        "index": "not_analyzed",
+                        "type": "string"
+                    },
+                    "type": "string"
+                },
+                "subject": {
+                    "mapping": {
+                        "properties": {
+                            "name": {
+                                "index": "not_analyzed",
+                                "type": "string"
+                            },
+                            "qcode": {
+                                "index": "not_analyzed",
+                                "type": "string"
+                            }
+                        },
+                        "type": "object"
+                    },
+                    "type": "list"
+                },
+                "target_regions": {
+                    "nullable": true,
+                    "schema": {
+                        "schema": {
+                            "allow": {
+                                "type": "boolean"
+                            },
+                            "name": {
+                                "type": "string"
+                            },
+                            "qcode": {
+                                "type": "string"
+                            }
+                        },
+                        "type": "dict"
+                    },
+                    "type": "list"
+                },
+                "target_subscribers": {
+                    "nullable": true,
+                    "type": "list"
+                },
+                "target_types": {
+                    "nullable": true,
+                    "schema": {
+                        "schema": {
+                            "allow": {
+                                "type": "boolean"
+                            },
+                            "name": {
+                                "type": "string"
+                            },
+                            "qcode": {
+                                "type": "string"
+                            }
+                        },
+                        "type": "dict"
+                    },
+                    "type": "list"
+                },
+                "task": {
+                    "type": "dict"
+                },
+                "task_id": {
+                    "mapping": {
+                        "index": "not_analyzed",
+                        "type": "string"
+                    },
+                    "type": "string",
+                    "versioned": false
+                },
+                "template": {
+                    "data_relation": {
+                        "embeddable": true,
+                        "field": "_id",
+                        "resource": "content_templates"
+                    },
+                    "nullable": false,
+                    "required": false,
+                    "type": "objectid"
+                },
+                "translated_from": {
+                    "mapping": {
+                        "index": "not_analyzed",
+                        "type": "string"
+                    },
+                    "type": "string"
+                },
+                "translation_id": {
+                    "mapping": {
+                        "index": "not_analyzed",
+                        "type": "string"
+                    },
+                    "type": "string"
+                },
+                "type": {
+                    "allowed": [
+                        "text",
+                        "preformatted",
+                        "audio",
+                        "video",
+                        "picture",
+                        "graphic",
+                        "composite",
+                        "event"
+                    ],
+                    "default": "text",
+                    "mapping": {
+                        "index": "not_analyzed",
+                        "type": "string"
+                    },
+                    "type": "string"
+                },
+                "unique_id": {
+                    "type": "integer",
+                    "unique": true
+                },
+                "unique_name": {
+                    "mapping": {
+                        "index": "not_analyzed",
+                        "type": "string"
+                    },
+                    "type": "string",
+                    "unique": true
+                },
+                "urgency": {
+                    "nullable": true,
+                    "type": "integer"
+                },
+                "usageterms": {
+                    "nullable": true,
+                    "type": "string"
+                },
+                "version": {
+                    "type": "integer"
+                },
+                "version_creator": {
+                    "data_relation": {
+                        "embeddable": true,
+                        "field": "_id",
+                        "resource": "users"
+                    },
+                    "nullable": false,
+                    "required": false,
+                    "type": "objectid"
+                },
+                "versioncreated": {
+                    "type": "datetime"
+                },
+                "word_count": {
+                    "type": "integer"
+                },
+                "item_id": {
+                    "type": "string"
+                },
+                "publish_state": {
+                    "type": "string"
+                },
+                "last_published_version": {
+                    "type": "boolean",
+                    "default": true
+                },
+                "queue_state": {
+                    "type": "string",
+                    "default": "pending",
+                    "allowed": ["pending", "in_progress", "queued", "queued_not_transmitted", "error"]
+                },
+                "error_message": {
+                    "type": "string"
+                },
+                "publish_sequence_no": {
+                    "type": "integer",
+                    "readonly": true
+                },
+                "last_queue_event": {
+                    "type": "datetime"
+                },
+                "moved_to_legal": {
+                    "type": "boolean",
+                    "default": false
+                },
+                "published_in_package": {
+                    "type": "string"
+                }
+            }        
+           
+
+### Update A Published Item [PATCH]
+
++ Request (application/json)
+
+    + Headers
+    
+            If-Match: {_etag}
+    
+    + Body
+
+            { 
+                "state": "corrected"
+            }
+
++ Response 200 (application/json)
+
++ Response 403 (application/json)

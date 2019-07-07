@@ -1,0 +1,130 @@
+## Internal Destinations Collection [/internal_destinations] 
+
+When an item is published, it will be copied and send to a selected desk defined in internal destinations. 
+Item is first checked against content filters and the action is performed only with item that matches the filter criteria. 
+Users can select the desk, its stage and a macro to be run on the item (optional). 
+The macro usually modifies the item (e.g. changes its metadata) but it can be also used to publish the modified item
+
+### List All Internal Destinations [GET]
+
++ Response 200 (application/json)
+
+        {
+            "_items": [
+                {
+                    "_id": "5c18b4c0bfb76600e48c7f6c",
+                    "name": "test",
+                    "_etag": "32c54c9c60e71f279553ab7e0569f9d85a21aab9",
+                    "is_active": false,
+                    "_updated": "2018-12-18T08:55:33+0000",
+                    "stage": "5ba0eab7bfb76600df7fd6ab",
+                    "_links": {
+                        "self": {
+                            "title": "Internal_destination",
+                            "href": "internal_destinations/5c18b4c0bfb76600e48c7f6c"
+                        }
+                    },
+                    "filter": "5b7e6eecbfb76600e0a4ea31",
+                    "_created": "2018-12-18T08:50:08+0000",
+                    "desk": "5ba0eab7bfb76600df7fd6ad"
+                }
+            ]
+        }
+
+
+### Create A New Internal Destination [POST]
+
+Internal Destinations are allowed to have custom `_id` field. During the creation
+the uniqueness will be checked against existing internal_destinations.
+
++ Request (application/json)
+
+    + Body
+        
+            {"name": "copy", "is_active": true, "desk": "5ba0eab7bfb76600df7fd6ad", "macro": "usd_to_cad"}
+
+    + Schema
+
+            {
+                "name": {"type": "string", "required": true},
+                "is_active": {"type": "boolean", "required": true},
+                "filter": {"type": "string",  "nullable": true),
+                "desk": {"type": "string",  "nullable": false, "required": true),
+                "stage": {"type": "string",  "nullable": true),
+                "macro": {"type": "string", "nullable": true},
+            }
+
++ Response 201 (application/json)
+
++ Response 400 (application/json)
+
++ Response 412 (application/json)
+
+
+## A Internal Destination [/internal_destinations/{internal_destination_id}]
+
++ Parameters
+
+    - internal_destination_id (string) ... internal destination id id
+
+### Details of A Internal Destination [GET]
+
++ Response 200 (application/json)
+
+    + Body
+
+            {
+                "_id": "5c18b4c0bfb76600e48c7f6c",
+                "name": "test",
+                "_etag": "32c54c9c60e71f279553ab7e0569f9d85a21aab9",
+                "is_active": false,
+                "_updated": "2018-12-18T08:55:33+0000",
+                "stage": "5ba0eab7bfb76600df7fd6ab",
+                "_links": {
+                    "parent": {
+                        "title": "home",
+                        "href": "/"
+                    },
+                    "self": {
+                        "title": "Internal_destination",
+                        "href": "internal_destinations/5c18b4c0bfb76600e48c7f6c"
+                    },
+                    "collection": {
+                        "title": "internal_destinations",
+                        "href": "internal_destinations"
+                    }
+                },
+                "filter": "5b7e6eecbfb76600e0a4ea31",
+                "_created": "2018-12-18T08:50:08+0000",
+                "_type": "internal_destinations",
+                "desk": "5ba0eab7bfb76600df7fd6ad"
+            }
+           
+
+### Update A Internal Destination [PATCH]
+
++ Request (application/json)
+
+    + Headers
+    
+            If-Match: {_etag}
+    
+    + Body
+
+            { 
+                "is_active": false
+            }
+
++ Response 200 (application/json)
+
++ Response 403 (application/json)
+
+## Delete A Internal Destination [DELETE]      
+
++ Request (application/json)
+
+        {}
+
++ Response 204 (application/json)
+
++ Response 412 (application/json)

@@ -198,3 +198,20 @@ A single Session resource.
 + Response 204
 
 + Response 403
+
+
+## User Session [/users/{_id}/sessions]
+
+### Delete a User Session [DELETE]
+
+Deleting user sessions will fail if:
+- User does not exist
+- User is trying to delete her own sessions
+
++ Request
+
+        {}
+
++ Response 204
+
++ Response 403

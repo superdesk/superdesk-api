@@ -1,0 +1,448 @@
+## Content Types Collection [/content_types] 
+
+### List All Content Types [GET]
+
+Returns all content types defined in the system
+
++ Response 200 (application/json)
+
+        {
+            "_items": [
+                {
+                    "_id": "5ab27ad6cdfe38023cd29eb1",
+                    "schema": {
+                        "headline": {
+                            "nullable": true,
+                            "maxlength": 64,
+                            "required": false,
+                            "type": "string"
+                        },
+                        "media_description": {
+                            "nullable": true,
+                            "required": false,
+                            "type": "string"
+                        },
+                        "feature_media": {
+                            "nullable": true,
+                            "required": false,
+                            "type": "media"
+                        },
+                        "sign_off": {
+                            "nullable": true,
+                            "required": false,
+                            "type": "string"
+                        },
+                        "footer": null,
+                        "keywords": null,
+                        "sms": null,
+                        "language": null,
+                        "body_footer": null,
+                        "anpa_category": {
+                            "nullable": true,
+                            "required": false,
+                            "type": "list"
+                        },
+                        "company_codes": null,
+                        "genre": {
+                            "nullable": true,
+                            "required": false,
+                            "type": "list"
+                        },
+                        "byline": {
+                            "nullable": true,
+                            "required": false,
+                            "type": "string"
+                        },
+                        "slugline": {
+                            "nullable": true,
+                            "maxlength": 24,
+                            "required": false,
+                            "type": "string"
+                        },
+                        "usageterms": null,
+                        "abstract": {
+                            "nullable": true,
+                            "maxlength": 160,
+                            "required": false,
+                            "type": "string"
+                        },
+                        "subject": {
+                            "nullable": false,
+                            "mandatory_in_list": {
+                                "scheme": {}
+                            },
+                            "required": true,
+                            "schema": {},
+                            "type": "list"
+                        },
+                        "body_html": {
+                            "nullable": true,
+                            "required": false,
+                            "type": "string"
+                        },
+                        "anpa_take_key": null,
+                        "authors": {
+                            "nullable": true,
+                            "schema": {
+                                "schema": {
+                                    "role": {
+                                        "type": "string"
+                                    },
+                                    "parent": {
+                                        "type": "string"
+                                    },
+                                    "name": {
+                                        "type": "string"
+                                    }
+                                },
+                                "type": "dict"
+                            },
+                            "required": false,
+                            "type": "list"
+                        },
+                        "place": {
+                            "nullable": true,
+                            "required": false,
+                            "type": "list"
+                        },
+                        "urgency": {
+                            "nullable": true,
+                            "required": false,
+                            "type": "integer"
+                        },
+                        "priority": {
+                            "nullable": true,
+                            "required": false,
+                            "type": "integer"
+                        },
+                        "ednote": {
+                            "nullable": true,
+                            "required": false,
+                            "type": "string"
+                        },
+                        "dateline": {
+                            "nullable": true,
+                            "required": false,
+                            "type": "dict"
+                        }
+                    },
+                    "updated_by": "5ab27997cdfe38023cd29e97",
+                    "_created": "2018-03-21T15:31:34+0000",
+                    "editor": {
+                        "headline": {
+                            "formatOptions": [
+                                "underline",
+                                "link",
+                                "bold"
+                            ],
+                            "order": 10
+                        },
+                        "media_description": {
+                            "order": 17
+                        },
+                        "feature_media": {
+                            "order": 16
+                        },
+                        "sign_off": {
+                            "order": 15
+                        },
+                        "footer": null,
+                        "keywords": null,
+                        "sms": null,
+                        "language": null,
+                        "body_footer": null,
+                        "anpa_category": {
+                            "order": 6,
+                            "sdWidth": "full"
+                        },
+                        "company_codes": null,
+                        "genre": {
+                            "order": 2,
+                            "sdWidth": "half"
+                        },
+                        "byline": {
+                            "order": 12
+                        },
+                        "slugline": {
+                            "order": 1,
+                            "sdWidth": "full"
+                        },
+                        "usageterms": null,
+                        "abstract": {
+                            "formatOptions": [
+                                "bold",
+                                "italic",
+                                "underline",
+                                "link"
+                            ],
+                            "order": 11
+                        },
+                        "subject": {
+                            "order": 7,
+                            "sdWidth": "full"
+                        },
+                        "body_html": {
+                            "editor3": true,
+                            "cleanPastedHTML": false,
+                            "order": 14,
+                            "formatOptions": [
+                                "h2",
+                                "bold",
+                                "italic",
+                                "underline",
+                                "quote",
+                                "link",
+                                "embed",
+                                "media"
+                            ]
+                        },
+                        "anpa_take_key": null,
+                        "authors": {
+                            "order": 9,
+                            "sdWidth": "full"
+                        },
+                        "place": {
+                            "order": 3,
+                            "sdWidth": "half"
+                        },
+                        "urgency": {
+                            "order": 5,
+                            "sdWidth": "quarter"
+                        },
+                        "priority": {
+                            "order": 4,
+                            "sdWidth": "quarter"
+                        },
+                        "ednote": {
+                            "order": 8,
+                            "sdWidth": "full"
+                        },
+                        "dateline": {
+                            "order": 13
+                        }
+                    },
+                    "enabled": true,
+                    "label": "CPforNareg",
+                    "_etag": "d149e173177a831163afce7e4fc22f47c9827f84",
+                    "_updated": "2018-03-21T15:31:41+0000",
+                    "priority": 0,
+                    "is_used": true,
+                    "created_by": "5ab27997cdfe38023cd29e97",
+                    "_links": {
+                        "self": {
+                            "title": "Content_type",
+                            "href": "content_types/5ab27ad6cdfe38023cd29eb1"
+                        }
+                    }
+                }]
+        }
+
+
+### Create A New Content Type [POST]
+
+When a new content type is created **created_by** and **updated_by** fields will be populated by request user.
+
++ Request (application/json)
+
+    + Body
+        
+            {"label": "Foo", "description": "Foo info"}
+
+    + Schema
+
+            {
+                "_id": {
+                    "type": "string",
+                    "iunique": true,
+                },
+                "label": {
+                    "type": "string",
+                    "iunique": true,
+                },
+                "description": {
+                    "type": "string",
+                },
+                "schema": {
+                    "type": "dict"
+                },
+                "editor": {
+                    "type": "dict"
+                },
+                "widgets_config": {
+                    "type": "list",
+                    "schema": {
+                        "type": "dict",
+                        "schema": {
+                            "widget_id": {"type": "string"},
+                            "is_displayed": {"type": "boolean"}
+                        }
+                    }
+                },
+                "priority": {
+                    "type": "integer",
+                    "default": 0,
+                },
+                "enabled": {
+                    "type": "boolean",
+                    "default": false,
+                },
+                "is_used": {
+                    "type": "boolean",
+                    "default": false,
+                },
+                "created_by": {"type": "string", "nullable": true},
+                "updated_by": {"type": "string", "nullable": true}
+            }
+
+
++ Response 201 (application/json)
+
++ Response 400 (application/json)
+
++ Response 412 (application/json)
+
+
+## A Content Type [/content_types/{content_type_id}]
+
++ Parameters
+
+    - content_type_id (string) ... vocabulary id
+
+### Details of A Content Type [GET]
+
++ Response 200 (application/json)
+
+    + Body
+
+            {
+                "_id": "5ab37934cdfe3800e091f9ea",
+                "schema": {
+                    "abstract": {
+                        "nullable": true,
+                        "maxlength": 560,
+                        "required": false,
+                        "enabled": true,
+                        "type": "string"
+                    },
+                    "body_html": {
+                        "nullable": true,
+                        "required": false,
+                        "type": "string"
+                    },
+                    "headline": {
+                        "nullable": false,
+                        "maxlength": 100,
+                        "required": true,
+                        "type": "string"
+                    },
+                    "ednote": {
+                        "nullable": true,
+                        "required": false,
+                        "type": "string"
+                    }
+                },
+                "updated_by": "5ab37895cdfe3800e091f9e1",
+                "_created": "2018-03-22T09:36:52+0000",
+                "editor": {
+                    "headline": {
+                        "formatOptions": [
+                            "underline",
+                            "link",
+                            "bold"
+                        ],
+                        "order": 2,
+                        "sdWidth": "full"
+                    },
+                    "abstract": {
+                        "formatOptions": [
+                            "bold",
+                            "italic",
+                            "underline",
+                            "link",
+                            "embed",
+                            "media",
+                            "table",
+                            "formatting marks"
+                        ],
+                        "order": 3,
+                        "sdWidth": "full"
+                    },
+                    "ednote": {
+                        "order": 1,
+                        "sdWidth": "full"
+                    },
+                    "body_html": {
+                        "editor3": true,
+                        "formatOptions": [
+                            "bold",
+                            "italic",
+                            "underline",
+                            "quote",
+                            "link",
+                            "embed",
+                            "media",
+                            "unordered list",
+                            "table",
+                            "annotation",
+                            "comments",
+                            "pre",
+                            "strikethrough",
+                            "superscript",
+                            "suggestions",
+                            "subscript",
+                            "remove format",
+                            "formatting marks",
+                            "ordered list"
+                        ],
+                        "order": 4,
+                        "sdWidth": "full",
+                        "cleanPastedHTML": false
+                    }
+                },
+                "description": "Basic text components, editor 3, no media",
+                "enabled": true,
+                "_type": "content_types",
+                "label": "vincerprofile",
+                "_etag": "d109b4f8cc0813f6f3354d30180e4236c7c7df38",
+                "_updated": "2018-10-11T11:52:16+0000",
+                "priority": 0,
+                "is_used": true,
+                "created_by": "5ab1aabdcdfe38019f0a875a",
+            }
+           
+
+### Update A Content Type [PATCH]
+
++ Request (application/json)
+
+    + Headers
+    
+            If-Match: {_etag}
+    
+    + Body
+
+            {
+                "schema": {
+                    "headline": {
+                        "required": false,
+                        "minlength": 5
+            }}}
+
++ Response 200 (application/json)
+
++ Response 403 (application/json)
+
+## Delete A Content Type [DELETE]      
+
+Deletes the content type by given id. A content type will fail to delete if:
+
+ - There are templates referencing to content type
+ - There are desks referencing to content type
+
++ Request (application/json)
+
+        {}
+
++ Response 204 (application/json)
+
++ Response 412 (application/json)

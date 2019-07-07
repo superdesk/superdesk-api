@@ -1,0 +1,338 @@
+## Workqueue Collection [/workqueue{?source}] 
+
+### List All Workqueue Items [GET]
+
+Returns the locked items by the user
+
++ Parameters
+
+    - source (string) - Query to return locked items for the user
+            
+            {"query":{"bool":{"must":[{"term":{"lock_user":"5ab1aabdcdfe38019f0a875a"}},{"terms":{"lock_action":["edit","correct","kill"]}}]}}}
+
++ Response 200 (application/json)
+
+        {
+            "_items": [
+                {
+                    "_id": "urn:newsml:sdp-master.test.superdesk.org:2019-07-02T11:33:40.407297:1772aa82-1a64-408c-b1c7-ef9fe52e887d",
+                    "firstcreated": "2019-07-02T11:33:40+0000",
+                    "task": {
+                        "desk": "5ba0eab7bfb76600df7fd6ad",
+                        "user": "5ab1aabdcdfe38019f0a875a",
+                        "stage": "5ba0eab7bfb76600df7fd6ab"
+                    },
+                    "profile": "5bc0938bbfb76600e3158f17",
+                    "pubstatus": "usable",
+                    "version_creator": "5ab1aabdcdfe38019f0a875a",
+                    "unique_name": "#135776",
+                    "flags": {
+                        "marked_for_sms": false,
+                        "marked_for_not_publication": false,
+                        "marked_archived_only": false,
+                        "marked_for_legal": false
+                    },
+                    "_created": "2019-07-02T11:33:40+0000",
+                    "sign_off": "ADM",
+                    "_type": "archive",
+                    "template": "5bc0938bbfb76600e3158f19",
+                    "unique_id": 135776,
+                    "versioncreated": "2019-07-02T11:33:40+0000",
+                    "family_id": "urn:newsml:sdp-master.test.superdesk.org:2019-07-02T11:33:40.407297:1772aa82-1a64-408c-b1c7-ef9fe52e887d",
+                    "_etag": "b640152af775167d47ce320cdedb95ec4d390850",
+                    "schedule_settings": {
+                        "time_zone": null,
+                        "utc_embargo": null
+                    },
+                    "_current_version": 0,
+                    "operation": "create",
+                    "lock_time": "2019-07-02T11:33:41+0000",
+                    "genre": [
+                        {
+                            "name": "Article (news)",
+                            "qcode": "Article"
+                        }
+                    ],
+                    "byline": "Dr Admin Adminis",
+                    "format": "HTML",
+                    "lock_action": "edit",
+                    "expiry": null,
+                    "original_creator": "5ab1aabdcdfe38019f0a875a",
+                    "source": "test",
+                    "lock_user": "5ab1aabdcdfe38019f0a875a",
+                    "body_html": "",
+                    "language": "en",
+                    "headline": "",
+                    "guid": "urn:newsml:sdp-master.test.superdesk.org:2019-07-02T11:33:40.407297:1772aa82-1a64-408c-b1c7-ef9fe52e887d",
+                    "event_id": "tag:sdp-master.test.superdesk.org:2019:40b67fec-39e3-49f2-ac2f-10970aba1f5b",
+                    "_links": {
+                        "self": {
+                            "title": "Workqueue",
+                            "href": "workqueue/urn:newsml:sdp-master.test.superdesk.org:2019-07-02T11:33:40.407297:1772aa82-1a64-408c-b1c7-ef9fe52e887d"
+                        }
+                    },
+                    "place": [
+                        {
+                            "name": "Australia",
+                            "qcode": "australia"
+                        }
+                    ],
+                    "_updated": "2019-07-02T11:33:41+0000",
+                    "urgency": 3,
+                    "priority": 6,
+                    "state": "draft",
+                    "lock_session": "5d1b3eeacc6f6103053661a0",
+                    "version": 0,
+                    "type": "text"
+                },
+                {
+                    "target_subscribers": [],
+                    "_id": "urn:newsml:sdp-master.test.superdesk.org:2019-04-29T01:52:23.036355:379a11a6-1c35-4196-b247-80843fb8ed6e",
+                    "profile": "5ab37934cdfe3800e091f9ea",
+                    "version_creator": "5ab1aabdcdfe38019f0a875a",
+                    "flags": {
+                        "marked_for_sms": false,
+                        "marked_for_not_publication": false,
+                        "marked_archived_only": false,
+                        "marked_for_legal": false
+                    },
+                    "target_types": [],
+                    "_created": "2019-04-29T01:52:23+0000",
+                    "sign_off": "ADM",
+                    "template": "5ab37934cdfe3800e091f9ec",
+                    "expiry": null,
+                    "_current_version": 0,
+                    "ednote": null,
+                    "body_html": "<p><b>The market opened today at xxxx, up/down xx points from </b></p>",
+                    "guid": "urn:newsml:sdp-master.test.superdesk.org:2019-04-29T01:52:23.036355:379a11a6-1c35-4196-b247-80843fb8ed6e",
+                    "_type": "archive",
+                    "place": [
+                        {
+                            "name": "Australia",
+                            "qcode": "australia"
+                        }
+                    ],
+                    "priority": 6,
+                    "state": "draft",
+                    "type": "text",
+                    "firstcreated": "2019-04-29T01:52:23+0000",
+                    "task": {
+                        "desk": "5ab37905cdfe3800e091f9e8",
+                        "user": "5ab1aabdcdfe38019f0a875a",
+                        "stage": "5ab37905cdfe3800e091f9e6"
+                    },
+                    "pubstatus": "usable",
+                    "unique_name": "#104473",
+                    "headline": "Market open Japan",
+                    "lock_session": "5cc6577d5a82f65139b73fec",
+                    "target_regions": [],
+                    "unique_id": 104473,
+                    "versioncreated": "2019-04-29T01:52:23+0000",
+                    "event_id": "tag:sdp-master.test.superdesk.org:2019:92b9dcbc-498d-4ca1-ae04-0ece3a22902d",
+                    "_etag": "a87cbe2d504c86045fb91334578e4c6972fe3053",
+                    "schedule_settings": {
+                        "time_zone": null,
+                        "utc_embargo": null
+                    },
+                    "operation": "create",
+                    "lock_time": "2019-04-29T01:52:23+0000",
+                    "genre": [
+                        {
+                            "name": "Article (news)",
+                            "qcode": "Article"
+                        }
+                    ],
+                    "format": "HTML",
+                    "description_text": null,
+                    "original_creator": "5ab1aabdcdfe38019f0a875a",
+                    "lock_action": "edit",
+                    "source": "SD World",
+                    "lock_user": "5ab1aabdcdfe38019f0a875a",
+                    "sms_message": null,
+                    "language": "en",
+                    "family_id": "urn:newsml:sdp-master.test.superdesk.org:2019-04-29T01:52:23.036355:379a11a6-1c35-4196-b247-80843fb8ed6e",
+                    "version": 0,
+                    "word_count": 11,
+                    "_updated": "2019-04-29T01:52:23+0000",
+                    "urgency": 3,
+                    "_links": {
+                        "self": {
+                            "title": "Workqueue",
+                            "href": "workqueue/urn:newsml:sdp-master.test.superdesk.org:2019-04-29T01:52:23.036355:379a11a6-1c35-4196-b247-80843fb8ed6e"
+                        }
+                    },
+                    "abstract": "",
+                    "associations": {}
+                },
+                {
+                    "_id": "urn:newsml:sdp-master.test.superdesk.org:2019-05-24T08:46:05.879667:ea07f4d9-6420-4c6b-aecc-a7b474194e5d",
+                    "firstcreated": "2019-05-24T08:46:05+0000",
+                    "task": {
+                        "desk": "5ab27ab6cdfe38023cd29eac",
+                        "user": "5ab1aabdcdfe38019f0a875a",
+                        "stage": "5ab27ab6cdfe38023cd29eaa"
+                    },
+                    "operation": "create",
+                    "pubstatus": "usable",
+                    "version_creator": "5ab1aabdcdfe38019f0a875a",
+                    "unique_name": "#119414",
+                    "flags": {
+                        "marked_for_sms": false,
+                        "marked_for_not_publication": false,
+                        "marked_archived_only": false,
+                        "marked_for_legal": false
+                    },
+                    "_created": "2019-05-24T08:46:05+0000",
+                    "sign_off": "ADM",
+                    "_type": "archive",
+                    "template": "5b9b5e07bfb76600e322b2fb",
+                    "unique_id": 119414,
+                    "versioncreated": "2019-05-24T08:46:05+0000",
+                    "event_id": "tag:sdp-master.test.superdesk.org:2019:c1a19637-f752-4d93-9dae-1c8195ed5c86",
+                    "_etag": "b62d46bcf4cf73b5b31309cfc18cf09f276cec63",
+                    "_current_version": 0,
+                    "schedule_settings": {
+                        "time_zone": null,
+                        "utc_embargo": null
+                    },
+                    "profile": "5b9b5e07bfb76600e322b2f9",
+                    "lock_time": "2019-05-24T08:46:06+0000",
+                    "genre": [
+                        {
+                            "name": "Article (news)",
+                            "qcode": "Article"
+                        }
+                    ],
+                    "format": "HTML",
+                    "lock_action": "edit",
+                    "expiry": null,
+                    "original_creator": "5ab1aabdcdfe38019f0a875a",
+                    "source": "NaregsYarde",
+                    "lock_user": "5ab1aabdcdfe38019f0a875a",
+                    "language": "en",
+                    "guid": "urn:newsml:sdp-master.test.superdesk.org:2019-05-24T08:46:05.879667:ea07f4d9-6420-4c6b-aecc-a7b474194e5d",
+                    "family_id": "urn:newsml:sdp-master.test.superdesk.org:2019-05-24T08:46:05.879667:ea07f4d9-6420-4c6b-aecc-a7b474194e5d",
+                    "_links": {
+                        "self": {
+                            "title": "Workqueue",
+                            "href": "workqueue/urn:newsml:sdp-master.test.superdesk.org:2019-05-24T08:46:05.879667:ea07f4d9-6420-4c6b-aecc-a7b474194e5d"
+                        }
+                    },
+                    "place": [
+                        {
+                            "name": "Australia",
+                            "qcode": "australia"
+                        }
+                    ],
+                    "_updated": "2019-05-24T08:46:07+0000",
+                    "urgency": 3,
+                    "priority": 6,
+                    "state": "draft",
+                    "lock_session": "5ce7840537ba1f7ace3ecb03",
+                    "version": 0,
+                    "type": "text"
+                },
+                {
+                    "_id": "urn:newsml:sdp-master.test.superdesk.org:2018-11-22T10:26:15.642738:74ca1b16-b516-40ff-882b-b4fbe5dbfef1",
+                    "operation": "update",
+                    "filemeta_json": "{\"length\": 60895}",
+                    "flags": {
+                        "marked_for_sms": false,
+                        "marked_for_not_publication": false,
+                        "marked_archived_only": false,
+                        "marked_for_legal": false
+                    },
+                    "_created": "2018-11-22T10:26:15+0000",
+                    "sign_off": "ADM",
+                    "_current_version": 3,
+                    "renditions": {
+                        "baseImage": {
+                            "height": 917,
+                            "width": 1400,
+                            "media": "5bf68447bfb76600e3a8e2cc",
+                            "mimetype": "image/jpeg",
+                            "href": "https://sdp-master.test.superdesk.org/api/upload-raw/5bf68447bfb76600e3a8e2cc.jpg"
+                        },
+                        "original": {
+                            "height": 393,
+                            "width": 600,
+                            "media": "5bf68447bfb76600e3a8e2ca",
+                            "mimetype": "image/jpeg",
+                            "href": "https://sdp-master.test.superdesk.org/api/upload-raw/5bf68447bfb76600e3a8e2ca.jpg"
+                        },
+                        "viewImage": {
+                            "height": 419,
+                            "width": 640,
+                            "media": "5bf68447bfb76600e3a8e2ce",
+                            "mimetype": "image/jpeg",
+                            "href": "https://sdp-master.test.superdesk.org/api/upload-raw/5bf68447bfb76600e3a8e2ce.jpg"
+                        },
+                        "thumbnail": {
+                            "height": 120,
+                            "width": 183,
+                            "media": "5bf68447bfb76600e3a8e2d0",
+                            "mimetype": "image/jpeg",
+                            "href": "https://sdp-master.test.superdesk.org/api/upload-raw/5bf68447bfb76600e3a8e2d0.jpg"
+                        }
+                    },
+                    "slugline": "test",
+                    "version_creator": "5ab1aabdcdfe38019f0a875a",
+                    "guid": "tag:sdp-master.test.superdesk.org:2018:12509704-41dc-49da-8d7e-5671eb8f0d5a",
+                    "mimetype": "image/jpeg",
+                    "media": "5bf68447bfb76600e3a8e2ca",
+                    "place": [],
+                    "priority": 6,
+                    "state": "draft",
+                    "type": "picture",
+                    "firstcreated": "2018-11-22T10:26:15+0000",
+                    "task": {
+                        "user": "5ab1aabdcdfe38019f0a875a"
+                    },
+                    "pubstatus": "usable",
+                    "unique_name": "#12046",
+                    "headline": "test",
+                    "copyrightholder": null,
+                    "lock_session": "5d215650d1b52ef4ec39f645",
+                    "_type": "archive",
+                    "unique_id": 12046,
+                    "copyrightnotice": null,
+                    "versioncreated": "2019-07-07T02:21:41+0000",
+                    "family_id": "urn:newsml:sdp-master.test.superdesk.org:2018-11-22T10:26:15.642738:74ca1b16-b516-40ff-882b-b4fbe5dbfef1",
+                    "_etag": "669ef3a6aaf6073637ea36f0e7ccc4d9cbf41c85",
+                    "schedule_settings": {
+                        "time_zone": null,
+                        "utc_embargo": null
+                    },
+                    "usageterms": null,
+                    "alt_text": "testing",
+                    "lock_time": "2019-07-07T02:21:08+0000",
+                    "genre": [
+                        {
+                            "name": "Article (news)",
+                            "qcode": "Article"
+                        }
+                    ],
+                    "byline": "",
+                    "format": "HTML",
+                    "description_text": "just test",
+                    "archive_description": null,
+                    "original_creator": "5ab1aabdcdfe38019f0a875a",
+                    "lock_action": "edit",
+                    "source": "Superdesk",
+                    "lock_user": "5ab1aabdcdfe38019f0a875a",
+                    "language": "en",
+                    "event_id": "tag:sdp-master.test.superdesk.org:2018:c0af2d55-231e-44c0-b8bb-7deb29f3348d",
+                    "_updated": "2019-07-07T02:21:41+0000",
+                    "urgency": 3,
+                    "_links": {
+                        "self": {
+                            "title": "Workqueue",
+                            "href": "workqueue/urn:newsml:sdp-master.test.superdesk.org:2018-11-22T10:26:15.642738:74ca1b16-b516-40ff-882b-b4fbe5dbfef1"
+                        }
+                    },
+                    "version": 2
+                }
+            ]
+        }
+
+

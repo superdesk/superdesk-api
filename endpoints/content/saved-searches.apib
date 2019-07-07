@@ -1,0 +1,724 @@
+## Saved Searches Collection [/saved_searches] 
+
+Returns saved searches for the requesting user and all global saved searches.
+
+### List All Saved Searches [GET]
+
++ Response 200 (application/json)
+
+        {
+            "_items": [
+                {
+                    "_id": "5ae31f91cdfe3800e06ca8f9",
+                    "user": "5ab1aabdcdfe38019f0a875a",
+                    "_etag": "b9a952f886bc2abfddc699ab68baa708ea6ec27e",
+                    "name": "marked for picture desk",
+                    "_updated": "2018-12-04T11:23:58+0000",
+                    "_created": "2018-04-27T13:03:13+0000",
+                    "is_global": true,
+                    "filter": {
+                        "query": {
+                            "marked_desks": "[\"5ab39795cdfe3800e091fb38\"]",
+                            "spike": "exclude"
+                        }
+                    },
+                    "_links": {
+                        "self": {
+                            "title": "Saved_searche",
+                            "href": "saved_searches/5ae31f91cdfe3800e06ca8f9"
+                        }
+                    }
+                },
+                {
+                    "_id": "5b599e63bfb76600e36131fa",
+                    "name": "Trump in body text",
+                    "description": "Trump in body text",
+                    "_etag": "de5d60663fae669e29291f54c9100f26d82fb7a8",
+                    "user": "5ab37895cdfe3800e091f9e1",
+                    "_updated": "2018-07-26T10:11:47+0000",
+                    "_created": "2018-07-26T10:11:47+0000",
+                    "is_global": true,
+                    "filter": {
+                        "query": {
+                            "_id": "urn:newsml:sdp-master.test.superdesk.org:2018-03-22T10:49:51.220503:3b74cf48-1a67-42f9-972b-ef4268eab6db",
+                            "spike": "exclude",
+                            "repo": "archive,published,ingest,archived",
+                            "q": "body_html:(Trump)"
+                        }
+                    },
+                    "_links": {
+                        "self": {
+                            "title": "Saved_searche",
+                            "href": "saved_searches/5b599e63bfb76600e36131fa"
+                        }
+                    }
+                },
+                {
+                    "_id": "5b72d996bfb76600e2b0bac2",
+                    "user": "5ab1aabdcdfe38019f0a875a",
+                    "description": "Scheduled from Belga and Business",
+                    "_etag": "3f44e19a8bff5ee2b34d5c2bda78cc0f58ac753b",
+                    "name": "Scheduled from Belga and Business",
+                    "_updated": "2018-12-04T11:24:45+0000",
+                    "_created": "2018-08-14T13:31:02+0000",
+                    "is_global": false,
+                    "filter": {
+                        "query": {
+                            "spike": "exclude",
+                            "raw": "state: scheduled AND task.desk:(5b3204bbcdfe3800e56e9613 OR 5ab386c9cdfe3800e091fa1b)"
+                        }
+                    },
+                    "_links": {
+                        "self": {
+                            "title": "Saved_searche",
+                            "href": "saved_searches/5b72d996bfb76600e2b0bac2"
+                        }
+                    }
+                }
+            ]
+        }
+
+
+### Create A New Saved Search [POST]
+
+When a saved search is created **user** field will be populated automatically by the request user.
+If field **is_global** has value true then saved search will be accessable by all users.
+Saving a new search will fail if:
+- There are **subscribers** in the saved search
+- There is no filter defined
+- The given filter fails to run
+- There is no name given for the search
+
+
++ Request (application/json)
+
+    + Body
+
+            {
+                "name": "cricket",
+                "filter": {"query": {"q": "cricket", "repo": "archive"}}
+            }
+
+    + Schema
+
+            {
+                "name": {
+                    "type": "string",
+                    "required": true,
+                    "minlength": 1
+                },
+                "description": {
+                    "type": "string"
+                },
+                "filter": {
+                    "type": "dict",
+                    "required": true
+                },
+                "user": {
+                    "type": "string",
+                    "nullable": true
+                },
+                "is_global": {
+                    "type": "boolean",
+                    "default": false
+                },
+                "shortcut": {
+                    "type": "boolean",
+                    "default": false,
+                },
+                "subscribers": {
+                    "type": "dict",
+                    "schema": {
+                        "user_subscriptions": {
+                            "type": "list",
+                            "schema": {
+                                "type": "dict",
+                                "schema": {
+                                    "user": Resource.rel("users", true),
+                                    "scheduling": {
+                                        "type": "string",
+                                        "required": true
+                                    },
+                                    "last_report": {
+                                        "type": "datetime",
+                                        "nullable": true,
+                                        "readonly": true
+                                    },
+                                    "next_report": {
+                                        "type": "datetime",
+                                        "readonly": true
+                                    }
+                                }
+                            }
+                        },
+                        "desk_subscriptions": {
+                            "type": "list",
+                            "schema": {
+                                "type": "dict",
+                                "schema": {
+                                    "desk": Resource.rel("desks", true),
+                                    "scheduling": {
+                                        "type": "string"
+                                    },
+                                    "last_report": {
+                                        "type": "datetime",
+                                        "nullable": true,
+                                        "readonly": true
+                                    },
+                                    "next_report": {
+                                        "type": "datetime",
+                                        "readonly": true
+                                    }
+                                }
+                            }
+                        },
+
+                    }
+                },
+            }
+
++ Response 201 (application/json)
+
+        {
+            "_status": "OK",
+            "name": "cricket",
+            "filter": {
+                "query": {
+                    "q": "cricket",
+                    "repo": "archive"
+                }
+            },
+            "_updated": "2019-07-07T02:39:59+0000",
+            "_created": "2019-07-07T02:39:59+0000",
+            "user": "5c807d441d41c8a1d54209d2",
+            "_etag": "af976723c3d5fb0a2c203c6628fc4b8e0223a259",
+            "shortcut": false,
+            "_links": {
+                "self": {
+                    "title": "Saved_searche",
+                    "href": "saved_searches/5d215b801d41c83450375956"
+                }
+            },
+            "is_global": false,
+            "_id": "5d215b801d41c83450375956"
+        }
+
++ Response 400 (application/json)
+
++ Response 412 (application/json)
+
+
+## A Saved Search [/saved_searches/{saved_search_id}]
+
++ Parameters
+
+    - saved_search_id (string) ... saved_search id
+
+### Details of A Saved Search [GET]
+
++ Response 200 (application/json)
+
+    + Body
+
+            {
+                "shortcut": false,
+                "name": "cricket",
+                "filter": {
+                    "query": {
+                        "q": "cricket",
+                        "repo": "archive"
+                    }
+                },
+                "_updated": "2019-07-07T02:39:59+0000",
+                "_created": "2019-07-07T02:39:59+0000",
+                "_type": "saved_searches",
+                "_etag": "af976723c3d5fb0a2c203c6628fc4b8e0223a259",
+                "user": "5c807d441d41c8a1d54209d2",
+                "_links": {
+                    "self": {
+                        "title": "Saved_searche",
+                        "href": "saved_searches/5d215b801d41c83450375956"
+                    },
+                    "parent": {
+                        "title": "home",
+                        "href": "/"
+                    },
+                    "collection": {
+                        "title": "saved_searches",
+                        "href": "saved_searches"
+                    }
+                },
+                "is_global": false,
+                "_id": "5d215b801d41c83450375956"
+            }
+           
+
+### Update A Saved Search [PATCH]
+
+User can update only her own saved search. 
+If user has global search/admin privilege can update another user's global search.
+
++ Request (application/json)
+
+    + Headers
+    
+            If-Match: {_etag}
+    
+    + Body
+
+            {
+                "filter": {"query": {"q": "baseball"}}
+            }
+
++ Response 200 (application/json)
+
++ Response 403 (application/json)
+
+## Delete A Saved Search [DELETE]      
+
+User can delete only her own saved search. 
+If user has global search/admin privilege can delete another user's search.
+
++ Request (application/json)
+
+        {}
+
++ Response 204 (application/json)
+
++ Response 412 (application/json)
+
+
+## All Saved Searches Collection [/all_saved_searches] 
+
+Returns saved searches for all users and all global saved searches.
+
+### List All Saved Searches [GET]
+
++ Response 200 (application/json)
+
+        {
+            "_items": [
+                {
+                    "_id": "5ae31f91cdfe3800e06ca8f9",
+                    "user": "5ab1aabdcdfe38019f0a875a",
+                    "_etag": "b9a952f886bc2abfddc699ab68baa708ea6ec27e",
+                    "name": "marked for picture desk",
+                    "_updated": "2018-12-04T11:23:58+0000",
+                    "_created": "2018-04-27T13:03:13+0000",
+                    "is_global": true,
+                    "filter": {
+                        "query": {
+                            "marked_desks": "[\"5ab39795cdfe3800e091fb38\"]",
+                            "spike": "exclude"
+                        }
+                    },
+                    "_links": {
+                        "self": {
+                            "title": "Saved_searche",
+                            "href": "saved_searches/5ae31f91cdfe3800e06ca8f9"
+                        }
+                    }
+                },
+                {
+                    "_id": "5b599e63bfb76600e36131fa",
+                    "name": "Trump in body text",
+                    "description": "Trump in body text",
+                    "_etag": "de5d60663fae669e29291f54c9100f26d82fb7a8",
+                    "user": "5ab37895cdfe3800e091f9e1",
+                    "_updated": "2018-07-26T10:11:47+0000",
+                    "_created": "2018-07-26T10:11:47+0000",
+                    "is_global": true,
+                    "filter": {
+                        "query": {
+                            "_id": "urn:newsml:sdp-master.test.superdesk.org:2018-03-22T10:49:51.220503:3b74cf48-1a67-42f9-972b-ef4268eab6db",
+                            "spike": "exclude",
+                            "repo": "archive,published,ingest,archived",
+                            "q": "body_html:(Trump)"
+                        }
+                    },
+                    "_links": {
+                        "self": {
+                            "title": "Saved_searche",
+                            "href": "saved_searches/5b599e63bfb76600e36131fa"
+                        }
+                    }
+                },
+                {
+                    "_id": "5b72d996bfb76600e2b0bac2",
+                    "user": "5ab1aabdcdfe38019f0a875a",
+                    "description": "Scheduled from Belga and Business",
+                    "_etag": "3f44e19a8bff5ee2b34d5c2bda78cc0f58ac753b",
+                    "name": "Scheduled from Belga and Business",
+                    "_updated": "2018-12-04T11:24:45+0000",
+                    "_created": "2018-08-14T13:31:02+0000",
+                    "is_global": false,
+                    "filter": {
+                        "query": {
+                            "spike": "exclude",
+                            "raw": "state: scheduled AND task.desk:(5b3204bbcdfe3800e56e9613 OR 5ab386c9cdfe3800e091fa1b)"
+                        }
+                    },
+                    "_links": {
+                        "self": {
+                            "title": "Saved_searche",
+                            "href": "saved_searches/5b72d996bfb76600e2b0bac2"
+                        }
+                    }
+                }
+            ]
+        }
+
+
+## Saved Search Items Collection [/saved_searches/{saved_search_id}/items] 
+
+Performs the search and returns matching items.
+
+### List All Saved Searches [GET]
+
++ Response 200 (application/json)
+
+        {
+            "_aggregations": {
+                "category": {
+                    "sum_other_doc_count": 0,
+                    "doc_count_error_upper_bound": 0,
+                    "buckets": [
+                        {
+                            "key": "sport",
+                            "doc_count": 120
+                        },
+                        {
+                            "key": "world",
+                            "doc_count": 119
+                        },
+                        {
+                            "key": "Sport",
+                            "doc_count": 7
+                        },
+                        {
+                            "key": "Entertainment",
+                            "doc_count": 5
+                        },
+                        {
+                            "key": "features",
+                            "doc_count": 4
+                        },
+                        {
+                            "key": "Domestic news",
+                            "doc_count": 3
+                        },
+                        {
+                            "key": "Politics",
+                            "doc_count": 1
+                        },
+                        {
+                            "key": "finance",
+                            "doc_count": 1
+                        },
+                        {
+                            "key": "national",
+                            "doc_count": 1
+                        }
+                    ]
+                },
+                "desk": {
+                    "sum_other_doc_count": 0,
+                    "doc_count_error_upper_bound": 0,
+                    "buckets": [
+                        {
+                            "key": "5bc0893ebfb76600e3158e6e",
+                            "doc_count": 9017
+                        },
+                        {
+                            "key": "5ab27ab6cdfe38023cd29eac",
+                            "doc_count": 163
+                        },
+                        {
+                            "key": "5b3204bbcdfe3800e56e9613",
+                            "doc_count": 134
+                        },
+                        {
+                            "key": "5ab39795cdfe3800e091fb38",
+                            "doc_count": 56
+                        },
+                        {
+                            "key": "5ab37905cdfe3800e091f9e8",
+                            "doc_count": 43
+                        },
+                        {
+                            "key": "5ab386c9cdfe3800e091fa1b",
+                            "doc_count": 37
+                        },
+                        {
+                            "key": "5b62a55dbfb76600e060d122",
+                            "doc_count": 28
+                        },
+                        {
+                            "key": "5b98fdb5bfb766031d17086a",
+                            "doc_count": 12
+                        },
+                        {
+                            "key": "5ba0eab7bfb76600df7fd6ad",
+                            "doc_count": 5
+                        },
+                        {
+                            "key": "5baa0addbfb76600e5e1b26d",
+                            "doc_count": 4
+                        },
+                        {
+                            "key": "5c5138d4bfb76600df081b36",
+                            "doc_count": 4
+                        },
+                        {
+                            "key": "5c2fb954bfb76600ddfe327a",
+                            "doc_count": 3
+                        },
+                        {
+                            "key": "5beafb9bbfb76600e64ff5ef",
+                            "doc_count": 2
+                        },
+                        {
+                            "key": "5ba0ccd5bfb76600e3a6af84",
+                            "doc_count": 1
+                        },
+                        {
+                            "key": "5bd1900fbfb76600e000b22b",
+                            "doc_count": 1
+                        }
+                    ]
+                },
+                "legal": {
+                    "sum_other_doc_count": 0,
+                    "doc_count_error_upper_bound": 0,
+                    "buckets": [
+                        {
+                            "doc_count": 9513,
+                            "key": 0,
+                            "key_as_string": "false"
+                        }
+                    ]
+                },
+                "source": {
+                    "sum_other_doc_count": 0,
+                    "doc_count_error_upper_bound": 0,
+                    "buckets": [
+                        {
+                            "key": "Toronto Star",
+                            "doc_count": 9011
+                        },
+                        {
+                            "key": "Superdesk",
+                            "doc_count": 157
+                        },
+                        {
+                            "key": "NaregsYarde",
+                            "doc_count": 142
+                        },
+                        {
+                            "key": "Belga",
+                            "doc_count": 86
+                        },
+                        {
+                            "key": "SD World",
+                            "doc_count": 35
+                        },
+                        {
+                            "key": "SD Lucre",
+                            "doc_count": 31
+                        },
+                        {
+                            "key": "Image files from FTP",
+                            "doc_count": 15
+                        },
+                        {
+                            "key": "NaregAug",
+                            "doc_count": 8
+                        },
+                        {
+                            "key": "Reuters",
+                            "doc_count": 7
+                        },
+                        {
+                            "key": "test",
+                            "doc_count": 4
+                        },
+                        {
+                            "key": "AMNA",
+                            "doc_count": 3
+                        },
+                        {
+                            "key": "SD snappers",
+                            "doc_count": 3
+                        },
+                        {
+                            "key": "AAP",
+                            "doc_count": 2
+                        },
+                        {
+                            "key": "KP",
+                            "doc_count": 2
+                        }
+                    ]
+                },
+                "sms": {
+                    "sum_other_doc_count": 0,
+                    "doc_count_error_upper_bound": 0,
+                    "buckets": [
+                        {
+                            "doc_count": 9512,
+                            "key": 0,
+                            "key_as_string": "false"
+                        },
+                        {
+                            "doc_count": 1,
+                            "key": 1,
+                            "key_as_string": "true"
+                        }
+                    ]
+                },
+                "genre": {
+                    "sum_other_doc_count": 0,
+                    "doc_count_error_upper_bound": 0,
+                    "buckets": [
+                        {
+                            "key": "Article (news)",
+                            "doc_count": 9510
+                        },
+                        {
+                            "key": "Fixture",
+                            "doc_count": 1
+                        },
+                        {
+                            "key": "Insight",
+                            "doc_count": 1
+                        },
+                        {
+                            "key": "Interview",
+                            "doc_count": 1
+                        }
+                    ]
+                },
+                "type": {
+                    "sum_other_doc_count": 0,
+                    "doc_count_error_upper_bound": 0,
+                    "buckets": [
+                        {
+                            "key": "text",
+                            "doc_count": 9340
+                        },
+                        {
+                            "key": "picture",
+                            "doc_count": 161
+                        },
+                        {
+                            "key": "video",
+                            "doc_count": 7
+                        },
+                        {
+                            "key": "composite",
+                            "doc_count": 4
+                        },
+                        {
+                            "key": "audio",
+                            "doc_count": 1
+                        }
+                    ]
+                },
+                "urgency": {
+                    "sum_other_doc_count": 0,
+                    "doc_count_error_upper_bound": 0,
+                    "buckets": [
+                        {
+                            "key": 3,
+                            "doc_count": 9507
+                        },
+                        {
+                            "key": 2,
+                            "doc_count": 5
+                        },
+                        {
+                            "key": 4,
+                            "doc_count": 1
+                        }
+                    ]
+                },
+                "priority": {
+                    "sum_other_doc_count": 0,
+                    "doc_count_error_upper_bound": 0,
+                    "buckets": [
+                        {
+                            "key": 6,
+                            "doc_count": 9512
+                        },
+                        {
+                            "key": 1,
+                            "doc_count": 1
+                        }
+                    ]
+                }
+            },
+            "_items": [
+                {
+                    "flags": {
+                        "marked_for_not_publication": false,
+                        "marked_for_legal": false,
+                        "marked_archived_only": false,
+                        "marked_for_sms": false
+                    },
+                    "ingest_version": null,
+                    "family_id": "urn:newsml:sdp-master.test.superdesk.org:2019-07-01T10:57:41.314552:5073bc18-d908-4e8b-b19e-91685df4c4a3",
+                    "_latest_version": 1,
+                    "unique_name": "#135262",
+                    "abstract": "<img src=\"https://www.thestar.com/content/dam/thestar/wsj/static/business.jpg\"/><br/>",
+                    "body_html": "<p><a href=\"https://www.thestar.com/wsj/business/2019/07/01/performance-food-to-buy-reinhart-in-2-billion-deal.html\" target=\"_blank\">Toronto Star</a></p>",
+                    "version_creator": "",
+                    "type": "text",
+                    "pubstatus": "usable",
+                    "firstcreated": "2019-07-01T10:02:00+0000",
+                    "ingest_id": "tag:www.thestar.com:SB12805530939054743790104585398062168981890",
+                    "dateline": {
+                        "source": "Toronto Star",
+                        "date": "2019-07-01T10:02:00+0000"
+                    },
+                    "versioncreated": "2019-07-01T10:57:41+0000",
+                    "priority": 6,
+                    "schedule_settings": {
+                        "utc_embargo": null,
+                        "time_zone": null
+                    },
+                    "state": "routed",
+                    "_updated": "2019-07-01T10:57:41+0000",
+                    "_id": "tag:sdp-master.test.superdesk.org:2019:7280f6f7-51e2-42d4-be92-8eceba5e3f7b",
+                    "urgency": 3,
+                    "headline": "Performance Food to Buy Reinhart in $2 Billion Deal",
+                    "format": "HTML",
+                    "word_count": 2,
+                    "ingest_provider_sequence": "4217",
+                    "original_creator": "",
+                    "genre": [
+                        {
+                            "qcode": "Article",
+                            "name": "Article (news)"
+                        }
+                    ],
+                    "byline": "<a href=\"mailto:micah.maidenberg@wsj.com\">Micah Maidenberg</a> - WSJ",
+                    "language": "en",
+                    "_created": "2019-07-01T10:57:41+0000",
+                    "event_id": "tag:sdp-master.test.superdesk.org:2019:b9d865c4-3d98-4079-b03c-aeef70a6a9e7",
+                    "source": "Toronto Star",
+                    "unique_id": 135262,
+                    "profile": "5bc0b93cbfb76600e315913b",
+                    "operation": "fetch",
+                    "task": {
+                        "user": null,
+                        "desk": "5bc0893ebfb76600e3158e6e",
+                        "stage": "5bc0893ebfb76600e3158e6d"
+                    },
+                    "_etag": "392f6aa91729a3c50065241f3cb7c8232b6be2bf",
+                    "ingest_provider": "5beaf858bfb76600e64ff5d5",
+                    "expiry": "2019-07-21T10:57:41+0000",
+                    "_current_version": 1,
+                    "guid": "tag:sdp-master.test.superdesk.org:2019:7280f6f7-51e2-42d4-be92-8eceba5e3f7b"
+                }
+            ]
+        }
