@@ -1,0 +1,264 @@
+## Ingest Collection [/ingest] 
+
+### List All Ingest [GET]
+
++ Response 200 (application/json)
+
+        {
+            "_aggregations": {
+                "genre": {
+                    "sum_other_doc_count": 0,
+                    "doc_count_error_upper_bound": 0,
+                    "buckets": [
+                        {
+                            "key": "Article (news)",
+                            "doc_count": 1
+                        }
+                    ]
+                },
+                "urgency": {
+                    "sum_other_doc_count": 0,
+                    "doc_count_error_upper_bound": 0,
+                    "buckets": [
+                        {
+                            "key": 3,
+                            "doc_count": 1
+                        }
+                    ]
+                },
+                "desk": {
+                    "sum_other_doc_count": 0,
+                    "doc_count_error_upper_bound": 0,
+                    "buckets": []
+                },
+                "type": {
+                    "sum_other_doc_count": 0,
+                    "doc_count_error_upper_bound": 0,
+                    "buckets": [
+                        {
+                            "key": "text",
+                            "doc_count": 1
+                        }
+                    ]
+                },
+                "source": {
+                    "sum_other_doc_count": 0,
+                    "doc_count_error_upper_bound": 0,
+                    "buckets": []
+                },
+                "priority": {
+                    "sum_other_doc_count": 0,
+                    "doc_count_error_upper_bound": 0,
+                    "buckets": [
+                        {
+                            "key": 6,
+                            "doc_count": 1
+                        }
+                    ]
+                },
+                "category": {
+                    "sum_other_doc_count": 0,
+                    "doc_count_error_upper_bound": 0,
+                    "buckets": []
+                },
+                "sms": {
+                    "sum_other_doc_count": 0,
+                    "doc_count_error_upper_bound": 0,
+                    "buckets": [
+                        {
+                            "key_as_string": "false",
+                            "key": 0,
+                            "doc_count": 1
+                        }
+                    ]
+                },
+                "language": {
+                    "sum_other_doc_count": 0,
+                    "doc_count_error_upper_bound": 0,
+                    "buckets": [
+                        {
+                            "key": "en",
+                            "doc_count": 1
+                        }
+                    ]
+                },
+                "legal": {
+                    "sum_other_doc_count": 0,
+                    "doc_count_error_upper_bound": 0,
+                    "buckets": [
+                        {
+                            "key_as_string": "false",
+                            "key": 0,
+                            "doc_count": 1
+                        }
+                    ]
+                }
+            },
+            "_items": [
+                {
+                    "pubstatus": "usable",
+                    "urgency": 3,
+                    "family_id": "ingest1",
+                    "unique_name": "#2861",
+                    "versioncreated": "2015-01-03T10:00:00+0000",
+                    "_etag": "2a9c546a9f2c47606db21430366b0916a33d2566",
+                    "language": "en",
+                    "ingest_provider": "5981c66f1d41c82dbab98643",
+                    "_created": "2017-08-02T12:32:49+0000",
+                    "_updated": "2019-03-20T12:32:31+0000",
+                    "genre": [
+                        {
+                            "name": "Article (news)",
+                            "qcode": "Article"
+                        }
+                    ],
+                    "_type": "ingest",
+                    "_id": "ingest1",
+                    "headline": "ingest1",
+                    "state": "ingested",
+                    "guid": "ingest1",
+                    "format": "HTML",
+                    "unique_id": 2861,
+                    "archived": "2019-03-20T12:32:31+0000",
+                    "flags": {
+                        "marked_archived_only": false,
+                        "marked_for_sms": false,
+                        "marked_for_legal": false,
+                        "marked_for_not_publication": false
+                    },
+                    "operation": "create",
+                    "_links": {
+                        "self": {
+                            "title": "Ingest",
+                            "href": "ingest/ingest1"
+                        }
+                    },
+                    "firstcreated": "2017-08-02T12:32:49+0000",
+                    "priority": 6,
+                    "original_creator": "5981c6601d41c82dbab98627",
+                    "type": "text"
+                }
+            ]
+        }
+
+
+## An Ingest Item [/ingest/{ingest_id}]
+
++ Parameters
+
+    - ingest_id (string) ... ingest id
+
+### Details of An Ingest Item [GET]
+
++ Response 200 (application/json)
+
+    + Body
+
+            {
+                "pubstatus": "usable",
+                "urgency": 3,
+                "family_id": "ingest1",
+                "unique_name": "#2861",
+                "versioncreated": "2015-01-03T10:00:00+0000",
+                "_etag": "2a9c546a9f2c47606db21430366b0916a33d2566",
+                "language": "en",
+                "ingest_provider": "5981c66f1d41c82dbab98643",
+                "_created": "2017-08-02T12:32:49+0000",
+                "_updated": "2019-03-20T12:32:31+0000",
+                "genre": [
+                    {
+                        "name": "Article (news)",
+                        "qcode": "Article"
+                    }
+                ],
+                "_type": "ingest",
+                "_id": "ingest1",
+                "headline": "ingest1",
+                "state": "ingested",
+                "guid": "ingest1",
+                "format": "HTML",
+                "unique_id": 2861,
+                "archived": "2019-03-20T12:32:31+0000",
+                "flags": {
+                    "marked_archived_only": false,
+                    "marked_for_sms": false,
+                    "marked_for_legal": false,
+                    "marked_for_not_publication": false
+                },
+                "operation": "create",
+                "_links": {
+                    "self": {
+                        "title": "Ingest",
+                        "href": "ingest/ingest1"
+                    }
+                },
+                "firstcreated": "2017-08-02T12:32:49+0000",
+                "priority": 6,
+                "original_creator": "5981c6601d41c82dbab98627",
+                "type": "text"
+            }
+           
+
+### Update An Ingest Item [PATCH]
+
++ Request (application/json)
+
+    + Headers
+    
+            If-Match: {_etag}
+    
+    + Body
+
+            { 
+
+            }
+
++ Response 200 (application/json)
+
++ Response 403 (application/json)
+
+## Delete An Ingest Item [DELETE]      
+
+Deletes the ingest item by given id. It also deletes all the media items referenced by the ingest item.
+
++ Request (application/json)
+
+        {}
+
++ Response 204 (application/json)
+
++ Response 412 (application/json)
+
+
+
+## Fetch [/ingest/{ingest_id}/fetch] 
+
+Fetches an ingest item from ingest collection into archive collection. The version in ingest collection stays in ingest and can be fecthed may times.
+Fetched item is moved to the desk or stage provided. Also if a macro given, that macro will be performed against the item.
+Fetch action will fetch all the related items suc as package items or media items as well.
+
++ Parameters
+
+    - ingest_id (string) ... ingest id
+
+
+### Fetch An Ingest Item to Archive [POST]
+
+    + Body
+        
+            {
+                "desk": "6834e355436ewde454"
+            }
+
+    + Schema
+
+            {
+                "desk": {"type": "string", "required": true},
+                "stage": {"type": "string", "required": false},
+                "macro": {"type": "string"}
+            }
+
++ Response 201 (application/json)
+
++ Response 400 (application/json)            
+

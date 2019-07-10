@@ -1,0 +1,353 @@
+# Group Subscribers
+
+## Subscribers Collection [/subscribers] 
+
+### List All Subscribers [GET]
+
++ Response 200 (application/json)
+
+        {
+            "_items": [
+                {
+                    "subscriber_type": "wire",
+                    "is_targetable": true,
+                    "sequence_num_settings": {
+                        "max": 7,
+                        "min": 1
+                    },
+                    "products": [
+                        "570e04e23c5e9f89fe95366e"
+                    ],
+                    "email": "user@test.com.au",
+                    "_etag": "b3d3debb924176a8798b5320341a34e56f897e87",
+                    "api_products": [],
+                    "_id": "57f345731d41c8276453bc8d",
+                    "destinations": [
+                        {
+                            "format": "nitf",
+                            "config": {
+                                "path": "/",
+                                "dest_path": "abc",
+                                "recipients": "user@test.com.au",
+                                "password": "password",
+                                "file_extension": "txt",
+                                "username": "username",
+                                "host": "localhost"
+                            },
+                            "name": "D-1",
+                            "delivery_type": "ftp"
+                        }
+                    ],
+                    "is_active": true,
+                    "_updated": "2017-10-14T20:29:55+0000",
+                    "_created": "2016-10-04T06:00:19+0000",
+                    "_links": {
+                        "self": {
+                            "title": "Subscriber",
+                            "href": "subscribers/57f345731d41c8276453bc8d"
+                        }
+                    },
+                    "global_filters": {},
+                    "name": "Text-1"
+                },
+                {
+                    "subscriber_type": "all",
+                    "is_targetable": true,
+                    "products": [
+                        "570e04e23c5e9f89fe95366e"
+                    ],
+                    "sequence_num_settings": {
+                        "max": 10,
+                        "min": 1
+                    },
+                    "email": "public_api@test.com",
+                    "_etag": "51458916b94911def48fbed21530bed0fb3081a7",
+                    "api_products": [
+                        "570e04e23c5e9f89fe95366e"
+                    ],
+                    "_id": "5981c6701d41c82dbab98647",
+                    "destinations": [
+                        {
+                            "format": "json_event",
+                            "config": {
+                                "packaged": true,
+                                "resource_url": "http://localhost:5050/push",
+                                "assets_url": "http://localhost:5050/push_binary"
+                            },
+                            "delivery_type": "http_push",
+                            "name": "HTTP Push"
+                        },
+                        {
+                            "format": "json_planning",
+                            "config": {
+                                "packaged": true,
+                                "resource_url": "http://localhost:5050/push",
+                                "assets_url": "http://localhost:5050/push_binary"
+                            },
+                            "delivery_type": "http_push",
+                            "name": "HTTP Push planning"
+                        }
+                    ],
+                    "is_active": true,
+                    "_updated": "2018-05-28T10:49:40+0000",
+                    "_created": "2017-08-02T12:32:48+0000",
+                    "_links": {
+                        "self": {
+                            "title": "Subscriber",
+                            "href": "subscribers/5981c6701d41c82dbab98647"
+                        }
+                    },
+                    "global_filters": {},
+                    "name": "Public API"
+                }
+            ],
+        }
+
+
+### Create A New Subscriber [POST]
+
+Creation of a new subscriber fail if there"s no **destination** provided.
+If the subscriber type is **API** then destination can be empty.
+
++ Request (application/json)
+
+    + Body
+        
+            {
+                "name":"News1",
+                "media_type":"media", 
+                "subscriber_type": "digital", 
+                "sequence_num_settings":{"min" : 1, "max" : 10}, 
+                "email": "test@test.com",
+                "products": ["p5981c6701d41c82dbab98647"],
+                "codes": "xyz, abc",
+                "destinations":[{"name":"destination1","format": "nitf", "delivery_type":"FTP","config":{"ip":"144.122.244.55","password":"xyz"}}]
+                }
+
+    + Schema
+
+            {
+                "name": {
+                    "type": "string",
+                    "iunique": true,
+                    "required": true,
+                    "nullable": false,
+                    "empty": false
+                },
+                "media_type": {
+                    "type": "string"
+                },
+                "subscriber_type": {
+                    "type": "string",
+                    "allowed": subscriber_types,
+                    "required": true
+                },
+                "sequence_num_settings": {
+                    "type": "dict",
+                    "schema": {
+                        "min": {"type": "integer"},
+                        "max": {"type": "integer"}
+                    },
+                    "required": true
+                },
+                "email": {
+                    "type": "string",
+                    "empty": false,
+                    "multiple_emails": true,
+                    "required": true
+                },
+                "is_active": {
+                    "type": "boolean",
+                    "default": true
+                },
+                "is_targetable": {
+                    "type": "boolean",
+                    "default": true
+                },
+                "critical_errors": {
+                    "type": "dict",
+                    "valueschema": {
+                        "type": "boolean"
+                    }
+                },
+                "last_closed": {
+                    "type": "dict",
+                    "schema": {
+                        "closed_at": {"type": "datetime"},
+                        "closed_by": {"type": "string"},
+                        "message": {"type": "string"}
+                    }
+                },
+                "destinations": {
+                    "type": "list",
+                    "schema": {
+                        "type": "dict",
+                        "schema": {
+                            "name": {"type": "string", "required": true, "empty": false},
+                            "format": {"type": "string", "required": true},
+                            "preview_endpoint_url": {"type": "string"},
+                            "delivery_type": {"type": "string", "required": true},
+                            "config": {"type": "dict"}
+                        }
+                    }
+                },
+                "products": {
+                    "type": "list",
+                    "schema": {"type": "string"}
+                },
+                "codes": {
+                    "type": "string"
+                },
+                "global_filters": {
+                    "type": "dict",
+                    "valueschema": {
+                        "type": "boolean"
+                    }
+                },
+                "content_api_token": {
+                    "type": "string",
+                },
+                "api_products": {
+                    "type": "list",
+                    "schema": {"type": "string"}
+                },
+                "async": {
+                    "type": "boolean",
+                    "nullable": true,
+                },
+            }
+
++ Response 201 (application/json)
+
++ Response 400 (application/json)
+
++ Response 412 (application/json)
+
+
+## A Subscriber [/subscribers/{subscriber_id}]
+
++ Parameters
+
+    - subscriber_id (string) ... subscriber id
+
+### Details of A Subscriber [GET]
+
++ Response 200 (application/json)
+
+    + Body
+
+            {
+                "subscriber_type": "all",
+                "is_targetable": true,
+                "products": [
+                    "570e04e23c5e9f89fe95366e"
+                ],
+                "sequence_num_settings": {
+                    "max": 10,
+                    "min": 1
+                },
+                "email": "public_api@test.com",
+                "_etag": "51458916b94911def48fbed21530bed0fb3081a7",
+                "api_products": [
+                    "570e04e23c5e9f89fe95366e"
+                ],
+                "_id": "5981c6701d41c82dbab98647",
+                "destinations": [
+                    {
+                        "format": "json_event",
+                        "config": {
+                            "packaged": true,
+                            "resource_url": "http://localhost:5050/push",
+                            "assets_url": "http://localhost:5050/push_binary"
+                        },
+                        "delivery_type": "http_push",
+                        "name": "HTTP Push"
+                    },
+                    {
+                        "format": "json_planning",
+                        "config": {
+                            "packaged": true,
+                            "resource_url": "http://localhost:5050/push",
+                            "assets_url": "http://localhost:5050/push_binary"
+                        },
+                        "delivery_type": "http_push",
+                        "name": "HTTP Push planning"
+                    }
+                ],
+                "is_active": true,
+                "_updated": "2018-05-28T10:49:40+0000",
+                "_created": "2017-08-02T12:32:48+0000",
+                "_type": "subscribers",
+                "global_filters": {},
+                "name": "Public API"
+            }
+           
+
+### Update A Subscriber [PATCH]
+
++ Request (application/json)
+
+    + Headers
+    
+            If-Match: {_etag}
+    
+    + Body
+
+            {"destinations":[{"name":"destination2", "format": "nitf", "delivery_type":"email", "config":{"recipients":"abc@abc.com"}}]}
+
++ Response 200 (application/json)
+
++ Response 403 (application/json)
+
+## Delete A Subscriber [DELETE]      
+
+Deletes the subscriber by given id. 
+
++ Request (application/json)
+
+        {}
+
++ Response 204 (application/json)
+
++ Response 412 (application/json)
+
+
+## Subscriber Tokens [/subscriber_token] 
+
+### Get Subscriber Token [GET]
+
++ Response 200 (application/json)
+
+        {
+            "_items": [
+                {
+                    "subscriber": "5981c6701d41c82dbab98647",
+                    "expiry": "2017-09-01T12:38:26+0000",
+                    "_id": "9S0+LAE+TmMqkJHHM4CvsE6WVluDa5cEvBece5Kjrk7P/oIJjhpDyg=="
+                }
+            ],
+        }
+
+### Generate A Subscriber Token [POST]
+
+Creation a token for a given subscriber id
+
++ Request (application/json)
+
+    + Body
+        
+            {   
+                "subscriber": "p5981c6701d41c82dbab98647"   
+            }
+
+    + Schema
+
+            {
+                "_id": {"type": "string", "unique": true},
+                "expiry": {"type": "datetime"},
+                "subscriber":  {"type": "string", "required": true},
+            }
+
++ Response 201 (application/json)
+
++ Response 400 (application/json)

@@ -1,0 +1,781 @@
+## Feeding Services Allowed [/feeding_services_allowed] 
+
+### Get Alowed Feeding Services [GET]
+
++ Response 200 (application/json)
+
+        {
+            "_items": [
+                {
+                    "_updated": "1970-01-01T00:00:00+0000",
+                    "label": "Twitter",
+                    "_created": "1970-01-01T00:00:00+0000",
+                    "parser_restricted_values": [],
+                    "field_groups": {},
+                    "_etag": "153fa7224e6f34b9fbe5ce4bd7098270df859fa0",
+                    "feeding_service": "twitter",
+                    "fields": [
+                        {
+                            "type": "text",
+                            "errors": {
+                                "6100": "Twitter authentication failure"
+                            },
+                            "label": "Twitter Consumer Key",
+                            "required": true,
+                            "id": "consumer_key",
+                            "placeholder": "Twitter consumer_key"
+                        },
+                        {
+                            "id": "consumer_secret",
+                            "placeholder": "Twitter consumer_secret",
+                            "required": true,
+                            "label": "Twitter Consumer Secret",
+                            "type": "password"
+                        },
+                        {
+                            "id": "access_token_key",
+                            "placeholder": "Twitter access_token_key",
+                            "required": true,
+                            "label": "Twitter Access Token Key",
+                            "type": "text"
+                        },
+                        {
+                            "id": "access_token_secret",
+                            "placeholder": "Twitter access_token_secret",
+                            "required": true,
+                            "label": "Twitter Access Token Secret",
+                            "type": "password"
+                        },
+                        {
+                            "type": "text",
+                            "errors": {
+                                "6200": "No Screen names specified"
+                            },
+                            "label": "Twitter Screen Names",
+                            "required": true,
+                            "id": "screen_names",
+                            "placeholder": "Twitter screen_names"
+                        }
+                    ]
+                },
+                {
+                    "_updated": "1970-01-01T00:00:00+0000",
+                    "label": "File feed",
+                    "_created": "1970-01-01T00:00:00+0000",
+                    "parser_restricted_values": [],
+                    "field_groups": {},
+                    "_etag": "3da21db3e0034b1c218c0a85d7f34943af7a4cee",
+                    "feeding_service": "file",
+                    "fields": [
+                        {
+                            "type": "text",
+                            "errors": {
+                                "3003": "Path not found on server.",
+                                "3004": "Path should be directory."
+                            },
+                            "label": "Server Folder",
+                            "required": true,
+                            "id": "path",
+                            "placeholder": "path to folder"
+                        }
+                    ]
+                },
+                {
+                    "_updated": "1970-01-01T00:00:00+0000",
+                    "label": "Wufoo feed API",
+                    "_created": "1970-01-01T00:00:00+0000",
+                    "parser_restricted_values": [
+                        "wufoo"
+                    ],
+                    "field_groups": {},
+                    "_etag": "e3fcca11c8948f8a9a97e4003bab2b9f8646a21d",
+                    "feeding_service": "wufoo",
+                    "fields": [
+                        {
+                            "id": "wufoo_username",
+                            "placeholder": "Wufoo login",
+                            "required": true,
+                            "label": "Login",
+                            "type": "text"
+                        },
+                        {
+                            "id": "wufoo_api_key",
+                            "placeholder": "Wufoo API Key",
+                            "required": true,
+                            "label": "API key",
+                            "type": "password"
+                        }
+                    ]
+                },
+                {
+                    "_updated": "1970-01-01T00:00:00+0000",
+                    "label": "Email",
+                    "_created": "1970-01-01T00:00:00+0000",
+                    "parser_restricted_values": [
+                        "email_rfc822"
+                    ],
+                    "field_groups": {},
+                    "_etag": "5c8d8bb1f16b49cdd160dbaa29449e7878b46413",
+                    "feeding_service": "email",
+                    "fields": [
+                        {
+                            "type": "text",
+                            "errors": {
+                                "6002": "Unexpected server response",
+                                "6003": "Server not found."
+                            },
+                            "label": "Email Server",
+                            "required": true,
+                            "id": "server",
+                            "placeholder": "Email Server"
+                        },
+                        {
+                            "type": "text",
+                            "label": "Email Server Port",
+                            "required": true,
+                            "id": "port",
+                            "placeholder": "Email Server Port",
+                            "default": "993"
+                        },
+                        {
+                            "id": "user",
+                            "placeholder": "User",
+                            "required": true,
+                            "label": "User",
+                            "type": "text"
+                        },
+                        {
+                            "type": "password",
+                            "errors": {
+                                "6000": "Authentication error."
+                            },
+                            "label": "Password",
+                            "required": true,
+                            "id": "password",
+                            "placeholder": "Password"
+                        },
+                        {
+                            "type": "text",
+                            "errors": {
+                                "6004": "Authentication error."
+                            },
+                            "label": "Mailbox",
+                            "required": true,
+                            "id": "mailbox",
+                            "placeholder": "Mailbox"
+                        },
+                        {
+                            "id": "formatted",
+                            "required": true,
+                            "label": "Formatted Email Parser",
+                            "type": "boolean"
+                        },
+                        {
+                            "id": "filter",
+                            "placeholder": "Filter",
+                            "required": true,
+                            "label": "Filter",
+                            "type": "text"
+                        }
+                    ]
+                },
+                {
+                    "_updated": "1970-01-01T00:00:00+0000",
+                    "label": "FTP feed",
+                    "_created": "1970-01-01T00:00:00+0000",
+                    "parser_restricted_values": [],
+                    "field_groups": {},
+                    "_etag": "660f51e6261645cc8ef96c02164bb05255b7852d",
+                    "feeding_service": "ftp",
+                    "fields": [
+                        {
+                            "type": "text",
+                            "errors": {
+                                "5003": "Server not found."
+                            },
+                            "label": "Host",
+                            "required": true,
+                            "id": "host",
+                            "placeholder": "FTP Server URL"
+                        },
+                        {
+                            "type": "text",
+                            "errors": {
+                                "5002": "Credentials error."
+                            },
+                            "label": "Username",
+                            "required": false,
+                            "id": "username",
+                            "placeholder": "Username"
+                        },
+                        {
+                            "id": "password",
+                            "placeholder": "Password",
+                            "required": false,
+                            "label": "Password",
+                            "type": "password"
+                        },
+                        {
+                            "id": "path",
+                            "placeholder": "FTP Server Path",
+                            "required": false,
+                            "label": "Path",
+                            "type": "text"
+                        },
+                        {
+                            "id": "dest_path",
+                            "placeholder": "Local Path",
+                            "required": true,
+                            "label": "Local Path",
+                            "type": "text"
+                        },
+                        {
+                            "type": "boolean",
+                            "label": "Passive",
+                            "required": false,
+                            "id": "passive",
+                            "placeholder": "Passive",
+                            "default": true
+                        },
+                        {
+                            "id": "move",
+                            "placeholder": "Move items after ingestion",
+                            "required": false,
+                            "label": "Move items after ingestion",
+                            "type": "boolean"
+                        },
+                        {
+                            "type": "text",
+                            "label": "Move ingested items to",
+                            "required": false,
+                            "id": "ftp_move_path",
+                            "placeholder": "FTP Server Path, keep empty to use default path",
+                            "show_expression": "{move}"
+                        },
+                        {
+                            "type": "text",
+                            "label": "Move *NOT* ingested items (i.e. on error) to",
+                            "required": false,
+                            "id": "move_path_error",
+                            "placeholder": "FTP Server Path, keep empty to use default path",
+                            "show_expression": "{move}"
+                        }
+                    ]
+                },
+                {
+                    "_updated": "1970-01-01T00:00:00+0000",
+                    "label": "Ritzau feed API",
+                    "_created": "1970-01-01T00:00:00+0000",
+                    "parser_restricted_values": [
+                        "ritzau"
+                    ],
+                    "field_groups": {},
+                    "_etag": "19fa08de202c05d6fa9a023aff384d7b08535fc8",
+                    "feeding_service": "ritzau",
+                    "fields": [
+                        {
+                            "id": "username",
+                            "placeholder": "Username",
+                            "required": true,
+                            "label": "Username",
+                            "type": "text"
+                        },
+                        {
+                            "id": "password",
+                            "placeholder": "Password",
+                            "required": true,
+                            "label": "Password",
+                            "type": "password"
+                        },
+                        {
+                            "id": "url",
+                            "placeholder": "fill this field only for advanced uses",
+                            "required": false,
+                            "label": "URL",
+                            "type": "text"
+                        }
+                    ]
+                },
+                {
+                    "_updated": "1970-01-01T00:00:00+0000",
+                    "label": "Event email",
+                    "_created": "1970-01-01T00:00:00+0000",
+                    "parser_restricted_values": [],
+                    "field_groups": {},
+                    "_etag": "635b0a3407cf20826714f70fb8fbdc169da627e6",
+                    "feeding_service": "event_email",
+                    "fields": [
+                        {
+                            "type": "text",
+                            "errors": {
+                                "6002": "Unexpected server response",
+                                "6003": "Server not found."
+                            },
+                            "label": "Email Server",
+                            "required": true,
+                            "id": "server",
+                            "placeholder": "Email Server"
+                        },
+                        {
+                            "type": "text",
+                            "label": "Email Server Port",
+                            "required": true,
+                            "id": "port",
+                            "placeholder": "Email Server Port",
+                            "default": "993"
+                        },
+                        {
+                            "id": "user",
+                            "placeholder": "User",
+                            "required": true,
+                            "label": "User",
+                            "type": "text"
+                        },
+                        {
+                            "type": "password",
+                            "errors": {
+                                "6000": "Authentication error."
+                            },
+                            "label": "Password",
+                            "required": true,
+                            "id": "password",
+                            "placeholder": "Password"
+                        },
+                        {
+                            "type": "text",
+                            "errors": {
+                                "6004": "Authentication error."
+                            },
+                            "label": "Mailbox",
+                            "required": true,
+                            "id": "mailbox",
+                            "placeholder": "Mailbox"
+                        },
+                        {
+                            "id": "formatted",
+                            "required": true,
+                            "label": "Formatted Email Parser",
+                            "type": "boolean"
+                        },
+                        {
+                            "id": "filter",
+                            "placeholder": "Filter",
+                            "required": true,
+                            "label": "Filter",
+                            "type": "text"
+                        }
+                    ]
+                },
+                {
+                    "_updated": "1970-01-01T00:00:00+0000",
+                    "label": "Event HTTP feed",
+                    "_created": "1970-01-01T00:00:00+0000",
+                    "parser_restricted_values": [],
+                    "field_groups": {},
+                    "_etag": "4ca277cddc3352ff95a5524010d2645b00811328",
+                    "feeding_service": "event_http",
+                    "fields": [
+                        {
+                            "id": "url",
+                            "placeholder": "Feed URL",
+                            "required": true,
+                            "label": "Feed URL",
+                            "type": "text"
+                        }
+                    ]
+                },
+                {
+                    "_updated": "1970-01-01T00:00:00+0000",
+                    "label": "RSS/Atom",
+                    "_created": "1970-01-01T00:00:00+0000",
+                    "parser_restricted_values": null,
+                    "field_groups": {
+                        "auth_data": {
+                            "label": "Authentication Info",
+                            "fields": [
+                                "username",
+                                "password"
+                            ]
+                        }
+                    },
+                    "_etag": "5d27de3682f997e8f93b5f6a011c1f56c7730072",
+                    "feeding_service": "rss",
+                    "fields": [
+                        {
+                            "type": "text",
+                            "errors": {
+                                "1001": "Can't parse the RSS.",
+                                "4001": "Connection timed out.",
+                                "4006": "URL not found.",
+                                "4009": "Can't connect to host."
+                            },
+                            "label": "Host",
+                            "required": true,
+                            "id": "url",
+                            "placeholder": "RSS Feed URL"
+                        },
+                        {
+                            "id": "auth_required",
+                            "placeholder": "Requires Authentication",
+                            "required": false,
+                            "label": "Requires Authentication",
+                            "type": "boolean"
+                        },
+                        {
+                            "label": "Username",
+                            "type": "text",
+                            "id": "username",
+                            "placeholder": "Username",
+                            "required_expression": "{auth_required}",
+                            "show_expression": "{auth_required}"
+                        },
+                        {
+                            "label": "Password",
+                            "type": "password",
+                            "id": "password",
+                            "placeholder": "Password",
+                            "required_expression": "{auth_required}",
+                            "show_expression": "{auth_required}"
+                        },
+                        {
+                            "empty_label": "No field aliases defined.",
+                            "first_field_options": {
+                                "values": [
+                                    "body_text",
+                                    "guid",
+                                    "published_parsed",
+                                    "summary",
+                                    "title",
+                                    "updated_parsed"
+                                ],
+                                "label": "Content Field Name"
+                            },
+                            "label": "Content Field Aliases",
+                            "type": "mapping",
+                            "id": "field_aliases",
+                            "second_field_options": {
+                                "placeholder": "Enter field alias",
+                                "label": "Field Alias"
+                            },
+                            "add_mapping_label": "Add alias",
+                            "remove_mapping_label": "Remove"
+                        }
+                    ]
+                },
+                {
+                    "_updated": "1970-01-01T00:00:00+0000",
+                    "label": "AP feed API",
+                    "_created": "1970-01-01T00:00:00+0000",
+                    "parser_restricted_values": [],
+                    "field_groups": {},
+                    "_etag": "79442d74cddccd5e8aa7cfaf270b22bf1fdbcc20",
+                    "feeding_service": "ap",
+                    "fields": [
+                        {
+                            "id": "username",
+                            "placeholder": "Username",
+                            "required": true,
+                            "label": "Username",
+                            "type": "text"
+                        },
+                        {
+                            "id": "password",
+                            "placeholder": "Password",
+                            "required": true,
+                            "label": "Password",
+                            "type": "password"
+                        },
+                        {
+                            "id": "idList",
+                            "placeholder": "use coma separated ids for multiple values",
+                            "required": false,
+                            "label": "Id List",
+                            "type": "text"
+                        },
+                        {
+                            "label": "Id List Type",
+                            "type": "choices",
+                            "choices": [
+                                [
+                                    "products",
+                                    "Products"
+                                ],
+                                [
+                                    "savedsearches",
+                                    "Saved searches"
+                                ],
+                                [
+                                    "topics",
+                                    "Topics"
+                                ],
+                                [
+                                    "offerings",
+                                    "Offerings"
+                                ],
+                                [
+                                    "packages",
+                                    "Packages"
+                                ]
+                            ],
+                            "id": "idListType",
+                            "required": true,
+                            "default": "products"
+                        }
+                    ]
+                },
+                {
+                    "_updated": "1970-01-01T00:00:00+0000",
+                    "label": "Event file feed",
+                    "_created": "1970-01-01T00:00:00+0000",
+                    "parser_restricted_values": [],
+                    "field_groups": {},
+                    "_etag": "9fc127e26a0f9a687e16cd87287fe4d27d75c9f9",
+                    "feeding_service": "event_file",
+                    "fields": [
+                        {
+                            "type": "text",
+                            "errors": {
+                                "3003": "Path not found on server.",
+                                "3004": "Path should be directory."
+                            },
+                            "label": "Event File Server Folder",
+                            "required": true,
+                            "id": "path",
+                            "placeholder": "path to folder"
+                        }
+                    ]
+                },
+                {
+                    "_updated": "1970-01-01T00:00:00+0000",
+                    "label": "BBC Local Democracy Reporter Service",
+                    "_created": "1970-01-01T00:00:00+0000",
+                    "parser_restricted_values": [],
+                    "field_groups": {},
+                    "_etag": "1db007136bcdbcb2b8fc212a479990f606e25f4e",
+                    "feeding_service": "bbc_ldrs",
+                    "fields": [
+                        {
+                            "type": "text",
+                            "label": "LDRS URL",
+                            "required": true,
+                            "id": "url",
+                            "placeholder": "LDRS URL",
+                            "default": "https://api.ldrs.org.uk/v1/item"
+                        },
+                        {
+                            "type": "text",
+                            "label": "API Key",
+                            "required": true,
+                            "id": "api_key",
+                            "placeholder": "API Key",
+                            "default": ""
+                        }
+                    ]
+                }
+            ]
+        }
+
+
+## Feed Parsers Allowed [/feed_parsers_allowed] 
+
+### Get Alowed Feed Parsers [GET]
+
++ Response 200 (application/json)
+
+        {
+            "_items": [
+                {
+                    "_updated": "1970-01-01T00:00:00+0000",
+                    "_created": "1970-01-01T00:00:00+0000",
+                    "_etag": "072c7c55afbd780d183a28bb35af006f708547f0",
+                    "label": "PA NITF",
+                    "feed_parser": "pa_nitf"
+                },
+                {
+                    "_updated": "1970-01-01T00:00:00+0000",
+                    "_created": "1970-01-01T00:00:00+0000",
+                    "_etag": "8457601f7c7559690430cad9f4e1f1ebd844576a",
+                    "label": "iCalendar v2.0",
+                    "feed_parser": "ics20"
+                },
+                {
+                    "_updated": "1970-01-01T00:00:00+0000",
+                    "_created": "1970-01-01T00:00:00+0000",
+                    "_etag": "aa9bc18f2163667924cefea9f82f1a302d4453fd",
+                    "label": "Ritzau feed",
+                    "feed_parser": "ritzau"
+                },
+                {
+                    "_updated": "1970-01-01T00:00:00+0000",
+                    "_created": "1970-01-01T00:00:00+0000",
+                    "_etag": "d76bda81efe9c2d01c7936b2534a98f9e976aeed",
+                    "label": "EFE NITF",
+                    "feed_parser": "efe_nitf"
+                },
+                {
+                    "_updated": "1970-01-01T00:00:00+0000",
+                    "_created": "1970-01-01T00:00:00+0000",
+                    "_etag": "13e55dc7f6be66ac4c2b4b774bc416eede52427c",
+                    "label": "Wordpress WXR parser",
+                    "feed_parser": "wpwxr"
+                },
+                {
+                    "_updated": "1970-01-01T00:00:00+0000",
+                    "_created": "1970-01-01T00:00:00+0000",
+                    "_etag": "645c1340f6ab36aa9b82d2bc9df0620de3263ebc",
+                    "label": "Scoop Media News ML-G2 Parser",
+                    "feed_parser": "scoop_newsml2"
+                },
+                {
+                    "_updated": "1970-01-01T00:00:00+0000",
+                    "_created": "1970-01-01T00:00:00+0000",
+                    "_etag": "d3a5c915bb83806f550500fef3e1948c7ba6878d",
+                    "label": "NTB Event XML",
+                    "feed_parser": "ntb_event_xml"
+                },
+                {
+                    "_updated": "1970-01-01T00:00:00+0000",
+                    "_created": "1970-01-01T00:00:00+0000",
+                    "_etag": "e9f36665063de2c7ff1e5e2384271208a2ba6743",
+                    "label": "Image (IPTC metadata)",
+                    "feed_parser": "image_iptc"
+                },
+                {
+                    "_updated": "1970-01-01T00:00:00+0000",
+                    "_created": "1970-01-01T00:00:00+0000",
+                    "_etag": "7497d2bf6f2b4065021ececd50b9e5b38c1a7cf8",
+                    "label": "DPA IPTC 7901 Parser",
+                    "feed_parser": "dpa_iptc7901"
+                },
+                {
+                    "_updated": "1970-01-01T00:00:00+0000",
+                    "_created": "1970-01-01T00:00:00+0000",
+                    "_etag": "2eefb13689d471b4820e5780a2a60caf491f03f3",
+                    "label": "NITF Parser",
+                    "feed_parser": "nitf"
+                },
+                {
+                    "_updated": "1970-01-01T00:00:00+0000",
+                    "_created": "1970-01-01T00:00:00+0000",
+                    "_etag": "4229bbe8ed36fda1fdd3aae6098d97810bbbc4ba",
+                    "label": "News ML 2.0 Parser",
+                    "feed_parser": "newsml2"
+                },
+                {
+                    "_updated": "1970-01-01T00:00:00+0000",
+                    "_created": "1970-01-01T00:00:00+0000",
+                    "_etag": "abd3f1b8f88b95f8061e7994d7c281d7b9a12153",
+                    "label": "News ML 1.2 Parser",
+                    "feed_parser": "newsml12"
+                },
+                {
+                    "_updated": "1970-01-01T00:00:00+0000",
+                    "_created": "1970-01-01T00:00:00+0000",
+                    "_etag": "484357c7eabb575a961ea267776548549372fc3b",
+                    "label": "AFP News ML 1.2 Parser",
+                    "feed_parser": "afpnewsml12"
+                },
+                {
+                    "_updated": "1970-01-01T00:00:00+0000",
+                    "_created": "1970-01-01T00:00:00+0000",
+                    "_etag": "db5e857e88f22bcaaf9fc7f033afe32b7aa51efa",
+                    "label": "NINJS Feed Parser",
+                    "feed_parser": "ninjs"
+                },
+                {
+                    "_updated": "1970-01-01T00:00:00+0000",
+                    "_created": "1970-01-01T00:00:00+0000",
+                    "_etag": "c93fdf13e638fcadfc286a28aade01e6001e1f0a",
+                    "label": "ANA NewsML Parser",
+                    "feed_parser": "ananewsml12"
+                },
+                {
+                    "_updated": "1970-01-01T00:00:00+0000",
+                    "_created": "1970-01-01T00:00:00+0000",
+                    "_etag": "f73e4bfd3f78377d40a39294866a1ca078416b9b",
+                    "label": "EMail RFC822 Parser",
+                    "feed_parser": "email_rfc822"
+                },
+                {
+                    "_updated": "1970-01-01T00:00:00+0000",
+                    "_created": "1970-01-01T00:00:00+0000",
+                    "_etag": "444260d8f2cb94ba7661cd83e15e0eea9c2c0607",
+                    "label": "WENN Parser",
+                    "feed_parser": "wenn"
+                },
+                {
+                    "_updated": "1970-01-01T00:00:00+0000",
+                    "_created": "1970-01-01T00:00:00+0000",
+                    "_etag": "ac8910add307ea4dfa1f28ac4683776e263e8d70",
+                    "label": "BBC NINJS Variant Parser",
+                    "feed_parser": "bbc_ninjs"
+                },
+                {
+                    "_updated": "1970-01-01T00:00:00+0000",
+                    "_created": "1970-01-01T00:00:00+0000",
+                    "_etag": "7aa5cedab7c9061c68d6a03993f9b9650fd1c9ae",
+                    "label": "anpa1312",
+                    "feed_parser": "anpa1312"
+                },
+                {
+                    "_updated": "1970-01-01T00:00:00+0000",
+                    "_created": "1970-01-01T00:00:00+0000",
+                    "_etag": "4533e69be63032d020baa05f4aaa3d15667bcbc4",
+                    "label": "STT NewsML",
+                    "feed_parser": "sttnewsml"
+                },
+                {
+                    "_updated": "1970-01-01T00:00:00+0000",
+                    "_created": "1970-01-01T00:00:00+0000",
+                    "_etag": "6b6189126120b0a19f249d445063ea93cf6030ee",
+                    "label": "AP ANPA Parser",
+                    "feed_parser": "ap_anpa1312"
+                },
+                {
+                    "_updated": "1970-01-01T00:00:00+0000",
+                    "_created": "1970-01-01T00:00:00+0000",
+                    "_etag": "dcd71de1d333021bf63da92beedf19db0ed8be41",
+                    "label": "IPTC 7901 Parser",
+                    "feed_parser": "iptc7901"
+                }
+            ]
+        }
+
+
+## IO Errors [/io_errors] 
+
+### Get All IO Errors [GET]
+
++ Response 200 (application/json)
+
+        {
+            "_items": [
+                {
+                    "all_errors": {
+                        "1001": "Message could not be parsed",
+                        "1002": "Ingest file could not be parsed",
+                        "1004": "NewsML1 input could not be processed",
+                        "1006": "NITF input could not be processed",
+                        "1008": "IPTC7901 input could not be processed",
+                        "2000": "Configured Feed Parser either not found or not registered with the application",
+                        "2001": "Configuration of the feeding service is missing or incomplete",
+                        "2004": "Ingest error",
+                        "4000": "Unknown API ingest error",
+                        "4001": "API ingest connection has timed out.",
+                        "4002": "API ingest has too many redirects",
+                        "4003": "API ingest has request error",
+                        "4004": "API ingest Unicode Encode Error",
+                        "4005": "API ingest xml parse error",
+                        "4006": "API service not found(404) error",
+                        "4007": "API authorization error",
+                        "5000": "FTP ingest error",
+                        "5001": "FTP parser could not be found",
+                        "6000": "Email authentication failure",
+                        "6002": "Email ingest error",
+                        "6100": "Twitter authentication failure",
+                        "6200": "No Screen names specified"
+                    },
+                    "_etag": "0078c83e3c590cf87167c9501f71d6711b2f5463"
+                }
+            ]
+        }        
