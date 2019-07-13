@@ -1,0 +1,232 @@
+## Filter Conditions Collection [/filter_conditions] 
+
+### List All Filter Conditions [GET]
+
++ Response 200 (application/json)
+
+        {
+            "_items": [
+                {
+                    "value": "text,preformatted,audio,video,picture,graphic,composite,planning,event",
+                    "operator": "in",
+                    "_id": "5bd85471eff91400f7a545f4",
+                    "name": "Unfiltered",
+                    "field": "type",
+                },
+                {
+                    "value": "5c0e4a59eff91452d085dcb7",
+                    "operator": "in",
+                    "name": "DPA filter condition",
+                    "field": "desk",
+                }
+            ]
+        }
+
+
+### Create A New Filter Condition [POST]
+
+A new filter condition creation fails if:
+- The provided **field** or **operator** is not recognized
+- If the same filter condition with the same **name** already exists
+- If the same filter condition with the same **field**, **operator** and **value** already exists
+
++ Request (application/json)
+
+    + Body
+        
+            {
+                "name": "sport", 
+                "field": "anpa_category", 
+                "operator": "in", 
+                "value": "4"
+            }
+
+    + Schema
+
+            {
+                "name": {
+                    "type": "string",
+                    "required": true,
+                    "nullable": false,
+                    "empty": false,
+                    "iunique": true
+                },
+                "field": {
+                    "type": "string",
+                    "empty": false,
+                    "nullable": false,
+                    "allowed":  [
+                            "anpa_category",
+                            "urgency",
+                            "keywords",
+                            "priority",
+                            "slugline",
+                            "type",
+                            "source",
+                            "headline",
+                            "ednote",
+                            "body_html",
+                            "genre",
+                            "subject",
+                            "desk",
+                            "stage",
+                            "sms",
+                            "place",
+                            "ingest_provider",
+                            "embargo"
+                        ],
+                },
+                "operator": {
+                    "type": "string",
+                    "allowed": ["in",
+                                "nin",
+                                "like",
+                                "notlike",
+                                "startswith",
+                                "endswith",
+                                "match",
+                                "eq",
+                                "ne",
+                                "lt",
+                                "lte",
+                                "gt",
+                                "gte"],
+                    "empty": false,
+                    "nullable": false,
+                },
+                "value": {
+                    "type": "string",
+                    "empty": false,
+                    "nullable": false,
+                }
+            }
+
++ Response 201 (application/json)
+
++ Response 400 (application/json)
+
++ Response 412 (application/json)
+
+
+## A Filter Condition [/filter_conditions/{filter_condition_id}]
+
++ Parameters
+
+    - filter_condition_id (string) ... filter condition id
+
+### Details of A Filter Condition [GET]
+
++ Response 200 (application/json)
+
+    + Body
+
+            {
+                "value": "text,preformatted,audio,video,picture,graphic,composite,planning,event",
+                "operator": "in",
+                "_id": "5bd85471eff91400f7a545f4",
+                "name": "Unfiltered",
+                "field": "type",
+            }
+           
+
+### Update A Filter Condition [PATCH]
+
+Update of a filter condition fails if:
+- The provided **field** or **operator** is not recognized
+- If the same filter condition with the same **name** already exists
+- If the same filter condition with the same **field**, **operator** and **value** already exists
+
++ Request (application/json)
+
+    + Headers
+    
+            If-Match: {_etag}
+    
+    + Body
+
+            {"name": "politics"}
+
++ Response 200 (application/json)
+
++ Response 403 (application/json)
+
+## Delete A Filter Condition [DELETE]      
+
+Deletes the filter condition by given id. A filter condition will fail to delete if:
+
+ - It is used in a content filter
+
++ Request (application/json)
+
+        {}
+
++ Response 204 (application/json)
+
++ Response 412 (application/json)
+
+
+## Filter Conditions Parameters [/filter_conditions/parameters] 
+
+### List All Filter Conditions Parameters[GET]
+
+Returns the list of all the fields in the system that can be used in creating a filter condition.
+Every field includes the list of operators available for that field.
+
++ Response 200 (application/json)
+
+        {
+            "_items": [
+                {
+                    "values": [
+                        {
+                            "qcode": 1,
+                            "name": "1",
+                            "color": "#ff2600",
+                            "is_active": true
+                        }
+                    ],
+                    "field": "urgency",
+                    "value_field": "qcode",
+                    "operators": [
+                        "in",
+                        "nin",
+                        "eq",
+                        "ne",
+                        "lt",
+                        "lte",
+                        "gt",
+                        "gte"
+                    ],
+                    "_updated": "1970-01-01T00:00:00+0000"
+                },
+                {
+                    "values": [
+                        {
+                            "qcode": "Article",
+                            "name": "Article (news)",
+                            "is_active": true
+                        },
+                        {
+                            "qcode": "Sidebar",
+                            "name": "Sidebar",
+                            "is_active": true
+                        },
+                        {
+                            "qcode": "Factbox",
+                            "name": "Factbox",
+                            "is_active": true
+                        },
+                        {
+                            "qcode": "Feature",
+                            "name": "Feature",
+                            "is_active": true
+                        }
+                    ],
+                    "field": "genre",
+                    "value_field": "qcode",
+                    "operators": [
+                        "in",
+                        "nin"
+                    ]
+                }
+        }

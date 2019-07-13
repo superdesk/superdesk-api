@@ -1,0 +1,176 @@
+
+
+## Products Collection [/products] 
+
+### List All Products [GET]
+
++ Response 200 (application/json)
+
+        {
+            "_items": [
+                {
+                    "product_type": "both",
+                    "description": "everything - used for testing",
+                    "_id": "5bd84188eff91400f5961acb",
+                    "name": "firehose",
+                    "content_filter": {
+                        "filter_type": "permitting",
+                        "filter_id": "5bd85af1eff91400ef4022a7"
+                    },
+                },
+                {
+                    "product_type": "api",
+                    "_id": "5c0122e6eff91452d085dc00",
+                    "name": "Test Api",
+                    "content_filter": {
+                        "filter_type": "permitting",
+                        "filter_id": "5bd85af1eff91400ef4022a7"
+                    },
+                },
+                {
+                    "product_type": "both",
+                    "description": "test data",
+                    "_id": "5c01246feff91452d085dc02",
+                    "name": "novemberprod",
+                    "content_filter": {
+                        "filter_type": "permitting",
+                        "filter_id": "5bd85af1eff91400ef4022a7"
+                    },
+                },
+                {
+                    "product_type": "both",
+                    "_id": "5c0e4ca3eff91452c54e5710",
+                    "name": "DPA",
+                    "content_filter": {
+                        "filter_type": "permitting",
+                        "filter_id": "5c0e4c76eff91452cdddfa7d"
+                    },
+                }
+            ]
+        }
+
+
+### Create A New Product [POST]
+
+Creation of a new product will fail if:
+- new product type is direct and product is assigned as api product.
+- new product type is api and product is assigned as direct product.
+
++ Request (application/json)
+
+    + Body
+        
+            {
+                "name":"prod-1", "codes":"abc,xyz", "product_type": "both"
+            }
+
+    + Schema
+
+            {
+                "name": {
+                    "type": "string",
+                    "iunique": true,
+                    "required": true
+                },
+                "description": {
+                    "type": "string"
+                },
+                "codes": {
+                    "type": "string"
+                },
+                "content_filter": {
+                    "type": "dict",
+                    "schema": {
+                        "filter_id": {"type": "string"},
+                        "filter_type": {
+                            "type": "string",
+                            "allowed": ["blocking", "permitting"],
+                            "default": "blocking"
+                        }
+                    },
+                    "nullable": true
+                },
+                "geo_restrictions": {
+                    "type": "string",
+                    "nullable": true
+                },
+                "product_type": {
+                    "type": "string",
+                    "default": "both",
+                    "allowed": ["api", "direct", "both"],
+                    "required": true
+                }
+            }
+
++ Response 201 (application/json)
+
++ Response 400 (application/json)
+
++ Response 412 (application/json)
+
+
+## A Product [/products/{product_id}]
+
++ Parameters
+
+    - product_id (string) ... product id
+
+### Details of A Product [GET]
+
++ Response 200 (application/json)
+
+    + Body
+
+            {
+                "product_type": "both",
+                "description": "everything - used for testing",
+                "_id": "5bd84188eff91400f5961acb",
+                "name": "firehose",
+                "content_filter": {
+                    "filter_type": "permitting",
+                    "filter_id": "5bd85af1eff91400ef4022a7"
+                },
+            }
+
+## Delete A Product [DELETE]      
+
+Deletes the product by given id. A product will fail to delete if:
+
+ - there is a subscriber referencing this product
+
++ Request (application/json)
+
+        {}
+
++ Response 204 (application/json)
+
++ Response 412 (application/json)     
+
+
+## Products Tests [/products/test] 
+
+### Test A Product [POST]
+
+Tests an archive item against the existing products in the system and returns
+the list of products bit matching and not macthing the archive item
+
++ Request (application/json)
+
+    + Body
+        
+            {   
+                "article_id": "urn:newsml:localhost:2018-02-10T08:58:31.870286:4a342995-527b-4a24-bd15-a76c1360128f"
+            }
+
+    + Schema
+
+            {
+                "article_id": {"type": "string"}
+            }
+
++ Response 201 (application/json)
+
++ Response 400 (application/json)
+
++ Response 412 (application/json)
+           

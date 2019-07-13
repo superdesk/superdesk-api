@@ -1,0 +1,227 @@
+
+## Content Filters Collection [/content_filters] 
+
+### List All Content Filters [GET]
+
++ Response 200 (application/json)
+
+        {
+            "_items": [
+                {
+                    "is_archived_filter": false,
+                    "is_global": false,
+                    "_id": "5bd85af1eff91400ef4022a7",
+                    "name": "all using unfiltered",
+                    "api_block": false,
+                    "content_filter": [
+                        {
+                            "expression": {
+                                "fc": [
+                                    "5bd85471eff91400f7a545f4"
+                                ]
+                            }
+                        }
+                    ],
+                },
+                {
+                    "is_archived_filter": false,
+                    "is_global": false,
+                    "_id": "5c0e4c76eff91452cdddfa7d",
+                    "name": "DPA Filter",
+                    "api_block": false,
+                    "content_filter": [
+                        {
+                            "expression": {
+                                "fc": [
+                                    "5c0e4c66eff91452cdddfa7b"
+                                ]
+                            }
+                        }
+                    ],
+                }
+            ]
+        }
+
+
+### Create A New Content Filter [POST]
+
+Content filters contains one or many expressions. Expressions can have  list of 
+filter condition ids in the field **fc** or other content filters in the field **pf**.
+Creation of the content filter fails if:
+- References filter condition or content filter does not exist
+- There is a circular reference between content filters
+
++ Request (application/json)
+
+    + Body
+        
+            {
+                "content_filter": [{
+                    "expression": {
+                        "fc": ["5bd85471eff91400f7a545f4"]
+                    }
+                }], 
+                "name": "soccer-only"
+                }]  
+            }
+
+    + Schema
+
+            {
+                "name": {
+                    "type": "string",
+                    "required": true,
+                    "nullable": false,
+                    "empty": false,
+                    "iunique": true
+                },
+                "content_filter": {
+                    "type": "list",
+                    "schema": {
+                        "type": "dict",
+                        "schema": {
+                            "expression": {
+                                "type": "dict",
+                                "schema": {
+                                    "fc": {
+                                        
+                                        "type": "list",
+                                        "schema": {"type": "string")
+                                    },
+                                    "pf": {
+                                        "type": "list",
+                                        "schema": {"type": "string")
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "is_global": {
+                    "type": "boolean",
+                    "default": false
+                },
+                "is_archived_filter": {
+                    "type": "boolean",
+                    "default": false
+                },
+                "api_block": {
+                    "type": "boolean",
+                    "default": false
+                }
+            }
++ Response 201 (application/json)
+
++ Response 400 (application/json)
+
++ Response 412 (application/json)
+
+
+## A Content Filter [/content_filters/{content_filter_id}]
+
++ Parameters
+
+    - content_filter_id (string) ... content filter id
+
+### Details of A Content Filter [GET]
+
++ Response 200 (application/json)
+
+    + Body
+
+            {
+                "is_archived_filter": false,
+                "is_global": false,
+                "_id": "5bd85af1eff91400ef4022a7",
+                "name": "all using unfiltered",
+                "api_block": false,
+                "content_filter": [
+                    {
+                        "expression": {
+                            "fc": [
+                                "5bd85471eff91400f7a545f4"
+                            ]
+                        }
+                    }
+                ],
+            }
+           
+
+### Update A Content Filter [PATCH]
+
+Update of a content filter fails if:
+- References filter condition or content filter does not exist
+- There is a circular reference between content filters
+
++ Request (application/json)
+
+    + Headers
+    
+            If-Match: {_etag}
+    
+    + Body
+
+            { 
+                "content_filter": [
+                    {
+                        "expression": {
+                            "fc": [
+                                "5bd85471eff91400f7a545f4"
+                            ]
+                        }
+                    }
+                ]
+            }
+
++ Response 200 (application/json)
+
++ Response 403 (application/json)
+
+## Delete A Content Filter [DELETE]      
+
+Delete of a content filter will fail if:
+- It is referenced by other content filters
+- It is referenced by products
+- It is referenced by routing schemes
+
+
++ Request (application/json)
+
+        {}
+
++ Response 204 (application/json)
+
++ Response 412 (application/json)
+
+
+## Content Filters Tests [/content_filters/test] 
+
+### Test A Content Filter [POST]
+
+Tests a content filter given by filter_id or filter itself against an archive item.
+
++ Request (application/json)
+
+    + Body
+        
+            {   
+                "return_matching": true, 
+                "filter": {
+                    "content_filter": [{"expression" : {"fc" : ["5bd85471eff91400f7a545f4"]}}]
+                }
+            }
+
+    + Schema
+
+            {
+                "filter_id": {"type": "string"},
+                "article_id": {"type": "string"},
+                "return_matching": {"type": "boolean"},
+                "filter": {"type": "dict"}
+            }
+
++ Response 201 (application/json)
+
++ Response 400 (application/json)
+
++ Response 412 (application/json)

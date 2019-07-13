@@ -1,0 +1,227 @@
+## Publish Queue Collection [/publish_queue] 
+
+### List All Publish Queue Entries [GET]
+
++ Response 200 (application/json)
+
+        {
+            "_items": [
+                {
+                    "completed_at": "2019-04-10T15:46:47+0000",
+                    "destination": {
+                        "name": "novembdest",
+                        "config": {
+                            "resource_url": "http://www.resource.com/resources",
+                            "assets_url": "http://www.assets.com/assets"
+                        },
+                        "delivery_type": "http_push",
+                        "format": "ninjs"
+                    },
+                    "subscriber_id": "5c012837eff91452cdddf993",
+                    "content_type": "planning",
+                    "ingest_provider": null,
+                    "moved_to_legal": false,
+                    "transmit_started_at": "2019-04-10T15:46:46+0000",
+                    "_id": "5cae0fdceff914dbe1676281",
+                    "formatted_item": "{\"slugline\": \"End of Heisei Era\", \"versioncreated\": \"2019-04-10T15:46:35+0000\", \"version\": \"6369050799661169\", \"type\": \"planning\", \"pubstatus\": \"usable\", \"firstcreated\": \"2019-03-28T17:58:48+0000\", \"guid\": \"urn:newsml:demo-api.superdesk.pro:2019-03-28T18:58:48.458665:66c4af97-c440-4739-94aa-e59d9e543b9d\", \"description_text\": \"As the Japanese emperor prepares to abdicate the throne to the crown prince on April 30th. \", \"priority\": 5, \"headline\": \"Heisei\"}",
+                    "item_version": 6369050799661169,
+                    "publishing_action": "published",
+                    "state": "success",
+                    "item_id": "urn:newsml:demo-api.superdesk.pro:2019-03-28T18:58:48.458665:66c4af97-c440-4739-94aa-e59d9e543b9d",
+                    "published_seq_num": 37,
+                    "retry_attempt": 0,
+                    "unique_name": null,
+                    "associated_items": [],
+                    "publish_schedule": null,
+                    "headline": "Heisei",
+                    "codes": []
+                },
+                {
+                    "completed_at": "2019-04-10T15:46:39+0000",
+                    "destination": {
+                        "name": "novembdest",
+                        "config": {
+                            "resource_url": "http://www.resource.com/resources",
+                            "assets_url": "http://www.assets.com/assets"
+                        },
+                        "delivery_type": "http_push",
+                        "format": "ninjs"
+                    },
+                    "subscriber_id": "5c012837eff91452cdddf993",
+                    "content_type": "planning",
+                    "ingest_provider": null,
+                    "moved_to_legal": false,
+                    "transmit_started_at": "2019-04-10T15:46:36+0000",
+                    "_id": "5cae0fdbeff914dbe26771d0",
+                    "formatted_item": "{\"slugline\": \"End of Heisei Era\", \"versioncreated\": \"2019-04-10T15:46:24+0000\", \"version\": \"6369050799528277\", \"type\": \"planning\", \"pubstatus\": \"cancelled\", \"firstcreated\": \"2019-03-28T17:58:48+0000\", \"guid\": \"urn:newsml:demo-api.superdesk.pro:2019-03-28T18:58:48.458665:66c4af97-c440-4739-94aa-e59d9e543b9d\", \"description_text\": \"As the Japanese emperor prepares to abdicate the throne to the crown prince on April 30th. \", \"priority\": 5, \"headline\": \"Heisei\"}",
+                    "item_version": 6369050799528277,
+                    "publishing_action": "published",
+                    "state": "success",
+                    "item_id": "urn:newsml:demo-api.superdesk.pro:2019-03-28T18:58:48.458665:66c4af97-c440-4739-94aa-e59d9e543b9d",
+                    "published_seq_num": 36,
+                    "retry_attempt": 0,
+                    "unique_name": null,
+                    "associated_items": [],
+                    "publish_schedule": null,
+                    "headline": "Heisei",
+                    "codes": []
+                }
+            ]
+        }
+
+
+### Create A New Publish Queue Entry [POST]
+
+
++ Request (application/json)
+
+    + Body
+        
+            {
+                "item_id": "5c012837eff91452cdddf993",
+                "publish_schedule": "2016-05-30T10:00:00+00:00", 
+                "subscriber_id":"6369050799528277",
+                "destination":{"name":"Test","format": "nitf","delivery_type":"email","config":{"recipients":"test@test.com"}}
+            }
+
+    + Schema
+
+            {
+                "item_id": {"type": "string", "required": true},
+                "item_version": {"type": "integer", "nullable": false},
+                "formatted_item": {"type": "string", "nullable": false},
+                "item_encoding": {"type": "string", "nullable": true},
+                "encoded_item_id": {"type": "objectid", "nullable": true},
+                "subscriber_id": {"type": "string"},
+                "codes": {"type": "list", "nullable": true},
+                "destination": {
+                    "type": "dict",
+                    "schema": {
+                        "name": {"type": "string", "required": true, "empty": false},
+                        "format": {"type": "string", "required": true},
+                        "delivery_type": {"type": "string", "required": true},
+                        "config": {"type": "dict"}
+                    }
+                },
+                "published_in_package": {
+                    "type": "string"
+                },
+                "published_seq_num": {
+                    "type": "integer"
+                },
+                "publish_schedule": {
+                    "type": "datetime"
+                },
+                "publishing_action": {
+                    "type": "string"
+                },
+                "unique_name": {
+                    "type": "string",
+                    "nullable": true
+                },
+                "content_type": {
+                    "type": "string"
+                },
+                "headline": {
+                    "type": "string",
+                    "nullable": true
+                },
+                "transmit_started_at": {
+                    "type": "datetime"
+                },
+                "completed_at": {
+                    "type": "datetime"
+                },
+                "state": {
+                    "type": "string",
+                    "allowed": ["pending", "in-progress", "retrying", "success", "canceled", "error", "failed"],
+                    "nullable": false
+                },
+                "error_message": {
+                    "type": "string"
+                },
+                "moved_to_legal": {
+                    "type": "boolean",
+                    "default": false
+                },
+                "retry_attempt": {
+                    "type": "integer",
+                    "default": 0
+                },
+                "next_retry_attempt_at": {
+                    "type": "datetime"
+                },
+                "ingest_provider": {"type": "string"},
+                "associated_items": {"type": "list", "nullable": true}
+            }
+
+
++ Response 201 (application/json)
+
++ Response 400 (application/json)
+
++ Response 412 (application/json)
+
+
+## A Publish Queue [/publish_queue/{publish_queue_id}]
+
++ Parameters
+
+    - publish_queue_id (string) ... publish queue id
+
+### Details of A Publish Queue Entry [GET]
+
++ Response 200 (application/json)
+
+    + Body
+
+            {
+                "completed_at": "2019-04-10T15:46:47+0000",
+                "destination": {
+                    "name": "novembdest",
+                    "config": {
+                        "resource_url": "http://www.resource.com/resources",
+                        "assets_url": "http://www.assets.com/assets"
+                    },
+                    "delivery_type": "http_push",
+                    "format": "ninjs"
+                },
+                "subscriber_id": "5c012837eff91452cdddf993",
+                "content_type": "planning",
+                "ingest_provider": null,
+                "moved_to_legal": false,
+                "transmit_started_at": "2019-04-10T15:46:46+0000",
+                "_id": "5cae0fdceff914dbe1676281",
+                "formatted_item": "{\"slugline\": \"End of Heisei Era\", \"versioncreated\": \"2019-04-10T15:46:35+0000\", \"version\": \"6369050799661169\", \"type\": \"planning\", \"pubstatus\": \"usable\", \"firstcreated\": \"2019-03-28T17:58:48+0000\", \"guid\": \"urn:newsml:demo-api.superdesk.pro:2019-03-28T18:58:48.458665:66c4af97-c440-4739-94aa-e59d9e543b9d\", \"description_text\": \"As the Japanese emperor prepares to abdicate the throne to the crown prince on April 30th. \", \"priority\": 5, \"headline\": \"Heisei\"}",
+                "item_version": 6369050799661169,
+                "publishing_action": "published",
+                "state": "success",
+                "item_id": "urn:newsml:demo-api.superdesk.pro:2019-03-28T18:58:48.458665:66c4af97-c440-4739-94aa-e59d9e543b9d",
+                "published_seq_num": 37,
+                "retry_attempt": 0,
+                "_type": "publish_queue",
+                "unique_name": null,
+                "associated_items": [],
+                "publish_schedule": null,
+                "headline": "Heisei",
+                "codes": []
+            }
+           
+
+### Update A Publish Queue [PATCH]
+
++ Request (application/json)
+
+    + Headers
+    
+            If-Match: {_etag}
+    
+    + Body
+
+            {
+                "state": "in-progress"
+            }
+
++ Response 200 (application/json)
+
++ Response 403 (application/json)

@@ -1,0 +1,79 @@
+## Formatters Collection [/formatters] 
+
+### List All Formatters [GET]
+
++ Response 200 (application/json)
+
+        {
+            "_items": [
+                {
+                    "name": "NITFFormatter",
+                },
+                {
+                    "name": "NINJSFormatter",
+                },
+                {
+                    "name": "NewsML12Formatter",
+                },
+                {
+                    "name": "NewsMLG2Formatter",
+                },
+                {
+                    "name": "EmailFormatter",
+                },
+                {
+                    "name": "NewsroomNinjsFormatter",
+                },
+                {
+                    "name": "IDMLFormatter",
+                },
+                {
+                    "name": "NTBEventFormatter",
+                },
+                {
+                    "name": "JsonEventFormatter",
+                },
+                {
+                    "name": "JsonPlanningFormatter",
+                },
+                {
+                    "name": "JsonPlanningFeaturedFormatter",
+                }
+            ]
+        }
+
+### Format An Item [POST]
+
+Formats the given archive item with given formmatter. Format will fail if:
+- formatter does not exists
+- item does not exists in archive
+
++ Request (application/json)
+
+    + Body
+        
+            {
+                "article_id": "123", 
+                "formatter_name": "NINJSFormatter"
+            }
+
+    + Schema
+
+            {
+                "article_id": {
+                    "type": "string",
+                    "required": true
+                },
+                "formatter_name": {
+                    "type": "string",
+                    "required": true
+                }
+            }
+
++ Response 201 (application/json)
+
++ Response 400 (application/json)
+
++ Response 412 (application/json)
+
+           
