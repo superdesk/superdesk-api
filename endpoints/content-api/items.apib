@@ -1,0 +1,300 @@
+## Content API Items Collection [/contentapi/items?{max_results}&{q}&{page}] 
+
++ Parameters
+    + max_results: `25` (string, optional) - Maximum number of results to be returned .
+    + q: `` (string, optional) - Query string (ex: "slugline:(reuters)")
+    + page: `1` (number, optional) - Page number
+
+### List All Items [GET]
+
++ Response 200 (application/json)
+
+        {
+            "_items": [
+                {
+                    "wordcount": 70,
+                    "profile": "Article",
+                    "copyrightholder": "",
+                    "body_html": "<p>Polkupyöräilijä on kuollut Karttulantiellä tapahtuneessa liikenneonnettomuudessa Kuopiossa. Asiasta kertoo Itä-Suomen poliisi Twitterissä.</p>\n\n<p>Poliisin mukaan muutaman auton letka ajoi Karttulasta Kuopion suuntaan, kun yksi autoista törmäsi samaan suuntaan ajaneeseen pyöräilijään.</p>\n\n<p>Onnettomuus sattui Suonenjoentien risteyksestä noin kolme kilometriä Kuopion suuntaan. Pyöräilijä kuoli tapahtumapaikalle.</p>\n\n<p>Tie on poliisin mukaan kolaripaikalla suora ja näkyvyys oli onnettomuushetkellä hyvä. Tiellä on 80 kilometrin tuntinopeusrajoitus.</p>\n\n<p>Poliisi ohjaa liikennettä onnettomuuspaikalla, jossa yksi kaistoista on käytössä. Poliisi jatkaa onnettomuuden tutkintaa.</p>",
+                    "copyrightnotice": "",
+                    "pubstatus": "usable",
+                    "associations": {},
+                    "priority": 6,
+                    "service": [
+                        {
+                            "code": "a",
+                            "name": "Australian General News"
+                        }
+                    ],
+                    "urgency": 3,
+                    "type": "text",
+                    "subject": [
+                        {
+                            "code": "1",
+                            "scheme": "sttdone1"
+                        },
+                        {
+                            "code": "3",
+                            "scheme": "sttdepartment",
+                            "name": "Kotimaa"
+                        },
+                        {
+                            "code": "03000000",
+                            "scheme": "sttsubj",
+                            "name": "Onnettomuudet ja tuhot"
+                        },
+                        {
+                            "code": "03999000",
+                            "scheme": "sttsubj",
+                            "name": "Kuolemaan johtaneet onnettomuudet"
+                        },
+                        {
+                            "code": "04000000",
+                            "scheme": "sttsubj",
+                            "name": "Talous"
+                        },
+                        {
+                            "code": "04015000",
+                            "scheme": "sttsubj",
+                            "name": "Liikenne"
+                        },
+                        {
+                            "code": "03000000",
+                            "scheme": "sttsubj",
+                            "name": "Onnettomuudet ja tuhot"
+                        },
+                        {
+                            "code": "03010000",
+                            "scheme": "sttsubj",
+                            "name": "Liikenneonnettomuudet"
+                        },
+                        {
+                            "code": "4",
+                            "scheme": "sttversion",
+                            "name": "Pika+"
+                        },
+                        {
+                            "code": "4163",
+                            "scheme": "sttlocmeta",
+                            "name": "Kuopio"
+                        },
+                        {
+                            "code": "38",
+                            "scheme": "state",
+                            "name": "Pohjois-Savo"
+                        },
+                        {
+                            "code": "150",
+                            "scheme": "world_region",
+                            "name": "Eurooppa"
+                        },
+                        {
+                            "code": "1",
+                            "scheme": "country",
+                            "name": "Suomi"
+                        },
+                        {
+                            "code": "17591",
+                            "scheme": "sttlocmeta",
+                            "name": "Suomi"
+                        }
+                    ],
+                    "_type": "items",
+                    "charcount": 649,
+                    "source": "STT",
+                    "extra": {
+                        "newsItem_guid": "urn:newsml:stt.fi::102910843",
+                        "sttidtype_textid": "118011313"
+                    },
+                    "headline": "Polkupyöräilijä kuoli törmäyksessä henkilöauton kanssa Kuopiossa ",
+                    "version": "2",
+                    "usageterms": "",
+                    "firstpublished": "2019-07-17T10:39:50+0000",
+                    "uri": "https://stt-api.superdesk.pro/contentapi/items/urn%3Anewsml%3Astt-api.superdesk.pro%3A2019-07-17T13%3A41%3A07.979624%3A93d3c06d-2ffd-4828-8e60-54c80c9506c8",
+                    "readtime": 0,
+                    "firstcreated": "2019-07-17T10:39:46+0000",
+                    "language": "en",
+                    "versioncreated": "2019-07-17T10:41:08+0000",
+                    "place": [
+                        {
+                            "code": "4163",
+                            "name": "Kuopio"
+                        },
+                        {
+                            "code": "17591",
+                            "name": "Suomi"
+                        }
+                    ],
+                    "slugline": " ",
+                    "genre": [
+                        {
+                            "code": "1",
+                            "name": "Pääjuttu"
+                        }
+                    ],
+                    "products": [
+                        {
+                            "code": "5c51810c0681aa00fba23481",
+                            "name": "All news"
+                        }
+                    ]
+                }
+            ]
+        }
+
+
+## A Content API Item [/contentapi/items/{item_id}]
+
++ Parameters
+
+    - item_id (string) ... item id
+
+### Details of A Content API Item [GET]
+
++ Response 200 (application/json)
+
+    + Body
+
+            {
+                "_links": {
+                    "self": {
+                        "title": "Item",
+                        "href": "items/urn:newsml:stt-api.superdesk.pro:2019-07-17T13:41:07.979624:93d3c06d-2ffd-4828-8e60-54c80c9506c8"
+                    },
+                    "parent": {
+                        "title": "home",
+                        "href": "/"
+                    },
+                    "collection": {
+                        "title": "items",
+                        "href": "items"
+                    }
+                },
+                "copyrightholder": "",
+                "body_html": "<p>Polkupyöräilijä on kuollut Karttulantiellä tapahtuneessa liikenneonnettomuudessa Kuopiossa. Asiasta kertoo Itä-Suomen poliisi Twitterissä.</p>\n\n<p>Poliisin mukaan muutaman auton letka ajoi Karttulasta Kuopion suuntaan, kun yksi autoista törmäsi samaan suuntaan ajaneeseen pyöräilijään.</p>\n\n<p>Onnettomuus sattui Suonenjoentien risteyksestä noin kolme kilometriä Kuopion suuntaan. Pyöräilijä kuoli tapahtumapaikalle.</p>\n\n<p>Tie on poliisin mukaan kolaripaikalla suora ja näkyvyys oli onnettomuushetkellä hyvä. Tiellä on 80 kilometrin tuntinopeusrajoitus.</p>\n\n<p>Poliisi ohjaa liikennettä onnettomuuspaikalla, jossa yksi kaistoista on käytössä. Poliisi jatkaa onnettomuuden tutkintaa.</p>",
+                "copyrightnotice": "",
+                "urgency": 3,
+                "subject": [
+                    {
+                        "code": "1",
+                        "scheme": "sttdone1"
+                    },
+                    {
+                        "code": "3",
+                        "scheme": "sttdepartment",
+                        "name": "Kotimaa"
+                    },
+                    {
+                        "code": "03000000",
+                        "scheme": "sttsubj",
+                        "name": "Onnettomuudet ja tuhot"
+                    },
+                    {
+                        "code": "03999000",
+                        "scheme": "sttsubj",
+                        "name": "Kuolemaan johtaneet onnettomuudet"
+                    },
+                    {
+                        "code": "04000000",
+                        "scheme": "sttsubj",
+                        "name": "Talous"
+                    },
+                    {
+                        "code": "04015000",
+                        "scheme": "sttsubj",
+                        "name": "Liikenne"
+                    },
+                    {
+                        "code": "03000000",
+                        "scheme": "sttsubj",
+                        "name": "Onnettomuudet ja tuhot"
+                    },
+                    {
+                        "code": "03010000",
+                        "scheme": "sttsubj",
+                        "name": "Liikenneonnettomuudet"
+                    },
+                    {
+                        "code": "4",
+                        "scheme": "sttversion",
+                        "name": "Pika+"
+                    },
+                    {
+                        "code": "4163",
+                        "scheme": "sttlocmeta",
+                        "name": "Kuopio"
+                    },
+                    {
+                        "code": "38",
+                        "scheme": "state",
+                        "name": "Pohjois-Savo"
+                    },
+                    {
+                        "code": "150",
+                        "scheme": "world_region",
+                        "name": "Eurooppa"
+                    },
+                    {
+                        "code": "1",
+                        "scheme": "country",
+                        "name": "Suomi"
+                    },
+                    {
+                        "code": "17591",
+                        "scheme": "sttlocmeta",
+                        "name": "Suomi"
+                    }
+                ],
+                "_type": "items",
+                "source": "STT",
+                "headline": "Polkupyöräilijä kuoli törmäyksessä henkilöauton kanssa Kuopiossa ",
+                "version": "2",
+                "firstpublished": "2019-07-17T10:39:50+0000",
+                "uri": "https://stt-api.superdesk.pro/contentapi/items/urn%3Anewsml%3Astt-api.superdesk.pro%3A2019-07-17T13%3A41%3A07.979624%3A93d3c06d-2ffd-4828-8e60-54c80c9506c8",
+                "priority": 6,
+                "firstcreated": "2019-07-17T10:39:46+0000",
+                "versioncreated": "2019-07-17T10:41:08+0000",
+                "slugline": " ",
+                "wordcount": 70,
+                "profile": "Article",
+                "readtime": 0,
+                "pubstatus": "usable",
+                "associations": {},
+                "type": "text",
+                "charcount": 649,
+                "extra": {
+                    "newsItem_guid": "urn:newsml:stt.fi::102910843",
+                    "sttidtype_textid": "118011313"
+                },
+                "usageterms": "",
+                "language": "en",
+                "place": [
+                    {
+                        "code": "4163",
+                        "name": "Kuopio"
+                    },
+                    {
+                        "code": "17591",
+                        "name": "Suomi"
+                    }
+                ],
+                "genre": [
+                    {
+                        "code": "1",
+                        "name": "Pääjuttu"
+                    }
+                ],
+                "products": [
+                    {
+                        "code": "5c51810c0681aa00fba23481",
+                        "name": "All news"
+                    }
+                ],
+                "service": [
+                    {
+                        "code": "a",
+                        "name": "Australian General News"
+                    }
+                ]
+            }
+           

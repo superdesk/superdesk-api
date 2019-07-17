@@ -1,0 +1,690 @@
+## Content API Search [/search_capi?{aggregations}&{default_operator}&{max_results}&{q}&{filter}&{page}&{sort}] 
+
++ Parameters
+    + aggregations: `0, 1` (number, optional) - If the aggregations should be included in the results.
+    + default_operator: `AND` (string, optional) - Default logical operator for the queries and filters .
+    + max_results: `25` (string, optional) - Maximum number of results to be returned .
+    + q: `` (string, optional) - Query string (ex: "slugline:(reuters)")
+    + filter: `` (string, optional) - Filter statement (ex: "[{"or":[{"terms":{"subject.code":["02001001"]}},{"terms":{"subject.parent":["02001001"]}}]}]")
+    + page: `1` (number, optional) - Page number
+    + sort: `` (string, optional) - Sort statement (ex: "[("versioncreated", -1)]")
+
+### Search Content API Items [GET]
+
++ Response 200 (application/json)
+
+        {
+            "_items": [
+                {
+                    "products": [
+                        {
+                            "code": "5c51810c0681aa00fba23481",
+                            "name": "All news"
+                        }
+                    ],
+                    "_created": "2019-07-17T11:20:09+0000",
+                    "versioncreated": "2019-07-17T11:20:08+0000",
+                    "associations": {},
+                    "body_html": "<p>Korkein hallinto-oikeus (KHO) on linjannut, että pientä tyttöä ei voida palauttaa Somaliaan ennen kun on selvitetty, joutuisiko hän siellä silpomisen uhriksi. Sukuelinten silpominen on ajantasaisen maatiedon mukaan Somaliassa erittäin yleinen käytäntö ja uhkaa siellä lähes kaikkia tyttöjä ja naisia, KHO toteaa.</p>\n\n<p>Äiti haki Suomesta turvapaikkaa ja oleskelulupaa vuonna 2015 syntyneen tyttärensä kanssa. Maahanmuuttovirasto (Migri) hylkäsi hakemuksen ja päätti käännyttää äidin ja lapsen takaisin Somaliaan.</p>\n\n<p>Äiti valitti käännytyspäätöksestä KHO:hon ja vetosi siellä uutena seikkana pelkoon siitä, että Somaliassa hänen tyttärensä sukuelimet silvotaan ja hänelle itselleen tehdään niin sanottu reinfibulaatio. Reinfibulaatiolla tarkoitetaan toimenpidettä, jossa naisen häpyhuulet ommellaan yhteen synnytyksen jälkeen.</p>\n\n<p>Hallinto-oikeus oli aiemmin hylännyt äidin valituksen.</p>\n\n<p></p>\n\n<p><b>Silpomisen uhka olisi pitänyt selvittää ilman huoltajan vaatimusta</b></p>\n\n<p></p>\n\n<p>KHO toteaa, että vaikka lähtökohtaisesti suojelun tarpeen perusteet pitäisi esittää jo alkuperäisessä hakemuksessa, on ymmärrettävää, että äiti kertoi asiasta vasta myöhemmin.</p>\n\n<p>Oikeus kuitenkin toteaa, että turvapaikkaa hakevalla ei välttämättä ole tietoa siitä, että sukuelinten silpominen loukkaa ihmisoikeuksia ja sen uhka on merkityksellinen seikka arvioitaessa naisen kansainvälisen suojelun tarvetta.</p>\n\n<p>–   Aiheen arkaluonteisuudesta johtuen silpomisen oma-aloitteinen puheeksi ottaminen voi myös olla hakijalle vaikeaa. Edellä todettuun nähden ja asiassa saatu selvitys huomioon ottaen, naisella katsottiin olleen hyväksyttävä syy uuden turvapaikkaperusteen esiin tuomiselle vasta korkeimmassa hallinto-oikeudessa, KHO toteaa.</p>\n\n<p>KHO toteaa, että Migrin olisi viran puolesta pitänyt selvittää, onko lapsi vaarassa joutua silpomisen uhriksi.</p>\n\n<p>–   Arviointi olisi siis tullut suorittaa siitä riippumatta, oliko lapsen huoltaja vedonnut tähän seikkaan.</p>\n\n<p>KHO:n päätöksellä asia palautuu Migriin.</p>",
+                    "_current_version": 2,
+                    "copyrightholder": "",
+                    "wordcount": 230,
+                    "language": "en",
+                    "version": "2",
+                    "_id": "urn:newsml:stt-api.superdesk.pro:2019-07-17T14:20:08.242129:0d7d289b-425c-44a2-af8a-3f56acc4f7dd",
+                    "firstcreated": "2019-07-17T11:01:46+0000",
+                    "readtime": 1,
+                    "_updated": "2019-07-17T11:20:09+0000",
+                    "headline": "Pientä tyttöä ei voi palauttaa Somaliaan ennen kun on selvitetty, uhkaako häntä siellä silpominen – KHO palautti asian Migrin käsiteltäväksi",
+                    "pubstatus": "usable",
+                    "genre": [
+                        {
+                            "qcode": "1",
+                            "name": "Pääjuttu"
+                        }
+                    ],
+                    "extra": {
+                        "sttidtype_textid": "118011421",
+                        "newsItem_guid": "urn:newsml:stt.fi::102910887"
+                    },
+                    "usageterms": "",
+                    "priority": 6,
+                    "profile": "Article",
+                    "anpa_category": [
+                        {
+                            "qcode": "a",
+                            "name": "Australian General News"
+                        }
+                    ],
+                    "slugline": " ",
+                    "charcount": 1919,
+                    "place": [
+                        {
+                            "qcode": "17591",
+                            "name": "Suomi"
+                        }
+                    ],
+                    "type": "text",
+                    "subject": [
+                        {
+                            "qcode": "1"
+                        },
+                        {
+                            "qcode": "3",
+                            "name": "Kotimaa"
+                        },
+                        {
+                            "qcode": "11000000",
+                            "name": "Politiikka"
+                        },
+                        {
+                            "qcode": "11007000",
+                            "name": "Ihmisoikeudet"
+                        },
+                        {
+                            "qcode": "6",
+                            "name": "Nettiuutiset"
+                        },
+                        {
+                            "qcode": "17591",
+                            "name": "Suomi"
+                        }
+                    ],
+                    "_etag": "2d2aa9cb33f98aababe27cddb88f2acf9812ede4",
+                    "source": "STT",
+                    "subscribers": [
+                        "5c51818e0681aa00f94c9fcb"
+                    ],
+                    "_type": "items",
+                    "firstpublished": "2019-07-17T11:18:42+0000",
+                    "urgency": 3,
+                    "copyrightnotice": "",
+                    "_links": {
+                        "self": {
+                            "href": "search_capi/urn:newsml:stt-api.superdesk.pro:2019-07-17T14:20:08.242129:0d7d289b-425c-44a2-af8a-3f56acc4f7dd",
+                            "title": "Search_capi"
+                        }
+                    }
+                }
+            ],
+            "_aggregations": {
+                "genre": {
+                    "buckets": [
+                        {
+                            "doc_count": 2099793,
+                            "key": "Pääjuttu"
+                        },
+                        {
+                            "doc_count": 11107,
+                            "key": "Tulokset"
+                        },
+                        {
+                            "doc_count": 4525,
+                            "key": "Kainalo"
+                        },
+                        {
+                            "doc_count": 1584,
+                            "key": "Lupaus"
+                        },
+                        {
+                            "doc_count": 853,
+                            "key": "Tästä on kyse"
+                        },
+                        {
+                            "doc_count": 319,
+                            "key": "Käsitefakta"
+                        },
+                        {
+                            "doc_count": 229,
+                            "key": "Faktalista"
+                        },
+                        {
+                            "doc_count": 212,
+                            "key": "Poimintafakta"
+                        },
+                        {
+                            "doc_count": 176,
+                            "key": "Vinkkifakta"
+                        },
+                        {
+                            "doc_count": 148,
+                            "key": "Sitaattifakta"
+                        },
+                        {
+                            "doc_count": 94,
+                            "key": "Pikakooste"
+                        },
+                        {
+                            "doc_count": 85,
+                            "key": "Tiivistelmä"
+                        },
+                        {
+                            "doc_count": 62,
+                            "key": "Oikaisu"
+                        },
+                        {
+                            "doc_count": 38,
+                            "key": "Uutisanalyysi"
+                        },
+                        {
+                            "doc_count": 35,
+                            "key": "Miten niin?"
+                        },
+                        {
+                            "doc_count": 33,
+                            "key": "Toimittajan kommentti"
+                        },
+                        {
+                            "doc_count": 27,
+                            "key": "Henkilökuva"
+                        },
+                        {
+                            "doc_count": 20,
+                            "key": "Teksti kuvaan"
+                        },
+                        {
+                            "doc_count": 18,
+                            "key": "Tausta"
+                        },
+                        {
+                            "doc_count": 18,
+                            "key": "Viikon henkilö"
+                        },
+                        {
+                            "doc_count": 8,
+                            "key": "Kuvakooste"
+                        },
+                        {
+                            "doc_count": 6,
+                            "key": "Kysymys-vastaus"
+                        },
+                        {
+                            "doc_count": 2,
+                            "key": "Article (news)"
+                        },
+                        {
+                            "doc_count": 2,
+                            "key": "STT-feature"
+                        }
+                    ],
+                    "doc_count_error_upper_bound": 0,
+                    "sum_other_doc_count": 0
+                },
+                "type": {
+                    "buckets": [
+                        {
+                            "doc_count": 2119394,
+                            "key": "text"
+                        }
+                    ],
+                    "doc_count_error_upper_bound": 0,
+                    "sum_other_doc_count": 0
+                },
+                "priority": {
+                    "buckets": [
+                        {
+                            "doc_count": 2119394,
+                            "key": 6
+                        }
+                    ],
+                    "doc_count_error_upper_bound": 0,
+                    "sum_other_doc_count": 0
+                },
+                "source": {
+                    "buckets": [
+                        {
+                            "doc_count": 1121460,
+                            "key": "STT"
+                        },
+                        {
+                            "doc_count": 710891,
+                            "key": "STT-(STT)"
+                        },
+                        {
+                            "doc_count": 74616,
+                            "key": "STT-(STT-Reuters)"
+                        },
+                        {
+                            "doc_count": 50354,
+                            "key": "STT-(STT-AFP)"
+                        },
+                        {
+                            "doc_count": 21442,
+                            "key": "STT-(STT-Reuters-AFP)"
+                        },
+                        {
+                            "doc_count": 21132,
+                            "key": "STT-(STT-AFP-Reuters)"
+                        },
+                        {
+                            "doc_count": 16746,
+                            "key": "STT-(STT-DPA)"
+                        },
+                        {
+                            "doc_count": 12029,
+                            "key": "STT-AFP"
+                        },
+                        {
+                            "doc_count": 11856,
+                            "key": "STT-(STT-AP)"
+                        },
+                        {
+                            "doc_count": 10603,
+                            "key": "STT-(STT-TT)"
+                        },
+                        {
+                            "doc_count": 6381,
+                            "key": "STT-(STT) "
+                        },
+                        {
+                            "doc_count": 5632,
+                            "key": "STT-(STT-AFP-DPA)"
+                        },
+                        {
+                            "doc_count": 4028,
+                            "key": "STT-(STT-Reuters-DPA)"
+                        },
+                        {
+                            "doc_count": 3841,
+                            "key": "STT-Veikkaus"
+                        },
+                        {
+                            "doc_count": 3515,
+                            "key": "STT-Reuters"
+                        },
+                        {
+                            "doc_count": 3319,
+                            "key": "STT-STT"
+                        },
+                        {
+                            "doc_count": 2870,
+                            "key": "STT-(STT-Reuters-AFP-DPA)"
+                        },
+                        {
+                            "doc_count": 2605,
+                            "key": "STT-AFP-Reuters"
+                        },
+                        {
+                            "doc_count": 2536,
+                            "key": "STT-(STT-DPA-Reuters)"
+                        },
+                        {
+                            "doc_count": 2528,
+                            "key": "STT-(STT-DPA-AFP)"
+                        },
+                        {
+                            "doc_count": 1970,
+                            "key": "STT-(STT-NTB)"
+                        },
+                        {
+                            "doc_count": 1915,
+                            "key": "STT-(STT-AFP-Reuters-DPA)"
+                        },
+                        {
+                            "doc_count": 1566,
+                            "key": "STT-(STT-AFP-DPA-Reuters)"
+                        },
+                        {
+                            "doc_count": 1509,
+                            "key": "STT-Reuters-AFP"
+                        },
+                        {
+                            "doc_count": 1463,
+                            "key": "STT-TT"
+                        },
+                        {
+                            "doc_count": 1409,
+                            "key": "STT-(STT-Reuters-AP)"
+                        },
+                        {
+                            "doc_count": 1263,
+                            "key": "STT-(STT-Reuters) "
+                        },
+                        {
+                            "doc_count": 1066,
+                            "key": "STT-(STT-AP-Reuters)"
+                        },
+                        {
+                            "doc_count": 941,
+                            "key": "STT-(STT-Reuters-DPA-AFP)"
+                        },
+                        {
+                            "doc_count": 861,
+                            "key": "STT-(STT-Ritzau)"
+                        },
+                        {
+                            "doc_count": 823,
+                            "key": "STT-(STT-BNS)"
+                        },
+                        {
+                            "doc_count": 721,
+                            "key": "STT-AP"
+                        },
+                        {
+                            "doc_count": 698,
+                            "key": "STT-(STT-AFP-AP)"
+                        },
+                        {
+                            "doc_count": 679,
+                            "key": "STT-(STT-DPA-AFP-Reuters)"
+                        },
+                        {
+                            "doc_count": 602,
+                            "key": "STT-(STT-AP-AFP)"
+                        },
+                        {
+                            "doc_count": 519,
+                            "key": "STT-(STT-Itar-Tass)"
+                        },
+                        {
+                            "doc_count": 486,
+                            "key": "STT-(STT-DPA-Reuters-AFP)"
+                        },
+                        {
+                            "doc_count": 367,
+                            "key": "STT-(STT-AFP-Itar-Tass)"
+                        },
+                        {
+                            "doc_count": 367,
+                            "key": "STT-(STT-Reuters-TT)"
+                        },
+                        {
+                            "doc_count": 317,
+                            "key": "STT-NTB"
+                        },
+                        {
+                            "doc_count": 298,
+                            "key": "STT-(STT-TT-AFP)"
+                        },
+                        {
+                            "doc_count": 274,
+                            "key": "STT-(STT-TT-Reuters)"
+                        },
+                        {
+                            "doc_count": 269,
+                            "key": "STT-(STT-AP-DPA)"
+                        },
+                        {
+                            "doc_count": 245,
+                            "key": "STT-(STT-DPA-AP)"
+                        },
+                        {
+                            "doc_count": 243,
+                            "key": "STT-(STT-AFP-TT)"
+                        },
+                        {
+                            "doc_count": 235,
+                            "key": "STT-(STT-Reuters-AFP-AP)"
+                        },
+                        {
+                            "doc_count": 213,
+                            "key": "STT- (STT)"
+                        },
+                        {
+                            "doc_count": 179,
+                            "key": "STT-(STT"
+                        },
+                        {
+                            "doc_count": 163,
+                            "key": "STT-(STT-AFP) "
+                        },
+                        {
+                            "doc_count": 158,
+                            "key": "STT-(STT-AFP-Reuters-AP)"
+                        },
+                        {
+                            "doc_count": 156,
+                            "key": "STT-(STT-AFP-Reuters-Itar-Tass)"
+                        },
+                        {
+                            "doc_count": 142,
+                            "key": "STT-(STT-Reuters-AP-AFP)"
+                        },
+                        {
+                            "doc_count": 140,
+                            "key": "STT-(STT-TT-DPA)"
+                        },
+                        {
+                            "doc_count": 139,
+                            "key": "STT-(STT-Reuters-Itar-Tass)"
+                        },
+                        {
+                            "doc_count": 138,
+                            "key": "STT-(STT-AFP-AP-Reuters)"
+                        },
+                        {
+                            "doc_count": 136,
+                            "key": "STT-(STT-Reuters-AFP-Itar-Tass)"
+                        },
+                        {
+                            "doc_count": 130,
+                            "key": "STT-(STT-NTB-Reuters)"
+                        },
+                        {
+                            "doc_count": 129,
+                            "key": "STT-(FNB)"
+                        },
+                        {
+                            "doc_count": 123,
+                            "key": "STT-(STT-TT-NTB)"
+                        },
+                        {
+                            "doc_count": 109,
+                            "key": "STT-(STT-NTB-AFP)"
+                        },
+                        {
+                            "doc_count": 108,
+                            "key": "STT-(STT-DPA-TT)"
+                        },
+                        {
+                            "doc_count": 104,
+                            "key": "STT-(STT-AP-AFP-Reuters)"
+                        },
+                        {
+                            "doc_count": 103,
+                            "key": "STT-(STT-Reuters-NTB)"
+                        },
+                        {
+                            "doc_count": 94,
+                            "key": "STT-(STT-Ritzau-AFP)"
+                        },
+                        {
+                            "doc_count": 91,
+                            "key": "STT-BNS"
+                        },
+                        {
+                            "doc_count": 91,
+                            "key": "STT-Ritzau"
+                        },
+                        {
+                            "doc_count": 88,
+                            "key": "STT-(STT-NTB-TT)"
+                        },
+                        {
+                            "doc_count": 88,
+                            "key": "STT-(STT-TT-Ritzau)"
+                        },
+                        {
+                            "doc_count": 87,
+                            "key": "STT-(STT-AP-Reuters-AFP)"
+                        },
+                        {
+                            "doc_count": 84,
+                            "key": "STT-(STT-RB)"
+                        },
+                        {
+                            "doc_count": 81,
+                            "key": "STT-(STT-AFP-BNS)"
+                        },
+                        {
+                            "doc_count": 81,
+                            "key": "STT-(STT-APA)"
+                        },
+                        {
+                            "doc_count": 81,
+                            "key": "STT-(STT-Reuters-AP-DPA)"
+                        },
+                        {
+                            "doc_count": 77,
+                            "key": "STT-(STT-AFP-NTB)"
+                        },
+                        {
+                            "doc_count": 76,
+                            "key": "STT-(STT-Itar-Tass-AFP)"
+                        },
+                        {
+                            "doc_count": 75,
+                            "key": "STT-(STT-AP-TT)"
+                        },
+                        {
+                            "doc_count": 75,
+                            "key": "STT-(STT-Reuters-AFP) "
+                        },
+                        {
+                            "doc_count": 74,
+                            "key": "STT-(STT-NTB-DPA)"
+                        },
+                        {
+                            "doc_count": 73,
+                            "key": "STT-(STT-AFP-Reuters-TT)"
+                        },
+                        {
+                            "doc_count": 71,
+                            "key": "STT-(STT-Ritzau-TT)"
+                        },
+                        {
+                            "doc_count": 68,
+                            "key": "STT-(STT-DPA-Itar-Tass)"
+                        },
+                        {
+                            "doc_count": 67,
+                            "key": "STT-(STT-BNS-AFP)"
+                        },
+                        {
+                            "doc_count": 63,
+                            "key": "STT-lähde"
+                        },
+                        {
+                            "doc_count": 61,
+                            "key": "STT-NTB-TT"
+                        },
+                        {
+                            "doc_count": 59,
+                            "key": "STT-AFP-TT"
+                        },
+                        {
+                            "doc_count": 58,
+                            "key": "STT-(STT-AFP-Ritzau)"
+                        },
+                        {
+                            "doc_count": 58,
+                            "key": "STT-(STT-Reuters-DPA-AP)"
+                        },
+                        {
+                            "doc_count": 54,
+                            "key": "STT-(STT-DPA) "
+                        },
+                        {
+                            "doc_count": 54,
+                            "key": "STT-(stt)"
+                        },
+                        {
+                            "doc_count": 53,
+                            "key": "STT-(STT)  "
+                        },
+                        {
+                            "doc_count": 53,
+                            "key": "STT-(STT-AFP-Reuters) "
+                        },
+                        {
+                            "doc_count": 53,
+                            "key": "STT-(STT-Ritzau-Reuters)"
+                        },
+                        {
+                            "doc_count": 53,
+                            "key": "STT-STT)"
+                        },
+                        {
+                            "doc_count": 49,
+                            "key": "STT-STT-Reuters"
+                        },
+                        {
+                            "doc_count": 48,
+                            "key": "STT-(STT-Reuters-AFP-TT)"
+                        },
+                        {
+                            "doc_count": 48,
+                            "key": "STT-(STT-TT-AP)"
+                        },
+                        {
+                            "doc_count": 46,
+                            "key": "STT-TT-NTB"
+                        },
+                        {
+                            "doc_count": 44,
+                            "key": "STT-(STT-Reuters-AFP-DPA-Itar-Tass)"
+                        },
+                        {
+                            "doc_count": 43,
+                            "key": "STT-(STT-Itar-Tass-Reuters)"
+                        },
+                        {
+                            "doc_count": 43,
+                            "key": "STT-(STT-Ritzau-DPA)"
+                        }
+                    ],
+                    "doc_count_error_upper_bound": 5,
+                    "sum_other_doc_count": 5072
+                },
+                "category": {
+                    "buckets": [
+                        {
+                            "doc_count": 2119394,
+                            "key": "australian"
+                        },
+                        {
+                            "doc_count": 2119394,
+                            "key": "general"
+                        },
+                        {
+                            "doc_count": 2119394,
+                            "key": "news"
+                        }
+                    ],
+                    "doc_count_error_upper_bound": 0,
+                    "sum_other_doc_count": 0
+                },
+                "urgency": {
+                    "buckets": [
+                        {
+                            "doc_count": 1097971,
+                            "key": 3
+                        },
+                        {
+                            "doc_count": 853593,
+                            "key": 4
+                        },
+                        {
+                            "doc_count": 103347,
+                            "key": 5
+                        },
+                        {
+                            "doc_count": 43010,
+                            "key": 2
+                        },
+                        {
+                            "doc_count": 19460,
+                            "key": 6
+                        },
+                        {
+                            "doc_count": 2013,
+                            "key": 1
+                        }
+                    ],
+                    "doc_count_error_upper_bound": 0,
+                    "sum_other_doc_count": 0
+                }
+            }
+        }
+
+
