@@ -1,0 +1,1028 @@
+## Events Autosave [/event_autosave] 
+
+### Autosaved Events [GET]
+
++ Response 200 (application/json)
+
+        {
+            "_items": [
+                {
+                    "duplicate_to": [
+                        "urn:newsml:sdp-master.test.superdesk.org:2018-05-10T23:21:59.602189:aefe3636-ed5b-43cb-81a0-baf6c98828b2"
+                    ],
+                    "_created": "2018-06-19T16:22:48+0000",
+                    "state": "draft",
+                    "_id": "tempId-1529425373489",
+                    "lock_time": "2018-06-19T16:22:53+0000",
+                    "lock_session": "5b29088acdfe3800e0d7b464",
+                    "lock_user": "5ab27997cdfe38023cd29e97",
+                    "_updated": "2018-06-19T16:22:48+0000",
+                    "occur_status": {
+                        "name": "Planned, occurs certainly",
+                        "qcode": "eocstat:eos5",
+                        "label": "Planned, occurs certainly"
+                    },
+                    "duplicate_from": "urn:newsml:sdp-master.test.superdesk.org:2018-05-22T18:03:54.959797:82103fec-f48d-406e-8439-7d7376ebeb0c",
+                    "version_creator": "5ab1aabdcdfe38019f0a875a",
+                    "dates": {
+                        "start": "2018-06-19T04:00:17+0000",
+                        "end": "2018-07-26T03:59:59+0000",
+                        "tz": "Europe/Warsaw"
+                    },
+                    "subject": [
+                        {
+                            "name": "rivers",
+                            "parent": "06006000",
+                            "qcode": "06006006"
+                        },
+                        {
+                            "name": "natural resources",
+                            "parent": "06000000",
+                            "qcode": "06006000"
+                        },
+                        {
+                            "name": "environmental issue",
+                            "parent": null,
+                            "qcode": "06000000"
+                        }
+                    ],
+                    "name": "DaysApart",
+                    "lock_action": "create",
+                    "slugline": "DaysApart13",
+                    "location": [
+                        {
+                            "name": "Salvátorská",
+                            "qcode": "urn:newsml:sdp-master.test.superdesk.org:2018-05-25T10:18:29.180403:ca299742-6911-40c3-9b40-9c0ea1965443",
+                            "formatted_address": "Salvátorská Staré Město Praha 1 Česko",
+                            "address": {
+                                "postal_code": "1",
+                                "line": [
+                                    "Salvátorská"
+                                ],
+                                "locality": "Praha",
+                                "country": "Česko",
+                                "area": "Staré Město"
+                            },
+                            "location": {
+                                "lat": 50.0889161,
+                                "lon": 14.4207532
+                            }
+                        }
+                    ],
+                    "calendars": [],
+                    "type": "event",
+                    "original_creator": "5ab27997cdfe38023cd29e97",
+                    "_etag": "3243ad63e39db83129a1923188a7a003d425f6a2",
+                    "ednote": "------------------------------------------------------------\nEvent Cancelled\nReason: \n",
+                    "expiry": "2018-06-28T03:59:59+0000",
+                    "expired": false,
+                    "_links": {
+                        "self": {
+                            "title": "Event_autosave",
+                            "href": "event_autosave/tempId-1529425373489"
+                        }
+                    }
+                }
+            ]
+        }
+
+
+### Autosave An Event [POST]
+
+
++ Request (application/json)
+
+    + Body
+        
+            {
+                "_id": "event1",
+                "slugline": "Test Event",
+                "lock_user": "#CONTEXT_USER_ID#",
+                "lock_session": "#SESSION_ID#",
+                "lock_action": "edit",
+                "lock_time": "2018-06-01T05:19:02+0000"
+            }
+
+    + Schema
+
+            {
+                "anpa_category": {
+                    "mapping": {
+                        "properties": {
+                            "name": {
+                                "index": "not_analyzed",
+                                "type": "string"
+                            },
+                            "qcode": {
+                                "index": "not_analyzed",
+                                "type": "string"
+                            }
+                        },
+                        "type": "object"
+                    },
+                    "nullable": true,
+                    "type": "list"
+                },
+                "pubstatus": {
+                    "mapping": {
+                        "index": "not_analyzed",
+                        "type": "string"
+                    },
+                    "nullable": true,
+                    "allowed": [
+                        "usable",
+                        "cancelled"
+                    ],
+                    "type": "string"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "previous_recurrence_id": {
+                    "mapping": {
+                        "index": "not_analyzed",
+                        "type": "string"
+                    },
+                    "nullable": true,
+                    "type": "string"
+                },
+                "place": {
+                    "mapping": {
+                        "dynamic": false,
+                        "properties": {
+                            "locality": {
+                                "index": "not_analyzed",
+                                "type": "string"
+                            },
+                            "name": {
+                                "index": "not_analyzed",
+                                "type": "string"
+                            },
+                            "rel": {
+                                "index": "not_analyzed",
+                                "type": "string"
+                            },
+                            "location": {
+                                "type": "geo_point"
+                            },
+                            "world_region_code": {
+                                "index": "not_analyzed",
+                                "type": "string"
+                            },
+                            "world_region": {
+                                "index": "not_analyzed",
+                                "type": "string"
+                            },
+                            "country_code": {
+                                "index": "not_analyzed",
+                                "type": "string"
+                            },
+                            "scheme": {
+                                "index": "not_analyzed",
+                                "type": "string"
+                            },
+                            "state": {
+                                "index": "not_analyzed",
+                                "type": "string"
+                            },
+                            "code": {
+                                "index": "not_analyzed",
+                                "type": "string"
+                            },
+                            "country": {
+                                "index": "not_analyzed",
+                                "type": "string"
+                            },
+                            "locality_code": {
+                                "index": "not_analyzed",
+                                "type": "string"
+                            },
+                            "feature_class": {
+                                "index": "not_analyzed",
+                                "type": "string"
+                            },
+                            "state_code": {
+                                "index": "not_analyzed",
+                                "type": "string"
+                            },
+                            "qcode": {
+                                "index": "not_analyzed",
+                                "type": "string"
+                            }
+                        },
+                        "type": "object"
+                    },
+                    "nullable": true,
+                    "type": "list"
+                },
+                "event_lastmodified": {
+                    "type": "datetime"
+                },
+                "_planning_schedule": {
+                    "mapping": {
+                        "properties": {
+                            "scheduled": {
+                                "type": "date"
+                            }
+                        },
+                        "type": "nested"
+                    },
+                    "type": "list"
+                },
+                "revert_state": {
+                    "mapping": {
+                        "index": "not_analyzed",
+                        "type": "string"
+                    },
+                    "allowed": [
+                        "draft",
+                        "ingested",
+                        "routed",
+                        "fetched",
+                        "submitted",
+                        "in_progress",
+                        "spiked",
+                        "published",
+                        "killed",
+                        "corrected",
+                        "scheduled",
+                        "recalled"
+                    ],
+                    "type": "string"
+                },
+                "source": {
+                    "mapping": {
+                        "index": "not_analyzed",
+                        "type": "string"
+                    },
+                    "type": "string"
+                },
+                "expired": {
+                    "default": false,
+                    "type": "boolean"
+                },
+                "event_created": {
+                    "type": "datetime"
+                },
+                "subject": {
+                    "mapping": {
+                        "properties": {
+                            "name": {
+                                "index": "not_analyzed",
+                                "type": "string"
+                            },
+                            "qcode": {
+                                "index": "not_analyzed",
+                                "type": "string"
+                            }
+                        },
+                        "type": "object"
+                    },
+                    "type": "list"
+                },
+                "definition_short": {
+                    "type": "string"
+                },
+                "reschedule_to": {
+                    "required": false,
+                    "mapping": {
+                        "index": "not_analyzed",
+                        "type": "string"
+                    },
+                    "nullable": false,
+                    "data_relation": {
+                        "embeddable": true,
+                        "resource": "events",
+                        "field": "_id"
+                    },
+                    "type": "string"
+                },
+                "dates": {
+                    "schema": {
+                        "duration": {
+                            "type": "string"
+                        },
+                        "confirmation": {
+                            "type": "string"
+                        },
+                        "recurring_date": {
+                            "mapping": {
+                                "type": "date"
+                            },
+                            "nullable": true,
+                            "type": "list"
+                        },
+                        "occur_status": {
+                            "mapping": {
+                                "properties": {
+                                    "name": {
+                                        "index": "not_analyzed",
+                                        "type": "string"
+                                    },
+                                    "qcode": {
+                                        "index": "not_analyzed",
+                                        "type": "string"
+                                    }
+                                }
+                            },
+                            "nullable": true,
+                            "schema": {
+                                "name": {
+                                    "type": "string"
+                                },
+                                "qcode": {
+                                    "type": "string"
+                                }
+                            },
+                            "type": "dict"
+                        },
+                        "tz": {
+                            "type": "string"
+                        },
+                        "start": {
+                            "nullable": true,
+                            "type": "datetime"
+                        },
+                        "ex_rule": {
+                            "schema": {
+                                "frequency": {
+                                    "type": "string"
+                                },
+                                "interval": {
+                                    "type": "string"
+                                },
+                                "byday": {
+                                    "nullable": true,
+                                    "type": "string"
+                                },
+                                "count": {
+                                    "nullable": true,
+                                    "type": "integer"
+                                },
+                                "bymonth": {
+                                    "nullable": true,
+                                    "type": "string"
+                                },
+                                "until": {
+                                    "nullable": true,
+                                    "type": "datetime"
+                                },
+                                "byminute": {
+                                    "nullable": true,
+                                    "type": "string"
+                                },
+                                "byhour": {
+                                    "nullable": true,
+                                    "type": "string"
+                                }
+                            },
+                            "type": "dict"
+                        },
+                        "recurring_rule": {
+                            "nullable": true,
+                            "schema": {
+                                "frequency": {
+                                    "type": "string"
+                                },
+                                "interval": {
+                                    "type": "integer"
+                                },
+                                "endRepeatMode": {
+                                    "allowed": [
+                                        "count",
+                                        "until"
+                                    ],
+                                    "type": "string"
+                                },
+                                "count": {
+                                    "nullable": true,
+                                    "type": "integer"
+                                },
+                                "byhour": {
+                                    "nullable": true,
+                                    "type": "string"
+                                },
+                                "bymonth": {
+                                    "nullable": true,
+                                    "type": "string"
+                                },
+                                "until": {
+                                    "nullable": true,
+                                    "type": "datetime"
+                                },
+                                "byminute": {
+                                    "nullable": true,
+                                    "type": "string"
+                                },
+                                "byday": {
+                                    "nullable": true,
+                                    "type": "string"
+                                }
+                            },
+                            "type": "dict"
+                        },
+                        "ex_date": {
+                            "mapping": {
+                                "type": "date"
+                            },
+                            "type": "list"
+                        },
+                        "end": {
+                            "nullable": true,
+                            "type": "datetime"
+                        }
+                    },
+                    "type": "dict"
+                },
+                "occur_status": {
+                    "schema": {
+                        "label": {
+                            "type": "string"
+                        },
+                        "name": {
+                            "type": "string"
+                        },
+                        "qcode": {
+                            "type": "string"
+                        }
+                    },
+                    "type": "dict"
+                },
+                "news_coverage_status": {
+                    "schema": {
+                        "name": {
+                            "type": "string"
+                        },
+                        "qcode": {
+                            "type": "string"
+                        }
+                    },
+                    "type": "dict"
+                },
+                "version": {
+                    "type": "integer"
+                },
+                "ingest_id": {
+                    "mapping": {
+                        "index": "not_analyzed",
+                        "type": "string"
+                    },
+                    "type": "string"
+                },
+                "update_method": {
+                    "mapping": {
+                        "index": "not_analyzed",
+                        "type": "string"
+                    },
+                    "nullable": true,
+                    "allowed": ["single", "future", "all"],
+                    "type": "string"
+                },
+                "lock_action": {
+                    "mapping": {
+                        "index": "not_analyzed",
+                        "type": "string"
+                    },
+                    "nullable": true,
+                    "type": "string"
+                },
+                "guid": {
+                    "mapping": {
+                        "index": "not_analyzed",
+                        "type": "string"
+                    },
+                    "unique": true,
+                    "type": "string"
+                },
+                "participant": {
+                    "mapping": {
+                        "properties": {
+                            "name": {
+                                "index": "not_analyzed",
+                                "type": "string"
+                            },
+                            "qcode": {
+                                "index": "not_analyzed",
+                                "type": "string"
+                            }
+                        }
+                    },
+                    "type": "list"
+                },
+                "state": {
+                    "mapping": {
+                        "index": "not_analyzed",
+                        "type": "string"
+                    },
+                    "default": "draft",
+                    "allowed": [
+                        "draft",
+                        "active",
+                        "ingested",
+                        "scheduled",
+                        "killed",
+                        "cancelled",
+                        "rescheduled",
+                        "postponed",
+                        "spiked"
+                    ],
+                    "type": "string"
+                },
+                "original_source": {
+                    "mapping": {
+                        "index": "not_analyzed",
+                        "type": "string"
+                    },
+                    "type": "string"
+                },
+                "participant_requirement": {
+                    "mapping": {
+                        "properties": {
+                            "name": {
+                                "index": "not_analyzed",
+                                "type": "string"
+                            },
+                            "qcode": {
+                                "index": "not_analyzed",
+                                "type": "string"
+                            }
+                        }
+                    },
+                    "type": "list"
+                },
+                "lock_user": {
+                    "required": false,
+                    "versioned": false,
+                    "nullable": false,
+                    "data_relation": {
+                        "embeddable": true,
+                        "resource": "users",
+                        "field": "_id"
+                    },
+                    "type": "objectid"
+                },
+                "access_status": {
+                    "mapping": {
+                        "properties": {
+                            "name": {
+                                "index": "not_analyzed",
+                                "type": "string"
+                            },
+                            "qcode": {
+                                "index": "not_analyzed",
+                                "type": "string"
+                            }
+                        }
+                    },
+                    "type": "list"
+                },
+                "ingest_provider": {
+                    "required": false,
+                    "nullable": false,
+                    "data_relation": {
+                        "embeddable": true,
+                        "resource": "ingest_providers",
+                        "field": "_id"
+                    },
+                    "type": "objectid"
+                },
+                "registration": {
+                    "type": "string"
+                },
+                "lock_time": {
+                    "versioned": false,
+                    "type": "datetime"
+                },
+                "ednote": {
+                    "nullable": true,
+                    "type": "string"
+                },
+                "ingest_provider_sequence": {
+                    "mapping": {
+                        "index": "not_analyzed",
+                        "type": "string"
+                    },
+                    "type": "string"
+                },
+                "event_contact_info": {
+                    "mapping": {
+                        "index": "not_analyzed",
+                        "type": "string"
+                    },
+                    "schema": {
+                        "required": false,
+                        "nullable": false,
+                        "data_relation": {
+                            "embeddable": true,
+                            "resource": "contacts",
+                            "field": "_id"
+                        },
+                        "type": "objectid"
+                    },
+                    "type": "list"
+                },
+                "duplicate_to": {
+                    "mapping": {
+                        "index": "not_analyzed",
+                        "type": "string"
+                    },
+                    "nullable": true,
+                    "schema": {
+                        "required": false,
+                        "nullable": false,
+                        "data_relation": {
+                            "embeddable": true,
+                            "resource": "events",
+                            "field": "_id"
+                        },
+                        "type": "string"
+                    },
+                    "type": "list"
+                },
+                "version_creator": {
+                    "required": false,
+                    "nullable": false,
+                    "data_relation": {
+                        "embeddable": true,
+                        "resource": "users",
+                        "field": "_id"
+                    },
+                    "type": "objectid"
+                },
+                "lock_session": {
+                    "required": false,
+                    "versioned": false,
+                    "nullable": false,
+                    "data_relation": {
+                        "embeddable": true,
+                        "resource": "auth",
+                        "field": "_id"
+                    },
+                    "type": "objectid"
+                },
+                "expiry": {
+                    "nullable": true,
+                    "type": "datetime"
+                },
+                "original_creator": {
+                    "required": false,
+                    "nullable": false,
+                    "data_relation": {
+                        "embeddable": true,
+                        "resource": "users",
+                        "field": "_id"
+                    },
+                    "type": "objectid"
+                },
+                "unique_name": {
+                    "mapping": {
+                        "index": "not_analyzed",
+                        "type": "string"
+                    },
+                    "unique": true,
+                    "type": "string"
+                },
+                "unique_id": {
+                    "unique": true,
+                    "type": "integer"
+                },
+                "calendars": {
+                    "mapping": {
+                        "properties": {
+                            "name": {
+                                "index": "not_analyzed",
+                                "type": "string"
+                            },
+                            "qcode": {
+                                "index": "not_analyzed",
+                                "type": "string"
+                            }
+                        },
+                        "type": "object"
+                    },
+                    "nullable": true,
+                    "type": "list"
+                },
+                "_planning_item": {
+                    "required": false,
+                    "mapping": {
+                        "index": "not_analyzed",
+                        "type": "string"
+                    },
+                    "nullable": false,
+                    "data_relation": {
+                        "embeddable": true,
+                        "resource": "planning",
+                        "field": "_id"
+                    },
+                    "type": "string"
+                },
+                "_id": {
+                    "unique": true,
+                    "type": "string"
+                },
+                "files": {
+                    "mapping": {
+                        "index": "not_analyzed",
+                        "type": "string"
+                    },
+                    "nullable": true,
+                    "schema": {
+                        "required": false,
+                        "nullable": false,
+                        "data_relation": {
+                            "embeddable": true,
+                            "resource": "events_files",
+                            "field": "_id"
+                        },
+                        "type": "objectid"
+                    },
+                    "type": "list"
+                },
+                "organizer": {
+                    "mapping": {
+                        "properties": {
+                            "name": {
+                                "index": "not_analyzed",
+                                "type": "string"
+                            },
+                            "qcode": {
+                                "index": "not_analyzed",
+                                "type": "string"
+                            }
+                        }
+                    },
+                    "type": "list"
+                },
+                "internal_note": {
+                    "type": "string"
+                },
+                "event_language": {
+                    "mapping": {
+                        "properties": {
+                            "name": {
+                                "index": "not_analyzed",
+                                "type": "string"
+                            },
+                            "qcode": {
+                                "index": "not_analyzed",
+                                "type": "string"
+                            }
+                        }
+                    },
+                    "type": "list"
+                },
+                "location": {
+                    "mapping": {
+                        "properties": {
+                            "location": {
+                                "type": "geo_point"
+                            },
+                            "geo": {
+                                "type": "string"
+                            },
+                            "name": {
+                                "type": "string"
+                            },
+                            "address": {
+                                "type": "object"
+                            },
+                            "qcode": {
+                                "type": "string"
+                            }
+                        }
+                    },
+                    "nullable": true,
+                    "type": "list"
+                },
+                "definition_long": {
+                    "type": "string"
+                },
+                "firstcreated": {
+                    "type": "datetime"
+                },
+                "type": {
+                    "mapping": {
+                        "index": "not_analyzed",
+                        "type": "string"
+                    },
+                    "default": "event",
+                    "type": "string"
+                },
+                "slugline": {
+                    "mapping": {
+                        "fields": {
+                            "phrase": {
+                                "search_analyzer": "phrase_prefix_analyzer",
+                                "analyzer": "phrase_prefix_analyzer",
+                                "type": "string"
+                            }
+                        },
+                        "type": "string"
+                    },
+                    "type": "string"
+                },
+                "links": {
+                    "nullable": true,
+                    "type": "list"
+                },
+                "versioncreated": {
+                    "type": "datetime"
+                },
+                "recurrence_id": {
+                    "mapping": {
+                        "index": "not_analyzed",
+                        "type": "string"
+                    },
+                    "nullable": true,
+                    "type": "string"
+                },
+                "_reschedule_from_schedule": {
+                    "type": "datetime"
+                },
+                "relationships": {
+                    "schema": {
+                        "related": {
+                            "type": "string"
+                        },
+                        "narrower": {
+                            "type": "string"
+                        },
+                        "broader": {
+                            "type": "string"
+                        }
+                    },
+                    "type": "dict"
+                },
+                "reschedule_from": {
+                    "required": false,
+                    "mapping": {
+                        "index": "not_analyzed",
+                        "type": "string"
+                    },
+                    "nullable": false,
+                    "data_relation": {
+                        "embeddable": true,
+                        "resource": "events",
+                        "field": "_id"
+                    },
+                    "type": "string"
+                },
+                "duplicate_from": {
+                    "required": false,
+                    "mapping": {
+                        "index": "not_analyzed",
+                        "type": "string"
+                    },
+                    "nullable": false,
+                    "data_relation": {
+                        "embeddable": true,
+                        "resource": "events",
+                        "field": "_id"
+                    },
+                    "type": "string"
+                }
+            }
+
++ Response 201 (application/json)
+
++ Response 400 (application/json)
+
++ Response 412 (application/json)
+
+
+## A Autosaved Event [/event_autosave/{_id}]
+
++ Parameters
+
+    - _id (string) ... id
+
+### Details of A Vocabulary [GET]
+
++ Response 200 (application/json)
+
+    + Body
+
+            {
+                "duplicate_to": [
+                    "urn:newsml:sdp-master.test.superdesk.org:2018-05-10T23:21:59.602189:aefe3636-ed5b-43cb-81a0-baf6c98828b2"
+                ],
+                "_created": "2018-06-19T16:22:48+0000",
+                "state": "draft",
+                "_id": "tempId-1529425373489",
+                "lock_time": "2018-06-19T16:22:53+0000",
+                "lock_session": "5b29088acdfe3800e0d7b464",
+                "lock_user": "5ab27997cdfe38023cd29e97",
+                "_updated": "2018-06-19T16:22:48+0000",
+                "occur_status": {
+                    "name": "Planned, occurs certainly",
+                    "qcode": "eocstat:eos5",
+                    "label": "Planned, occurs certainly"
+                },
+                "duplicate_from": "urn:newsml:sdp-master.test.superdesk.org:2018-05-22T18:03:54.959797:82103fec-f48d-406e-8439-7d7376ebeb0c",
+                "version_creator": "5ab1aabdcdfe38019f0a875a",
+                "dates": {
+                    "start": "2018-06-19T04:00:17+0000",
+                    "end": "2018-07-26T03:59:59+0000",
+                    "tz": "Europe/Warsaw"
+                },
+                "subject": [
+                    {
+                        "name": "rivers",
+                        "parent": "06006000",
+                        "qcode": "06006006"
+                    },
+                    {
+                        "name": "natural resources",
+                        "parent": "06000000",
+                        "qcode": "06006000"
+                    },
+                    {
+                        "name": "environmental issue",
+                        "parent": null,
+                        "qcode": "06000000"
+                    }
+                ],
+                "name": "DaysApart",
+                "lock_action": "create",
+                "slugline": "DaysApart13",
+                "location": [
+                    {
+                        "name": "Salvátorská",
+                        "qcode": "urn:newsml:sdp-master.test.superdesk.org:2018-05-25T10:18:29.180403:ca299742-6911-40c3-9b40-9c0ea1965443",
+                        "formatted_address": "Salvátorská Staré Město Praha 1 Česko",
+                        "address": {
+                            "postal_code": "1",
+                            "line": [
+                                "Salvátorská"
+                            ],
+                            "locality": "Praha",
+                            "country": "Česko",
+                            "area": "Staré Město"
+                        },
+                        "location": {
+                            "lat": 50.0889161,
+                            "lon": 14.4207532
+                        }
+                    }
+                ],
+                "_type": "event_autosave",
+                "calendars": [],
+                "type": "event",
+                "original_creator": "5ab27997cdfe38023cd29e97",
+                "_etag": "3243ad63e39db83129a1923188a7a003d425f6a2",
+                "ednote": "------------------------------------------------------------\nEvent Cancelled\nReason: \n",
+                "expiry": "2018-06-28T03:59:59+0000",
+                "expired": false,
+                "_links": {
+                    "parent": {
+                        "title": "home",
+                        "href": "/"
+                    },
+                    "collection": {
+                        "title": "event_autosave",
+                        "href": "event_autosave"
+                    },
+                    "self": {
+                        "title": "Event_autosave",
+                        "href": "event_autosave/tempId-1529425373489"
+                    }
+                }
+            }
+           
+
+### Update An Autosaved Event [PATCH]
+
++ Request (application/json)
+
+    + Headers
+    
+            If-Match: {_etag}
+    
+    + Body
+
+            { 
+                "dates": {
+                    "start": "2018-06-19T04:00:17+0000",
+                    "end": "2018-07-26T03:59:59+0000",
+                    "tz": "Europe/Warsaw"
+                }
+            }
+
++ Response 200 (application/json)
+
++ Response 403 (application/json)
+
+## Delete An Autosaved Event [DELETE]      
+
+Deletes the vocabulary by given id. A vocabulary will fail to delete if:
+
+ - It is a default vocabulary (i.e. field_type is null)
+
++ Request (application/json)
+
+        {}
+
++ Response 204 (application/json)
+
++ Response 412 (application/json)

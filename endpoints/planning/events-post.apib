@@ -1,0 +1,37 @@
+## Post An Event [/events/post] 
+
+### Post [POST]
+
+Publishes the event to subscribers. First the event will be validated against the schema.
+Any error that is returned from validation will be returned as a 400 error.
+**update_method** can be used to publish all, future or a single event.
+
++ Request (application/json)
+
+    + Body
+        
+            {
+                "event": "urn:newsml:sdp-master.test.superdesk.org:2018-03-21T01:20:26.217932:5791296f-f26d-47c3-a3d6-89c8eeb1f445",
+                "etag": "1a26d68be3996dd3707a16c64dcd0ab5b163a5b8",
+                "pubstatus": "usable",
+                "update_method": "all"
+            }
+
+    + Schema
+
+            {
+                "event": {"type": "string", "required":true),
+                "etag": {"type": "string", "required": true},
+                "pubstatus": {"type": "string", "required": true, "allowed": ["usable", "cancelled"]},
+                "update_method": {
+                    "type": "string",
+                    "allowed": ["single", "future", "all"],
+                    "nullable": true
+                },
+            }
+
++ Response 201 (application/json)
+
++ Response 400 (application/json)
+
++ Response 412 (application/json)

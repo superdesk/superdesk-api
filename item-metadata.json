@@ -1051,5 +1051,37 @@
     },
     "word_count": {
         "type": "integer"
+    },
+    "item_id": {
+        "type": "string"
+    },
+    "publish_state": {
+        "type": "string"
+    },
+    "last_published_version": {
+        "type": "boolean",
+        "default": true
+    },
+    "queue_state": {
+        "type": "string",
+        "default": "pending",
+        "allowed": ["pending", "in_progress", "queued", "queued_not_transmitted", "error"]
+    },
+    "error_message": {
+        "type": "string"
+    },
+    "publish_sequence_no": {
+        "type": "integer",
+        "readonly": true
+    },
+    "last_queue_event": {
+        "type": "datetime"
+    },
+    "moved_to_legal": {
+        "type": "boolean",
+        "default": false
+    },
+    "published_in_package": {
+        "type": "string"
     }
 }

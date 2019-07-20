@@ -1,0 +1,152 @@
+
+
+## Events History Collection [/events_history] 
+
+### List All Event History Items [GET]
+
++ Response 200 (application/json)
+
+        {
+            "_items": [
+                {
+                    "event_id": "urn:newsml:sdp-master.test.superdesk.org:2018-03-21T01:20:26.217932:5791296f-f26d-47c3-a3d6-89c8eeb1f445",
+                    "_created": "2018-03-21T01:20:26+0000",
+                    "_updated": "2018-03-21T01:20:26+0000",
+                    "_id": "5ab1b35acdfe38023cd29e2d",
+                    "_links": {
+                        "self": {
+                            "title": "Events_history",
+                            "href": "events_history/5ab1b35acdfe38023cd29e2d"
+                        }
+                    },
+                    "user_id": "5ab1aabdcdfe38019f0a875a",
+                    "_etag": "1a26d68be3996dd3707a16c64dcd0ab5b163a5b8",
+                    "operation": "create",
+                    "update": {
+                        "_created": "2018-03-21T01:20:26+0000",
+                        "name": "new event 1",
+                        "state": "draft",
+                        "slugline": "new event 1",
+                        "_id": "urn:newsml:sdp-master.test.superdesk.org:2018-03-21T01:20:26.217932:5791296f-f26d-47c3-a3d6-89c8eeb1f445",
+                        "location": [
+                            {
+                                "qcode": "urn:newsml:sdp-master.test.superdesk.org:2018-03-21T01:20:25.832443:b47e196b-fcfb-4b31-9aa1-5e448e26053f",
+                                "name": "new event 1"
+                            }
+                        ],
+                        "files": [],
+                        "_status": "OK",
+                        "type": "event",
+                        "_planning_schedule": [
+                            {
+                                "scheduled": "2018-03-20T13:00:21+0000"
+                            }
+                        ],
+                        "original_creator": "5ab1aabdcdfe38019f0a875a",
+                        "definition_short": "new event 1",
+                        "_updated": "2018-03-21T01:20:26+0000",
+                        "occur_status": {
+                            "qcode": "eocstat:eos5",
+                            "name": "Planned, occurs certainly",
+                            "label": "Planned, occurs certainly"
+                        },
+                        "_links": {
+                            "self": {
+                                "title": "Event",
+                                "href": "events/urn:newsml:sdp-master.test.superdesk.org:2018-03-21T01:20:26.217932:5791296f-f26d-47c3-a3d6-89c8eeb1f445"
+                            }
+                        },
+                        "dates": {
+                            "start": "2018-03-20T13:00:21+0000",
+                            "end": "2018-03-21T12:59:59+0000",
+                            "tz": "Australia/Sydney"
+                        },
+                        "guid": "urn:newsml:sdp-master.test.superdesk.org:2018-03-21T01:20:26.217932:5791296f-f26d-47c3-a3d6-89c8eeb1f445",
+                        "_etag": "41ec80db0727e5101a13be6220ab60d09107464b"
+                    }
+                }
+            ]
+        }
+
+
+
+## A Event History Item [/events_history/{id}]
+
++ Parameters
+
+    - id (string) ... id
+
+### Details of A Event History Item [GET]
+
++ Response 200 (application/json)
+
+    + Body
+
+            {
+                "event_id": "urn:newsml:sdp-master.test.superdesk.org:2018-03-21T01:20:26.217932:5791296f-f26d-47c3-a3d6-89c8eeb1f445",
+                "_created": "2018-03-21T01:20:26+0000",
+                "_updated": "2018-03-21T01:20:26+0000",
+                "_id": "5ab1b35acdfe38023cd29e2d",
+                "_links": {
+                    "parent": {
+                        "title": "home",
+                        "href": "/"
+                    },
+                    "collection": {
+                        "title": "events_history",
+                        "href": "events_history"
+                    },
+                    "self": {
+                        "title": "Events_history",
+                        "href": "events_history/5ab1b35acdfe38023cd29e2d"
+                    }
+                },
+                "user_id": "5ab1aabdcdfe38019f0a875a",
+                "_type": "events_history",
+                "_etag": "1a26d68be3996dd3707a16c64dcd0ab5b163a5b8",
+                "operation": "create",
+                "update": {
+                    "_created": "2018-03-21T01:20:26+0000",
+                    "name": "new event 1",
+                    "state": "draft",
+                    "slugline": "new event 1",
+                    "_id": "urn:newsml:sdp-master.test.superdesk.org:2018-03-21T01:20:26.217932:5791296f-f26d-47c3-a3d6-89c8eeb1f445",
+                    "location": [
+                        {
+                            "qcode": "urn:newsml:sdp-master.test.superdesk.org:2018-03-21T01:20:25.832443:b47e196b-fcfb-4b31-9aa1-5e448e26053f",
+                            "name": "new event 1"
+                        }
+                    ],
+                    "files": [],
+                    "_status": "OK",
+                    "type": "event",
+                    "_planning_schedule": [
+                        {
+                            "scheduled": "2018-03-20T13:00:21+0000"
+                        }
+                    ],
+                    "original_creator": "5ab1aabdcdfe38019f0a875a",
+                    "definition_short": "new event 1",
+                    "_updated": "2018-03-21T01:20:26+0000",
+                    "occur_status": {
+                        "qcode": "eocstat:eos5",
+                        "name": "Planned, occurs certainly",
+                        "label": "Planned, occurs certainly"
+                    },
+                    "_links": {
+                        "self": {
+                            "title": "Event",
+                            "href": "events/urn:newsml:sdp-master.test.superdesk.org:2018-03-21T01:20:26.217932:5791296f-f26d-47c3-a3d6-89c8eeb1f445"
+                        }
+                    },
+                    "dates": {
+                        "start": "2018-03-20T13:00:21+0000",
+                        "end": "2018-03-21T12:59:59+0000",
+                        "tz": "Australia/Sydney"
+                    },
+                    "guid": "urn:newsml:sdp-master.test.superdesk.org:2018-03-21T01:20:26.217932:5791296f-f26d-47c3-a3d6-89c8eeb1f445",
+                    "_etag": "41ec80db0727e5101a13be6220ab60d09107464b"
+                }
+            }
+           
+

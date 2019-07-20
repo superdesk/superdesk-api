@@ -1,0 +1,42 @@
+## Update Repititions of An Event [/events/update_repititions/{event_id}]
+
+Updates the number of instances of the recurring event in the system. This could be done by:
+- **endRepeatMode** as `count` so system will create the number of repititions
+- **endRepeatMode** as `until` so system will calculate the number of repititions
+
+System can increase or decrease the number of instance by the difference in old and new dates.
+
+Update eill fail if the target event is not an recurring event.
+
++ Parameters
+
+    - event_id (string) ... event id
+
+
+### Update Repititions [PATCH]
+
++ Request (application/json)
+
+    + Headers
+    
+            If-Match: {_etag}
+    
+    + Body
+
+            {
+                "dates": {
+                    "start": "2029-11-22T12:00:00.000Z",
+                    "end": "2029-11-22T14:00:00.000Z",
+                    "tz": "Australia/Sydney",
+                    "recurring_rule": {
+                        "frequency": "DAILY",
+                        "interval": 1,
+                        "count": 4,
+                        "endRepeatMode": "count"
+                    }
+                }
+            }
+
++ Response 200 (application/json)
+
++ Response 403 (application/json)

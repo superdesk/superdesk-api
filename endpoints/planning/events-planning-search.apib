@@ -1,0 +1,145 @@
+## Event Planning Search Collection [/event_planning_search{?date_filter}{?full_text}{?max_results}{?page}{?posted}{?spike_state}{?start_date}{?tz_offset}{?anpa_category}{?state}{?subject}] 
+
+Basic search returns the documents where the search keyword(s) are matched in any of the fields available in ElasticSearch. 
+Query is passed in **source** field and the details of query language in use is [here](https://www.elastic.co/guide/en/elasticsearch/reference/2.4/query-dsl.html)
+
+### Perform A Search [GET]
+
++ Parameters
+
+    - date_filter: Predefined list of dates "Today", "Tomorrow", "This Week" and "Next Week" 
+    - full_text: Text to search across all fields
+    - max_results: Number of results to be returned
+    - page: page number to be returned
+    - posted: Flag to return only posted items (0 or 1)
+    - spike_state: Flag to include or exclude spiked items. "draft" for excluding spiked items, "spiked", "both"
+    - start_date: Start date
+    - anpa_category: Anpa category to search (ex: ["politics"])
+    - state: State of the item (ex: ["scheduled"])
+    - subject: Subject of the item (ex: ["03000000"])
+
++ Request
+
+        {
+            /api/events_planning_search?
+                anpa_category=["politics"]&
+                date_filter=tomorrow&
+                full_text=opera&
+                max_results=50&
+                page=1&
+                posted=false&
+                spike_state=both&
+                state=["scheduled"]&
+                subject=["03000000"]&
+                tz_offset=+10:00
+        }
+
++ Response 200 (application/json)
+
+        {
+            "_items": [
+                {
+                    "_type": "events",
+                    "name": "long event",
+                    "state": "rescheduled",
+                    "type": "event",
+                    "lock_time": null,
+                    "reschedule_to": "urn:newsml:sdp-master.test.superdesk.org:2019-06-06T23:51:00.207674:716219f4-a0a8-44eb-a372-31cd8d100350",
+                    "lock_session": null,
+                    "place": [
+                        {
+                            "name": "Australia",
+                            "qcode": "australia"
+                        }
+                    ],
+                    "lock_user": null,
+                    "pubstatus": "usable",
+                    "_updated": "2019-06-06T23:51:00+0000",
+                    "occur_status": {
+                        "qcode": "eocstat:eos5",
+                        "name": "Planned, occurs certainly",
+                        "label": "Planned, occurs certainly"
+                    },
+                    "version_creator": "5ab1aabdcdfe38019f0a875a",
+                    "dates": {
+                        "start": "2019-06-04T14:00:00+0000",
+                        "end": "2020-01-01T12:59:59+0000",
+                        "tz": "Australia/Sydney"
+                    },
+                    "guid": "urn:newsml:sdp-master.test.superdesk.org:2019-06-06T23:49:16.675068:fc1565cb-2981-4368-bd23-09f7cbf3901d",
+                    "state_reason": "",
+                    "_created": "2019-06-06T23:49:16+0000",
+                    "lock_action": null,
+                    "versioncreated": "2019-06-06T23:51:00+0000",
+                    "_etag": "0d702d6740de0d0dea933a115a7380a4d1d06414",
+                    "_id": "urn:newsml:sdp-master.test.superdesk.org:2019-06-06T23:49:16.675068:fc1565cb-2981-4368-bd23-09f7cbf3901d",
+                    "calendars": [],
+                    "original_creator": "5ab1aabdcdfe38019f0a875a",
+                    "actioned_date": "2019-06-06T23:51:00+0000",
+                    "_planning_schedule": [
+                        {
+                            "scheduled": "2019-06-04T14:00:00+0000"
+                        }
+                    ],
+                    "firstcreated": "2019-06-06T23:49:16+0000",
+                    "_links": {
+                        "self": {
+                            "title": "events",
+                            "href": "/events/urn:newsml:sdp-master.test.superdesk.org:2019-06-06T23:49:16.675068:fc1565cb-2981-4368-bd23-09f7cbf3901d"
+                        }
+                    }
+                },
+                {
+                    "_type": "events",
+                    "name": "longer",
+                    "state": "rescheduled",
+                    "type": "event",
+                    "lock_time": null,
+                    "reschedule_to": "urn:newsml:sdp-master.test.superdesk.org:2019-06-06T23:56:39.192447:edd4ef2f-cbfa-414e-bacb-ac727992dda6",
+                    "lock_session": null,
+                    "place": [
+                        {
+                            "name": "Australia",
+                            "qcode": "australia"
+                        }
+                    ],
+                    "lock_user": null,
+                    "pubstatus": "usable",
+                    "_updated": "2019-06-06T23:56:39+0000",
+                    "occur_status": {
+                        "qcode": "eocstat:eos5",
+                        "name": "Planned, occurs certainly",
+                        "label": "Planned, occurs certainly"
+                    },
+                    "version_creator": "5ab1aabdcdfe38019f0a875a",
+                    "dates": {
+                        "start": "2019-06-07T14:00:00+0000",
+                        "end": "2020-01-08T12:59:59+0000",
+                        "tz": "Australia/Sydney"
+                    },
+                    "guid": "urn:newsml:sdp-master.test.superdesk.org:2019-06-06T23:54:54.002035:cd35a434-c26f-4f87-a57a-99b8969710ae",
+                    "state_reason": "",
+                    "_created": "2019-06-06T23:54:53+0000",
+                    "lock_action": null,
+                    "versioncreated": "2019-06-06T23:56:39+0000",
+                    "_etag": "ecd7cfce2833a325f15cd3cdc23e9e80e3e2073f",
+                    "_id": "urn:newsml:sdp-master.test.superdesk.org:2019-06-06T23:54:54.002035:cd35a434-c26f-4f87-a57a-99b8969710ae",
+                    "calendars": [],
+                    "original_creator": "5ab1aabdcdfe38019f0a875a",
+                    "actioned_date": "2019-06-07T14:00:00+0000",
+                    "_planning_schedule": [
+                        {
+                            "scheduled": "2019-06-07T14:00:00+0000"
+                        }
+                    ],
+                    "firstcreated": "2019-06-06T23:54:54+0000",
+                    "_links": {
+                        "self": {
+                            "title": "events",
+                            "href": "/events/urn:newsml:sdp-master.test.superdesk.org:2019-06-06T23:54:54.002035:cd35a434-c26f-4f87-a57a-99b8969710ae"
+                        }
+                    }
+                }
+            ]
+        }
+

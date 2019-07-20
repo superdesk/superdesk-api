@@ -1,0 +1,257 @@
+## Agenda Collection [/agenda] 
+
+### List All Agenda Items [GET]
+
++ Response 200 (application/json)
+
+        {
+            "_items": [
+                {
+                    "name": "Naregs1st",
+                    "is_enabled": false,
+                    "_id": "5ab27a0dcdfe38023cd29e9d",
+                    "version_creator": "5ab27997cdfe38023cd29e97",
+                    "plannings": [
+                        {
+                            "_type": "planning",
+                            "planning_date": "2018-03-29T02:00:00+0000",
+                            "state": "draft",
+                            "type": "planning",
+                            "lock_time": null,
+                            "lock_session": null,
+                            "lock_user": null,
+                            "coverages": [
+                                {
+                                    "coverage_id": "urn:newsml:sdp-master.test.superdesk.org:2018-03-27T18:29:37.406022:4e681065-83eb-4214-b71f-11644ed8ea21",
+                                    "original_creator": "5ab27997cdfe38023cd29e97",
+                                    "version_creator": "5ab27997cdfe38023cd29e97",
+                                    "planning": {
+                                        "scheduled": "2018-03-29T02:00:00+0000",
+                                        "g2_content_type": "text",
+                                        "slugline": "jeo245",
+                                        "genre": [
+                                            {
+                                                "name": "Article (news)",
+                                                "qcode": "Article"
+                                            }
+                                        ]
+                                    },
+                                    "versioncreated": "2018-03-27T18:29:46+0000",
+                                    "assigned_to": {
+                                        "priority": 2,
+                                        "assigned_date_desk": "2018-03-27T18:29:37+0000",
+                                        "assignor_user": "5ab27997cdfe38023cd29e97",
+                                        "assignor_desk": "5ab27997cdfe38023cd29e97",
+                                        "assigned_date_user": "2018-03-27T18:29:37+0000",
+                                        "assignment_id": "5aba8d91cdfe3800ea4a6d65"
+                                    },
+                                    "workflow_status": "active",
+                                    "firstcreated": "2018-03-27T18:29:37+0000",
+                                    "news_coverage_status": {
+                                        "name": "coverage intended",
+                                        "qcode": "ncostat:int",
+                                        "label": "Planned"
+                                    }
+                                }
+                            ],
+                            "item_class": "plinat:newscoverage",
+                            "flags": {
+                                "marked_for_not_publication": false
+                            },
+                            "agendas": [
+                                "5ab27a0dcdfe38023cd29e9d"
+                            ],
+                            "guid": "urn:newsml:sdp-master.test.superdesk.org:2018-03-27T18:28:34.011059:9cd01448-ba9e-4463-8b4a-a6fb85257e41",
+                            "_created": "2018-03-27T18:28:33+0000",
+                            "lock_action": null,
+                            "recurrence_id": "urn:newsml:sdp-master.test.superdesk.org:2018-03-27T18:22:22.973652:ddeddeff-a864-4036-acef-2e024110be48",
+                            "slugline": "jeo245",
+                            "_id": "urn:newsml:sdp-master.test.superdesk.org:2018-03-27T18:28:34.011059:9cd01448-ba9e-4463-8b4a-a6fb85257e41",
+                            "original_creator": "5ab27997cdfe38023cd29e97",
+                            "_etag": "34343c23cdf5e7569bd7ec378e9d0a7c963a920d",
+                            "event_item": "urn:newsml:sdp-master.test.superdesk.org:2018-03-27T18:22:22.974596:ede4ac2a-a872-4bda-930e-4f5bfb8dea31",
+                            "_planning_schedule": [
+                                {
+                                    "scheduled": "2018-03-29T02:00:00+0000",
+                                    "coverage_id": "urn:newsml:sdp-master.test.superdesk.org:2018-03-27T18:29:37.406022:4e681065-83eb-4214-b71f-11644ed8ea21"
+                                }
+                            ],
+                            "headline": "jeo245",
+                            "_updated": "2018-03-27T18:30:22+0000",
+                            "version_creator": "5ab27997cdfe38023cd29e97"
+                        }                 
+                    ],
+                    "original_creator": "5ab27997cdfe38023cd29e97",
+                    "_updated": "2019-06-01T17:10:50+0000",
+                    "_links": {
+                        "self": {
+                            "title": "Agenda",
+                            "href": "agenda/5ab27a0dcdfe38023cd29e9d"
+                        }
+                    }
+                }
+            ]
+        }
+
+
+### Create A New Agenda Item [POST]
+
+Creation of the new agenda will fail if the name is not unique.
+
++ Request (application/json)
+
+    + Body
+        
+            { 
+                "name": "TestAgenda", 
+                "is_enabled": true
+            }
+
+    + Schema
+
+            {
+                "name": {
+                    "type": "string",
+                    "iunique": true,
+                    "required": true,
+                    "empty": false,
+                    "nullable": false
+                },
+                "original_creator": {"type": "string"},
+                "version_creator": {"type": "string"},
+                "is_enabled": {
+                    "type": "boolean",
+                    "default": true
+                },
+            }
+
++ Response 201 (application/json)
+
++ Response 400 (application/json)
+
++ Response 412 (application/json)
+
+
+## An Agenda Item [/agenda/{agenda_id}]
+
++ Parameters
+
+    - agenda_id (string) ... agenda id
+
+### Details of An Agenda Item [GET]
+
++ Response 200 (application/json)
+
+    + Body
+
+            {
+                "_created": "2018-03-21T15:28:13+0000",
+                "name": "Naregs1st",
+                "is_enabled": false,
+                "_id": "5ab27a0dcdfe38023cd29e9d",
+                "version_creator": "5ab27997cdfe38023cd29e97",
+                "_type": "agenda",
+                "_etag": "2f16c3643d6e3025e64c02a0ee02de4c5e82216e",
+                "plannings": [
+                    {
+                        "_type": "planning",
+                        "planning_date": "2018-03-29T02:00:00+0000",
+                        "state": "draft",
+                        "type": "planning",
+                        "lock_time": null,
+                        "lock_session": null,
+                        "lock_user": null,
+                        "coverages": [
+                            {
+                                "coverage_id": "urn:newsml:sdp-master.test.superdesk.org:2018-03-27T18:29:37.406022:4e681065-83eb-4214-b71f-11644ed8ea21",
+                                "original_creator": "5ab27997cdfe38023cd29e97",
+                                "version_creator": "5ab27997cdfe38023cd29e97",
+                                "planning": {
+                                    "scheduled": "2018-03-29T02:00:00+0000",
+                                    "g2_content_type": "text",
+                                    "slugline": "jeo245",
+                                    "genre": [
+                                        {
+                                            "name": "Article (news)",
+                                            "qcode": "Article"
+                                        }
+                                    ]
+                                },
+                                "versioncreated": "2018-03-27T18:29:46+0000",
+                                "assigned_to": {
+                                    "priority": 2,
+                                    "assigned_date_desk": "2018-03-27T18:29:37+0000",
+                                    "assignor_user": "5ab27997cdfe38023cd29e97",
+                                    "assignor_desk": "5ab27997cdfe38023cd29e97",
+                                    "assigned_date_user": "2018-03-27T18:29:37+0000",
+                                    "assignment_id": "5aba8d91cdfe3800ea4a6d65"
+                                },
+                                "workflow_status": "active",
+                                "firstcreated": "2018-03-27T18:29:37+0000",
+                                "news_coverage_status": {
+                                    "name": "coverage intended",
+                                    "qcode": "ncostat:int",
+                                    "label": "Planned"
+                                }
+                            }
+                        ],
+                        "item_class": "plinat:newscoverage",
+                        "flags": {
+                            "marked_for_not_publication": false
+                        },
+                        "agendas": [
+                            "5ab27a0dcdfe38023cd29e9d"
+                        ],
+                        "guid": "urn:newsml:sdp-master.test.superdesk.org:2018-03-27T18:28:34.011059:9cd01448-ba9e-4463-8b4a-a6fb85257e41",
+                        "_created": "2018-03-27T18:28:33+0000",
+                        "lock_action": null,
+                        "recurrence_id": "urn:newsml:sdp-master.test.superdesk.org:2018-03-27T18:22:22.973652:ddeddeff-a864-4036-acef-2e024110be48",
+                        "slugline": "jeo245",
+                        "_id": "urn:newsml:sdp-master.test.superdesk.org:2018-03-27T18:28:34.011059:9cd01448-ba9e-4463-8b4a-a6fb85257e41",
+                        "original_creator": "5ab27997cdfe38023cd29e97",
+                        "_etag": "34343c23cdf5e7569bd7ec378e9d0a7c963a920d",
+                        "event_item": "urn:newsml:sdp-master.test.superdesk.org:2018-03-27T18:22:22.974596:ede4ac2a-a872-4bda-930e-4f5bfb8dea31",
+                        "_planning_schedule": [
+                            {
+                                "scheduled": "2018-03-29T02:00:00+0000",
+                                "coverage_id": "urn:newsml:sdp-master.test.superdesk.org:2018-03-27T18:29:37.406022:4e681065-83eb-4214-b71f-11644ed8ea21"
+                            }
+                        ],
+                        "headline": "jeo245",
+                        "_updated": "2018-03-27T18:30:22+0000",
+                        "version_creator": "5ab27997cdfe38023cd29e97"
+                    }
+                ],
+                "original_creator": "5ab27997cdfe38023cd29e97",
+            }
+           
+
+### Update An Agenda Item [PATCH]
+
++ Request (application/json)
+
+    + Headers
+    
+            If-Match: {_etag}
+    
+    + Body
+
+            {"name": "New Name"}
+
++ Response 200 (application/json)
+
++ Response 403 (application/json)
+
+## Delete An Agenda Item [DELETE]      
+
+Deletes the agenda item by given id. Delete will fail if:
+
+ - There are planning items references to the agenda
+
++ Request (application/json)
+
+        {}
+
++ Response 204 (application/json)
+
++ Response 412 (application/json)

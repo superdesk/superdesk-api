@@ -1,0 +1,99 @@
+## Event Files Collection [/events_files] 
+
+### List All Event Files [GET]
+
++ Response 200 (application/json)
+
+        {
+            "_items": [
+                {
+                    "_created": "2018-03-21T16:19:57+0000",
+                    "filemeta": {
+                        "media_id": "5ab2862dcdfe38023cd29f05"
+                    },
+                    "_id": "5ab2862dcdfe38023cd29f07",
+                    "media": {
+                        "name": "images.jpg",
+                        "length": 3024,
+                        "_id": "5ab2862dcdfe38023cd29f05",
+                        "file": null,
+                        "content_type": "image/jpeg"
+                    },
+                    "_links": {
+                        "self": {
+                            "title": "Events_file",
+                            "href": "events_files/5ab2862dcdfe38023cd29f07"
+                        }
+                    },
+                    "_etag": "daf4899dafda1388d7f2297fe6fb05a1034a5f44",
+                    "_updated": "2018-03-21T16:19:57+0000"
+                }
+            ]
+        }
+
+
+### Create A New Event File [POST]
+
+
++ Request (multipart/form-data)
+
+    
+    + Body
+        
+            -F media=@/home/superdesk/Documents/simple-dict.txt
+
+    + Schema
+
+            {
+                "media": {"type": "media"},
+                "mimetype": {"type": "string"},
+                "filemeta": {"type": "dict"}
+            }
+
++ Response 201 (application/json)
+
++ Response 400 (application/json)
+
++ Response 412 (application/json)
+
+
+## An Event File [/events_files/{file_id}]
+
++ Parameters
+
+    - file_id (string) ... file id
+
+### Details of A Attachment [GET]
+
++ Response 200 (application/json)
+
+    + Body
+
+            {
+                "_created": "2018-03-21T16:19:57+0000",
+                "_type": "events_files",
+                "filemeta": {
+                    "media_id": "5ab2862dcdfe38023cd29f05"
+                },
+                "_id": "5ab2862dcdfe38023cd29f07",
+                "media": {
+                    "name": "images.jpg",
+                    "length": 3024,
+                    "_id": "5ab2862dcdfe38023cd29f05",
+                    "file": null,
+                    "content_type": "image/jpeg"
+                },
+            }
+           
+
+## Delete An Event File [DELETE]      
+
+Deletes the file by given id.
+
++ Request (application/json)
+
+        {}
+
++ Response 204 (application/json)
+
++ Response 412 (application/json)
