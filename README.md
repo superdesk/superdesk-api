@@ -13,7 +13,7 @@ For the olio template you can tkae the following steps:
 
     $ npm install aglio-theme-onlicar
 
-    $ ./node_modules/aglio/bin/aglio.js --theme-full-width -i apiary.apib -t onlicar --theme-template triple -o out.html
+    $ ./node_modules/aglio/bin/aglio.js --theme-full-width -i apiary.apib --theme-template triple -o out.html
 
 
 You can use `protagonist` to test that the api has valid json:

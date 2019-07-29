@@ -1,0 +1,774 @@
+## Cancel A Planning Item [/planning/cancel/{planning_id}]
+
+Cancels a planning item by given planning item id.
+
+
++ Parameters
+
+    - planning_id (string) ... planning id
+
+### Cancel An Planning Item [PATCH]
+
+Cancel changes the **state** of the planning item `cancelled`.
+**reason** field could be used to give a description of the cancel action. 
+Cancel action updates the recurrent instances of the planning item.
+Cancel action also updates **ednotes** fields in the planning item and the planning item 
+automatically to add the reason of the cancellation.
+
+Cancel action will fail if the planning item is not locked to the user sending the action.
+If a published planning item cancelled, planning item will be published again with cancel information automatically.
+
+If **cancel_all_coverage** is provided with value **true** in the payload then all coverages in the planning will be cancelled.
+When the coverage is cancelled, it's links to archive items wil be removed automatically.
+
+If **event_cancellation** is provided with value **true** in the payload then the event will be cancelled.
+
++ Request (application/json)
+
+    + Headers
+    
+            If-Match: {_etag}
+    
+    + Body
+
+            {"reason": "Cancelling the Planning Item"}
+
+    + Schema 
+
+            {
+                "internal_note": {
+                    "nullable": true,
+                    "type": "string"
+                },
+                "expired": {
+                    "default": false,
+                    "type": "boolean"
+                },
+                "word_count": {
+                    "type": "integer"
+                },
+                "expiry": {
+                    "nullable": true,
+                    "type": "datetime"
+                },
+                "version_creator": {
+                    "data_relation": {
+                        "resource": "users",
+                        "field": "_id",
+                        "embeddable": true
+                    },
+                    "required": false,
+                    "nullable": false,
+                    "type": "objectid"
+                },
+                "genre": {
+                    "nullable": true,
+                    "type": "list",
+                    "mapping": {
+                        "properties": {
+                            "name": {
+                                "index": "not_analyzed",
+                                "type": "string"
+                            },
+                            "qcode": {
+                                "index": "not_analyzed",
+                                "type": "string"
+                            }
+                        },
+                        "type": "object"
+                    }
+                },
+                "reason": {
+                    "nullable": true,
+                    "type": "string"
+                },
+                "description_text": {
+                    "nullable": true,
+                    "type": "string"
+                },
+                "_planning_schedule": {
+                    "type": "list",
+                    "mapping": {
+                        "properties": {
+                            "scheduled": {
+                                "type": "date"
+                            },
+                            "coverage_id": {
+                                "index": "not_analyzed",
+                                "type": "string"
+                            }
+                        },
+                        "type": "nested"
+                    }
+                },
+                "guid": {
+                    "unique": true,
+                    "type": "string",
+                    "mapping": {
+                        "index": "not_analyzed",
+                        "type": "string"
+                    }
+                },
+                "priority": {
+                    "nullable": true,
+                    "type": "integer"
+                },
+                "subject": {
+                    "type": "list",
+                    "mapping": {
+                        "properties": {
+                            "name": {
+                                "index": "not_analyzed",
+                                "type": "string"
+                            },
+                            "qcode": {
+                                "index": "not_analyzed",
+                                "type": "string"
+                            }
+                        },
+                        "type": "object"
+                    }
+                },
+                "coverages": {
+                    "schema": {
+                        "schema": {
+                            "version_creator": {
+                                "data_relation": {
+                                    "resource": "users",
+                                    "field": "_id",
+                                    "embeddable": true
+                                },
+                                "required": false,
+                                "nullable": false,
+                                "type": "objectid"
+                            },
+                            "news_coverage_status": {
+                                "schema": {
+                                    "name": {
+                                        "type": "string"
+                                    },
+                                    "qcode": {
+                                        "type": "string"
+                                    },
+                                    "label": {
+                                        "type": "string"
+                                    }
+                                },
+                                "type": "dict"
+                            },
+                            "planning": {
+                                "schema": {
+                                    "ednote": {
+                                        "nullable": true,
+                                        "type": "string"
+                                    },
+                                    "internal_note": {
+                                        "type": "string"
+                                    },
+                                    "subject": {
+                                        "type": "list",
+                                        "mapping": {
+                                            "properties": {
+                                                "name": {
+                                                    "index": "not_analyzed",
+                                                    "type": "string"
+                                                },
+                                                "qcode": {
+                                                    "index": "not_analyzed",
+                                                    "type": "string"
+                                                }
+                                            },
+                                            "type": "object"
+                                        }
+                                    },
+                                    "keyword": {
+                                        "type": "list",
+                                        "mapping": {
+                                            "type": "string"
+                                        }
+                                    },
+                                    "dateline": {
+                                        "type": "list",
+                                        "mapping": {
+                                            "type": "string"
+                                        }
+                                    },
+                                    "genre": {
+                                        "nullable": true,
+                                        "type": "list",
+                                        "mapping": {
+                                            "properties": {
+                                                "name": {
+                                                    "index": "not_analyzed",
+                                                    "type": "string"
+                                                },
+                                                "qcode": {
+                                                    "index": "not_analyzed",
+                                                    "type": "string"
+                                                }
+                                            },
+                                            "type": "object"
+                                        }
+                                    },
+                                    "coverage_provider": {
+                                        "type": "string",
+                                        "mapping": {
+                                            "index": "not_analyzed",
+                                            "type": "string"
+                                        }
+                                    },
+                                    "news_content_characteristics": {
+                                        "type": "list",
+                                        "mapping": {
+                                            "properties": {
+                                                "name": {
+                                                    "index": "not_analyzed",
+                                                    "type": "string"
+                                                },
+                                                "value": {
+                                                    "index": "not_analyzed",
+                                                    "type": "string"
+                                                }
+                                            }
+                                        }
+                                    },
+                                    "planning_ext_property": {
+                                        "type": "list",
+                                        "mapping": {
+                                            "properties": {
+                                                "name": {
+                                                    "index": "not_analyzed",
+                                                    "type": "string"
+                                                },
+                                                "qcode": {
+                                                    "index": "not_analyzed",
+                                                    "type": "string"
+                                                },
+                                                "value": {
+                                                    "index": "not_analyzed",
+                                                    "type": "string"
+                                                }
+                                            }
+                                        }
+                                    },
+                                    "item_count": {
+                                        "type": "string",
+                                        "mapping": {
+                                            "index": "not_analyzed",
+                                            "type": "string"
+                                        }
+                                    },
+                                    "by": {
+                                        "type": "list",
+                                        "mapping": {
+                                            "type": "string"
+                                        }
+                                    },
+                                    "g2_content_type": {
+                                        "type": "string",
+                                        "mapping": {
+                                            "index": "not_analyzed",
+                                            "type": "string"
+                                        }
+                                    },
+                                    "service": {
+                                        "type": "list",
+                                        "mapping": {
+                                            "properties": {
+                                                "name": {
+                                                    "index": "not_analyzed",
+                                                    "type": "string"
+                                                },
+                                                "qcode": {
+                                                    "index": "not_analyzed",
+                                                    "type": "string"
+                                                }
+                                            }
+                                        }
+                                    },
+                                    "credit_line": {
+                                        "type": "list",
+                                        "mapping": {
+                                            "type": "string"
+                                        }
+                                    },
+                                    "language": {
+                                        "type": "list",
+                                        "mapping": {
+                                            "type": "string"
+                                        }
+                                    },
+                                    "description_text": {
+                                        "nullable": true,
+                                        "type": "string"
+                                    },
+                                    "item_class": {
+                                        "type": "string",
+                                        "mapping": {
+                                            "index": "not_analyzed",
+                                            "type": "string"
+                                        }
+                                    },
+                                    "scheduled": {
+                                        "type": "datetime"
+                                    },
+                                    "slugline": {
+                                        "type": "string",
+                                        "mapping": {
+                                            "type": "string",
+                                            "fields": {
+                                                "phrase": {
+                                                    "search_analyzer": "phrase_prefix_analyzer",
+                                                    "analyzer": "phrase_prefix_analyzer",
+                                                    "type": "string"
+                                                }
+                                            }
+                                        }
+                                    },
+                                    "headline": {
+                                        "type": "string"
+                                    }
+                                },
+                                "type": "dict"
+                            },
+                            "workflow_status": {
+                                "type": "string"
+                            },
+                            "versioncreated": {
+                                "type": "datetime"
+                            },
+                            "coverage_id": {
+                                "type": "string",
+                                "mapping": {
+                                    "index": "not_analyzed",
+                                    "type": "string"
+                                }
+                            },
+                            "original_creator": {
+                                "data_relation": {
+                                    "resource": "users",
+                                    "field": "_id",
+                                    "embeddable": true
+                                },
+                                "required": false,
+                                "nullable": false,
+                                "type": "objectid"
+                            },
+                            "guid": {
+                                "unique": true,
+                                "type": "string",
+                                "mapping": {
+                                    "index": "not_analyzed",
+                                    "type": "string"
+                                }
+                            },
+                            "previous_status": {
+                                "type": "string"
+                            },
+                            "assigned_to": {
+                                "type": "dict",
+                                "mapping": {
+                                    "properties": {
+                                        "state": {
+                                            "index": "not_analyzed",
+                                            "type": "string"
+                                        },
+                                        "assignment_id": {
+                                            "index": "not_analyzed",
+                                            "type": "string"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            },
+                            "firstcreated": {
+                                "type": "datetime"
+                            }
+                        },
+                        "type": "dict"
+                    },
+                    "default": [],
+                    "type": "list",
+                    "mapping": {
+                        "properties": {
+                            "coverage_id": {
+                                "index": "not_analyzed",
+                                "type": "string"
+                            },
+                            "planning": {
+                                "properties": {
+                                    "slugline": {
+                                        "type": "string",
+                                        "fields": {
+                                            "phrase": {
+                                                "search_analyzer": "phrase_prefix_analyzer",
+                                                "analyzer": "phrase_prefix_analyzer",
+                                                "type": "string"
+                                            }
+                                        }
+                                    }
+                                },
+                                "type": "object"
+                            },
+                            "assigned_to": {
+                                "properties": {
+                                    "state": {
+                                        "index": "not_analyzed",
+                                        "type": "string"
+                                    },
+                                    "assignment_id": {
+                                        "index": "not_analyzed",
+                                        "type": "string"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        },
+                        "type": "nested"
+                    }
+                },
+                "anpa_category": {
+                    "nullable": true,
+                    "type": "list",
+                    "mapping": {
+                        "properties": {
+                            "name": {
+                                "index": "not_analyzed",
+                                "type": "string"
+                            },
+                            "qcode": {
+                                "index": "not_analyzed",
+                                "type": "string"
+                            }
+                        },
+                        "type": "object"
+                    }
+                },
+                "event_cancellation": {
+                    "nullable": true,
+                    "type": "boolean"
+                },
+                "place": {
+                    "nullable": true,
+                    "type": "list",
+                    "mapping": {
+                        "properties": {
+                            "rel": {
+                                "index": "not_analyzed",
+                                "type": "string"
+                            },
+                            "state": {
+                                "index": "not_analyzed",
+                                "type": "string"
+                            },
+                            "qcode": {
+                                "index": "not_analyzed",
+                                "type": "string"
+                            },
+                            "locality_code": {
+                                "index": "not_analyzed",
+                                "type": "string"
+                            },
+                            "world_region_code": {
+                                "index": "not_analyzed",
+                                "type": "string"
+                            },
+                            "code": {
+                                "index": "not_analyzed",
+                                "type": "string"
+                            },
+                            "feature_class": {
+                                "index": "not_analyzed",
+                                "type": "string"
+                            },
+                            "location": {
+                                "type": "geo_point"
+                            },
+                            "scheme": {
+                                "index": "not_analyzed",
+                                "type": "string"
+                            },
+                            "name": {
+                                "index": "not_analyzed",
+                                "type": "string"
+                            },
+                            "country_code": {
+                                "index": "not_analyzed",
+                                "type": "string"
+                            },
+                            "locality": {
+                                "index": "not_analyzed",
+                                "type": "string"
+                            },
+                            "state_code": {
+                                "index": "not_analyzed",
+                                "type": "string"
+                            },
+                            "world_region": {
+                                "index": "not_analyzed",
+                                "type": "string"
+                            },
+                            "country": {
+                                "index": "not_analyzed",
+                                "type": "string"
+                            }
+                        },
+                        "dynamic": false,
+                        "type": "object"
+                    }
+                },
+                "event_item": {
+                    "data_relation": {
+                        "field": "_id",
+                        "resource": "events",
+                        "embeddable": true
+                    },
+                    "required": false,
+                    "nullable": false,
+                    "type": "string",
+                    "mapping": {
+                        "index": "not_analyzed",
+                        "type": "string"
+                    }
+                },
+                "abstract": {
+                    "nullable": true,
+                    "type": "string"
+                },
+                "ednote": {
+                    "nullable": true,
+                    "type": "string"
+                },
+                "flags": {
+                    "schema": {
+                        "marked_for_not_publication": {
+                            "default": false,
+                            "type": "boolean"
+                        }
+                    },
+                    "type": "dict"
+                },
+                "firstcreated": {
+                    "type": "datetime"
+                },
+                "cancel_all_coverage": {
+                    "nullable": true,
+                    "type": "boolean"
+                },
+                "revert_state": {
+                    "allowed": [
+                        "draft",
+                        "ingested",
+                        "routed",
+                        "fetched",
+                        "submitted",
+                        "in_progress",
+                        "spiked",
+                        "published",
+                        "killed",
+                        "corrected",
+                        "scheduled",
+                        "recalled"
+                    ],
+                    "type": "string",
+                    "mapping": {
+                        "index": "not_analyzed",
+                        "type": "string"
+                    }
+                },
+                "slugline": {
+                    "type": "string",
+                    "mapping": {
+                        "type": "string",
+                        "fields": {
+                            "phrase": {
+                                "search_analyzer": "phrase_prefix_analyzer",
+                                "analyzer": "phrase_prefix_analyzer",
+                                "type": "string"
+                            }
+                        }
+                    }
+                },
+                "lock_time": {
+                    "type": "datetime",
+                    "versioned": false
+                },
+                "versioncreated": {
+                    "type": "datetime"
+                },
+                "item_class": {
+                    "default": "plinat:newscoverage",
+                    "type": "string"
+                },
+                "original_creator": {
+                    "data_relation": {
+                        "resource": "users",
+                        "field": "_id",
+                        "embeddable": true
+                    },
+                    "required": false,
+                    "nullable": false,
+                    "type": "objectid"
+                },
+                "planning_date": {
+                    "nullable": false,
+                    "type": "datetime"
+                },
+                "unique_id": {
+                    "type": "string",
+                    "mapping": {
+                        "index": "not_analyzed",
+                        "type": "string"
+                    }
+                },
+                "pubstatus": {
+                    "nullable": true,
+                    "allowed": [
+                        "usable",
+                        "cancelled"
+                    ],
+                    "type": "string",
+                    "mapping": {
+                        "index": "not_analyzed",
+                        "type": "string"
+                    }
+                },
+                "lock_session": {
+                    "data_relation": {
+                        "resource": "auth",
+                        "field": "_id",
+                        "embeddable": true
+                    },
+                    "required": false,
+                    "nullable": false,
+                    "type": "objectid",
+                    "versioned": false
+                },
+                "type": {
+                    "default": "planning",
+                    "type": "string",
+                    "mapping": {
+                        "index": "not_analyzed",
+                        "type": "string"
+                    }
+                },
+                "company_codes": {
+                    "type": "list",
+                    "mapping": {
+                        "properties": {
+                            "name": {
+                                "index": "not_analyzed",
+                                "type": "string"
+                            },
+                            "security_exchange": {
+                                "index": "not_analyzed",
+                                "type": "string"
+                            },
+                            "qcode": {
+                                "index": "not_analyzed",
+                                "type": "string"
+                            }
+                        },
+                        "type": "object"
+                    }
+                },
+                "state": {
+                    "allowed": [
+                        "draft",
+                        "active",
+                        "ingested",
+                        "scheduled",
+                        "killed",
+                        "cancelled",
+                        "rescheduled",
+                        "postponed",
+                        "spiked"
+                    ],
+                    "default": "draft",
+                    "type": "string",
+                    "mapping": {
+                        "index": "not_analyzed",
+                        "type": "string"
+                    }
+                },
+                "headline": {
+                    "type": "string"
+                },
+                "keywords": {
+                    "type": "list",
+                    "mapping": {
+                        "type": "string"
+                    }
+                },
+                "_id": {
+                    "unique": true,
+                    "type": "string"
+                },
+                "urgency": {
+                    "nullable": true,
+                    "type": "integer"
+                },
+                "recurrence_id": {
+                    "nullable": true,
+                    "type": "string",
+                    "mapping": {
+                        "index": "not_analyzed",
+                        "type": "string"
+                    }
+                },
+                "lock_user": {
+                    "data_relation": {
+                        "resource": "users",
+                        "field": "_id",
+                        "embeddable": true
+                    },
+                    "required": false,
+                    "nullable": false,
+                    "type": "objectid",
+                    "versioned": false
+                },
+                "agendas": {
+                    "schema": {
+                        "data_relation": {
+                            "resource": "agenda",
+                            "field": "_id",
+                            "embeddable": true
+                        },
+                        "required": false,
+                        "nullable": false,
+                        "type": "objectid"
+                    },
+                    "type": "list",
+                    "mapping": {
+                        "index": "not_analyzed",
+                        "type": "string"
+                    }
+                },
+                "name": {
+                    "type": "string"
+                },
+                "language": {
+                    "nullable": true,
+                    "type": "string",
+                    "mapping": {
+                        "index": "not_analyzed",
+                        "type": "string"
+                    }
+                },
+                "lock_action": {
+                    "nullable": true,
+                    "type": "string",
+                    "mapping": {
+                        "index": "not_analyzed",
+                        "type": "string"
+                    }
+                },
+                "profile": {
+                    "nullable": true,
+                    "type": "string"
+                }
+            }        
+
++ Response 200 (application/json)
+
++ Response 403 (application/json)  

@@ -1081,7 +1081,7 @@ Spike will fail if:
 + Response 403 (application/json)
 
 
-## Unspike [/archive/unspike/{event_id}]
+## Unspike [/events/unspike/{event_id}]
 
 Unspikes an event and it"s recurring instances if needed
 
@@ -1103,7 +1103,7 @@ Unspikes an event. Based on the **update_method** provided, unspikes "future", "
     + Body
 
             { 
-                "state": "spiked"
+                "state": "draft"
             }
 
 + Response 200 (application/json)

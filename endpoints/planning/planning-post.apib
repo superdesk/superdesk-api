@@ -1,0 +1,49 @@
+## Post A Planning Item [/planning/post] 
+
+### Post [POST]
+
+Publishes the planning item to subscribers. First the planning item will be validated against the schema.
+Any error that is returned from validation will be returned as a 400 error.
+
++ Request (application/json)
+
+    + Body
+        
+            {
+                "planning": "urn:newsml:sdp-master.test.superdesk.org:2018-03-21T01:20:26.217932:5791296f-f26d-47c3-a3d6-89c8eeb1f445",
+                "etag": "1a26d68be3996dd3707a16c64dcd0ab5b163a5b8",
+                "pubstatus": "usable",
+            }
+
+    + Schema
+
+            {
+                "pubstatus": {
+                    "required": true,
+                    "allowed": [
+                        "usable",
+                        "cancelled"
+                    ],
+                    "type": "string"
+                },
+                "planning": {
+                    "required": true,
+                    "nullable": false,
+                    "type": "string",
+                    "data_relation": {
+                        "embeddable": true,
+                        "field": "_id",
+                        "resource": "planning"
+                    }
+                },
+                "etag": {
+                    "required": true,
+                    "type": "string"
+                }
+            }
+
++ Response 201 (application/json)
+
++ Response 400 (application/json)
+
++ Response 412 (application/json)
