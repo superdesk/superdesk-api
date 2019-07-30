@@ -1,0 +1,50 @@
+## Planning Article Export Collection [/planning_article_export]
+
+Exports the planning item as a new archive item fornatted with the given **article template**.
+Archive item then is used to render the output in string using the template provided in the **template** field.
+Templates are retrieved from `planning_export_templates` endpoint.
+
+Article export will fail if:
+- Template does not exist
+- Article template does not exist
+- Planning item does not exist
+
+### Export A Planning Article [POST]
+
++ Request (application/json)
+
+    + Body
+        
+            {
+                "items": ["urn:newsml:sdp-master.test.superdesk.org:2018-06-05T16:29:38.098556:8d3416fa-5e07-47d3-aa0f-5d2506b0a5e6"], 
+                "desk": "5ab27997cdfe38023cd29e97"
+            }
+
+    + Schema
+
+            {
+                "items": {
+                    "type": "list",
+                    "required": true
+                },
+                "desk": {
+                    "type": "string",
+                    "nullable": true
+                },
+                "template": {"type": "string"},
+                "type": {
+                    "type": "string",
+                    "default": "planning"
+                },
+                "article_template": {
+                    "type": "string",
+                    "nullable": true
+                }
+            }
+
+
++ Response 201 (application/json)
+
++ Response 400 (application/json)
+
++ Response 412 (application/json)
