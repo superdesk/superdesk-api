@@ -1,0 +1,100 @@
+
+
+## Planning History Collection [/Planning_history] 
+
+### List All Planning History Items [GET]
+
++ Response 200 (application/json)
+
+        {
+            "_items": [
+                {
+                    "_updated": "2018-03-21T01:20:00+0000",
+                    "_etag": "b326e2daad962cc27899966c8d6deec853920c32",
+                    "update": {
+                        "_status": "OK",
+                        "flags": {
+                            "marked_for_not_publication": false
+                        },
+                        "planning_date": "2018-03-21T01:19:28+0000",
+                        "_updated": "2018-03-21T01:20:00+0000",
+                        "_id": "urn:newsml:sdp-master.test.superdesk.org:2018-03-21T01:20:00.687197:841ec414-d24f-4246-b696-f8cde5a0ec36",
+                        "_etag": "7ba647c829de64e71cf7f9dc60cb901b4564511a",
+                        "state": "draft",
+                        "slugline": "new planning 1",
+                        "guid": "urn:newsml:sdp-master.test.superdesk.org:2018-03-21T01:20:00.687197:841ec414-d24f-4246-b696-f8cde5a0ec36",
+                        "description_text": "new planning 1",
+                        "_links": {
+                            "self": {
+                                "title": "Planning",
+                                "href": "planning/urn:newsml:sdp-master.test.superdesk.org:2018-03-21T01:20:00.687197:841ec414-d24f-4246-b696-f8cde5a0ec36"
+                            }
+                        },
+                        "_created": "2018-03-21T01:20:00+0000",
+                        "original_creator": "5ab1aabdcdfe38019f0a875a",
+                        "internal_note": "new planning 1",
+                        "item_class": "plinat:newscoverage",
+                        "coverages": [],
+                        "type": "planning"
+                    },
+                    "planning_id": "urn:newsml:sdp-master.test.superdesk.org:2018-03-21T01:20:00.687197:841ec414-d24f-4246-b696-f8cde5a0ec36",
+                    "_created": "2018-03-21T01:20:00+0000",
+                    "operation": "create",
+                    "user_id": "5ab1aabdcdfe38019f0a875a",
+                    "_id": "5ab1b340cdfe38023cd29e24"
+                }
+            ]
+        }
+
+
+
+## A Planning History Item [/Planning_history/{id}]
+
++ Parameters
+
+    - id (string) ... id
+
+### Details of A Planning History Item [GET]
+
++ Response 200 (application/json)
+
+    + Body
+
+            {
+                "_updated": "2018-03-21T01:20:00+0000",
+                "_etag": "b326e2daad962cc27899966c8d6deec853920c32",
+                "_type": "planning_history",
+                "update": {
+                    "_status": "OK",
+                    "flags": {
+                        "marked_for_not_publication": false
+                    },
+                    "planning_date": "2018-03-21T01:19:28+0000",
+                    "_updated": "2018-03-21T01:20:00+0000",
+                    "_id": "urn:newsml:sdp-master.test.superdesk.org:2018-03-21T01:20:00.687197:841ec414-d24f-4246-b696-f8cde5a0ec36",
+                    "_etag": "7ba647c829de64e71cf7f9dc60cb901b4564511a",
+                    "state": "draft",
+                    "slugline": "new planning 1",
+                    "guid": "urn:newsml:sdp-master.test.superdesk.org:2018-03-21T01:20:00.687197:841ec414-d24f-4246-b696-f8cde5a0ec36",
+                    "description_text": "new planning 1",
+                    "_links": {
+                        "self": {
+                            "title": "Planning",
+                            "href": "planning/urn:newsml:sdp-master.test.superdesk.org:2018-03-21T01:20:00.687197:841ec414-d24f-4246-b696-f8cde5a0ec36"
+                        }
+                    },
+                    "_created": "2018-03-21T01:20:00+0000",
+                    "original_creator": "5ab1aabdcdfe38019f0a875a",
+                    "internal_note": "new planning 1",
+                    "item_class": "plinat:newscoverage",
+                    "coverages": [],
+                    "type": "planning"
+                },
+                "planning_id": "urn:newsml:sdp-master.test.superdesk.org:2018-03-21T01:20:00.687197:841ec414-d24f-4246-b696-f8cde5a0ec36",
+                "_created": "2018-03-21T01:20:00+0000",
+                "operation": "create",
+                "user_id": "5ab1aabdcdfe38019f0a875a",
+                "_id": "5ab1b340cdfe38023cd29e24"
+            }
+           
+

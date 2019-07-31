@@ -1,0 +1,205 @@
+## Planning Types Collection [/planning_types] 
+
+Returns what fields should be shown in the edit forms in planning, in the edit dictionary.
+Also provides a schema to allow the client to validate the values entered in the forms.
+Entries can be overridden by providing alternates in the planning_types mongo collection.
+
+### List All Planning Types [GET]
+
++ Response 200 (application/json)
+
+        {
+            "_meta": {
+                "page": 1,
+                "total": 10,
+                "max_results": 1
+            },
+            "_items": [
+                {
+                    "schema": {
+                        "definition_long": {
+                            "minlength": null,
+                            "maxlength": null,
+                            "type": "string",
+                            "required": false
+                        },
+                        "links": {
+                            "mandatory_in_list": null,
+                            "schema": null,
+                            "type": "list",
+                            "required": false
+                        },
+                        "slugline": {
+                            "minlength": null,
+                            "maxlength": null,
+                            "type": "string",
+                            "required": false
+                        },
+                        "files": {
+                            "mandatory_in_list": null,
+                            "schema": null,
+                            "type": "list",
+                            "required": false
+                        },
+                        "name": {
+                            "minlength": null,
+                            "maxlength": null,
+                            "type": "string",
+                            "required": true
+                        },
+                        "event_contact_info": {
+                            "mandatory_in_list": null,
+                            "schema": null,
+                            "type": "list",
+                            "required": false
+                        },
+                        "anpa_category": {
+                            "mandatory_in_list": null,
+                            "schema": null,
+                            "type": "list",
+                            "required": false
+                        },
+                        "dates": {
+                            "type": "dict",
+                            "required": true
+                        },
+                        "subject": {
+                            "mandatory_in_list": {
+                                "scheme": {}
+                            },
+                            "schema": {
+                                "schema": {
+                                    "service": {
+                                        "nullable": true
+                                    },
+                                    "scheme": {
+                                        "nullable": true,
+                                        "type": "string",
+                                        "required": true,
+                                        "allowed": []
+                                    },
+                                    "parent": {
+                                        "nullable": true
+                                    },
+                                    "name": {},
+                                    "qcode": {}
+                                },
+                                "type": "dict"
+                            },
+                            "type": "list",
+                            "required": false
+                        },
+                        "ednote": {
+                            "minlength": null,
+                            "maxlength": null,
+                            "type": "string",
+                            "required": false
+                        },
+                        "internal_note": {
+                            "minlength": null,
+                            "maxlength": null,
+                            "type": "string",
+                            "required": false
+                        },
+                        "occur_status": {
+                            "schema": {
+                                "label": {
+                                    "type": "string",
+                                    "required": false
+                                },
+                                "name": {
+                                    "type": "string",
+                                    "required": false
+                                },
+                                "qcode": {
+                                    "type": "string",
+                                    "required": true
+                                }
+                            },
+                            "type": "dict",
+                            "required": false
+                        },
+                        "definition_short": {
+                            "minlength": null,
+                            "maxlength": null,
+                            "type": "string",
+                            "required": false
+                        },
+                        "location": {
+                            "minlength": null,
+                            "maxlength": null,
+                            "type": "string",
+                            "required": false
+                        },
+                        "place": {
+                            "mandatory_in_list": null,
+                            "schema": null,
+                            "type": "list",
+                            "required": false
+                        },
+                        "calendars": {
+                            "mandatory_in_list": null,
+                            "schema": null,
+                            "type": "list",
+                            "required": false
+                        }
+                    },
+                    "editor": {
+                        "definition_long": {
+                            "enabled": true
+                        },
+                        "links": {
+                            "enabled": true
+                        },
+                        "slugline": {
+                            "enabled": true
+                        },
+                        "files": {
+                            "enabled": true
+                        },
+                        "name": {
+                            "enabled": true
+                        },
+                        "event_contact_info": {
+                            "enabled": true
+                        },
+                        "anpa_category": {
+                            "enabled": true
+                        },
+                        "dates": {
+                            "enabled": true,
+                            "default_duration_on_change": 1
+                        },
+                        "subject": {
+                            "enabled": true
+                        },
+                        "ednote": {
+                            "enabled": true
+                        },
+                        "internal_note": {
+                            "enabled": true
+                        },
+                        "occur_status": {
+                            "enabled": true
+                        },
+                        "definition_short": {
+                            "enabled": true
+                        },
+                        "location": {
+                            "enabled": true
+                        },
+                        "place": {
+                            "enabled": false
+                        },
+                        "calendars": {
+                            "enabled": true
+                        }
+                    },
+                    "_etag": "b5f87ca55d756c0a7bcbc86aba703e01d972a73e",
+                    "_updated": "1970-01-01T00:00:00+0000",
+                    "name": "event",
+                    "_created": "1970-01-01T00:00:00+0000"
+                }
+            ]
+        }
+

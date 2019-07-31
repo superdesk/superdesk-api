@@ -1,0 +1,36 @@
+## Planning Validator Collection [/planning_validator] 
+
+### Validate A Planning Item [POST]
+
+Validates a planning item. This endpoint is called internally when a planning item is posted.
+
+Validation will fail if:
+- there is no validator defined for the planning item type
+- the planning item is not valid
+
++ Request (application/json)
+
+    + Body
+        
+            {
+                "validate_on_post": true,
+                "type": "event",
+                "validate": {
+                    "name": "Test Event",
+                    "calendars": [{"qcode": "cal1", "name": "Calendar 1"}]
+                }
+            }
+
+    + Schema
+
+            {
+                "validate_on_post": {"type": "boolean", "default": False},
+                "type": {"type": "string", "required": True},
+                "validate": {"type": "dict", "required": True}
+            }
+
++ Response 201 (application/json)
+
++ Response 400 (application/json)
+
++ Response 412 (application/json)
