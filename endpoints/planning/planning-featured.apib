@@ -1,0 +1,253 @@
+## Featured Planning Collection [/planning_featured] 
+
+Featured planning represents a list of planning items that are marked as **featured**
+There can be only one featured planning item per day.
+
+### List All Featured Planning [GET]
+
++ Response 200 (application/json)
+
+        {
+            "_items": [
+                {
+                    "tz": "Asia/Yerevan",
+                    "posted": true,
+                    "version_creator": "5ab27997cdfe38023cd29e97",
+                    "original_creator": "5ab1aabdcdfe38019f0a875a",
+                    "_etag": "c2f8e675320c2a6a7c29846ced1ef009a12c8650",
+                    "_links": {
+                        "self": {
+                            "href": "planning_featured/20180808",
+                            "title": "Planning_featured"
+                        }
+                    },
+                    "type": "planning_featured",
+                    "firstcreated": "2018-08-06T08:12:10+0000",
+                    "_updated": "2018-08-07T09:09:37+0000",
+                    "versioncreated": "2018-08-06T08:12:10+0000",
+                    "_created": "2018-08-06T08:12:10+0000",
+                    "items": [
+                        "urn:newsml:sdp-master.test.superdesk.org:2018-03-22T15:07:06.216772:4b7643d5-bc6c-4939-ae61-3d27088cc367"
+                    ],
+                    "_id": "20180808",
+                    "date": "2018-08-07T14:00:00+0000"
+                },
+                {
+                    "tz": "Australia/Sydney",
+                    "posted": true,
+                    "version_creator": "5ab1aabdcdfe38019f0a875a",
+                    "original_creator": "5ab1aabdcdfe38019f0a875a",
+                    "_etag": "fc21f6daf4be76fb70a15f2c272aee48fc168d85",
+                    "_links": {
+                        "self": {
+                            "href": "planning_featured/20180815",
+                            "title": "Planning_featured"
+                        }
+                    },
+                    "type": "planning_featured",
+                    "firstcreated": "2018-08-06T10:11:07+0000",
+                    "_updated": "2018-08-06T10:15:46+0000",
+                    "versioncreated": "2018-08-06T10:11:07+0000",
+                    "_created": "2018-08-06T10:11:07+0000",
+                    "items": [
+                        "urn:newsml:sdp-master.test.superdesk.org:2018-08-06T08:03:47.875552:c180135b-f74a-4b74-9bf7-a1926fc2bf78",
+                        "urn:newsml:sdp-master.test.superdesk.org:2018-08-06T08:03:00.747808:7f7e2f10-4942-4cd4-82ae-88028ebe7f4d"
+                    ],
+                    "_id": "20180815",
+                    "date": "2018-08-14T14:00:00+0000"
+                }
+            ]
+        }
+
+
+### Create A New Featured Planning [POST]
+
+Creates a new featured planning entry for the day. Planning items that are provided in the **list** field 
+should all have the field **featured** to be true. 
+
+When a new featured planning is created, the planning items within the list will be expected to be posted.
+System will post the featured planning entry itself with the list of alredy posted planning items if **posted** field is set to true.
+
+Creating a new featured planning entry will fail if:
+- At least one of the provided planning items is not posted before
+- At least one of the provided planning items has **featured** flag as false or empty
+- There"s an existing featured planning entry for the day
+
++ Request (application/json)
+
+    + Body
+        
+            {
+                "date": "2029-11-21T12:00:00.000Z",
+                "tz": "Australia/Sydney",
+                "items": ["urn:newsml:sdp-master.test.superdesk.org:2018-08-06T08:03:47.875552:c180135b-f74a-4b74-9bf7-a1926fc2bf78"]
+            }
+
+    + Schema
+
+            {
+                "_id": {
+                    "type": "string",
+                    "regex": "regex("[0-9]{8}")"
+                },
+                "date": {
+                    "type": "datetime",
+                    "nullable": False,
+                },
+                "items": {"type": "list"},
+                "tz": {"type": "string"},
+                "posted": {"type": "boolean"},
+                "last_posted_time": {"type": "datetime"},
+                "last_posted_by": {"type": "string"},
+                "original_creator": {"type": "string"},
+                "version_creator": {"type": "string"},
+                "firstcreated": {"type": "datetime"},
+                "versioncreated": {"type": "datetime"},
+                "type": {
+                    "type": "string",
+                    "default": "planning_featured"
+                }
+            }
+
++ Response 201 (application/json)
+
++ Response 400 (application/json)
+
++ Response 412 (application/json)
+
+
+## A Featured Planning [/planning_featured/{id}]
+
++ Parameters
+
+    - id (string) ... featured planning id
+
+### Details of A Featured Planning [GET]
+
++ Response 200 (application/json)
+
+    + Body
+
+            {
+                "tz": "Australia/Sydney",
+                "posted": true,
+                "version_creator": "5ab1aabdcdfe38019f0a875a",
+                "original_creator": "5ab1aabdcdfe38019f0a875a",
+                "_etag": "fc21f6daf4be76fb70a15f2c272aee48fc168d85",
+                "type": "planning_featured",
+                "firstcreated": "2018-08-06T10:11:07+0000",
+                "_updated": "2018-08-06T10:15:46+0000",
+                "versioncreated": "2018-08-06T10:11:07+0000",
+                "_created": "2018-08-06T10:11:07+0000",
+                "items": [
+                    "urn:newsml:sdp-master.test.superdesk.org:2018-08-06T08:03:47.875552:c180135b-f74a-4b74-9bf7-a1926fc2bf78",
+                    "urn:newsml:sdp-master.test.superdesk.org:2018-08-06T08:03:00.747808:7f7e2f10-4942-4cd4-82ae-88028ebe7f4d"
+                ],
+                "_type": "planning_featured",
+                "_id": "20180815",
+                "date": "2018-08-14T14:00:00+0000"
+            }
+           
+
+### Update A Featured Planning [PATCH]
+
+When a featured planning is updated, the planning items within the list will be expected to be posted.
+System will repost the featured planning entry itself with the list of alredy posted planning items
+if **posted** field is set to true.
+
+Updating a featured planning entry will fail if:
+- At least one of the provided planning items is not posted before
+- At least one of the provided planning items has **featured** flag as false or empty
+
++ Request (application/json)
+
+    + Headers
+    
+            If-Match: {_etag}
+    
+    + Body
+
+            { 
+                "items": [
+                    "urn:newsml:sdp-master.test.superdesk.org:2018-08-06T08:03:47.875552:c180135b-f74a-4b74-9bf7-a1926fc2bf78",
+                    "urn:newsml:sdp-master.test.superdesk.org:2018-08-06T08:03:00.747808:7f7e2f10-4942-4cd4-82ae-88028ebe7f4d",
+                    "urn:newsml:sdp-master.test.superdesk.org:2018-08-06T08:03:00.747808:7f7e2f10-4942-4cd4-7fc4-4673bafd6364"
+                ]
+            }
+
++ Response 200 (application/json)
+
++ Response 403 (application/json)
+
+## Delete A Featured Planning [DELETE]      
+
+Deletes the featured planning by given id. A featured planning will fail to delete if:
+
+ - The featured planning item is posted
+
++ Request (application/json)
+
+        {}
+
++ Response 204 (application/json)
+
++ Response 412 (application/json)
+
+## Featured Planning Item Lock Resource [/planning_featured_lock/{id}] 
+
+Locks the featured planning item for a given user. This will prevent other users editing the item.
+Lock will fail if:
+- the featured planning item is locked to another user
+
++ Parameters
+
+    - id (string) ... featured planning item id
+
+### Lock A Featured Planning Item [POST]
+
++ Response 200 (application/json)
+
+    + Body
+
+            {
+                
+            }
+
+    + Schema
+
+            {
+                "lock_user": {"type": "string"},
+                "lock_time": {"type": "string"},
+                "lock_session": {"type": "string"},
+            }                   
+
+
+
+## Featured Planning Item Unlock Resource [/planning_featured_unlock/{id}] 
+
+Unlocks the featured planning item for a given user. This will let other users editing the item.
+Unlock will fail if:
+- Lock is not created by the same user
+- featured planning item does not exist
+- there's no lock on item
+
+
++ Parameters
+
+    - id (string) ... planning item id
+
+### Unlock A Featured Planning Item [POST]
+
++ Response 200 (application/json)
+
+    + Body
+
+            {
+                
+            }
+
+    + Schema
+
+            {
+
+            }   

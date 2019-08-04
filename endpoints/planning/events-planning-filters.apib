@@ -1,0 +1,1202 @@
+
+## Event Planning Filters Collection [/events_planning_filters] 
+
+### List All Event Planning Filters [GET]
+
++ Response 200 (application/json)
+
+        {
+            "_items": [
+                {
+                    "_updated": "2019-04-09T10:25:08+0000",
+                    "version_creator": "5ab1aabdcdfe38019f0a875a",
+                    "_id": "5cac6f0bbfb76600e35e66f9",
+                    "agendas": [
+                        {
+                            "version_creator": "5ab27997cdfe38023cd29e97",
+                            "_updated": "2018-09-25T16:24:01+0000",
+                            "_links": {
+                                "self": {
+                                    "href": "agenda/5b5addd4bfb76600e34e1484",
+                                    "title": "Agenda"
+                                }
+                            },
+                            "plannings": [
+                                {
+                                    "versioncreated": "2019-02-22T19:51:19+0000",
+                                    "version_creator": "5ab1aabdcdfe38019f0a875a",
+                                    "planning_date": "2019-02-24T11:00:00+0000",
+                                    "_etag": "22480738cddd7c0b5f04c89a6457aad8a3e7ff91",
+                                    "_updated": "2019-02-22T19:51:19+0000",
+                                    "state": "scheduled",
+                                    "flags": {
+                                        "marked_for_not_publication": false
+                                    },
+                                    "_planning_schedule": [
+                                        {
+                                            "scheduled": "2019-02-24T11:00:00+0000",
+                                            "coverage_id": "urn:newsml:sdp-master.test.superdesk.org:2019-02-22T15:37:51.700324:72f4eebf-6df6-4742-8aa2-7bfb48585483"
+                                        },
+                                        {
+                                            "scheduled": "2019-02-24T11:00:00+0000",
+                                            "coverage_id": "urn:newsml:sdp-master.test.superdesk.org:2019-02-22T15:37:51.714518:09847402-a07d-4437-98e6-1fe9202e38d2"
+                                        }
+                                    ],
+                                    "lock_time": null,
+                                    "coverages": [
+                                        {
+                                            "assigned_to": {
+                                                "desk": "5ab1b3ebcdfe38023cd29e55",
+                                                "state": "draft",
+                                                "user": "5ab1aabdcdfe38019f0a875a",
+                                                "priority": 1,
+                                                "assignment_id": "5c70174fbfb76600dc28fdc8"
+                                            },
+                                            "workflow_status": "draft",
+                                            "coverage_id": "urn:newsml:sdp-master.test.superdesk.org:2019-02-22T15:37:51.700324:72f4eebf-6df6-4742-8aa2-7bfb48585483",
+                                            "original_creator": "5ab1aabdcdfe38019f0a875a",
+                                            "planning": {
+                                                "slugline": "Formula 1 - New Event",
+                                                "genre": [
+                                                    {
+                                                        "qcode": "Article",
+                                                        "name": "Article (news)"
+                                                    }
+                                                ],
+                                                "g2_content_type": "text",
+                                                "scheduled": "2019-02-24T11:00:00+0000"
+                                            },
+                                            "news_coverage_status": {
+                                                "qcode": "ncostat:int",
+                                                "label": "Planned",
+                                                "name": "coverage intended"
+                                            },
+                                            "firstcreated": "2019-02-22T15:37:51+0000"
+                                        },
+                                        {
+                                            "assigned_to": {
+                                                "desk": "5ab39795cdfe3800e091fb38",
+                                                "state": "draft",
+                                                "assignment_id": "5c70174fbfb76600dc28fdca"
+                                            },
+                                            "workflow_status": "draft",
+                                            "coverage_id": "urn:newsml:sdp-master.test.superdesk.org:2019-02-22T15:37:51.714518:09847402-a07d-4437-98e6-1fe9202e38d2",
+                                            "original_creator": "5ab1aabdcdfe38019f0a875a",
+                                            "planning": {
+                                                "slugline": "Formula 1 - New Event",
+                                                "genre": null,
+                                                "g2_content_type": "picture",
+                                                "scheduled": "2019-02-24T11:00:00+0000"
+                                            },
+                                            "news_coverage_status": {
+                                                "qcode": "ncostat:int",
+                                                "label": "Planned",
+                                                "name": "coverage intended"
+                                            },
+                                            "firstcreated": "2019-02-22T15:37:51+0000"
+                                        }
+                                    ],
+                                    "item_class": "plinat:newscoverage",
+                                    "name": "New Formula 1 Event",
+                                    "pubstatus": "usable",
+                                    "_type": "planning",
+                                    "lock_action": null,
+                                    "guid": "urn:newsml:sdp-master.test.superdesk.org:2019-02-22T15:37:51.579695:0953fd89-d9e9-4045-bfbf-e1d23bb78cea",
+                                    "place": [
+                                        {
+                                            "qcode": "australia",
+                                            "name": "Australia"
+                                        }
+                                    ],
+                                    "original_creator": "5ab1aabdcdfe38019f0a875a",
+                                    "lock_session": null,
+                                    "agendas": [
+                                        "5b5addd4bfb76600e34e1484"
+                                    ],
+                                    "type": "planning",
+                                    "state_reason": null,
+                                    "firstcreated": "2019-02-22T15:37:51+0000",
+                                    "slugline": "Formula 1 - New Event",
+                                    "_id": "urn:newsml:sdp-master.test.superdesk.org:2019-02-22T15:37:51.579695:0953fd89-d9e9-4045-bfbf-e1d23bb78cea",
+                                    "_created": "2019-02-22T15:37:51+0000",
+                                    "lock_user": null,
+                                    "expired": false,
+                                    "headline": "New Formula 1 Event"
+                                },
+                                {
+                                    "version_creator": "5ab37895cdfe3800e091f9e1",
+                                    "planning_date": "2018-07-27T13:00:00+0000",
+                                    "_etag": "fc804c5ec7972975280d4175472d1facd1ec663e",
+                                    "state": "scheduled",
+                                    "description_text": "Second Practice Session (Hungarian Grand Prix)",
+                                    "flags": {
+                                        "marked_for_not_publication": false
+                                    },
+                                    "_planning_schedule": [
+                                        {
+                                            "scheduled": "2018-07-27T13:00:00+0000",
+                                            "coverage_id": "urn:newsml:sdp-master.test.superdesk.org:2018-07-27T10:27:06.113923:47327422-cfb6-4b0c-b172-6f1fac582a23"
+                                        }
+                                    ],
+                                    "lock_time": null,
+                                    "_updated": "2018-07-27T10:29:42+0000",
+                                    "item_class": "plinat:newscoverage",
+                                    "name": "Second Practice Session (Hungarian Grand Prix)",
+                                    "pubstatus": "usable",
+                                    "_type": "planning",
+                                    "lock_action": null,
+                                    "guid": "urn:newsml:sdp-master.test.superdesk.org:2018-07-27T07:50:07.736688:4c619aab-f569-482a-8ff7-cfd687314eff",
+                                    "event_item": "urn:newsml:sdp-master.test.superdesk.org:2018-03-21T11:23:00.540662:a6e51fc7-d239-469d-a569-bb9431767ed7",
+                                    "original_creator": "5ab37895cdfe3800e091f9e1",
+                                    "lock_session": null,
+                                    "agendas": [
+                                        "5b5addd4bfb76600e34e1484"
+                                    ],
+                                    "type": "planning",
+                                    "firstcreated": "2018-07-27T07:50:07+0000",
+                                    "slugline": "hungypants",
+                                    "versioncreated": "2018-07-27T10:29:42+0000",
+                                    "coverages": [
+                                        {
+                                            "assigned_to": {
+                                                "priority": 2,
+                                                "user": "5ab37895cdfe3800e091f9e1",
+                                                "assigned_date_user": "2018-07-27T10:27:06+0000",
+                                                "desk": "5ab1b3ebcdfe38023cd29e55",
+                                                "state": "assigned",
+                                                "assignor_desk": "5ab37895cdfe3800e091f9e1",
+                                                "assignment_id": "5b5af37abfb76600e34e181f",
+                                                "coverage_provider": null,
+                                                "assignor_user": "5ab37895cdfe3800e091f9e1",
+                                                "assigned_date_desk": "2018-07-27T10:27:06+0000"
+                                            },
+                                            "workflow_status": "active",
+                                            "coverage_id": "urn:newsml:sdp-master.test.superdesk.org:2018-07-27T10:27:06.113923:47327422-cfb6-4b0c-b172-6f1fac582a23",
+                                            "versioncreated": "2018-07-27T10:29:30+0000",
+                                            "version_creator": "5ab37895cdfe3800e091f9e1",
+                                            "planning": {
+                                                "slugline": "hungypants",
+                                                "genre": null,
+                                                "g2_content_type": "text",
+                                                "scheduled": "2018-07-27T13:00:00+0000"
+                                            },
+                                            "news_coverage_status": {
+                                                "qcode": "ncostat:int",
+                                                "label": "Planned",
+                                                "name": "coverage intended"
+                                            },
+                                            "firstcreated": "2018-07-27T10:27:06+0000",
+                                            "original_creator": "5ab37895cdfe3800e091f9e1"
+                                        }
+                                    ],
+                                    "_created": "2018-07-27T07:50:07+0000",
+                                    "lock_user": null,
+                                    "expired": false,
+                                    "_id": "urn:newsml:sdp-master.test.superdesk.org:2018-07-27T07:50:07.736688:4c619aab-f569-482a-8ff7-cfd687314eff"
+                                },
+                                {
+                                    "ednote": "Please make sure to arrive to the venue at least 2 hours ahead.",
+                                    "planning_date": "2019-01-11T13:00:00+0000",
+                                    "place": [
+                                        {
+                                            "qcode": "australia",
+                                            "name": "Australia"
+                                        }
+                                    ],
+                                    "state": "scheduled",
+                                    "anpa_category": [
+                                        {
+                                            "qcode": "sport",
+                                            "translations": {
+                                                "name": {
+                                                    "es": "FIXME1-es",
+                                                    "fr": "FIXME1-fr"
+                                                }
+                                            },
+                                            "subject": "sport",
+                                            "name": "Sport"
+                                        }
+                                    ],
+                                    "description_text": "F1 Race - Gran Prix of Belgium",
+                                    "flags": {
+                                        "marked_for_not_publication": false
+                                    },
+                                    "_planning_schedule": [
+                                        {
+                                            "scheduled": "2019-01-11T13:00:00+0000",
+                                            "coverage_id": "urn:newsml:sdp-master.test.superdesk.org:2019-01-09T15:47:50.732925:16385cc0-7082-4ae5-b030-5a5550b3e2d0"
+                                        },
+                                        {
+                                            "scheduled": "2019-01-11T13:00:00+0000",
+                                            "coverage_id": "urn:newsml:sdp-master.test.superdesk.org:2019-01-09T15:49:16.692900:a83e212e-4da8-43d5-81cb-b0d6474f7bdb"
+                                        }
+                                    ],
+                                    "internal_note": "Please make sure to arrive to the venue at least 2 hours ahead.",
+                                    "slugline": "F1 Race",
+                                    "item_class": "plinat:newscoverage",
+                                    "subject": [
+                                        {
+                                            "qcode": "15019011",
+                                            "parent": "15019000",
+                                            "name": "road race"
+                                        }
+                                    ],
+                                    "name": "F1 Race - Gran Prix of Belgium",
+                                    "version_creator": "5ab1aabdcdfe38019f0a875a",
+                                    "pubstatus": "usable",
+                                    "_type": "planning",
+                                    "lock_action": null,
+                                    "guid": "urn:newsml:sdp-master.test.superdesk.org:2019-01-09T15:44:42.025324:3dbdd535-b666-4125-bcf5-d6a34f2b8ae2",
+                                    "event_item": "urn:newsml:sdp-master.test.superdesk.org:2019-01-09T15:40:58.584634:a0271038-8680-416b-8ad2-3680a403ee15",
+                                    "original_creator": "5ab1aabdcdfe38019f0a875a",
+                                    "headline": "F1 Race - Gran Prix of Belgium opening ceremony",
+                                    "lock_session": null,
+                                    "agendas": [
+                                        "5b5addd4bfb76600e34e1484"
+                                    ],
+                                    "_etag": "3aa14f922702732e151632cdbefbfa3dbf49c48b",
+                                    "type": "planning",
+                                    "state_reason": null,
+                                    "firstcreated": "2019-01-09T15:44:42+0000",
+                                    "lock_time": null,
+                                    "_updated": "2019-01-09T15:52:00+0000",
+                                    "_id": "urn:newsml:sdp-master.test.superdesk.org:2019-01-09T15:44:42.025324:3dbdd535-b666-4125-bcf5-d6a34f2b8ae2",
+                                    "coverages": [
+                                        {
+                                            "assigned_to": {
+                                                "priority": 2,
+                                                "user": "5ab1aabdcdfe38019f0a875a",
+                                                "assigned_date_user": "2019-01-09T15:47:50+0000",
+                                                "desk": "5ab1b3ebcdfe38023cd29e55",
+                                                "state": "assigned",
+                                                "assignor_desk": "5ab1aabdcdfe38019f0a875a",
+                                                "assignment_id": "5c3617a6bfb76600daac3fd6",
+                                                "coverage_provider": null,
+                                                "assignor_user": "5ab1aabdcdfe38019f0a875a",
+                                                "assigned_date_desk": "2019-01-09T15:47:50+0000"
+                                            },
+                                            "workflow_status": "active",
+                                            "coverage_id": "urn:newsml:sdp-master.test.superdesk.org:2019-01-09T15:47:50.732925:16385cc0-7082-4ae5-b030-5a5550b3e2d0",
+                                            "versioncreated": "2019-01-09T15:51:51+0000",
+                                            "version_creator": "5ab1aabdcdfe38019f0a875a",
+                                            "planning": {
+                                                "internal_note": "Please make sure to arrive to the venue at least 2 hours ahead.",
+                                                "slugline": "F1 Race",
+                                                "ednote": "Please make sure to arrive to the venue at least 2 hours ahead.",
+                                                "genre": [
+                                                    {
+                                                        "qcode": "Article",
+                                                        "name": "Article (news)"
+                                                    }
+                                                ],
+                                                "g2_content_type": "text",
+                                                "scheduled": "2019-01-11T13:00:00+0000"
+                                            },
+                                            "news_coverage_status": {
+                                                "qcode": "ncostat:int",
+                                                "label": "Planned",
+                                                "name": "coverage intended"
+                                            },
+                                            "firstcreated": "2019-01-09T15:47:50+0000",
+                                            "original_creator": "5ab1aabdcdfe38019f0a875a"
+                                        },
+                                        {
+                                            "assigned_to": {
+                                                "user": "5ab1aabdcdfe38019f0a875a",
+                                                "assigned_date_user": "2019-01-09T15:49:16+0000",
+                                                "desk": "5ab39795cdfe3800e091fb38",
+                                                "state": "assigned",
+                                                "assignor_desk": "5ab1aabdcdfe38019f0a875a",
+                                                "assignment_id": "5c3617fcbfb76600daac3fdf",
+                                                "coverage_provider": null,
+                                                "assignor_user": "5ab1aabdcdfe38019f0a875a",
+                                                "assigned_date_desk": "2019-01-09T15:49:16+0000"
+                                            },
+                                            "workflow_status": "active",
+                                            "coverage_id": "urn:newsml:sdp-master.test.superdesk.org:2019-01-09T15:49:16.692900:a83e212e-4da8-43d5-81cb-b0d6474f7bdb",
+                                            "versioncreated": "2019-01-09T15:51:55+0000",
+                                            "version_creator": "5ab1aabdcdfe38019f0a875a",
+                                            "planning": {
+                                                "internal_note": "Please provide at least 30 photos from the event. ",
+                                                "slugline": "F1 Race",
+                                                "ednote": "Please make sure to arrive to the venue at least 2 hours ahead.",
+                                                "genre": null,
+                                                "g2_content_type": "picture",
+                                                "scheduled": "2019-01-11T13:00:00+0000"
+                                            },
+                                            "news_coverage_status": {
+                                                "qcode": "ncostat:int",
+                                                "label": "Planned",
+                                                "name": "coverage intended"
+                                            },
+                                            "firstcreated": "2019-01-09T15:49:16+0000",
+                                            "original_creator": "5ab1aabdcdfe38019f0a875a"
+                                        }
+                                    ],
+                                    "_created": "2019-01-09T15:44:42+0000",
+                                    "lock_user": null,
+                                    "expired": false,
+                                    "versioncreated": "2019-01-09T15:52:00+0000"
+                                },
+                                {
+                                    "version_creator": "5ab27997cdfe38023cd29e97",
+                                    "planning_date": "2019-01-25T20:59:53+0000",
+                                    "_etag": "6d5bca47ca70ccac5d2a67e1bac8252bc0ebc90a",
+                                    "state": "draft",
+                                    "flags": {
+                                        "marked_for_not_publication": false
+                                    },
+                                    "_planning_schedule": [
+                                        {
+                                            "scheduled": "2019-01-25T20:59:53+0000",
+                                            "coverage_id": null
+                                        }
+                                    ],
+                                    "lock_time": null,
+                                    "_updated": "2019-01-25T21:03:27+0000",
+                                    "item_class": "plinat:newscoverage",
+                                    "_type": "planning",
+                                    "lock_action": null,
+                                    "guid": "urn:newsml:sdp-master.test.superdesk.org:2019-01-25T20:59:54.516865:faf1f020-0a78-449d-b67f-25ecf532f639",
+                                    "place": [],
+                                    "original_creator": "5ab27997cdfe38023cd29e97",
+                                    "lock_session": null,
+                                    "agendas": [
+                                        "5ab27a0dcdfe38023cd29e9d",
+                                        "5ad777fecdfe3800e0406e9f",
+                                        "5ad77817cdfe3800e0406ea9",
+                                        "5ab3be61cdfe3800e091fd17",
+                                        "5b5addd4bfb76600e34e1484",
+                                        "5b2aa99ccdfe3800e4dbc635"
+                                    ],
+                                    "type": "planning",
+                                    "firstcreated": "2019-01-25T20:59:54+0000",
+                                    "slugline": "asd934",
+                                    "versioncreated": "2019-01-25T21:03:27+0000",
+                                    "coverages": [],
+                                    "_created": "2019-01-25T20:59:54+0000",
+                                    "lock_user": null,
+                                    "expired": false,
+                                    "_id": "urn:newsml:sdp-master.test.superdesk.org:2019-01-25T20:59:54.516865:faf1f020-0a78-449d-b67f-25ecf532f639"
+                                },
+                                {
+                                    "version_creator": "5ab1aabdcdfe38019f0a875a",
+                                    "planning_date": "2019-01-31T12:00:11+0000",
+                                    "_etag": "3bae7b728fd319029eb4db51eb1a75b7e8873b1f",
+                                    "_updated": "2019-01-30T11:34:02+0000",
+                                    "state": "draft",
+                                    "anpa_category": [
+                                        {
+                                            "qcode": "politics",
+                                            "translations": {
+                                                "name": {
+                                                    "es": "FIXME2-es",
+                                                    "fr": "FIXME2-fr"
+                                                }
+                                            },
+                                            "subject": "politics",
+                                            "name": "Politics"
+                                        }
+                                    ],
+                                    "description_text": "Prime minister-press conferencePrime minister-press conferencePrime minister-press conferencePrime minister-press conferencePrime minister-press conference",
+                                    "flags": {
+                                        "marked_for_not_publication": false
+                                    },
+                                    "_planning_schedule": [
+                                        {
+                                            "scheduled": "2019-01-31T12:00:11+0000",
+                                            "coverage_id": "urn:newsml:sdp-master.test.superdesk.org:2019-01-30T11:14:43.393875:f1ecfc00-9893-4d26-992f-362f8d94278f"
+                                        },
+                                        {
+                                            "scheduled": "2019-01-31T12:00:11+0000",
+                                            "coverage_id": "urn:newsml:sdp-master.test.superdesk.org:2019-01-30T11:14:43.470909:93691dff-0f43-4b99-a790-713ca802eee4"
+                                        },
+                                        {
+                                            "scheduled": "2019-01-31T15:00:00+0000",
+                                            "coverage_id": "urn:newsml:sdp-master.test.superdesk.org:2019-01-30T11:14:43.497113:8d38629f-e44b-4713-9a01-47d1476d478b"
+                                        }
+                                    ],
+                                    "lock_time": null,
+                                    "coverages": [
+                                        {
+                                            "assigned_to": {
+                                                "priority": 2,
+                                                "user": "5ab3cb94cdfe3800e091fdc1",
+                                                "assigned_date_user": "2019-01-30T11:21:12+0000",
+                                                "desk": "5c5138d4bfb76600df081b36",
+                                                "state": "completed",
+                                                "assignor_desk": "5ab3cb94cdfe3800e091fdc1",
+                                                "assignment_id": "5c518723bfb76600df081d38",
+                                                "coverage_provider": null,
+                                                "assignor_user": "5ab3cb94cdfe3800e091fdc1",
+                                                "assigned_date_desk": "2019-01-30T11:17:05+0000"
+                                            },
+                                            "workflow_status": "active",
+                                            "coverage_id": "urn:newsml:sdp-master.test.superdesk.org:2019-01-30T11:14:43.393875:f1ecfc00-9893-4d26-992f-362f8d94278f",
+                                            "versioncreated": "2019-01-30T11:18:36+0000",
+                                            "version_creator": "5ab3cb94cdfe3800e091fdc1",
+                                            "planning": {
+                                                "slugline": "Prime minister press conference",
+                                                "genre": [
+                                                    {
+                                                        "qcode": "Analysis",
+                                                        "name": "Analysis"
+                                                    }
+                                                ],
+                                                "g2_content_type": "text",
+                                                "scheduled": "2019-01-31T12:00:11+0000"
+                                            },
+                                            "news_coverage_status": {
+                                                "qcode": "ncostat:int",
+                                                "label": "Planned",
+                                                "name": "coverage intended"
+                                            },
+                                            "firstcreated": "2019-01-30T11:14:43+0000",
+                                            "original_creator": "5ab3cb94cdfe3800e091fdc1"
+                                        },
+                                        {
+                                            "assigned_to": {
+                                                "priority": 2,
+                                                "user": null,
+                                                "assigned_date_user": null,
+                                                "desk": "5bc0893ebfb76600e3158e6e",
+                                                "state": "draft",
+                                                "assignor_desk": "5ab3cb94cdfe3800e091fdc1",
+                                                "assignment_id": "5c518723bfb76600df081d3a",
+                                                "coverage_provider": null,
+                                                "assignor_user": null,
+                                                "assigned_date_desk": "2019-01-30T11:14:43+0000"
+                                            },
+                                            "workflow_status": "draft",
+                                            "coverage_id": "urn:newsml:sdp-master.test.superdesk.org:2019-01-30T11:14:43.470909:93691dff-0f43-4b99-a790-713ca802eee4",
+                                            "original_creator": "5ab3cb94cdfe3800e091fdc1",
+                                            "planning": {
+                                                "slugline": "Prime minister press conference",
+                                                "genre": null,
+                                                "g2_content_type": "picture",
+                                                "scheduled": "2019-01-31T12:00:11+0000"
+                                            },
+                                            "news_coverage_status": {
+                                                "qcode": "ncostat:int",
+                                                "label": "Planned",
+                                                "name": "coverage intended"
+                                            },
+                                            "firstcreated": "2019-01-30T11:14:43+0000"
+                                        },
+                                        {
+                                            "assigned_to": {
+                                                "priority": 1,
+                                                "user": "5ab3cb94cdfe3800e091fdc1",
+                                                "assigned_date_user": "2019-01-30T11:16:33+0000",
+                                                "desk": "5c5138d4bfb76600df081b36",
+                                                "state": "completed",
+                                                "assignor_desk": "5ab3cb94cdfe3800e091fdc1",
+                                                "assignment_id": "5c518791bfb76600df081d42",
+                                                "coverage_provider": null,
+                                                "assignor_user": "5ab3cb94cdfe3800e091fdc1",
+                                                "assigned_date_desk": "2019-01-30T11:16:33+0000"
+                                            },
+                                            "workflow_status": "active",
+                                            "coverage_id": "urn:newsml:sdp-master.test.superdesk.org:2019-01-30T11:14:43.497113:8d38629f-e44b-4713-9a01-47d1476d478b",
+                                            "versioncreated": "2019-01-30T11:16:33+0000",
+                                            "version_creator": "5ab3cb94cdfe3800e091fdc1",
+                                            "planning": {
+                                                "g2_content_type": "video",
+                                                "internal_note": "please shoot his wife too",
+                                                "slugline": "Prime minister press conference-VIDEO",
+                                                "scheduled": "2019-01-31T15:00:00+0000",
+                                                "genre": null
+                                            },
+                                            "news_coverage_status": {
+                                                "qcode": "ncostat:int",
+                                                "label": "Planned",
+                                                "name": "coverage intended"
+                                            },
+                                            "firstcreated": "2019-01-30T11:14:43+0000",
+                                            "original_creator": "5ab3cb94cdfe3800e091fdc1"
+                                        }
+                                    ],
+                                    "item_class": "plinat:newscoverage",
+                                    "subject": [
+                                        {
+                                            "qcode": "03003000",
+                                            "parent": "03000000",
+                                            "name": "famine"
+                                        }
+                                    ],
+                                    "name": "Prime minister press conference",
+                                    "_type": "planning",
+                                    "lock_action": null,
+                                    "guid": "urn:newsml:sdp-master.test.superdesk.org:2019-01-30T11:09:55.117707:8b9e73d1-b39d-4f69-8668-9f63ec80f307",
+                                    "event_item": "urn:newsml:sdp-master.test.superdesk.org:2019-01-30T11:06:30.735527:641e5e8d-4c3e-4fcf-97bf-fe396c6397a2",
+                                    "original_creator": "5ab3cb94cdfe3800e091fdc1",
+                                    "lock_session": null,
+                                    "agendas": [
+                                        "5b5addd4bfb76600e34e1484",
+                                        "5ad47059cdfe3800e255b877",
+                                        "5ab3be61cdfe3800e091fd17"
+                                    ],
+                                    "type": "planning",
+                                    "firstcreated": "2019-01-30T11:09:55+0000",
+                                    "place": [],
+                                    "slugline": "Prime minister press conference",
+                                    "versioncreated": "2019-01-30T11:34:02+0000",
+                                    "_created": "2019-01-30T11:09:55+0000",
+                                    "lock_user": null,
+                                    "expired": false,
+                                    "_id": "urn:newsml:sdp-master.test.superdesk.org:2019-01-30T11:09:55.117707:8b9e73d1-b39d-4f69-8668-9f63ec80f307"
+                                },
+                                {
+                                    "versioncreated": "2018-07-27T09:27:34+0000",
+                                    "ednote": "note ",
+                                    "planning_date": "2018-08-14T06:35:00+0000",
+                                    "_etag": "7dfb04ebe01180f7314a7b4deb8bc57b2e068375",
+                                    "_updated": "2018-07-27T09:27:34+0000",
+                                    "state": "scheduled",
+                                    "flags": {
+                                        "marked_for_not_publication": false
+                                    },
+                                    "_planning_schedule": [
+                                        {
+                                            "scheduled": "2018-08-14T06:35:00+0000",
+                                            "coverage_id": "urn:newsml:sdp-master.test.superdesk.org:2018-07-27T08:52:12.111270:6416a827-23b9-4022-b2ee-450be1c73ee8"
+                                        },
+                                        {
+                                            "scheduled": "2018-08-14T06:35:00+0000",
+                                            "coverage_id": "urn:newsml:sdp-master.test.superdesk.org:2018-07-27T08:53:39.838085:7fae7508-a07d-4716-8e1d-f6bb5e47af4f"
+                                        }
+                                    ],
+                                    "internal_note": "I think that this is visible to only agency staff.",
+                                    "coverages": [
+                                        {
+                                            "assigned_to": {
+                                                "priority": 1,
+                                                "user": "5ab37895cdfe3800e091f9e1",
+                                                "assigned_date_user": "2018-07-27T08:52:12+0000",
+                                                "desk": "5ab1b3ebcdfe38023cd29e55",
+                                                "state": "draft",
+                                                "assignor_desk": "5ab37895cdfe3800e091f9e1",
+                                                "assignment_id": "5b5add3cbfb76600e34e1473",
+                                                "coverage_provider": null,
+                                                "assignor_user": "5ab37895cdfe3800e091f9e1",
+                                                "assigned_date_desk": "2018-07-27T08:52:12+0000"
+                                            },
+                                            "workflow_status": "draft",
+                                            "coverage_id": "urn:newsml:sdp-master.test.superdesk.org:2018-07-27T08:52:12.111270:6416a827-23b9-4022-b2ee-450be1c73ee8",
+                                            "versioncreated": "2018-07-27T08:53:39+0000",
+                                            "version_creator": "5ab37895cdfe3800e091f9e1",
+                                            "planning": {
+                                                "internal_note": "I think that this is visible to only agency staff.",
+                                                "slugline": "hungaryGP02",
+                                                "ednote": "note ",
+                                                "genre": null,
+                                                "g2_content_type": "text",
+                                                "scheduled": "2018-08-14T06:35:00+0000"
+                                            },
+                                            "news_coverage_status": {
+                                                "qcode": "ncostat:int",
+                                                "label": "Planned",
+                                                "name": "coverage intended"
+                                            },
+                                            "firstcreated": "2018-07-27T08:52:12+0000",
+                                            "original_creator": "5ab37895cdfe3800e091f9e1"
+                                        },
+                                        {
+                                            "assigned_to": {
+                                                "priority": 1,
+                                                "user": "5ab3cb94cdfe3800e091fdc1",
+                                                "assigned_date_user": "2018-07-27T08:53:39+0000",
+                                                "desk": "5ab1b3ebcdfe38023cd29e55",
+                                                "state": "draft",
+                                                "assignor_desk": "5ab37895cdfe3800e091f9e1",
+                                                "assignment_id": "5b5add93bfb76600e34e147c",
+                                                "coverage_provider": null,
+                                                "assignor_user": "5ab37895cdfe3800e091f9e1",
+                                                "assigned_date_desk": "2018-07-27T08:53:39+0000"
+                                            },
+                                            "workflow_status": "draft",
+                                            "coverage_id": "urn:newsml:sdp-master.test.superdesk.org:2018-07-27T08:53:39.838085:7fae7508-a07d-4716-8e1d-f6bb5e47af4f",
+                                            "original_creator": "5ab37895cdfe3800e091f9e1",
+                                            "planning": {
+                                                "internal_note": "I think that this is visible to only agency staff.",
+                                                "slugline": "hungaryGP02",
+                                                "ednote": "note ",
+                                                "genre": null,
+                                                "g2_content_type": "video",
+                                                "scheduled": "2018-08-14T06:35:00+0000"
+                                            },
+                                            "news_coverage_status": {
+                                                "qcode": "ncostat:int",
+                                                "label": "Planned",
+                                                "name": "coverage intended"
+                                            },
+                                            "firstcreated": "2018-07-27T08:53:39+0000"
+                                        }
+                                    ],
+                                    "item_class": "plinat:newscoverage",
+                                    "name": "Hungarian Grand Prix thingy",
+                                    "version_creator": "5ab37895cdfe3800e091f9e1",
+                                    "pubstatus": "usable",
+                                    "_type": "planning",
+                                    "lock_action": null,
+                                    "guid": "urn:newsml:sdp-master.test.superdesk.org:2018-07-27T08:52:11.979000:36358a28-ceb9-48db-8e9b-11ee726e0a78",
+                                    "original_creator": "5ab37895cdfe3800e091f9e1",
+                                    "lock_session": null,
+                                    "agendas": [
+                                        "5b5addd4bfb76600e34e1484"
+                                    ],
+                                    "type": "planning",
+                                    "firstcreated": "2018-07-27T08:52:11+0000",
+                                    "lock_time": null,
+                                    "slugline": "hungaryGP02",
+                                    "_id": "urn:newsml:sdp-master.test.superdesk.org:2018-07-27T08:52:11.979000:36358a28-ceb9-48db-8e9b-11ee726e0a78",
+                                    "_created": "2018-07-27T08:52:11+0000",
+                                    "lock_user": null,
+                                    "expired": false,
+                                    "headline": "Placeholder headline"
+                                },
+                                {
+                                    "_id": "urn:newsml:sdp-master.test.superdesk.org:2018-07-27T07:50:23.848106:ba73888d-bd10-4f77-8747-2e9140122eda",
+                                    "version_creator": "5ab37895cdfe3800e091f9e1",
+                                    "planning_date": "2018-08-20T09:00:00+0000",
+                                    "_etag": "f0ed5a499a3406a76c25c12264dbd40437932a2a",
+                                    "state": "scheduled",
+                                    "description_text": "Second Practice Session (Hungarian Grand Prix)",
+                                    "flags": {
+                                        "marked_for_not_publication": false
+                                    },
+                                    "_planning_schedule": [
+                                        {
+                                            "scheduled": "2018-08-20T09:00:00+0000",
+                                            "coverage_id": null
+                                        }
+                                    ],
+                                    "lock_time": null,
+                                    "_updated": "2018-07-27T10:21:20+0000",
+                                    "item_class": "plinat:newscoverage",
+                                    "name": "Second Practice Session (Hungarian Grand Prix)",
+                                    "pubstatus": "usable",
+                                    "_type": "planning",
+                                    "lock_action": null,
+                                    "guid": "urn:newsml:sdp-master.test.superdesk.org:2018-07-27T07:50:23.848106:ba73888d-bd10-4f77-8747-2e9140122eda",
+                                    "event_item": "urn:newsml:sdp-master.test.superdesk.org:2018-03-21T11:23:00.540662:a6e51fc7-d239-469d-a569-bb9431767ed7",
+                                    "original_creator": "5ab37895cdfe3800e091f9e1",
+                                    "lock_session": null,
+                                    "agendas": [
+                                        "5b5addd4bfb76600e34e1484"
+                                    ],
+                                    "type": "planning",
+                                    "firstcreated": "2018-07-27T07:50:23+0000",
+                                    "slugline": "hung01",
+                                    "headline": "Hungarian GP placeholder",
+                                    "coverages": [],
+                                    "_created": "2018-07-27T07:50:23+0000",
+                                    "lock_user": null,
+                                    "expired": false,
+                                    "versioncreated": "2018-07-27T10:21:20+0000"
+                                },
+                                {
+                                    "ednote": "------------------------------------------------------------\nEvent Rescheduled\nReason: Was: \nEVENT STARTS\n01/08/2018\nEVENT ENDS\n31/08/2018\n\n",
+                                    "planning_date": "2018-08-23T22:00:47+0000",
+                                    "_etag": "9a306adabc451f7f1c5f4e34989cd5953b9f433d",
+                                    "_updated": "2018-08-23T06:38:12+0000",
+                                    "state": "scheduled",
+                                    "anpa_category": [
+                                        {
+                                            "qcode": "a",
+                                            "translations": {
+                                                "name": {
+                                                    "es": "FIXME1-es",
+                                                    "fr": "FIXME1-fr"
+                                                }
+                                            },
+                                            "subject": "sport",
+                                            "name": "sport"
+                                        }
+                                    ],
+                                    "flags": {
+                                        "marked_for_not_publication": false
+                                    },
+                                    "_planning_schedule": [
+                                        {
+                                            "scheduled": "2018-08-23T22:00:47+0000",
+                                            "coverage_id": null
+                                        }
+                                    ],
+                                    "lock_time": null,
+                                    "coverages": [],
+                                    "item_class": "plinat:newscoverage",
+                                    "name": "Hungarian GP",
+                                    "version_creator": "5ab27997cdfe38023cd29e97",
+                                    "pubstatus": "usable",
+                                    "_type": "planning",
+                                    "lock_action": null,
+                                    "guid": "urn:newsml:sdp-master.test.superdesk.org:2018-08-23T06:37:10.424607:a080e665-55f2-4c83-827b-79cd42c41129",
+                                    "event_item": "urn:newsml:sdp-master.test.superdesk.org:2018-07-27T09:13:32.211431:507b0419-1cc6-4323-91ed-894cccfb67e3",
+                                    "original_creator": "5ab27997cdfe38023cd29e97",
+                                    "lock_session": null,
+                                    "agendas": [
+                                        "5b5addd4bfb76600e34e1484"
+                                    ],
+                                    "type": "planning",
+                                    "firstcreated": "2018-07-27T09:17:25+0000",
+                                    "slugline": "HungarianGPd",
+                                    "versioncreated": "2018-08-23T06:38:12+0000",
+                                    "_created": "2018-08-23T06:37:10+0000",
+                                    "lock_user": null,
+                                    "_id": "urn:newsml:sdp-master.test.superdesk.org:2018-08-23T06:37:10.424607:a080e665-55f2-4c83-827b-79cd42c41129"
+                                },
+                                {
+                                    "ednote": "------------------------------------------------------------\nEvent Rescheduled\nReason: Was: \nEVENT STARTS\n01/08/2018\nEVENT ENDS\n31/08/2018\n\n",
+                                    "planning_date": "2018-08-14T22:00:47+0000",
+                                    "_etag": "8c6be47c66f1748f875652f33b95381c4b921b35",
+                                    "_updated": "2018-08-16T13:31:46+0000",
+                                    "state": "rescheduled",
+                                    "anpa_category": [
+                                        {
+                                            "qcode": "a",
+                                            "translations": {
+                                                "name": {
+                                                    "es": "FIXME1-es",
+                                                    "fr": "FIXME1-fr"
+                                                }
+                                            },
+                                            "subject": "sport",
+                                            "name": "sport"
+                                        }
+                                    ],
+                                    "flags": {
+                                        "marked_for_not_publication": false
+                                    },
+                                    "_planning_schedule": [
+                                        {
+                                            "scheduled": "2018-08-14T22:00:47+0000",
+                                            "coverage_id": null
+                                        }
+                                    ],
+                                    "lock_time": null,
+                                    "coverages": [],
+                                    "item_class": "plinat:newscoverage",
+                                    "name": "Hungarian GP",
+                                    "version_creator": "5ab27997cdfe38023cd29e97",
+                                    "pubstatus": "usable",
+                                    "_type": "planning",
+                                    "lock_action": null,
+                                    "guid": "urn:newsml:sdp-master.test.superdesk.org:2018-07-27T09:17:25.161977:30752f1a-ba21-4f8d-a608-1e38996f219f",
+                                    "event_item": "urn:newsml:sdp-master.test.superdesk.org:2018-07-27T09:13:32.211431:507b0419-1cc6-4323-91ed-894cccfb67e3",
+                                    "original_creator": "5ab37895cdfe3800e091f9e1",
+                                    "lock_session": null,
+                                    "agendas": [
+                                        "5b5addd4bfb76600e34e1484"
+                                    ],
+                                    "type": "planning",
+                                    "firstcreated": "2018-07-27T09:17:25+0000",
+                                    "slugline": "HungarianGPd",
+                                    "_id": "urn:newsml:sdp-master.test.superdesk.org:2018-07-27T09:17:25.161977:30752f1a-ba21-4f8d-a608-1e38996f219f",
+                                    "_created": "2018-07-27T09:17:25+0000",
+                                    "lock_user": null,
+                                    "expired": false,
+                                    "versioncreated": "2018-08-14T11:10:23+0000"
+                                },
+                                {
+                                    "version_creator": "5ab27997cdfe38023cd29e97",
+                                    "planning_date": "2018-09-25T04:00:00+0000",
+                                    "_etag": "b27ef43069993c8d80a023defd5860614e5da1a7",
+                                    "state": "draft",
+                                    "flags": {
+                                        "marked_for_not_publication": false
+                                    },
+                                    "_planning_schedule": [
+                                        {
+                                            "scheduled": "2018-09-25T04:00:00+0000",
+                                            "coverage_id": "urn:newsml:sdp-master.test.superdesk.org:2018-09-25T15:16:17.950828:eb033cff-3a54-409e-a680-ab74e819c51c"
+                                        },
+                                        {
+                                            "scheduled": "2018-09-25T04:00:00+0000",
+                                            "coverage_id": "urn:newsml:sdp-master.test.superdesk.org:2018-09-25T15:19:22.769455:96e23721-2af8-4f41-8909-b6f7de381237"
+                                        }
+                                    ],
+                                    "lock_time": null,
+                                    "_updated": "2018-09-25T20:40:19+0000",
+                                    "item_class": "plinat:newscoverage",
+                                    "name": "Evet02898",
+                                    "_type": "planning",
+                                    "lock_action": null,
+                                    "guid": "urn:newsml:sdp-master.test.superdesk.org:2018-09-25T14:20:39.530088:9bf68b15-8957-46e4-94bd-6a151e138949",
+                                    "event_item": "urn:newsml:sdp-master.test.superdesk.org:2018-09-25T14:20:30.595794:95712642-5726-4acf-8043-aa0ffeca9c84",
+                                    "original_creator": "5ab27997cdfe38023cd29e97",
+                                    "lock_session": null,
+                                    "agendas": [
+                                        "5b5addd4bfb76600e34e1484",
+                                        "5aeaa68acdfe3800e0f3a90c",
+                                        "5aeaa68acdfe3800e0f3a90c"
+                                    ],
+                                    "type": "planning",
+                                    "firstcreated": "2018-09-25T14:20:39+0000",
+                                    "slugline": "Evet02898",
+                                    "versioncreated": "2018-09-25T20:40:19+0000",
+                                    "coverages": [
+                                        {
+                                            "assigned_to": {
+                                                "priority": 2,
+                                                "user": "5ab27997cdfe38023cd29e97",
+                                                "assigned_date_user": "2018-09-25T15:16:17+0000",
+                                                "desk": "5ab27ab6cdfe38023cd29eac",
+                                                "state": "assigned",
+                                                "assignor_desk": "5ab27997cdfe38023cd29e97",
+                                                "assignment_id": "5baa5141bfb76600e5e1b46a",
+                                                "coverage_provider": null,
+                                                "assignor_user": "5ab27997cdfe38023cd29e97",
+                                                "assigned_date_desk": "2018-09-25T15:16:17+0000"
+                                            },
+                                            "workflow_status": "active",
+                                            "coverage_id": "urn:newsml:sdp-master.test.superdesk.org:2018-09-25T15:16:17.950828:eb033cff-3a54-409e-a680-ab74e819c51c",
+                                            "versioncreated": "2018-09-25T15:16:20+0000",
+                                            "version_creator": "5ab27997cdfe38023cd29e97",
+                                            "planning": {
+                                                "slugline": "Evet02898",
+                                                "genre": [
+                                                    {
+                                                        "qcode": "Article",
+                                                        "name": "Article (news)"
+                                                    }
+                                                ],
+                                                "g2_content_type": "text",
+                                                "scheduled": "2018-09-25T04:00:00+0000"
+                                            },
+                                            "news_coverage_status": {
+                                                "qcode": "ncostat:int",
+                                                "label": "Planned",
+                                                "name": "coverage intended"
+                                            },
+                                            "firstcreated": "2018-09-25T15:16:17+0000",
+                                            "original_creator": "5ab27997cdfe38023cd29e97"
+                                        },
+                                        {
+                                            "assigned_to": {
+                                                "priority": 2,
+                                                "user": "5ab27997cdfe38023cd29e97",
+                                                "assigned_date_user": "2018-09-25T15:19:22+0000",
+                                                "desk": "5ab27ab6cdfe38023cd29eac",
+                                                "state": "assigned",
+                                                "assignor_desk": "5ab27997cdfe38023cd29e97",
+                                                "assignment_id": "5baa51fabfb76600e5e1b491",
+                                                "coverage_provider": null,
+                                                "assignor_user": "5ab27997cdfe38023cd29e97",
+                                                "assigned_date_desk": "2018-09-25T15:19:22+0000"
+                                            },
+                                            "workflow_status": "active",
+                                            "coverage_id": "urn:newsml:sdp-master.test.superdesk.org:2018-09-25T15:19:22.769455:96e23721-2af8-4f41-8909-b6f7de381237",
+                                            "versioncreated": "2018-09-25T15:19:24+0000",
+                                            "version_creator": "5ab27997cdfe38023cd29e97",
+                                            "planning": {
+                                                "slugline": "Evet02898",
+                                                "genre": [
+                                                    {
+                                                        "qcode": "Article",
+                                                        "name": "Article (news)"
+                                                    }
+                                                ],
+                                                "g2_content_type": "text",
+                                                "scheduled": "2018-09-25T04:00:00+0000"
+                                            },
+                                            "news_coverage_status": {
+                                                "qcode": "ncostat:int",
+                                                "label": "Planned",
+                                                "name": "coverage intended"
+                                            },
+                                            "firstcreated": "2018-09-25T15:19:22+0000",
+                                            "original_creator": "5ab27997cdfe38023cd29e97"
+                                        }
+                                    ],
+                                    "_created": "2018-09-25T14:20:39+0000",
+                                    "lock_user": null,
+                                    "expired": false,
+                                    "_id": "urn:newsml:sdp-master.test.superdesk.org:2018-09-25T14:20:39.530088:9bf68b15-8957-46e4-94bd-6a151e138949"
+                                }
+                            ],
+                            "_etag": "6ff72805a665f2f137a0b2d1578b75bd28eb36e2",
+                            "original_creator": "5ab37895cdfe3800e091f9e1",
+                            "_created": "2018-07-27T08:54:44+0000",
+                            "name": "Formula 1",
+                            "is_enabled": true,
+                            "_id": "5b5addd4bfb76600e34e1484"
+                        }
+                    ],
+                    "original_creator": "5ab1aabdcdfe38019f0a875a",
+                    "_created": "2019-04-09T10:08:11+0000",
+                    "_etag": "3caa54ab8b3f9661e65fb972589a41e469f75b39",
+                    "_links": {
+                        "self": {
+                            "href": "events_planning_filters/5cac6f0bbfb76600e35e66f9",
+                            "title": "Events_planning_filter"
+                        }
+                    },
+                    "name": "test",
+                    "calendars": [
+                        {
+                            "qcode": "sport",
+                            "is_active": true,
+                            "name": "Sport"
+                        },
+                        {
+                            "qcode": "entertainment",
+                            "is_active": true,
+                            "name": "Entertainment"
+                        }
+                    ]
+                }
+            ]
+        }
+
+
+### Create A New Event Planning Filter [POST]
+
+Creation of the event planning filter fail is:
+- there is no agenda or calendar provided 
+- name is not unique
+
++ Request (application/json)
+
+    + Body
+        
+            {
+                "name": "Test",
+                "calendars": [{"name": "finance", "qcode": "finance"}],
+                "agendas": []
+            }
+
+    + Schema
+
+            {
+                "name": {
+                    "type": "string",
+                    "iunique": true,
+                    "required": true
+                },
+                "agendas": {
+                    "type": "list",
+                },
+                "calendars": {
+                    "type": "list",
+                },
+                "original_creator":  {"type": "string"},
+                "version_creator": {"type": "string"},
+            }
+
++ Response 201 (application/json)
+
++ Response 400 (application/json)
+
++ Response 412 (application/json)
+
+
+## A Event Planning Filter [/events_planning_filter/{_id}]
+
++ Parameters
+
+    - _id (string) ... event planning filter id
+
+### Details of A Event Planning Filter [GET]
+
++ Response 200 (application/json)
+
+    + Body
+
+            {
+                "_links": {
+                    "collection": {
+                        "href": "events_planning_filters",
+                        "title": "events_planning_filters"
+                    },
+                    "self": {
+                        "href": "events_planning_filters/5cac6f0bbfb76600e35e66f9",
+                        "title": "Events_planning_filter"
+                    },
+                    "parent": {
+                        "href": "/",
+                        "title": "home"
+                    }
+                },
+                "_updated": "2019-04-09T10:25:08+0000",
+                "version_creator": "5ab1aabdcdfe38019f0a875a",
+                "_id": "5cac6f0bbfb76600e35e66f9",
+                "agendas": [
+                    {
+                        "version_creator": "5ab27997cdfe38023cd29e97",
+                        "_updated": "2018-09-25T16:24:01+0000",
+                        "_links": {
+                            "self": {
+                                "href": "agenda/5b5addd4bfb76600e34e1484",
+                                "title": "Agenda"
+                            }
+                        },
+                        "plannings": [
+                            {
+                                "versioncreated": "2018-07-27T09:27:34+0000",
+                                "ednote": "note ",
+                                "planning_date": "2018-08-14T06:35:00+0000",
+                                "_etag": "7dfb04ebe01180f7314a7b4deb8bc57b2e068375",
+                                "_updated": "2018-07-27T09:27:34+0000",
+                                "state": "scheduled",
+                                "flags": {
+                                    "marked_for_not_publication": false
+                                },
+                                "_planning_schedule": [
+                                    {
+                                        "scheduled": "2018-08-14T06:35:00+0000",
+                                        "coverage_id": "urn:newsml:sdp-master.test.superdesk.org:2018-07-27T08:52:12.111270:6416a827-23b9-4022-b2ee-450be1c73ee8"
+                                    },
+                                    {
+                                        "scheduled": "2018-08-14T06:35:00+0000",
+                                        "coverage_id": "urn:newsml:sdp-master.test.superdesk.org:2018-07-27T08:53:39.838085:7fae7508-a07d-4716-8e1d-f6bb5e47af4f"
+                                    }
+                                ],
+                                "internal_note": "I think that this is visible to only agency staff.",
+                                "coverages": [
+                                    {
+                                        "assigned_to": {
+                                            "priority": 1,
+                                            "user": "5ab37895cdfe3800e091f9e1",
+                                            "assigned_date_user": "2018-07-27T08:52:12+0000",
+                                            "desk": "5ab1b3ebcdfe38023cd29e55",
+                                            "state": "draft",
+                                            "assignor_desk": "5ab37895cdfe3800e091f9e1",
+                                            "assignment_id": "5b5add3cbfb76600e34e1473",
+                                            "coverage_provider": null,
+                                            "assignor_user": "5ab37895cdfe3800e091f9e1",
+                                            "assigned_date_desk": "2018-07-27T08:52:12+0000"
+                                        },
+                                        "workflow_status": "draft",
+                                        "coverage_id": "urn:newsml:sdp-master.test.superdesk.org:2018-07-27T08:52:12.111270:6416a827-23b9-4022-b2ee-450be1c73ee8",
+                                        "versioncreated": "2018-07-27T08:53:39+0000",
+                                        "version_creator": "5ab37895cdfe3800e091f9e1",
+                                        "planning": {
+                                            "internal_note": "I think that this is visible to only agency staff.",
+                                            "slugline": "hungaryGP02",
+                                            "ednote": "note ",
+                                            "genre": null,
+                                            "g2_content_type": "text",
+                                            "scheduled": "2018-08-14T06:35:00+0000"
+                                        },
+                                        "news_coverage_status": {
+                                            "qcode": "ncostat:int",
+                                            "label": "Planned",
+                                            "name": "coverage intended"
+                                        },
+                                        "firstcreated": "2018-07-27T08:52:12+0000",
+                                        "original_creator": "5ab37895cdfe3800e091f9e1"
+                                    },
+                                    {
+                                        "assigned_to": {
+                                            "priority": 1,
+                                            "user": "5ab3cb94cdfe3800e091fdc1",
+                                            "assigned_date_user": "2018-07-27T08:53:39+0000",
+                                            "desk": "5ab1b3ebcdfe38023cd29e55",
+                                            "state": "draft",
+                                            "assignor_desk": "5ab37895cdfe3800e091f9e1",
+                                            "assignment_id": "5b5add93bfb76600e34e147c",
+                                            "coverage_provider": null,
+                                            "assignor_user": "5ab37895cdfe3800e091f9e1",
+                                            "assigned_date_desk": "2018-07-27T08:53:39+0000"
+                                        },
+                                        "workflow_status": "draft",
+                                        "coverage_id": "urn:newsml:sdp-master.test.superdesk.org:2018-07-27T08:53:39.838085:7fae7508-a07d-4716-8e1d-f6bb5e47af4f",
+                                        "original_creator": "5ab37895cdfe3800e091f9e1",
+                                        "planning": {
+                                            "internal_note": "I think that this is visible to only agency staff.",
+                                            "slugline": "hungaryGP02",
+                                            "ednote": "note ",
+                                            "genre": null,
+                                            "g2_content_type": "video",
+                                            "scheduled": "2018-08-14T06:35:00+0000"
+                                        },
+                                        "news_coverage_status": {
+                                            "qcode": "ncostat:int",
+                                            "label": "Planned",
+                                            "name": "coverage intended"
+                                        },
+                                        "firstcreated": "2018-07-27T08:53:39+0000"
+                                    }
+                                ],
+                                "item_class": "plinat:newscoverage",
+                                "name": "Hungarian Grand Prix thingy",
+                                "version_creator": "5ab37895cdfe3800e091f9e1",
+                                "pubstatus": "usable",
+                                "_type": "planning",
+                                "lock_action": null,
+                                "guid": "urn:newsml:sdp-master.test.superdesk.org:2018-07-27T08:52:11.979000:36358a28-ceb9-48db-8e9b-11ee726e0a78",
+                                "original_creator": "5ab37895cdfe3800e091f9e1",
+                                "lock_session": null,
+                                "agendas": [
+                                    "5b5addd4bfb76600e34e1484"
+                                ],
+                                "type": "planning",
+                                "firstcreated": "2018-07-27T08:52:11+0000",
+                                "lock_time": null,
+                                "slugline": "hungaryGP02",
+                                "_id": "urn:newsml:sdp-master.test.superdesk.org:2018-07-27T08:52:11.979000:36358a28-ceb9-48db-8e9b-11ee726e0a78",
+                                "_created": "2018-07-27T08:52:11+0000",
+                                "lock_user": null,
+                                "expired": false,
+                                "headline": "Placeholder headline"
+                            }
+                        ],
+                        "_etag": "6ff72805a665f2f137a0b2d1578b75bd28eb36e2",
+                        "original_creator": "5ab37895cdfe3800e091f9e1",
+                        "_created": "2018-07-27T08:54:44+0000",
+                        "name": "Formula 1",
+                        "is_enabled": true,
+                        "_id": "5b5addd4bfb76600e34e1484"
+                    }
+                ],
+                "original_creator": "5ab1aabdcdfe38019f0a875a",
+                "name": "test",
+                "calendars": [
+                    {
+                        "qcode": "sport",
+                        "is_active": true,
+                        "name": "Sport"
+                    },
+                    {
+                        "qcode": "entertainment",
+                        "is_active": true,
+                        "name": "Entertainment"
+                    }
+                ]
+            }
+           
+
+### Update A Event Planning Filter [PATCH]
+
+Update of the event planning filter fail is:
+- there is no agenda or calendar provided 
+- name is not unique
+
++ Request (application/json)
+
+    + Headers
+    
+            If-Match: {_etag}
+    
+    + Body
+
+            { 
+                "name": "new name"
+            }
+
++ Response 200 (application/json)
+
++ Response 403 (application/json)
+
+## Delete A Event Planning Filter [DELETE]      
+
+Deletes the event planning filter by given id.
+
++ Request (application/json)
+
+        {}
+
++ Response 204 (application/json)
+
++ Response 412 (application/json)

@@ -1,0 +1,124 @@
+## Event Planning Search Collection [/planning_search{?source}] 
+
+Basic search returns event and planning documents where the search keyword(s) are matched in any of the fields available in ElasticSearch. 
+Query is passed in **source** field and the details of query language in use is [here](https://www.elastic.co/guide/en/elasticsearch/reference/2.4/query-dsl.html)
+
+### Perform A Search [GET]
+
++ Parameters
+
+    - source: Elastic search query string query
+
++ Request
+
+        {
+            /api/planning_search?
+                source={"query":{"bool":{"must":[{"query_string":{"query":"slugline:slugline"}}]}}}
+        }
+
++ Response 200 (application/json)
+
+        {
+            "_items": [
+                {
+                    "version_creator": "5ab27997cdfe38023cd29e97",
+                    "planning_date": "2018-03-21T15:33:02+0000",
+                    "_etag": "a4bb1bfc75a7271a06de446fc892e0cb0a70d3c8",
+                    "_updated": "2018-03-21T15:34:55+0000",
+                    "state": "draft",
+                    "anpa_category": [
+                        {
+                            "qcode": "f1",
+                            "translations": {
+                                "name": {
+                                    "es": "FIXME1-es",
+                                    "fr": "FIXME1-fr"
+                                }
+                            },
+                            "subject": "",
+                            "name": "FIXME1"
+                        },
+                        {
+                            "qcode": "f2",
+                            "translations": {
+                                "name": {
+                                    "es": "FIXME2-es",
+                                    "fr": "FIXME2-fr"
+                                }
+                            },
+                            "subject": "",
+                            "name": "FIXME2"
+                        }
+                    ],
+                    "flags": {
+                        "marked_for_not_publication": true
+                    },
+                    "lock_time": null,
+                    "coverages": [
+                        {
+                            "assigned_to": {
+                                "priority": 2,
+                                "user": "5ab27997cdfe38023cd29e97",
+                                "assigned_date_user": "2018-03-21T15:34:53+0000",
+                                "desk": "5ab27ab6cdfe38023cd29eac",
+                                "state": "draft",
+                                "assignor_desk": "5ab27997cdfe38023cd29e97",
+                                "assignment_id": "5ab27b9dcdfe38023cd29ed8",
+                                "coverage_provider": null,
+                                "assignor_user": "5ab27997cdfe38023cd29e97",
+                                "assigned_date_desk": "2018-03-21T15:34:53+0000"
+                            },
+                            "workflow_status": "draft",
+                            "coverage_id": "urn:newsml:sdp-master.test.superdesk.org:2018-03-21T15:34:53.138479:970e15c5-ed8c-4311-abb4-c59ef873dcb9",
+                            "original_creator": "5ab27997cdfe38023cd29e97",
+                            "planning": {
+                                "g2_content_type": "text",
+                                "genre": [
+                                    {
+                                        "qcode": "Article",
+                                        "name": "Article (news)"
+                                    }
+                                ],
+                                "slugline": "plnon12",
+                                "scheduled": "2018-03-21T15:33:02+0000"
+                            },
+                            "news_coverage_status": {
+                                "qcode": "ncostat:int",
+                                "label": "Planned",
+                                "name": "coverage intended"
+                            },
+                            "firstcreated": "2018-03-21T15:34:53+0000"
+                        }
+                    ],
+                    "type": "planning",
+                    "subject": [
+                        {
+                            "qcode": "01001000",
+                            "parent": "01000000",
+                            "name": "archaeology"
+                        }
+                    ],
+                    "_type": "planning",
+                    "lock_action": null,
+                    "guid": "urn:newsml:sdp-master.test.superdesk.org:2018-03-21T15:33:18.981160:02f87be4-9045-4b91-af2d-25fa5190dd31",
+                    "_links": {
+                        "self": {
+                            "href": "/planning/urn:newsml:sdp-master.test.superdesk.org:2018-03-21T15:33:18.981160:02f87be4-9045-4b91-af2d-25fa5190dd31",
+                            "title": "planning"
+                        }
+                    },
+                    "original_creator": "5ab27997cdfe38023cd29e97",
+                    "lock_session": null,
+                    "agendas": [
+                        "5ab27a0dcdfe38023cd29e9d"
+                    ],
+                    "slugline": "plnon12",
+                    "_id": "urn:newsml:sdp-master.test.superdesk.org:2018-03-21T15:33:18.981160:02f87be4-9045-4b91-af2d-25fa5190dd31",
+                    "urgency": 2,
+                    "_created": "2018-03-21T15:33:18+0000",
+                    "lock_user": null,
+                    "item_class": "plinat:newscoverage"
+                }
+            ]
+        }
+

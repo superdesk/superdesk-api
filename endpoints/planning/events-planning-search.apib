@@ -1,6 +1,6 @@
-## Event Planning Search Collection [/event_planning_search{?date_filter}{?full_text}{?max_results}{?page}{?posted}{?spike_state}{?start_date}{?tz_offset}{?anpa_category}{?state}{?subject}] 
+## Event Planning Search Collection [/event_planning_search{?date_filter}{?full_text}{?max_results}{?page}{?posted}{?spike_state}{?calendars}{?agendas}{?start_date}{?tz_offset}{?anpa_category}{?state}{?subject}] 
 
-Basic search returns the documents where the search keyword(s) are matched in any of the fields available in ElasticSearch. 
+Basic search returns event and planning documents where the search keyword(s) are matched in any of the fields available in ElasticSearch. 
 Query is passed in **source** field and the details of query language in use is [here](https://www.elastic.co/guide/en/elasticsearch/reference/2.4/query-dsl.html)
 
 ### Perform A Search [GET]
@@ -17,6 +17,8 @@ Query is passed in **source** field and the details of query language in use is 
     - anpa_category: Anpa category to search (ex: ["politics"])
     - state: State of the item (ex: ["scheduled"])
     - subject: Subject of the item (ex: ["03000000"])
+    - calendars: List of calendars (ex: ["sports"])
+    - agendas: List of agendas (ex: ["sports"]) 
 
 + Request
 
