@@ -355,3 +355,37 @@ List of resources related to ingest providers in the API.
 <!-- include(endpoints/planning/planning-search.apib) -->
 
 
+
+# Group Assignments
+
+**The life cycle of an Assignment**
+
+- A Coverage can be assigned to a desk or to a desk and user. From within planning, for example, an editor may decide to assign a coverage to a desk or bureau and allow them to decide which staffer does the work, or the editor may decide to assign directly to a user.
+ 
+- If a coverage is assigned to a desk, a user needs to be a member of that desk in order to see it in their list of assignments, and the item will be created on that desk.
+
+- The work for a coverage assignment should always be created on a desk. It should not be possible to fulfill a coverage within a personal workspace
+
+- The default (initial) state of an assignment is ‘assigned’ This means that the Coverage is assigned to workflow but work has not started.
+
+- Once an associated (linked) content item is created, the assignment status is changed to “in progress”. 
+
+- When an assignment is configured with a ‘coverage provider’ the ‘start working’ action to create a new content item will not be available.
+
+- When an ‘in progress’ text assignment is completed by a user on an authoring desk they will then send the item to a production desk. In this workflow case, the assignment status will change to ‘submitted’ and there will also be a change of desk assignment so that the story assignment now appears in the assignment list for the production desk (with no [assigned_user]). When a user on the production desk then edits the submitted story, the assignment status will again change to ‘in progress’ and the [assigned_user] value will reflect the current lock user.
+
+- Once/When an item linked to an Assignment is published, the assignment status is changed to “completed”.
+
+- A User can also manually mark an assignment as complete.
+
+- Once an assignment has been completed, no further actions are available against it. For example, a User cannot “re-assign” an assignment if it has already been completed. 
+
+- If a user who has accepted an assignment partially completes it before reassigning it back to the desk (or to another user), any content that may have already been created from the Assignment is left untouched. This might for example occur if a user who is working on an assignment needs to switch to another, leaving their original assignment to be picked up by someone else.
+
+- A coverage (and its related Assignment) can be cancelled. If there has been any content already generated for a cancelled coverage the content will be left ‘as is’ in the system, but with all references to planning removed
+
+
+
+<!-- include(endpoints/planning/assignments.apib) -->
+
+

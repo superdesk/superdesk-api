@@ -1,0 +1,510 @@
+## Assignments Collection [/assignments] 
+
+### List All Assignments [GET]
+
++ Response 200 (application/json)
+
+        {
+            "_items": [
+                {
+                    "_etag": "1050c6cf9e22cef7089ed2b59058bc5409c32752",
+                    "priority": 2,
+                    "_type": "assignments",
+                    "type": "assignment",
+                    "original_creator": "5ab27997cdfe38023cd29e97",
+                    "coverage_item": "urn:newsml:sdp-master.test.superdesk.org:2018-03-22T18:51:36.165788:25356b0c-f6ca-40ba-afca-faefdd942480",
+                    "_id": "5ab3fb38cdfe3800e091ff40",
+                    "planning_item": "urn:newsml:sdp-master.test.superdesk.org:2018-03-22T14:54:30.977347:747b01d3-117b-42b8-9229-34ddbcbadeb3",
+                    "_created": "2018-03-22T18:51:36+0000",
+                    "_links": {
+                        "self": {
+                            "href": "assignments/5ab3fb38cdfe3800e091ff40",
+                            "title": "Assignment"
+                        }
+                    },
+                    "_updated": "2018-03-22T18:52:09+0000",
+                    "assigned_to": {
+                        "priority": 2,
+                        "assigned_date_desk": "2018-03-22T18:51:36+0000",
+                        "desk": "5ab27ab6cdfe38023cd29eac",
+                        "coverage_provider": null,
+                        "assigned_date_user": "2018-03-22T18:51:36+0000",
+                        "assignor_desk": "5ab27997cdfe38023cd29e97",
+                        "assignor_user": "5ab27997cdfe38023cd29e97",
+                        "state": "draft",
+                        "assignment_id": "5ab3fb38cdfe3800e091ff40",
+                        "user": "5ab27997cdfe38023cd29e97"
+                    },
+                    "planning": {
+                        "news_coverage_status": {
+                            "name": "coverage not intended",
+                            "qcode": "ncostat:notint",
+                            "label": "Not planned"
+                        },
+                        "internal_note": "\n\n------------------------------------------------------------\nCoverage cancelled\n",
+                        "slugline": "ed note tests",
+                        "genre": [
+                            {
+                                "name": "Article (news)",
+                                "qcode": "Article"
+                            }
+                        ],
+                        "scheduled": "2018-03-22T14:54:14+0000",
+                        "ednote": "ed note testw23",
+                        "g2_content_type": "text"
+                    }
+                },
+                {
+                    "_etag": "37e5fb877cf1692bb67f86bbaf805621d98dbdf0",
+                    "priority": 2,
+                    "_links": {
+                        "self": {
+                            "href": "assignments/5abbc03fcdfe3800e5bb4d84",
+                            "title": "Assignment"
+                        }
+                    },
+                    "_type": "assignments",
+                    "lock_session": null,
+                    "planning": {
+                        "slugline": "story added to planning",
+                        "genre": [
+                            {
+                                "name": "Article (news)",
+                                "qcode": "Article"
+                            }
+                        ],
+                        "scheduled": "2018-03-29T03:59:59+0000",
+                        "ednote": "",
+                        "g2_content_type": "text"
+                    },
+                    "item_ids": [
+                        "urn:newsml:sdp-master.test.superdesk.org:2018-03-28T16:17:19.333892:0b4e088c-a0a9-49bd-ab86-ccb875e7f765"
+                    ],
+                    "original_creator": "5ab27997cdfe38023cd29e97",
+                    "lock_user": null,
+                    "coverage_item": "urn:newsml:sdp-master.test.superdesk.org:2018-03-28T16:18:07.074949:b8dbb9bb-e745-40c2-af8d-7ca1c577041c",
+                    "planning_item": "urn:newsml:sdp-master.test.superdesk.org:2018-03-27T18:12:41.857995:f4a07676-0be3-4146-88ae-dac39b9f0c61",
+                    "lock_action": null,
+                    "lock_time": null,
+                    "version_creator": "5ab27997cdfe38023cd29e97",
+                    "_created": "2018-03-28T16:18:07+0000",
+                    "_id": "5abbc03fcdfe3800e5bb4d84",
+                    "_updated": "2018-03-28T16:18:07+0000",
+                    "assigned_to": {
+                        "assigned_date_desk": "2018-03-28T16:18:07+0000",
+                        "desk": "5ab27ab6cdfe38023cd29eac",
+                        "assignor_user": "5ab27997cdfe38023cd29e97",
+                        "assignor_desk": "5ab27997cdfe38023cd29e97",
+                        "assigned_date_user": "2018-03-28T16:18:07+0000",
+                        "state": "in_progress",
+                        "user": "5ab27997cdfe38023cd29e97"
+                    },
+                    "type": "assignment"
+                }
+            ]
+        }
+
+
+### Create A New Assignment [POST]
+
+An assigment can have the following states:
+
+- draft: Assignments are created in draft when coverage is in draft status
+- assigned - The work of fulfilling the coverage has been assigned to a Desk or to a Desk & User in combination
+- in progress - Work has been started on the coverage assignment and a content item has been linked
+- completed - Work has been completed (published in the case of a text item)
+- submitted - Work has been sent from one desk to another desk.
+- cancelled - The related Coverage has been cancelled.
+
+
+
+New assignment creation will fail if:
+- there's no desk provided
+- the desk is different than the desk of the assignment
+- planning item does not exist
+- coverage does not exist
+
+
++ Request (application/json)
+
+    + Body
+        
+            {
+                
+            }
+
+    + Schema
+
+            {
+                "coverage_item": {
+                    "type": "string"
+                },
+                "planning_item": {
+                    "nullable": false,
+                    "type": "string",
+                    "required": false
+                },
+                "assigned_to": {
+                    "schema": {
+                        "assignor_user": {
+                            "type": "string"
+                        },
+                        "revert_state": {
+                            "allowed": [
+                                "draft",
+                                "assigned",
+                                "in_progress",
+                                "completed",
+                                "submitted",
+                                "cancelled"
+                            ],
+                            "type": "string"
+                        },
+                        "user": {
+                            "nullable": true,
+                            "type": "string"
+                        },
+                        "desk": {
+                            "nullable": true,
+                            "type": "string"
+                        },
+                        "state": {
+                            "allowed": [
+                                "draft",
+                                "assigned",
+                                "in_progress",
+                                "completed",
+                                "submitted",
+                                "cancelled"
+                            ],
+                            "type": "string"
+                        },
+                        "assigned_date_user": {
+                            "type": "datetime"
+                        },
+                        "assignor_desk": {
+                            "type": "string"
+                        },
+                        "assigned_date_desk": {
+                            "type": "datetime"
+                        },
+                        "coverage_provider": {
+                            "nullable": true,
+                            "schema": {
+                                "name": {
+                                    "type": "string"
+                                },
+                                "qcode": {
+                                    "type": "string"
+                                }
+                            },
+                            "type": "dict"
+                        }
+                    },
+                    "type": "dict"
+                },
+                "lock_user": {
+                    "nullable": false,
+                    "versioned": false,
+                    "type": "objectid",
+                    "required": false
+                },
+                "priority": {
+                    "nullable": true,
+                    "type": "integer"
+                },
+                "lock_session": {
+                    "nullable": false,
+                    "versioned": false,
+                    "type": "objectid",
+                    "required": false
+                },
+                "planning": {
+                    "schema": {
+                        "planning_ext_property": {
+                            "type": "list",
+                            "mapping": {
+                                "properties": {
+                                    "name": {
+                                        "type": "string"
+                                    },
+                                    "qcode": {
+                                        "type": "string"
+                                    },
+                                    "value": {
+                                        "type": "string"
+                                    }
+                                }
+                            }
+                        },
+                        "ednote": {
+                            "nullable": true,
+                            "type": "string"
+                        },
+                        "scheduled": {
+                            "type": "datetime"
+                        },
+                        "news_content_characteristics": {
+                            "type": "list",
+                            "mapping": {
+                                "properties": {
+                                    "name": {
+                                        "type": "string"
+                                    },
+                                    "value": {
+                                        "type": "string"
+                                    }
+                                }
+                            }
+                        },
+                        "credit_line": {
+                            "type": "list",
+                            "mapping": {
+                                "type": "string"
+                            }
+                        },
+                        "language": {
+                            "type": "list",
+                            "mapping": {
+                                "type": "string"
+                            }
+                        },
+                        "g2_content_type": {
+                            "type": "string",
+                            "mapping": {
+                                "type": "string"
+                            }
+                        },
+                        "headline": {
+                            "type": "string"
+                        },
+                        "dateline": {
+                            "type": "list",
+                            "mapping": {
+                                "type": "string"
+                            }
+                        },
+                        "coverage_provider": {
+                            "type": "string",
+                            "mapping": {
+                                "type": "string"
+                            }
+                        },
+                        "item_class": {
+                            "type": "string",
+                            "mapping": {
+                                "type": "string"
+                            }
+                        },
+                        "keyword": {
+                            "type": "list",
+                            "mapping": {
+                                "type": "string"
+                            }
+                        },
+                        "item_count": {
+                            "type": "string",
+                            "mapping": {
+                                "type": "string"
+                            }
+                        },
+                        "by": {
+                            "type": "list",
+                            "mapping": {
+                                "type": "string"
+                            }
+                        },
+                        "slugline": {
+                            "type": "string",
+                            "mapping": {
+                                "type": "string"
+                            }
+                        },
+                        "description_text": {
+                            "nullable": true,
+                            "type": "string"
+                        },
+                        "genre": {
+                            "nullable": true,
+                            "type": "list",
+                            "mapping": {
+                                "properties": {
+                                    "name": {
+                                        "type": "string"
+                                    },
+                                    "qcode": {
+                                        "type": "string"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        },
+                        "subject": {
+                            "type": "list",
+                            "mapping": {
+                                "properties": {
+                                    "name": {
+                                        "type": "string"
+                                    },
+                                    "qcode": {
+                                        "type": "string"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        },
+                        "internal_note": {
+                            "type": "string"
+                        },
+                        "service": {
+                            "type": "list",
+                            "mapping": {
+                                "properties": {
+                                    "name": {
+                                        "type": "string"
+                                    },
+                                    "qcode": {
+                                        "type": "string"
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "type": "dict"
+                },
+                "original_creator": {
+                    "nullable": false,
+                    "type": "objectid",
+                    "required": false
+                },
+                "version_creator": {
+                    "nullable": false,
+                    "type": "objectid",
+                    "required": false
+                },
+                "versioncreated": {
+                    "type": "datetime"
+                },
+                "description_text": {
+                    "nullable": true,
+                    "type": "string"
+                },
+                "lock_time": {
+                    "versioned": false,
+                    "type": "datetime"
+                },
+                "type": {
+                    "default": "assignment",
+                    "type": "string",
+                    "mapping": {
+                        "type": "string"
+                    }
+                },
+                "lock_action": {
+                    "nullable": true,
+                    "type": "string",
+                    "mapping": {
+                        "type": "string"
+                    }
+                },
+                "firstcreated": {
+                    "type": "datetime"
+                }
+            }
+
++ Response 201 (application/json)
+
++ Response 400 (application/json)
+
++ Response 412 (application/json)
+
+
+## A Assignment [/assignments/{assignment_id}]
+
++ Parameters
+
+    - assignment_id (string) ... assignment id
+
+### Details of A Assignment [GET]
+
++ Response 200 (application/json)
+
+    + Body
+
+            {
+                "priority": 2,
+                "planning": {
+                    "news_coverage_status": {
+                        "name": "coverage not intended",
+                        "qcode": "ncostat:notint",
+                        "label": "Not planned"
+                    },
+                    "internal_note": "\n\n------------------------------------------------------------\nCoverage cancelled\n",
+                    "slugline": "ed note tests",
+                    "genre": [
+                        {
+                            "name": "Article (news)",
+                            "qcode": "Article"
+                        }
+                    ],
+                    "scheduled": "2018-03-22T14:54:14+0000",
+                    "ednote": "ed note testw23",
+                    "g2_content_type": "text"
+                },
+                "original_creator": "5ab27997cdfe38023cd29e97",
+                "coverage_item": "urn:newsml:sdp-master.test.superdesk.org:2018-03-22T18:51:36.165788:25356b0c-f6ca-40ba-afca-faefdd942480",
+                "_id": "5ab3fb38cdfe3800e091ff40",
+                "planning_item": "urn:newsml:sdp-master.test.superdesk.org:2018-03-22T14:54:30.977347:747b01d3-117b-42b8-9229-34ddbcbadeb3",
+                "_created": "2018-03-22T18:51:36+0000",
+                "_updated": "2018-03-22T18:52:09+0000",
+                "assigned_to": {
+                    "priority": 2,
+                    "assigned_date_desk": "2018-03-22T18:51:36+0000",
+                    "coverage_provider": null,
+                    "assigned_date_user": "2018-03-22T18:51:36+0000",
+                    "assignment_id": "5ab3fb38cdfe3800e091ff40",
+                    "assignor_desk": "5ab27997cdfe38023cd29e97",
+                    "assignor_user": "5ab27997cdfe38023cd29e97",
+                    "state": "draft",
+                    "desk": "5ab27ab6cdfe38023cd29eac",
+                    "user": "5ab27997cdfe38023cd29e97"
+                },
+            }
+           
+
+### Update A Assignment [PATCH]
+
++ Request (application/json)
+
+    + Headers
+    
+            If-Match: {_etag}
+    
+    + Body
+
+            {
+                "assigned_to": {
+                    "desk":"5ab27997cdfe38023cd29e97",
+                    "user":"5ab27997cdfe38023cd29e97"
+                }
+            }
+
++ Response 200 (application/json)
+
++ Response 403 (application/json)
+
+## Delete A Assignment [DELETE]      
+
+Delete of an assignment will fail if:
+- lock could not be obtained for the assignment
+- lock is not obtained on the associated Planning item or Event
+- if the assignment is already completed
+
+
++ Request (application/json)
+
+        {}
+
++ Response 204 (application/json)
+
++ Response 412 (application/json)
