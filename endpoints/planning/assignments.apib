@@ -119,7 +119,7 @@ An assigment can have the following states:
 
 
 New assignment creation will fail if:
-- there's no desk provided
+- there"s no desk provided
 - the desk is different than the desk of the assignment
 - planning item does not exist
 - coverage does not exist
@@ -508,3 +508,176 @@ Delete of an assignment will fail if:
 + Response 204 (application/json)
 
 + Response 412 (application/json)
+
+
+## Assignment Lock Resource [/assignments/{assignment_id}/lock] 
+
+Locks the assignment for a given user. This will prevent other users editing or moving the item.
+Lock will fail if:
+- there is a lock on the assignment by another user
+- the assignment is not in "assigned", "completed", "submitted" or "in_progress" states
+- associated content item is locked by another user
+
+
++ Parameters
+
+    - assignment_id (string) ... assignment id
+
+### Lock An Assignment [POST]
+
++ Response 200 (application/json)
+
+    + Body
+
+            {
+                "lock_action": "edit"
+            }
+
+    + Schema
+
+            {"lock_action": {"type": "string"}}                   
+
+
+
+## Assignment Unlock Resource [/assignments/{assignment_id}/unlock] 
+
+Unlocks the assignment for a given user. This will let other users editing or moving the item.
+- Unlocking archive item unlocks assignment
+- Unlocking assignment has no effect is linked content is still locked
+
+
++ Parameters
+
+    - assignment_id (string) ... assignment id
+
+### Unlock An Assignment [POST]
+
++ Response 200 (application/json)
+
+    + Body
+
+            {
+                
+            }
+
+    + Schema
+
+            {
+
+            }  
+
+
+
+## Assignments Complete Resource [/assignments/complete] 
+
+Creates content for a given assignment. Updates the state of the assignment to **in_progress**
+It aso updates the following fields of the assignment:
+- assigned_to.desk
+- assigned_to.user
+- assigned_to.assignor_user
+- assigned_to.assignt_dateuser
+
+
+### Create Content for An Assignment [POST]
+
++ Response 200 (application/json)
+
+    + Body
+
+            {
+                "assignment_id": "123123ef4523ce2"
+            }
+
+    + Schema
+
+            {
+                "assignment_id": {
+                    "type": "string",
+                    "required": true
+                },
+                "template_name": {
+                    "type": "string",
+                    "required": false
+                }
+            }    
+
+
+## Assignments Link Resource [/assignments/link] 
+
+A user would need to link Superdesk Text Items to Planning Items in the following cases:
+
+- An assignment has been created for a reporter and the reporter submits the content via email or google forms (not using Superdesk). 
+- An assignment has not been created for a reporter and the reporter submits content via  email or google forms (not using Superdesk) 
+that needs to be linked back to planning
+- An assignment has been created for a Desk/User and the content is covered by agency content (Reuters, PA, etc)
+- An assignment has not been created for a Desk/User and the content is covered by agency copy.
+- There is a need to link an unlinked Superdesk story to a Coverage assignment
+
+
+Link action will fail if:
+- assignment does not exist
+- content item does not exist
+- content is already linked to an assignment
+- content not in workflow
+- a content already exists for the assignment
+
+### Link An Assignment [POST]
+
++ Response 200 (application/json)
+
+    + Body
+
+            {
+                "assignment_id": "123123ef4523ce2",
+                "item_id": "123123ef4523ce2",
+                "reassign": false
+            }
+
+    + Schema
+
+            {
+                "assignment_id": {
+                    "type": "string",
+                    "required": true
+                },
+                "item_id": {
+                    "type": "string",
+                    "required": true
+                },
+                "reassign": {
+                    "type": "boolean",
+                    "required": true
+                }
+            }                                    
+
+
+
+## Assignments Revert Resource [/assignments/{assignment_id}/revert] 
+
+Reverts the **status** of the assignment back to the value in **revert_status** field.
+Non-Text Assignments should be in completed status for revert action.
+
+Revert action will fail if:
+- the assignment is a text assignment
+- assignment is not completed
+
+
++ Parameters
+
+    - assignment_id (string) ... assignment id
+
+### Unlink An Assignment [POST]
+
++ Response 200 (application/json)
+
+    + Body
+
+            {
+                
+            }
+
+    + Schema
+
+            {
+                
+            }                                                
