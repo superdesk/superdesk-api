@@ -1,0 +1,101 @@
+
+
+## Assignments History Collection [/assignments_history] 
+
+### List All Assignments History Items [GET]
+
++ Response 200 (application/json)
+
+        {
+            "_items": [
+                {
+                    "_etag": "de42dc4d7be6a0f3b994043875f94f70846135a2",
+                    "_links": {
+                        "self": {
+                            "href": "assignments_history/5ab23666cdfe38023cd29e84",
+                            "title": "Assignments_history"
+                        }
+                    },
+                    "update": {
+                        "priority": 2,
+                        "_id": "5ab23666cdfe38023cd29e82",
+                        "_etag": "ce108194e8f4558c64709a8491b4ae9c74a038ea",
+                        "type": "assignment",
+                        "_created": "2018-03-21T10:39:34+0000",
+                        "original_creator": "5ab1aabdcdfe38019f0a875a",
+                        "_updated": "2018-03-21T10:39:34+0000",
+                        "coverage_item": "urn:newsml:sdp-master.test.superdesk.org:2018-03-21T10:39:34.331357:9e38c2b3-3a01-4df7-b2de-79f9241d4968",
+                        "assigned_to": {
+                            "assigned_date_desk": "2018-03-21T10:39:34+0000",
+                            "desk": "5ab1b3ebcdfe38023cd29e55",
+                            "assigned_date_user": "2018-03-21T10:39:34+0000",
+                            "assignor_desk": "5ab1aabdcdfe38019f0a875a",
+                            "assignor_user": "5ab1aabdcdfe38019f0a875a",
+                            "state": "assigned",
+                            "user": "5ab1aabdcdfe38019f0a875a"
+                        },
+                        "planning_item": "urn:newsml:sdp-master.test.superdesk.org:2018-03-21T10:39:34.107298:32fba5a5-76f0-4b0d-947b-837dc4e1825d",
+                        "planning": {
+                            "scheduled": "2018-03-22T22:59:59+0000",
+                            "g2_content_type": "text"
+                        }
+                    },
+                    "_created": "2018-03-21T10:39:34+0000",
+                    "_updated": "2018-03-21T10:39:34+0000",
+                    "user_id": "5ab1aabdcdfe38019f0a875a",
+                    "assignment_id": "5ab23666cdfe38023cd29e82",
+                    "operation": "create",
+                    "_id": "5ab23666cdfe38023cd29e84"
+                }
+            ]
+        }
+
+
+
+## An Assignment History Item [/assignments_history/{id}]
+
++ Parameters
+
+    - id (string) ... id
+
+### Details of An Assignments History Item [GET]
+
++ Response 200 (application/json)
+
+    + Body
+
+            {
+                "_type": "assignments_history",
+                "update": {
+                    "priority": 2,
+                    "_id": "5ab23666cdfe38023cd29e82",
+                    "_etag": "ce108194e8f4558c64709a8491b4ae9c74a038ea",
+                    "type": "assignment",
+                    "_created": "2018-03-21T10:39:34+0000",
+                    "original_creator": "5ab1aabdcdfe38019f0a875a",
+                    "_updated": "2018-03-21T10:39:34+0000",
+                    "coverage_item": "urn:newsml:sdp-master.test.superdesk.org:2018-03-21T10:39:34.331357:9e38c2b3-3a01-4df7-b2de-79f9241d4968",
+                    "assigned_to": {
+                        "assigned_date_desk": "2018-03-21T10:39:34+0000",
+                        "desk": "5ab1b3ebcdfe38023cd29e55",
+                        "assigned_date_user": "2018-03-21T10:39:34+0000",
+                        "assignor_desk": "5ab1aabdcdfe38019f0a875a",
+                        "assignor_user": "5ab1aabdcdfe38019f0a875a",
+                        "state": "assigned",
+                        "user": "5ab1aabdcdfe38019f0a875a"
+                    },
+                    "planning_item": "urn:newsml:sdp-master.test.superdesk.org:2018-03-21T10:39:34.107298:32fba5a5-76f0-4b0d-947b-837dc4e1825d",
+                    "planning": {
+                        "scheduled": "2018-03-22T22:59:59+0000",
+                        "g2_content_type": "text"
+                    }
+                },
+                "_created": "2018-03-21T10:39:34+0000",
+                "_updated": "2018-03-21T10:39:34+0000",
+                "user_id": "5ab1aabdcdfe38019f0a875a",
+                "assignment_id": "5ab23666cdfe38023cd29e82",
+                "operation": "create",
+                "_id": "5ab23666cdfe38023cd29e84"
+            }
+           
+

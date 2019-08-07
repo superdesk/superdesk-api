@@ -1,0 +1,312 @@
+
+## Locations Collection [/locations] 
+
+### List All Locations [GET]
+
++ Response 200 (application/json)
+
+        {
+            "_items": [
+                {
+                    "name": "London",
+                    "_etag": "4d145b10a27a3edc87c39c5b8b435c7b5570ee02",
+                    "_links": {
+                        "self": {
+                            "href": "locations/5ad55b46cdfe3800e255b934",
+                            "title": "Location"
+                        }
+                    },
+                    "_type": "locations",
+                    "_id": "5ad55b46cdfe3800e255b934",
+                    "type": "Unclassified",
+                    "_created": "2018-04-17T02:26:14+0000",
+                    "unique_name": "London",
+                    "original_creator": "5ab1aabdcdfe38019f0a875a",
+                    "_updated": "2018-04-17T02:26:14+0000",
+                    "guid": "urn:newsml:sdp-master.test.superdesk.org:2018-04-17T02:26:14.072819:35645efb-1fc8-4951-979b-b5badefced03"
+                }
+            ]
+        }
+
+
+### Create A New Location [POST]
+
+
++ Request (application/json)
+
+    + Body
+        
+            {
+                "guid": "123",
+                "unique_id": "123",
+                "unique_name": "123 name",
+                "name": "Test Location",
+                "address": {
+                    "line": [
+                        "street 123",
+                        "apt 1"
+                    ],
+                    "locality": "some locality",
+                    "area": "some area",
+                    "country": "some country",
+                    "postal_code": "some postal code"
+                }
+            }
+
+    + Schema
+
+            {
+                "original_source": {
+                    "type": "string",
+                    "mapping": {
+                        "index": "not_analyzed",
+                        "type": "string"
+                    }
+                },
+                "type": {
+                    "type": "string",
+                    "default": "Unclassified"
+                },
+                "original_creator": {
+                    "type": "objectid",
+                    "nullable": false,
+                    "required": false,
+                    "data_relation": {
+                        "embeddable": true,
+                        "field": "_id",
+                        "resource": "users"
+                    }
+                },
+                "address": {
+                    "type": "dict",
+                    "schema": {
+                        "postal_code": {
+                            "type": "string"
+                        },
+                        "line": {
+                            "type": "list",
+                            "mapping": {
+                                "type": "string"
+                            }
+                        },
+                        "locality": {
+                            "type": "string"
+                        },
+                        "country": {
+                            "type": "string"
+                        },
+                        "title": {
+                            "type": "string",
+                            "nullable": true
+                        },
+                        "area": {
+                            "type": "string"
+                        },
+                        "external": {
+                            "type": "dict",
+                            "mapping": {
+                                "enabled": false,
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "ingest_provider_sequence": {
+                    "type": "string",
+                    "mapping": {
+                        "index": "not_analyzed",
+                        "type": "string"
+                    }
+                },
+                "firstcreated": {
+                    "type": "datetime"
+                },
+                "capacity": {
+                    "type": "string"
+                },
+                "version": {
+                    "type": "integer"
+                },
+                "versioncreated": {
+                    "type": "datetime"
+                },
+                "details": {
+                    "type": "list",
+                    "nullable": true,
+                    "mapping": {
+                        "type": "string"
+                    }
+                },
+                "version_creator": {
+                    "type": "objectid",
+                    "nullable": false,
+                    "required": false,
+                    "data_relation": {
+                        "embeddable": true,
+                        "field": "_id",
+                        "resource": "users"
+                    }
+                },
+                "ceased_to_exist": {
+                    "type": "datetime"
+                },
+                "unique_id": {
+                    "type": "integer",
+                    "unique": true
+                },
+                "access": {
+                    "type": "list",
+                    "nullable": true,
+                    "mapping": {
+                        "type": "string"
+                    }
+                },
+                "unique_name": {
+                    "type": "string",
+                    "unique": true,
+                    "mapping": {
+                        "index": "not_analyzed",
+                        "type": "string"
+                    }
+                },
+                "open_hours": {
+                    "type": "string"
+                },
+                "ingest_id": {
+                    "type": "string",
+                    "mapping": {
+                        "index": "not_analyzed",
+                        "type": "string"
+                    }
+                },
+                "guid": {
+                    "type": "string",
+                    "unique": true,
+                    "mapping": {
+                        "index": "not_analyzed",
+                        "type": "string"
+                    }
+                },
+                "source": {
+                    "type": "string",
+                    "mapping": {
+                        "index": "not_analyzed",
+                        "type": "string"
+                    }
+                },
+                "created": {
+                    "type": "datetime"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "ingest_provider": {
+                    "type": "objectid",
+                    "nullable": false,
+                    "required": false,
+                    "data_relation": {
+                        "embeddable": true,
+                        "field": "_id",
+                        "resource": "ingest_providers"
+                    }
+                },
+                "position": {
+                    "type": "dict",
+                    "schema": {
+                        "latitude": {
+                            "type": "float"
+                        },
+                        "gps_datum": {
+                            "type": "string"
+                        },
+                        "altitude": {
+                            "type": "integer"
+                        },
+                        "longitude": {
+                            "type": "float"
+                        }
+                    }
+                },
+                "contact_info": {
+                    "type": "list",
+                    "nullable": true,
+                    "mapping": {
+                        "type": "string"
+                    }
+                }
+            }
+
++ Response 201 (application/json)
+
++ Response 400 (application/json)
+
++ Response 412 (application/json)
+
+
+## A Location [/locations/{location_id}]
+
++ Parameters
+
+    - location_id (string) ... location id
+
+### Details of A Location [GET]
+
++ Response 200 (application/json)
+
+    + Body
+
+            {
+                "name": "London",
+                "_etag": "4d145b10a27a3edc87c39c5b8b435c7b5570ee02",
+                "_links": {
+                    "parent": {
+                        "href": "/",
+                        "title": "home"
+                    },
+                    "self": {
+                        "href": "locations/5ad55b46cdfe3800e255b934",
+                        "title": "Location"
+                    },
+                    "collection": {
+                        "href": "locations",
+                        "title": "locations"
+                    }
+                },
+                "_type": "locations",
+                "_id": "5ad55b46cdfe3800e255b934",
+                "_created": "2018-04-17T02:26:14+0000",
+                "unique_name": "London",
+                "original_creator": "5ab1aabdcdfe38019f0a875a",
+                "_updated": "2018-04-17T02:26:14+0000",
+                "guid": "urn:newsml:sdp-master.test.superdesk.org:2018-04-17T02:26:14.072819:35645efb-1fc8-4951-979b-b5badefced03",
+                "type": "Unclassified"
+            }
+           
+
+### Update A Location [PATCH]
+
++ Request (application/json)
+
+    + Headers
+    
+            If-Match: {_etag}
+    
+    + Body
+
+            { 
+                "name": "Manchester"
+            }
+
++ Response 200 (application/json)
+
++ Response 403 (application/json)
+
+## Delete A Location [DELETE]      
+
++ Request (application/json)
+
+        {}
+
++ Response 204 (application/json)
+
++ Response 412 (application/json)

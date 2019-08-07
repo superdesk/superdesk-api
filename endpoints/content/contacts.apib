@@ -1,0 +1,319 @@
+## Contacts Collection [/contacts?{all}{is_active}{public}{q}] 
+
+### List All Contacts [GET]
+
++ Parameters
+
+    - all: returns all contacts  (optional) values: [0, 1]
+    - is_active: returns only active contacts  (optional) values: [0, 1]
+    - public: returns only public contacts  (optional) values: [0, 1]
+    - q: text to search the contacts (optional)
+
++ Response 200 (application/json)
+
+        {
+            "_items": [
+                {
+                    "_etag": "196ce8db6c2d5b503671236fe99cec6b31743936",
+                    "_links": {
+                        "self": {
+                            "href": "contacts/5ab28077cdfe38023cd29eee",
+                            "title": "Contact"
+                        }
+                    },
+                    "contact_email": [
+                        "nareg@nareg.com"
+                    ],
+                    "organisation": "OPP",
+                    "public": true,
+                    "_id": "5ab28077cdfe38023cd29eee",
+                    "_type": "contacts",
+                    "_created": "2018-03-21T15:55:35+0000",
+                    "contact_phone": [
+                        {
+                            "public": true
+                        }
+                    ],
+                    "_updated": "2018-03-21T15:55:35+0000",
+                    "mobile": [
+                        {
+                            "public": true
+                        }
+                    ],
+                    "is_active": true
+                }
+            ]
+        }
+
+
+### Create A New Contact [POST]
+
+Create a new contact. Descriptions of some of the fields are:
+
+- public: flag to indicate that the contact item should not be publicly visible, for example if the item relates to a contact that can not be distributed due to privacy concerns
+- is_active: lag to mark the contact item active/inactive for example if the item relates to a contact that is no longer valid
+- usage: usage may provide information as to the usage of the number e.g. Business hours only
+- public: If public is true then the number can be made public, if false it is only visible in the system    
+
++ Request (application/json)
+
+    + Body
+        
+            {
+                "first_name": "Albert", 
+                "last_name": "Foo", 
+                "mobile": [
+                    {
+                        "number": "1234", 
+                        "usage": "After hours",
+                        "public": true
+                    }
+                ]
+            }
+
+    + Schema
+
+            {
+                "is_active": {
+                    "type": "boolean",
+                    "default": true
+                },
+                "public": {
+                    "type": "boolean",
+                    "default": true
+                },
+                "organisation": {
+                    "type": "string",
+                    "required": false
+                },
+                "first_name": {
+                    "type": "string",
+                    "required": false
+                },
+                "last_name": {
+                    "type": "string",
+                    "required": false
+                },
+                "honorific": {
+                    "type": "string",
+                    "required": false
+                },
+                "job_title": {
+                    "type": "string",
+                    "required": false
+                },
+                "mobile": {
+                    "type": "list",
+                    "schema": {
+                        "type": "dict",
+                        "schema": {
+                            "number": {"type": "string"},
+                            "usage": {"type": "string"},
+                            "public": {"type": "boolean"}
+                        }
+                    }
+                },
+                "contact_phone": {
+                    "type": "list",
+                    "schema": {
+                        "type": "dict",
+                        "schema": {
+                            "number": {"type": "string"},
+                            "usage": {"type": "string"},
+                            "public": {"type": "boolean"}
+                        }
+                    }
+                },
+                "fax": {
+                    "type": "string",
+                    "required": false
+                },
+                "contact_email": {
+                    "type": "list",
+                    "required": false,
+                    "schema": {
+                        "type": "email"
+                    }
+                },
+                "twitter": {
+                    "type": "string",
+                    "required": false,
+                },
+                "facebook": {
+                    "type": "string",
+                    "required": false
+                },
+                "instagram": {
+                    "type": "string",
+                    "required": false
+                },
+                "website": {
+                    "type": "string",
+                    "required": false
+                },
+                "contact_address": {
+                    "type": "list",
+                    "schema": {
+                        "type": "string",
+                        "required": false
+                    }
+                },
+                "locality": {
+                    "type": "string",
+                    "required": false
+                },
+                "city": {
+                    "type": "string",
+                    "required": false
+                },
+                "contact_state": {
+                    "type": "string",
+                    "required": false
+                },
+                "postcode": {
+                    "type": "string",
+                    "required": false
+                },
+                "country": {
+                    "type": "string",
+                    "required": false
+                },
+                "notes": {
+                    "type": "string",
+                    "required": false
+                }
+            }
+
++ Response 201 (application/json)
+
++ Response 400 (application/json)
+
++ Response 412 (application/json)
+
+
+## A Contact [/contacts/{contact_id}]
+
++ Parameters
+
+    - contact_id (string) ... contact id
+
+### Details of A Contact [GET]
+
++ Response 200 (application/json)
+
+    + Body
+
+            {
+                "_etag": "196ce8db6c2d5b503671236fe99cec6b31743936",
+                "_links": {
+                    "parent": {
+                        "href": "/",
+                        "title": "home"
+                    },
+                    "self": {
+                        "href": "contacts/5ab28077cdfe38023cd29eee",
+                        "title": "Contact"
+                    },
+                    "collection": {
+                        "href": "contacts",
+                        "title": "contacts"
+                    }
+                },
+                "contact_email": [
+                    "nareg@nareg.com"
+                ],
+                "organisation": "OPP",
+                "public": true,
+                "_type": "contacts",
+                "_id": "5ab28077cdfe38023cd29eee",
+                "_created": "2018-03-21T15:55:35+0000",
+                "contact_phone": [
+                    {
+                        "public": true
+                    }
+                ],
+                "_updated": "2018-03-21T15:55:35+0000",
+                "mobile": [
+                    {
+                        "public": true
+                    }
+                ],
+                "is_active": true
+            }
+           
+
+### Update A Contact [PATCH]
+
++ Request (application/json)
+
+    + Headers
+    
+            If-Match: {_etag}
+    
+    + Body
+
+             {"first_name": "Mary"}
+
++ Response 200 (application/json)
+
++ Response 403 (application/json)
+
+## Delete A Contact [DELETE]      
+
++ Request (application/json)
+
+        {}
+
++ Response 204 (application/json)
+
++ Response 412 (application/json)
+
+
+
+## Contacts Organisations [/contacts/organisations]
+
+Unspikes an event and it"s recurring instances if needed
+
+
+### List all Contacts Organisations [GET]
+
++ Response 200 (application/json)
+
+    + Body
+
+            {
+                "_items": [
+                    {
+                        "_etag": "95a93070f2a8733b3867b0ebd4623a2af57c9991",
+                        "_links": {
+                            "self": {
+                                "href": "contacts/organisations/5ab28077cdfe38023cd29eee",
+                                "title": "Contacts organisation"
+                            }
+                        },
+                        "organisation": "OPP",
+                        "_id": "5ab28077cdfe38023cd29eee",
+                        "_created": "1970-01-01T00:00:00+0000",
+                        "_updated": "1970-01-01T00:00:00+0000",
+                        "_type": "contacts"
+                    },
+                    {
+                        "_etag": "5902ef811e5cf2966c77f31c6db23169c7a219db",
+                        "_links": {
+                            "self": {
+                                "href": "contacts/organisations/5ab22ac7cdfe38023cd29e6f",
+                                "title": "Contacts organisation"
+                            }
+                        },
+                        "organisation": "NTB",
+                        "_id": "5ab22ac7cdfe38023cd29e6f",
+                        "_created": "1970-01-01T00:00:00+0000",
+                        "_updated": "1970-01-01T00:00:00+0000",
+                        "_type": "contacts"
+                    }
+                ]
+            }
+
++ Response 200 (application/json)
+
++ Response 403 (application/json)    

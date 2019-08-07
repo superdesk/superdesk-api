@@ -1,0 +1,263 @@
+
+## Published Planning Collection [/published_planning?{where}{sort}] 
+
+Stores the published versions of planning and events as published
+
+### List All Published Planning [GET]
+
++ Parameters
+
+    - where: filter for id and the version of the published item ex: where={\"item_id\": \"5b5845cabfb76600e361313f\", \"version\": 3}"
+    - sort: sorts the results ex: sort=item_id,version
+
++ Response 200 (application/json)
+
+        {
+            "_items": [
+                {
+                    "item_id": "urn:newsml:sdp-master.test.superdesk.org:2018-07-25T09:29:25.469333:e0514638-eb73-4046-a2b4-66fb1ef9a16c",
+                    "_etag": "39f6a0c6f096aff4c1fd64dd702a4703f0180571",
+                    "_id": "5b5845cabfb76600e361313f",
+                    "_created": "2018-07-25T09:41:30+0000",
+                    "_links": {
+                        "self": {
+                            "href": "published_planning/5b5845cabfb76600e361313f",
+                            "title": "Published_planning"
+                        }
+                    },
+                    "_updated": "2018-07-25T09:41:30+0000",
+                    "version": 6366810849071610,
+                    "published_item": {
+                        "_etag": "4f84c6f0d2626f2f95e1fc9e5081850f66dc9dbf",
+                        "occur_status": {
+                            "qcode": "eocstat:eos5",
+                            "name": "Planned, occurs certainly",
+                            "label": "Planned, occurs certainly"
+                        },
+                        "dates": {
+                            "recurring_rule": null,
+                            "end": "2018-07-29T21:59:59+0000",
+                            "start": "2018-07-26T22:00:00+0000",
+                            "tz": "Europe/Vienna"
+                        },
+                        "lock_session": "5b583f3abfb76600e36130ea",
+                        "_created": "2018-07-25T09:29:25+0000",
+                        "versioncreated": "2018-07-25T09:41:30+0000",
+                        "firstcreated": "2018-07-25T09:29:25+0000",
+                        "original_creator": "5ab1aabdcdfe38019f0a875a",
+                        "definition_long": "Formula 1 - Gran Prix of Belgium - annual race. ",
+                        "anpa_category": [
+                            {
+                                "qcode": "f1",
+                                "name": "FIXME1",
+                                "subject": "",
+                                "translations": {
+                                    "name": {
+                                        "es": "FIXME1-es",
+                                        "fr": "FIXME1-fr"
+                                    }
+                                }
+                            }
+                        ],
+                        "guid": "urn:newsml:sdp-master.test.superdesk.org:2018-07-25T09:29:25.469333:e0514638-eb73-4046-a2b4-66fb1ef9a16c",
+                        "name": "Formula 1 - Gran Prix of Belgium",
+                        "definition_short": "Formula 1 - Gran Prix of Belgium annual race",
+                        "subject": [
+                            {
+                                "qcode": "positive",
+                                "name": "positive",
+                                "scheme": "sentiment"
+                            }
+                        ],
+                        "event_contact_info": [
+                            "5ab21bdfcdfe38023cd29e65"
+                        ],
+                        "_updated": "2018-07-25T09:41:30+0000",
+                        "expiry": null,
+                        "type": "event",
+                        "item_id": "urn:newsml:sdp-master.test.superdesk.org:2018-07-25T09:29:25.469333:e0514638-eb73-4046-a2b4-66fb1ef9a16c",
+                        "calendars": [
+                            {
+                                "qcode": "sport",
+                                "name": "Sport",
+                                "is_active": true
+                            }
+                        ],
+                        "lock_time": "2018-07-25T09:40:48+0000",
+                        "lock_user": "5ab1aabdcdfe38019f0a875a",
+                        "location": [
+                            {
+                                "qcode": "urn:newsml:sdp-master.test.superdesk.org:2018-07-11T13:24:22.613620:bace6a94-c6f6-42f2-84c8-3c03bb74e6c2",
+                                "address": {
+                                    "locality": "Тюрнхаут",
+                                    "type": "administrative",
+                                    "boundingbox": [
+                                        "51.2624027",
+                                        "51.3954588",
+                                        "4.888802",
+                                        "4.984881"
+                                    ],
+                                    "postal_code": "2300",
+                                    "country": "Belgium",
+                                    "line": [
+                                        ""
+                                    ]
+                                },
+                                "name": "Turnhout"
+                            }
+                        ],
+                        "_planning_schedule": [
+                            {
+                                "scheduled": "2018-07-26T22:00:00+0000"
+                            }
+                        ],
+                        "_current_version": 6366810849071610,
+                        "_id": "urn:newsml:sdp-master.test.superdesk.org:2018-07-25T09:29:25.469333:e0514638-eb73-4046-a2b4-66fb1ef9a16c",
+                        "lock_action": "edit",
+                        "links": [
+                            "http://www.f1.com"
+                        ],
+                        "files": [],
+                        "pubstatus": "usable",
+                        "state": "scheduled",
+                        "slugline": "Formula 1 - Gran Prix of Belgium"
+                    },
+                    "type": "event"
+                }
+            ]
+        }
+
+
+## A Published Planning Item [/published_planning/{id}]
+
++ Parameters
+
+    - id (string) ... published planning id
+
+### Details of A Published Planning Item [GET]
+
++ Response 200 (application/json)
+
+    + Body
+
+            {
+                "item_id": "urn:newsml:sdp-master.test.superdesk.org:2018-07-25T09:29:25.469333:e0514638-eb73-4046-a2b4-66fb1ef9a16c",
+                "_etag": "39f6a0c6f096aff4c1fd64dd702a4703f0180571",
+                "_type": "published_planning",
+                "_id": "5b5845cabfb76600e361313f",
+                "_created": "2018-07-25T09:41:30+0000",
+                "_links": {
+                    "parent": {
+                        "href": "/",
+                        "title": "home"
+                    },
+                    "self": {
+                        "href": "published_planning/5b5845cabfb76600e361313f",
+                        "title": "Published_planning"
+                    },
+                    "collection": {
+                        "href": "published_planning",
+                        "title": "published_planning"
+                    }
+                },
+                "_updated": "2018-07-25T09:41:30+0000",
+                "version": 6366810849071610,
+                "published_item": {
+                    "_etag": "4f84c6f0d2626f2f95e1fc9e5081850f66dc9dbf",
+                    "occur_status": {
+                        "qcode": "eocstat:eos5",
+                        "name": "Planned, occurs certainly",
+                        "label": "Planned, occurs certainly"
+                    },
+                    "dates": {
+                        "recurring_rule": null,
+                        "end": "2018-07-29T21:59:59+0000",
+                        "start": "2018-07-26T22:00:00+0000",
+                        "tz": "Europe/Vienna"
+                    },
+                    "lock_session": "5b583f3abfb76600e36130ea",
+                    "_created": "2018-07-25T09:29:25+0000",
+                    "versioncreated": "2018-07-25T09:41:30+0000",
+                    "firstcreated": "2018-07-25T09:29:25+0000",
+                    "original_creator": "5ab1aabdcdfe38019f0a875a",
+                    "definition_long": "Formula 1 - Gran Prix of Belgium - annual race. ",
+                    "anpa_category": [
+                        {
+                            "qcode": "f1",
+                            "name": "FIXME1",
+                            "subject": "",
+                            "translations": {
+                                "name": {
+                                    "es": "FIXME1-es",
+                                    "fr": "FIXME1-fr"
+                                }
+                            }
+                        }
+                    ],
+                    "guid": "urn:newsml:sdp-master.test.superdesk.org:2018-07-25T09:29:25.469333:e0514638-eb73-4046-a2b4-66fb1ef9a16c",
+                    "name": "Formula 1 - Gran Prix of Belgium",
+                    "definition_short": "Formula 1 - Gran Prix of Belgium annual race",
+                    "subject": [
+                        {
+                            "qcode": "positive",
+                            "name": "positive",
+                            "scheme": "sentiment"
+                        }
+                    ],
+                    "event_contact_info": [
+                        "5ab21bdfcdfe38023cd29e65"
+                    ],
+                    "_updated": "2018-07-25T09:41:30+0000",
+                    "expiry": null,
+                    "type": "event",
+                    "item_id": "urn:newsml:sdp-master.test.superdesk.org:2018-07-25T09:29:25.469333:e0514638-eb73-4046-a2b4-66fb1ef9a16c",
+                    "calendars": [
+                        {
+                            "qcode": "sport",
+                            "name": "Sport",
+                            "is_active": true
+                        }
+                    ],
+                    "lock_time": "2018-07-25T09:40:48+0000",
+                    "lock_user": "5ab1aabdcdfe38019f0a875a",
+                    "location": [
+                        {
+                            "qcode": "urn:newsml:sdp-master.test.superdesk.org:2018-07-11T13:24:22.613620:bace6a94-c6f6-42f2-84c8-3c03bb74e6c2",
+                            "address": {
+                                "locality": "Тюрнхаут",
+                                "type": "administrative",
+                                "boundingbox": [
+                                    "51.2624027",
+                                    "51.3954588",
+                                    "4.888802",
+                                    "4.984881"
+                                ],
+                                "postal_code": "2300",
+                                "country": "Belgium",
+                                "line": [
+                                    ""
+                                ]
+                            },
+                            "name": "Turnhout"
+                        }
+                    ],
+                    "_planning_schedule": [
+                        {
+                            "scheduled": "2018-07-26T22:00:00+0000"
+                        }
+                    ],
+                    "_current_version": 6366810849071610,
+                    "_id": "urn:newsml:sdp-master.test.superdesk.org:2018-07-25T09:29:25.469333:e0514638-eb73-4046-a2b4-66fb1ef9a16c",
+                    "lock_action": "edit",
+                    "links": [
+                        "http://www.f1.com"
+                    ],
+                    "files": [],
+                    "pubstatus": "usable",
+                    "state": "scheduled",
+                    "slugline": "Formula 1 - Gran Prix of Belgium"
+                },
+                "type": "event"
+            }
+           
+
